@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <EditText
+        android:hint="Name"
         android:id="@+id/edit_regscreen_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -15,12 +16,14 @@
         android:orientation="horizontal">
 
         <EditText
+            android:hint="Class"
             android:layout_weight="1"
             android:id="@+id/edit_regscreen_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:hint="Section"
             android:layout_weight="1"
             android:id="@+id/edit_regscreen_section"
             android:layout_width="match_parent"
@@ -28,24 +31,28 @@
     </LinearLayout>
 
     <EditText
+        android:hint="Mother Tongue"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_regscreen_mothertongue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
+        android:hint="Instruction Medium"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_regscreen_instruction_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
+        android:hint="School/University"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_regscreen_school"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
+        android:hint="DOB"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_regscreen_dob"
         android:layout_width="match_parent"
@@ -73,6 +80,14 @@
             android:layout_weight="1"/>
 
     </LinearLayout>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/btn_screenreg_submit"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 

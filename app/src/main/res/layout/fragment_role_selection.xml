@@ -17,15 +17,15 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_review"
-            android:text="Review Previous Language Assesment Results"
+            android:id="@+id/btn_teacher"
+            android:text="Teacher"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_new_student"
-            android:text="New Student Language Assessment"
+            android:id="@+id/btn_psychologist"
+            android:text="Psychologist"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_weight="1"/>

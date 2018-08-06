@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Action"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_review"
+            android:text="Review Previous Screenings"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_new_student"
+            android:text="New Student Screening"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</FrameLayout>

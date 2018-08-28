@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_main">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+
+    <include
+        layout="@layout/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

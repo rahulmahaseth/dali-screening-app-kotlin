@@ -21,4 +21,25 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"/>
 
+    <Button
+        android:id="@+id/btn_login"
+        android:text="@string/login"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:text="@string/sign_up"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_forgot_password"
+        android:text="@string/forgot_password"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

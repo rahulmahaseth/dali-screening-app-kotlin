@@ -8,18 +8,17 @@ import android.view.ViewGroup
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 
-class Registration : Fragment() {
-
+class ForgotPassword : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
+            inflater.inflate(R.layout.fragment_forgotpassword, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

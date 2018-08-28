@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DALI</string>
+    <string name="login">Login</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="always">Always</string>
+    <string name="sometimes">SomeTIMES</string>
+    <string name="never">NEVER</string>
 </resources>

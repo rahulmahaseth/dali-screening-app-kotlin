@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 
-class Screenings : Fragment() {
+class ScreeningDashboard : Fragment() {
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.fragment_container,

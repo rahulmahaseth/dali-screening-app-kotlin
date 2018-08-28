@@ -1,4 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
-class Dashboard {
+import android.support.v4.app.Fragment
+
+class Dashboard: Fragment() {
 }

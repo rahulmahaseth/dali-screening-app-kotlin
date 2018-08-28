@@ -25,7 +25,6 @@
             android:background="@null">
 
             <android.support.v7.widget.Toolbar
-                app:titleTextColor="@color/greyTextColor"
                 android:id="@+id/toolbar"
                 android:background="@null"
                 android:theme="@style/AppTheme"
@@ -43,8 +42,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
-        app:itemTextColor="@color/greyTextColor"
         android:paddingTop="150dp"/>
 
 </android.support.v4.widget.DrawerLayout>

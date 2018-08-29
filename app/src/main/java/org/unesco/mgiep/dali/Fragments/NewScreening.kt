@@ -11,7 +11,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_new_screening.*
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.Participant
-import org.unesco.mgiep.dali.Data.ViewModels.ScreeningPariticipantViewModel
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
@@ -27,7 +27,7 @@ class NewScreening : Fragment() {
     private var selectedDate : Date = calendar.time
 
     @Inject
-    lateinit var screeningPariticipantViewModel: ScreeningPariticipantViewModel
+    lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         calendar.set(Calendar.YEAR, year)
@@ -40,7 +40,7 @@ class NewScreening : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        screeningPariticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningPariticipantViewModel::class.java)
+        screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -66,7 +66,7 @@ class NewScreening : Fragment() {
                     Toast.makeText(activity,"Select Gender",Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    screeningPariticipantViewModel.select(Participant(
+                    screeningParticipantViewModel.select(Participant(
                             name = edit_regscreen_name.text.toString(),
                             sClass = edit_regscreen_class.text.toString().toInt(),
                             section = edit_regscreen_section.text.toString(),

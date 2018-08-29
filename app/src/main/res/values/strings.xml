@@ -18,4 +18,165 @@
     <string name="sclass">Class</string>
     <string name="name">Name</string>
     <string name="date_of_birth">Date of Birth</string>
+
+    <string name="jst_q1">Difficulty in sound replacement games.</string>
+    <string name="jst_q2">Difficulty in rhyming.</string>
+    <string name="jst_q3">Difficulty with spelling common words.</string>
+    <string name="jst_q4">Difficulty in identifying letters of the alphabet.</string>
+    <string name="jst_q5">Difficulty in recognizing common printed words.</string>
+    <string name="jst_q6">Difficulty in recognizing number symbols when shown.</string>
+    <string name="jst_q7">Difficulty in understanding "greater than" or "less than", "what comes before or after" concepts.</string>
+    <string name="jst_q8">Difficulty in following instructions.</string>
+    <string name="jst_q9">Difficulty in choosing the right words; The child fumbles while speaking.</string>
+    <string name="jst_q10">Difficulty in repeating long words.</string>
+    <string name="jst_q11">Difficulty in copying simple shapes (circle, square, triangle, rhombus)</string>
+    <string name="jst_q12">Difficulty in writing simple words in language of instruction.</string>
+    <string name="jst_q13">Shows lack of attention and concentration in task. Leaves work unfinished.</string>
+    <string name="jst_q14">Restless and/or over-active.</string>
+    <string name="jst_q15">Tends to be anxious, withdrawn, disruptive.</string>
+
+    <string name="jst_e1">Replace sound /r/ in RED with /b/ to get BED.</string>
+    <string name="jst_e2">Which of the following two words rhyme? BAR, CAR, BUS</string>
+    <string name="jst_e3">WAS, HAT, DAY, OUT, etc.</string>
+    <string name="jst_e4">If asked to point out the letter "J", the child is unable to do so.</string>
+    <string name="jst_e5">THE, FOR, CAT, SUN, etc.</string>
+    <string name="jst_e6">If asked to point out the number "5", the child is unable to do so.</string>
+    <string name="jst_e7">Is 4 greater than 7? What comes after 8? The child should be able to do such sequencing up to 8.</string>
+    <string name="jst_e8">Difficulty in understanding commands involving two or three steps. For example, "Open chapter number 4 and get to page number 34".</string>
+    <string name="jst_e9">The child may be unable to retrieve the word "bottle" and say instead,"I filled water in the ... uh .. box."</string>
+    <string name="jst_e10"></string>
+    <string name="jst_e11"></string>
+    <string name="jst_e12">Difficulty in forming letters of common words e.g.:HAT.</string>
+    <string name="jst_e13">The child gets bored easily and leaves tasks incomplete. The teacher or parent has to constantly ask the child to pay attention and/or to finish the task.</string>
+    <string name="jst_e14">Has difficulty in sitting in one position. May roam in the class. May disturb other children in class.</string>
+    <string name="jst_e15"></string>
+
+    <string name="mst_q1">Reads slowly and/or guesses words, and/or uncomfortable reading aloud.</string>
+    <string name="mst_q2">Skips lines, omits letters while reading.</string>
+    <string name="mst_q3">Difficulty in identifying sounds in words.</string>
+    <string name="mst_q4">Difficulty in understanding sentences, passages.</string>
+    <string name="mst_q5">Difficulty in forming proper letters and words.</string>
+    <string name="mst_q6">Inaccurate copying from the board and/or book.</string>
+    <string name="mst_q7">Performs poorly on dictation. Makes frequent spelling mistakes in common words.</string>
+    <string name="mst_q8">Difficulty in written expression.</string>
+    <string name="mst_q9">Poor understanding of basic arithmetic concepts, symbols such as +, -, x, etc.</string>
+    <string name="mst_q10">Difficulty in reporting time from wall clocks that are not digital.</string>
+    <string name="mst_q11">Slow in mental calculatons.</string>
+    <string name="mst_q12">Difficulty in listening in class.</string>
+    <string name="mst_q13">Immature speech compared to classmates.</string>
+    <string name="mst_q14">Difficulty in forming complete sentences orally.</string>
+    <string name="mst_q15">Difficulty in copying or drawing simple shapes.</string>
+    <string name="mst_q16">Has an awkward pencil grasp.</string>
+    <string name="mst_q17">Shows lack of attention and concentration in task. Leaves work unfinished.</string>
+    <string name="mst_q18">Restless and/or over-active.</string>
+    <string name="mst_q19">Appears to work hard to improve but is unable to achieve.</string>
+    <string name="mst_q20">Tends to be anxious, withdrawn, disruptive.</string>
+    <string name="mst_q21">Difficulty in memorizing school content such as multiplication tables, poems, etc.</string>
+
+    <string name="mst_e1"></string>
+    <string name="mst_e2">The child may pronounce "hear" as "her", or omit word(s) while reading.</string>
+    <string name="mst_e3">The child is unable to say that /k/ is the first sound in the word CATCH.</string>
+    <string name="mst_e4">Problems in understanding written content both in books and on blackboard. Difficulty in comprehending passages about 6–8 lines.</string>
+    <string name="mst_e5">The child writes letters and/or numbers that are inconsistent or unusual in form and size.</string>
+    <string name="mst_e6">Difficulty in copying material rom black board or textbooks. Unable to use lines and margins properly.</string>
+    <string name="mst_e7"></string>
+    <string name="mst_e8">Has difficulties in expressing ideas on a given topic. Expression is not age appropriate.</string>
+    <string name="mst_e9">Difficulty in using basic signs or is unable to understand the relationship between arithmetic concepts.</string>
+    <string name="mst_e10"></string>
+    <string name="mst_e11">Still continues to count on finger, takes significantly long to do simple calculations.</string>
+    <string name="mst_e12">The child often asks the teacher to repeat instructuins saying, "did not understand. Can you please say it again?"</string>
+    <string name="mst_e13">"tractor" produced as "taktor".</string>
+    <string name="mst_e14">Difficulty in speaking complete sentences.</string>
+    <string name="mst_e15">circle, square and triangle</string>
+    <string name="mst_e16"></string>
+    <string name="mst_e17">The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
+    <string name="mst_e18">Has difficulty in sitting in one postion. May roam in the class. May disturb other children in the class.</string>
+    <string name="mst_e19"></string>
+    <string name="mst_e20"></string>
+    <string name="mst_e21"></string>
+
+
+    <string-array name="jst_questions">
+        <item>@string/jst_q1</item>
+        <item>@string/jst_q2</item>
+        <item>@string/jst_q3</item>
+        <item>@string/jst_q4</item>
+        <item>@string/jst_q5</item>
+        <item>@string/jst_q6</item>
+        <item>@string/jst_q7</item>
+        <item>@string/jst_q8</item>
+        <item>@string/jst_q9</item>
+        <item>@string/jst_q10</item>
+        <item>@string/jst_q11</item>
+        <item>@string/jst_q12</item>
+        <item>@string/jst_q13</item>
+        <item>@string/jst_q14</item>
+        <item>@string/jst_q15</item>
+    </string-array>e
+
+    <string-array name="jst_examples">
+        <item>@string/jst_e1</item>
+        <item>@string/jst_e2</item>
+        <item>@string/jst_e3</item>
+        <item>@string/jst_e4</item>
+        <item>@string/jst_e5</item>
+        <item>@string/jst_e6</item>
+        <item>@string/jst_e7</item>
+        <item>@string/jst_e8</item>
+        <item>@string/jst_e9</item>
+        <item>@string/jst_e10</item>
+        <item>@string/jst_e11</item>
+        <item>@string/jst_e12</item>
+        <item>@string/jst_e13</item>
+        <item>@string/jst_e14</item>
+        <item>@string/jst_e15</item>
+    </string-array>
+
+    <string-array name="mst_questions">
+        <item>@string/mst_q1</item>
+        <item>@string/mst_q2</item>
+        <item>@string/mst_q3</item>
+        <item>@string/mst_q4</item>
+        <item>@string/mst_q5</item>
+        <item>@string/mst_q6</item>
+        <item>@string/mst_q7</item>
+        <item>@string/mst_q8</item>
+        <item>@string/mst_q9</item>
+        <item>@string/mst_q10</item>
+        <item>@string/mst_q11</item>
+        <item>@string/mst_q12</item>
+        <item>@string/mst_q13</item>
+        <item>@string/mst_q14</item>
+        <item>@string/mst_q15</item>
+        <item>@string/mst_q16</item>
+        <item>@string/mst_q17</item>
+        <item>@string/mst_q18</item>
+        <item>@string/mst_q19</item>
+        <item>@string/mst_q20</item>
+        <item>@string/mst_q21</item>
+    </string-array>
+
+    <string-array name="mst_examples">
+        <item>@string/mst_q1</item>
+        <item>@string/mst_q2</item>
+        <item>@string/mst_q3</item>
+        <item>@string/mst_q4</item>
+        <item>@string/mst_q5</item>
+        <item>@string/mst_q6</item>
+        <item>@string/mst_q7</item>
+        <item>@string/mst_q8</item>
+        <item>@string/mst_q9</item>
+        <item>@string/mst_q10</item>
+        <item>@string/mst_q11</item>
+        <item>@string/mst_q12</item>
+        <item>@string/mst_q13</item>
+        <item>@string/mst_q14</item>
+        <item>@string/mst_q15</item>
+        <item>@string/mst_q16</item>
+        <item>@string/mst_q17</item>
+        <item>@string/mst_q18</item>
+        <item>@string/mst_q19</item>
+        <item>@string/mst_q20</item>
+        <item>@string/mst_q21</item>
+    </string-array>
 </resources>

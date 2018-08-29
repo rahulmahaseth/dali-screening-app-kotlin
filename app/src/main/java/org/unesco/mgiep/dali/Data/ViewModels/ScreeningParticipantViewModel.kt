@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import org.unesco.mgiep.dali.Data.Participant
 
-class ScreeningPariticipantViewModel : ViewModel() {
+class ScreeningParticipantViewModel : ViewModel() {
     private var screeningParticipant = MutableLiveData<Participant>()
 
     fun select(participant: Participant){

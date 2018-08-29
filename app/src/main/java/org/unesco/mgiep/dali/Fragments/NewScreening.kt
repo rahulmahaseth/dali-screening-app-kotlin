@@ -26,7 +26,6 @@ class NewScreening : Fragment() {
     private var gender = Gender.MALE
     private var selectedDate : Date = calendar.time
 
-    @Inject
     lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->

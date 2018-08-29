@@ -94,6 +94,9 @@
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
+    <string name="age">Age</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
 
 
     <string-array name="jst_questions">

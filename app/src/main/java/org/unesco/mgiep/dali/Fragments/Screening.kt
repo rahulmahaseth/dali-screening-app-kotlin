@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 class Screening : Fragment() {
 
-    @Inject
     lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

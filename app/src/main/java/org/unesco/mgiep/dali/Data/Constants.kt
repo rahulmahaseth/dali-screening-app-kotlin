@@ -7,3 +7,7 @@ enum class InstructionMedium{
 enum class Gender{
     MALE, FEMALE
 }
+
+enum class Type{
+    JST, MST
+}

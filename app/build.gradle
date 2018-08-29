@@ -75,16 +75,13 @@ dependencies {
     //SpinKit
     implementation 'com.github.ybq:Android-SpinKit:1.1.0'
 
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    // alternatively, just ViewModel
-    implementation "android.arch.lifecycle:viewmodel:1.1.1"
-    // alternatively, just LiveData
-    implementation "android.arch.lifecycle:livedata:1.1.1"
+    //lifecycle components
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
 
-    kapt "android.arch.lifecycle:compiler:1.1.1"
-
+    //firebase
     implementation 'com.google.firebase:firebase-auth:16.0.3'
+
 
 
 }
@@ -92,5 +89,4 @@ repositories {
     mavenCentral()
     google()
     maven { url "https://jitpack.io"}
-    maven { url "https://s3.amazonaws.com/repo.commonsware.com"}
 }

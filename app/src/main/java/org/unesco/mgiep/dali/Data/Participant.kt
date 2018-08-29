@@ -5,7 +5,7 @@ import java.util.*
 data class Participant (
         val name: String,
         val sClass: Int,
-        val Section: String,
+        val section: String = "",
         val motherTongue: String,
         val institution: String,
         val dob: Date,

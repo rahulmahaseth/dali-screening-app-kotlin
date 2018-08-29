@@ -5,10 +5,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningPariticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
+import javax.inject.Inject
 
 class Screening : Fragment() {
+
+    @Inject
+    lateinit var screeningPariticipantViewModel: ScreeningPariticipantViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

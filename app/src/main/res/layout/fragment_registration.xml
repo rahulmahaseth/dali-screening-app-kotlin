@@ -38,14 +38,24 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:hint="@string/designation"
+        android:layout_marginTop="10dp"
+        android:id="@+id/edit_register_designation"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
         android:hint="@string/school_university"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_register_school"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
+
         android:hint="@string/age"
         android:layout_marginTop="10dp"
         android:id="@+id/edit_register_age"
@@ -86,7 +96,6 @@
     </LinearLayout>
 
     <Button
-        android:layout_marginTop="60dp"
         android:text="@string/sign_up"
         android:id="@+id/btn_register_submit"
         android:layout_gravity="center_horizontal"

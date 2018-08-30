@@ -6,5 +6,5 @@ data class User (
         val designation: String,
         val institution: String?,
         val age: Int,
-        val gender: Gender
+        val gender: String
 )

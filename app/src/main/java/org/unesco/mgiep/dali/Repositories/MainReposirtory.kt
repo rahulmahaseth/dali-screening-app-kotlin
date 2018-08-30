@@ -14,7 +14,7 @@ class MainReposirtory {
     private val mstExamplesArray =  Resources.getSystem().getStringArray(R.array.mst_examples)
 
     fun getScreenings(): Observable<List<Screening>> {
-        return ""
+        return
     }
 
     fun nextQuestion(questionNumber : Int, type: Type):String{

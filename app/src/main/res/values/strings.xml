@@ -97,6 +97,13 @@
     <string name="age">Age</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
+    <string name="required">Required</string>
+    <string name="confirm_password_diff_error">Confirm Password is different from Original</string>
+    <string name="invalid_age">Invalid Age</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="auth_success">Authentication Success.</string>
+    <string name="designation">Designation</string>
 
 
     <string-array name="jst_questions">

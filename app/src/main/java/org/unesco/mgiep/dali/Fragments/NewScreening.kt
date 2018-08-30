@@ -50,9 +50,9 @@ class NewScreening : Fragment() {
 
         btn_screenreg_submit.setOnClickListener {
             when {
-                edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = "Name Required"
-                edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = "Mother Tongue Required"
-                edit_regscreen_dob.text.isEmpty()->edit_regscreen_name.error = "Date of Birth Required"
+                edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
+                edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
+                edit_regscreen_dob.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_radio_male.isChecked -> {
                     edit_regscreen_radio_female.isChecked = false
                     gender = Gender.MALE
@@ -62,7 +62,7 @@ class NewScreening : Fragment() {
                     gender = Gender.FEMALE
                 }
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
-                    Toast.makeText(activity,"Select Gender",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     screeningParticipantViewModel.select(Participant(

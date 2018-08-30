@@ -33,13 +33,13 @@ class Login : Fragment() {
 
         btn_login.setOnClickListener {
             when{
-                edit_email.text.isEmpty() -> edit_email.error = "Email Required"
-                edit_password.text.isEmpty() -> edit_password.error = "Password Required"
+                edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
+                edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
                     mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
                             .addOnCompleteListener(activity!!) {
                                 if(it.isSuccessful){
-                                    Toast.makeText(activity, "Authentication Success.",
+                                    Toast.makeText(activity, getString(R.string.auth_success),
                                             Toast.LENGTH_SHORT).show()
                                     showFragment(
                                             Fragment.instantiate(
@@ -49,7 +49,7 @@ class Login : Fragment() {
                                             false
                                     )
                                 }else{
-                                    Toast.makeText(activity, "Authentication failed.",
+                                    Toast.makeText(activity, getString(R.string.authentication_failed),
                                             Toast.LENGTH_SHORT).show()
                                 }
                             }
@@ -69,7 +69,7 @@ class Login : Fragment() {
         }
 
         btn_forgot_password.setOnClickListener {
-            if(edit_email.text.isEmpty()){edit_email.error = "Email Required!"}
+            if(edit_email.text.isEmpty()){edit_email.error = getString(R.string.required)}
             else {
                 AppPref.email = edit_email.text.toString()
                 showFragment(

@@ -13,7 +13,9 @@ import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 import com.google.firebase.auth.FirebaseUser
-
+import durdinapps.rxfirebase2.RxFirebaseAuth
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class Login : Fragment() {
@@ -36,23 +38,20 @@ class Login : Fragment() {
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
-                    mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
-                            .addOnCompleteListener(activity!!) {
-                                if(it.isSuccessful){
-                                    Toast.makeText(activity, getString(R.string.auth_success),
-                                            Toast.LENGTH_SHORT).show()
-                                    showFragment(
-                                            Fragment.instantiate(
-                                                    activity,
-                                                    Dashboard::class.java.name
-                                            ),
-                                            false
-                                    )
-                                }else{
-                                    Toast.makeText(activity, getString(R.string.authentication_failed),
-                                            Toast.LENGTH_SHORT).show()
-                                }
-                            }
+                    RxFirebaseAuth.signInWithEmailAndPassword(mAuth,edit_email.text.toString(),edit_password.text.toString())
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe ({
+                                showFragment(
+                                        Fragment.instantiate(
+                                                activity,
+                                                Dashboard::class.java.name
+                                        ),
+                                        false
+                                )
+                            },{
+                                Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                            })
                 }
             }
             AppPref.email = edit_email.text.toString()

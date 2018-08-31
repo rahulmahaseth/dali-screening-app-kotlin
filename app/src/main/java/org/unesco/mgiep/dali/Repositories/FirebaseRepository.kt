@@ -1,8 +1,13 @@
 package org.unesco.mgiep.dali.Repositories
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import org.unesco.mgiep.dali.Data.*
+import durdinapps.rxfirebase2.RxFirestore
+import io.reactivex.Completable
+import io.reactivex.Maybe
+import io.reactivex.schedulers.Schedulers
 
 
 class FirebaseRepository {
@@ -12,61 +17,31 @@ class FirebaseRepository {
     private val participantsRef = mDatabase.collection("participants")
     private val resultsRef = mDatabase.collection("results")
 
-    fun writeNewUser(userId: String, user: User) {
-
-        usersRef.document(userId).set(user)
-    }
-
-    fun writeNewScreening(id:String, screening: FirebaseScreening ){
-
-        screeningsRef.document(id).set(screening)
-                .addOnSuccessListener {
-                    Log.d("save-screening","success")
-                }
-                .addOnFailureListener {
-                    Log.d("save-screening","failed")
+    //Functions to Write Data to FireStore
+    fun writeDocument(documentReference: DocumentReference, oobject:Any, type: String): Completable{
+        return RxFirestore.setDocument(documentReference,oobject).subscribeOn(Schedulers.newThread())
+                .doOnComplete {
+                    Log.d("writeDocument","$type saved")
                 }
     }
 
-    fun writeNewParticipant(id: String, participant: Participant){
-        participantsRef.document(id).set(participant)
-    }
+    //functions to fetch data from Firestore
+    fun fetchDocument(documentReference: DocumentReference, type:String): Maybe<DocumentSnapshot>{
 
-    fun writeResult(id: String, result: Result){
-        resultsRef.document(id).set(result)
-    }
-
-    fun fetchUserDetails(userId: String){
-        usersRef.document(userId).get().addOnCompleteListener {
-            task ->
-            if(task.isSuccessful){
-                if(task.result.exists()){
-                    val user = task.result.toObject(User::class.java)
-                    Log.d("fetch-userDetails","success")
-                }else{
-                    Log.d("fetch-userDetails","failed!!No Such Document")
+        return RxFirestore.getDocument(documentReference).subscribeOn(Schedulers.newThread())
+                .doOnSuccess {
+                    if(it.exists()){
+                        it
+                        Log.d("fetch$type","Success")
+                    }else{
+                        Log.d("fetchUserDetails","Document does not exist")
+                    }
                 }
-            }else{
-                Log.d("fetch-userDetails","failed",task.exception)
-            }
-        }
+                .doOnError {
+                    Log.d("fetchUserDetails","Failed to fetch",it)
+                }
     }
 
-    fun fetchScreening(screeningId: String){
-        screeningsRef.document(screeningId).get().addOnCompleteListener {
-            task ->
-            if(task.isSuccessful){
-                if(task.result.exists()){
-                    val screening = task.result.toObject(FirebaseScreening::class.java)
-                    Log.d("fetch-screening","success")
-                }else{
-                    Log.d("fetch-screening","failed!!No Such Document")
-                }
-            }else{
-                Log.d("fetch-screening","failed",task.exception)
-            }
-        }
-    }
 
     fun fetchUserScreenings(userId: String){
         screeningsRef
@@ -102,23 +77,6 @@ class FirebaseRepository {
                 }
     }
 
-    fun fetchParticipant(participantId: String){
-        participantsRef.document(participantId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        if(task.result.exists()){
-                            val participant = task.result.toObject(Participant::class.java)
-                            Log.d("fetch-Participant","success")
-                        }else{
-                            Log.d("fetch-Participant","failed!!No Such Document")
-                        }
-                    }else{
-                        Log.d("fetch-Participant","failed",task.exception)
-                    }
-                }
-    }
-
     fun fetchParticipants(userId: String){
         participantsRef
                 .whereEqualTo("userId",userId)
@@ -132,23 +90,6 @@ class FirebaseRepository {
                         }
                     }else{
                         Log.d("fetch-Participants","failed",task.exception)
-                    }
-                }
-    }
-
-    fun fetchResult(resultId: String){
-        resultsRef
-                .document(resultId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        if(!task.result.exists()){
-                            Log.d("fetch-Result","success")
-                        }else{
-                            Log.d("fetch-Result","failed!!No Such Document")
-                        }
-                    }else{
-                        Log.d("fetch-Result","failed",task.exception)
                     }
                 }
     }

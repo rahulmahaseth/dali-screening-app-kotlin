@@ -18,6 +18,20 @@
     <string name="sclass">Class</string>
     <string name="name">Name</string>
     <string name="date_of_birth">Date of Birth</string>
+    <string name="age">Age</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="required">Required</string>
+    <string name="confirm_password_diff_error">Confirm Password is different from Original</string>
+    <string name="invalid_age">Invalid Age</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="auth_success">Authentication Success.</string>
+    <string name="designation">Designation</string>
+    <string name="signup_fail">SignUp Failed</string>
+    <string name="login_fail">Login Failed</string>
+    <string name="user_saved">User Saved</string>
+    <string name="user_sync_error">User Details not synced</string>
 
     <string name="jst_q1">Difficulty in sound replacement games.</string>
     <string name="jst_q2">Difficulty in rhyming.</string>
@@ -94,16 +108,7 @@
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-    <string name="age">Age</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="email">Email</string>
-    <string name="required">Required</string>
-    <string name="confirm_password_diff_error">Confirm Password is different from Original</string>
-    <string name="invalid_age">Invalid Age</string>
-    <string name="select_gender">Select Gender</string>
-    <string name="authentication_failed">Authentication failed.</string>
-    <string name="auth_success">Authentication Success.</string>
-    <string name="designation">Designation</string>
+
 
 
     <string-array name="jst_questions">

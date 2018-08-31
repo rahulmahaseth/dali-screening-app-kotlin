@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import durdinapps.rxfirebase2.RxFirebaseAuth
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.util.*
 
@@ -22,12 +26,12 @@ class SignUp :Fragment() {
 
     private var gender = Gender.MALE
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var firebaseReposirtory: FirebaseRepository
+    private lateinit var mainReposirtory: MainReposirtory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
-        firebaseReposirtory = FirebaseRepository()
+        mainReposirtory = MainReposirtory()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -36,7 +40,7 @@ class SignUp :Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        btn_signup.setOnClickListener {
+        btn_signup.setOnClickListener { v->
             when {
                 edit_register_email.text.isEmpty() -> edit_register_email.error = getString(R.string.required)
                 edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
@@ -59,34 +63,43 @@ class SignUp :Fragment() {
                     gender = Gender.FEMALE
                 }
                 else->{
-                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(), edit_register_password.text.toString())
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    firebaseReposirtory.writeNewUser(
-                                            mAuth.currentUser!!.uid,
-                                            User(
-                                                    mAuth.currentUser!!.email.toString(),
-                                                    edit_register_name.text.toString(),
-                                                    edit_register_designation.text.toString(),
-                                                    edit_register_school.text.toString(),
-                                                    edit_register_age.text.toString().toInt(),
-                                                    gender.toString()
-                                            )
-                                    )
-                                    showFragment(
-                                            Fragment.instantiate(
-                                                    activity,
-                                                    Dashboard::class.java.name
-                                            ),
+                    RxFirebaseAuth.createUserWithEmailAndPassword(mAuth,edit_register_email.text.toString(),edit_register_password.text.toString())
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe ({ authResult ->
+
+                                mainReposirtory.saveUser(
+                                        authResult.user.uid,
+                                        User(
+                                                edit_register_email.text.toString(),
+                                                edit_register_name.text.toString(),
+                                                edit_register_designation.text.toString(),
+                                                edit_register_school.text.toString(),
+                                                edit_register_age.text.toString().toInt(),
+                                                gender.toString()
+                                        )
+                                )
+                                        .subscribeOn(Schedulers.newThread())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .doOnComplete{
+                                            Toast.makeText(activity,getString(R.string.user_saved),Toast.LENGTH_SHORT).show()
+                                            showFragment(
+                                                    Fragment.instantiate(
+                                                            activity,
+                                                            Dashboard::class.java.name
+                                                    ),
                                             false
-                                    )
-                                    Log.d("SIGN UP", "createUserWithEmail:success")
-                                } else {
-                                    Log.w("SIGN UP", "createUserWithEmail:failure", task.exception)
-                                    Toast.makeText(activity, getString(R.string.authentication_failed),
-                                            Toast.LENGTH_SHORT).show()
-                                }
-                            }
+                                            )
+
+                                        }
+                                        .doOnError {
+                                            Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
+
+                                        }
+
+                            },{
+                                Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
+                            })
 
                 }
             }

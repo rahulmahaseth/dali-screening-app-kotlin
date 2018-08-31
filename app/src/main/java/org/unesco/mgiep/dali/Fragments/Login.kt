@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 import durdinapps.rxfirebase2.RxFirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.unesco.mgiep.dali.Dagger.MyApplication
 
 
 class Login : Fragment() {
@@ -23,6 +24,7 @@ class Login : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
     }
 
@@ -33,7 +35,7 @@ class Login : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        btn_login.setOnClickListener {
+        btn_login.setOnClickListener { v ->
             when{
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
@@ -89,9 +91,4 @@ class Login : Fragment() {
                 fragmentManager = activity!!.supportFragmentManager,
                 addToBackStack = addToBackStack)
     }
-
-    public override fun onStart() {
-        super.onStart()
-    }
-
 }

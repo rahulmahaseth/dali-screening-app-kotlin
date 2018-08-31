@@ -13,13 +13,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
+import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showFragment
-import java.util.*
 
 
 class SignUp :Fragment() {
@@ -30,6 +29,7 @@ class SignUp :Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
         mainReposirtory = MainReposirtory()
     }
@@ -90,17 +90,14 @@ class SignUp :Fragment() {
                                                     ),
                                             false
                                             )
-
                                         }
                                         .doOnError {
                                             Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
-
                                         }
 
                             },{
                                 Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
                             })
-
                 }
             }
         }

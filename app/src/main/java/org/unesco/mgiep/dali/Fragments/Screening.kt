@@ -5,17 +5,22 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showFragment
 import javax.inject.Inject
 
 class Screening : Fragment() {
 
     lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
+    lateinit var mainReposirtory: MainReposirtory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainReposirtory = MainReposirtory()
+        (activity!!.application as MyApplication).component.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=

@@ -32,6 +32,7 @@
     <string name="login_fail">Login Failed</string>
     <string name="user_saved">User Saved</string>
     <string name="user_sync_error">User Details not synced</string>
+    <string name="locale_type">EN</string>
 
     <string name="jst_q1">Difficulty in sound replacement games.</string>
     <string name="jst_q2">Difficulty in rhyming.</string>
@@ -108,7 +109,8 @@
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-
+    <string name="schedule">Schedule</string>
+    <string name="start">Start</string>
 
 
     <string-array name="jst_questions">

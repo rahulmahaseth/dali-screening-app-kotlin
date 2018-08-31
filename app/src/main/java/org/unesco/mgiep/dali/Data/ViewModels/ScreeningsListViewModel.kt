@@ -39,11 +39,12 @@ class ScreeningsListViewModel @Inject constructor(val mainRepository: MainReposi
 
         }
 
-        mainRepository.getScreenings()
+        /*mainRepository.getScreenings()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .debounce(400, TimeUnit.MILLISECONDS)
                 .subscribe(disposableObserver)
+                */
 
     }
 

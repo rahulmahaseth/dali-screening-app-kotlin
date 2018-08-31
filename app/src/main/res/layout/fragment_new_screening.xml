@@ -93,14 +93,27 @@
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout
         android:layout_marginTop="80dp"
-        android:layout_gravity="center"
-        android:id="@+id/btn_screenreg_submit"
-        android:text="@string/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btn_screenreg_schedule_submit"
+            android:text="@string/schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btn_screenreg_submit"
+            android:text="@string/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Fragments.Dashboard
+import org.unesco.mgiep.dali.Fragments.Login
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 
@@ -13,7 +16,8 @@ class SplashActivity: AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAuth = FirebaseAuth.getInstance();
+        (application as MyApplication).component.inject(this)
+        mAuth = FirebaseAuth.getInstance()
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
@@ -24,6 +28,5 @@ class SplashActivity: AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        val currentUser = mAuth.currentUser
     }
 }

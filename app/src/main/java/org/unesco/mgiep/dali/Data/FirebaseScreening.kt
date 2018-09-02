@@ -5,10 +5,11 @@ import java.util.*
 data class FirebaseScreening (
         val type: Type,
         val totalQuestions: Int,
-        val questionsCompleted: Int,
-        val completed: Boolean,
+        var questionsCompleted: Int,
+        var completed: Boolean,
         val mediumOfInstruction: String,
         val participantId: String,
         val userId: String,
-        val ScheduledDate: Date
+        val ScheduledDate: Date,
+        var totalScore: Int
 )

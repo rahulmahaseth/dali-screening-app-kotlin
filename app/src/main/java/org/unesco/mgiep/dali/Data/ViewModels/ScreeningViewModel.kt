@@ -12,7 +12,7 @@ class ScreeningViewModel: ViewModel() {
         nextScreening.value = screening
     }
 
-    fun getQuestion(): LiveData<FirebaseScreening> {
+    fun getScreening(): LiveData<FirebaseScreening> {
         return nextScreening
     }
 }

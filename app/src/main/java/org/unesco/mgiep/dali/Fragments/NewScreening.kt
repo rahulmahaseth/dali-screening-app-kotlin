@@ -31,8 +31,8 @@ class NewScreening : Fragment() {
     private var selectedDate : Date = calendar.time
     private var scheduleDate: Date = calendar.time
     private lateinit var screening: Screening
-    private lateinit var screeningViewModel: ScreeningViewModel
 
+    private lateinit var screeningViewModel: ScreeningViewModel
     lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     private lateinit var mAuth: FirebaseAuth

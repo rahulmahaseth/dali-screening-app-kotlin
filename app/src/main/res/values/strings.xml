@@ -114,6 +114,7 @@
     <string name="password_length_error">Password must be atleast 6 characters</string>
     <string name="improper_email">Improper Email Format</string>
     <string name="next">Next</string>
+    <string name="change">Change</string>
 
 
     <string-array name="jst_questions">

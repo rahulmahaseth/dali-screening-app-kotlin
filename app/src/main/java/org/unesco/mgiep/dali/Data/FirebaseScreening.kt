@@ -1,7 +1,7 @@
 package org.unesco.mgiep.dali.Data
 
 data class FirebaseScreening (
-        val type: Type,
+        val type: String,
         val totalQuestions: Int,
         var questionsCompleted: Int,
         var completed: Boolean,

@@ -29,14 +29,16 @@ class NewScreening : Fragment() {
 
     val calendar = Calendar.getInstance()
     val myFormat = "dd/MM/yy"
+    val onlyDate = "MMM DD,YYYY"
     val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
+    val sdf2 = SimpleDateFormat(onlyDate, Locale.ENGLISH)
     private var gender = Gender.MALE
     private var selectedDate : Date = calendar.time
     private var scheduleDate: Date = calendar.time
     private lateinit var screening: Screening
 
     private lateinit var screeningViewModel: ScreeningViewModel
-    lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
+    private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -80,10 +82,14 @@ class NewScreening : Fragment() {
                 ).show()
                 btn_screenreg_schedule_submit.visibility = View.VISIBLE
                 btn_screenreg_submit.visibility = View.GONE
+            }else{
+                btn_change_scheduled_date.visibility = View.GONE
+                btn_screenreg_schedule_submit.visibility = View.GONE
+                btn_screenreg_submit.visibility = View.VISIBLE
             }
         }
 
-        tv_screenreg_schedule_date.setOnClickListener {
+        btn_change_scheduled_date.setOnClickListener {
             DatePickerDialog(
                     activity,
                     date2,
@@ -128,7 +134,7 @@ class NewScreening : Fragment() {
                     if(age <= 7){
                         screeningViewModel.select(
                                 FirebaseScreening(
-                                        type = Type.JST,
+                                        type = Type.JST.toString(),
                                         totalQuestions = 15,
                                         questionsCompleted = 0,
                                         completed = false,
@@ -142,7 +148,7 @@ class NewScreening : Fragment() {
                     }else{
                         screeningViewModel.select(
                                 FirebaseScreening(
-                                        type = Type.JST,
+                                        type = Type.MST.toString(),
                                         totalQuestions = 21,
                                         questionsCompleted = 0,
                                         completed = false,
@@ -184,14 +190,6 @@ class NewScreening : Fragment() {
                     Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    screeningParticipantViewModel.select(Participant(
-                            name = edit_regscreen_name.text.toString(),
-                            sClass = edit_regscreen_class.text.toString().toInt(),
-                            motherTongue = edit_regscreen_mothertongue.text.toString(),
-                            institution = edit_regscreen_school.text.toString(),
-                            dob = selectedDate.time,
-                            gender = gender.toString()
-                    ))
 
                     mainRepository.saveParticipant(
                             UUID.randomUUID().toString(),
@@ -205,24 +203,46 @@ class NewScreening : Fragment() {
                             )
                     )
 
-                    screeningViewModel.select(
-                            FirebaseScreening(
-                                    type = Type.JST,
-                                    totalQuestions = 21,
-                                    questionsCompleted = 0,
-                                    completed = false,
-                                    mediumOfInstruction = getString(R.string.locale_type),
-                                    participantId = UUID.randomUUID().toString(),
-                                    userId = mAuth.uid.toString(),
-                                    totalScore = 0,
-                                    scheduledDate = scheduleDate.time
-                            )
-                    )
+
+                    val age = calendar.time.year - selectedDate.year
+                    if(age <= 7){
+                        mainRepository.saveScreening(
+                                UUID.randomUUID().toString(),
+                                FirebaseScreening(
+                                        type = Type.JST.toString(),
+                                        totalQuestions = 15,
+                                        questionsCompleted = 0,
+                                        completed = false,
+                                        mediumOfInstruction = getString(R.string.locale_type),
+                                        participantId = UUID.randomUUID().toString(),
+                                        userId = mAuth.uid.toString(),
+                                        totalScore = 0,
+                                        scheduledDate = scheduleDate.time
+                                )
+                        )
+
+                    }else{
+                        mainRepository.saveScreening(
+                                UUID.randomUUID().toString(),
+                                FirebaseScreening(
+                                        type = Type.MST.toString(),
+                                        totalQuestions = 21,
+                                        questionsCompleted = 0,
+                                        completed = false,
+                                        mediumOfInstruction = getString(R.string.locale_type),
+                                        participantId = UUID.randomUUID().toString(),
+                                        userId = mAuth.uid.toString(),
+                                        totalScore = 0,
+                                        scheduledDate = scheduleDate.time
+                                )
+                        )
+
+                    }
 
                     showFragment(
                             Fragment.instantiate(
                                     activity,
-                                    Screening::class.java.name
+                                    Dashboard::class.java.name
                             ),
                             false
                     )
@@ -244,8 +264,8 @@ class NewScreening : Fragment() {
         calendar.set(Calendar.MONTH, monthOfYear)
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         scheduleDate = calendar.time
-        tv_screenreg_schedule_date.text = ""
-        tv_screenreg_schedule_time.text = ""
+        btn_change_scheduled_date.visibility = View.VISIBLE
+        tv_screenreg_schedule_date.text = sdf2.format(scheduleDate)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -26,7 +26,7 @@ class MainReposirtory {
         return firebaseRepository.writeDocument(usersRef.document(id),user,"user")
     }
 
-    fun saveScreening(id: String, screening: Screening): Task<*> {
+    fun saveScreening(id: String, screening: FirebaseScreening): Task<*> {
         Log.d("save","screening")
         return firebaseRepository.writeDocument(screeningsRef.document(id), screening,"screening")
     }

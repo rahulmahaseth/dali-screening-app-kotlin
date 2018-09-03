@@ -31,6 +31,7 @@ class Screening : Fragment() {
         mainReposirtory = MainReposirtory()
         (activity!!.application as MyApplication).component.inject(this)
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
+        screening = screeningViewModel.getScreening().value!!.copy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -38,7 +39,9 @@ class Screening : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        screening = screeningViewModel.getScreening().value!!.copy()
+
+        tv_question.text = resources.getStringArray(R.array.jst_questions)[screening.questionsCompleted]
+        tv_example.text = resources.getStringArray(R.array.jst_examples)[screening.questionsCompleted]
         btn_usually.setOnClickListener {
             update(2)
         }
@@ -63,6 +66,7 @@ class Screening : Fragment() {
                     ),
                     false
             )
+            screening.completed = true
         }else{
             tv_question.text = resources.getStringArray(R.array.jst_questions)[screening.questionsCompleted]
             tv_example.text = resources.getStringArray(R.array.jst_examples)[screening.questionsCompleted]

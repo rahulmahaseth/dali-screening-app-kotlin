@@ -1,13 +1,14 @@
 package org.unesco.mgiep.dali.Repositories
 
 import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import durdinapps.rxfirebase2.RxFirestore
-import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.schedulers.Schedulers
+import org.unesco.mgiep.dali.Data.User
 
 
 class FirebaseRepository {
@@ -17,11 +18,27 @@ class FirebaseRepository {
     private val participantsRef = mDatabase.collection("participants")
     private val resultsRef = mDatabase.collection("results")
 
+
+
     //Functions to Write Data to FireStore
-    fun writeDocument(documentReference: DocumentReference, oobject:Any, type: String): Completable{
-        return RxFirestore.setDocument(documentReference,oobject).subscribeOn(Schedulers.newThread())
-                .doOnComplete {
-                    Log.d("writeDocument","$type saved")
+    fun writeDocument(documentReference: DocumentReference, oobject:Any, type: String): Task<*> {
+        Log.d("firebase-save",type)
+        return documentReference.set(oobject).addOnCompleteListener {
+                    Log.d("firebase-save-$type","success")
+                }
+                .addOnFailureListener {
+                    Log.d("firebase-save-$type","error",it)
+                }
+    }
+
+    fun writeUser(id: String, user:User){
+        Log.d("firebase-save","user")
+        mDatabase.collection("user").document(id).set(user)
+                .addOnSuccessListener {
+                    Log.d("fb-write user", "success")
+                }
+                .addOnFailureListener {
+                    Log.d("fb-write user", "error",it)
                 }
     }
 

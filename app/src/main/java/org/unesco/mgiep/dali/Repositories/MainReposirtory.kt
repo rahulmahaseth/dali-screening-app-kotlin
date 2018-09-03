@@ -1,6 +1,8 @@
 package org.unesco.mgiep.dali.Repositories
 
 import android.content.res.Resources
+import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
@@ -19,19 +21,23 @@ class MainReposirtory {
     private val resultsRef = mDatabase.collection("results")
 
     //save data
-    fun saveUser(id: String, user: User): Completable {
+    fun saveUser(id: String, user: User): Task<*> {
+        Log.d("save","user")
         return firebaseRepository.writeDocument(usersRef.document(id),user,"user")
     }
 
-    fun saveScreening(id: String, screening: Screening): Completable{
+    fun saveScreening(id: String, screening: Screening): Task<*> {
+        Log.d("save","screening")
         return firebaseRepository.writeDocument(screeningsRef.document(id), screening,"screening")
     }
 
-    fun saveParticipant(id: String, participant: Participant): Completable{
+    fun saveParticipant(id: String, participant: Participant): Task<*> {
+        Log.d("save","participant")
         return firebaseRepository.writeDocument(participantsRef.document(id),participant,"participant")
     }
 
-    fun saveResult(id: String, result: Result): Completable {
+    fun saveResult(id: String, result: Result): Task<*> {
+        Log.d("save","result")
         return firebaseRepository.writeDocument(resultsRef.document(id),result,"result")
     }
 

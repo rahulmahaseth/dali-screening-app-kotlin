@@ -1,7 +1,5 @@
 package org.unesco.mgiep.dali.Data
 
-import java.util.*
-
 data class FirebaseScreening (
         val type: Type,
         val totalQuestions: Int,
@@ -10,6 +8,6 @@ data class FirebaseScreening (
         val mediumOfInstruction: String,
         val participantId: String,
         val userId: String,
-        val scheduledDate: Date,
+        val scheduledDate: Long,
         var totalScore: Int
 )

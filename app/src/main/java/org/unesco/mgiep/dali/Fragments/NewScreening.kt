@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,12 +40,17 @@ class NewScreening : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
 
+    private lateinit var firebaseRepository: FirebaseRepository
+    private lateinit var mainRepository: MainReposirtory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
+        firebaseRepository = FirebaseRepository()
+        mainRepository = MainReposirtory()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -51,18 +59,46 @@ class NewScreening : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        edit_regscreen_radio_female.setOnClickListener {
+            edit_regscreen_radio_male.isChecked = false
+            gender = Gender.FEMALE
+        }
+
+        edit_regscreen_radio_male.setOnClickListener {
+            edit_regscreen_radio_female.isChecked = false
+            gender = Gender.MALE
+        }
+
+        switch_schedule.setOnCheckedChangeListener { compoundButton, b ->
+            if(compoundButton.isEnabled){
+                DatePickerDialog(
+                        activity,
+                        date2,
+                        calendar.get(Calendar.DAY_OF_MONTH),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.YEAR)
+                ).show()
+                btn_screenreg_schedule_submit.visibility = View.VISIBLE
+                btn_screenreg_submit.visibility = View.GONE
+            }
+        }
+
+        tv_screenreg_schedule_date.setOnClickListener {
+            DatePickerDialog(
+                    activity,
+                    date2,
+                    calendar.get(Calendar.DAY_OF_MONTH),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.YEAR)
+            ).show()
+        }
+
         btn_screenreg_submit.setOnClickListener {
+            Log.d("screening-reg","onClick")
+
             when {
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
-                edit_regscreen_radio_male.isChecked -> {
-                    edit_regscreen_radio_female.isChecked = false
-                    gender = Gender.MALE
-                }
-                edit_regscreen_radio_female.isChecked -> {
-                    edit_regscreen_radio_male.isChecked = false
-                    gender = Gender.FEMALE
-                }
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
                     Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
@@ -72,9 +108,21 @@ class NewScreening : Fragment() {
                             sClass = edit_regscreen_class.text.toString().toInt(),
                             motherTongue = edit_regscreen_mothertongue.text.toString(),
                             institution = edit_regscreen_school.text.toString(),
-                            dob = selectedDate,
+                            dob = selectedDate.time,
                             gender = gender.toString()
                     ))
+
+                    mainRepository.saveParticipant(
+                            UUID.randomUUID().toString(),
+                            Participant(
+                                    name = edit_regscreen_name.text.toString(),
+                                    sClass = edit_regscreen_class.text.toString().toInt(),
+                                    motherTongue = edit_regscreen_mothertongue.text.toString(),
+                                    institution = edit_regscreen_school.text.toString(),
+                                    dob = selectedDate.time,
+                                    gender = gender.toString()
+                            )
+                    )
 
                     val age = calendar.time.year - selectedDate.year
                     if(age <= 7){
@@ -88,7 +136,7 @@ class NewScreening : Fragment() {
                                         participantId = UUID.randomUUID().toString(),
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
-                                        scheduledDate = calendar.time
+                                        scheduledDate = calendar.time.time
                                 )
                         )
                     }else{
@@ -102,7 +150,7 @@ class NewScreening : Fragment() {
                                         participantId = UUID.randomUUID().toString(),
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
-                                        scheduledDate = calendar.time
+                                        scheduledDate = calendar.time.time
                                 )
                         )
                     }
@@ -129,18 +177,9 @@ class NewScreening : Fragment() {
         }
 
         btn_screenreg_schedule_submit.setOnClickListener {
-
             when {
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
-                edit_regscreen_radio_male.isChecked -> {
-                    edit_regscreen_radio_female.isChecked = false
-                    gender = Gender.MALE
-                }
-                edit_regscreen_radio_female.isChecked -> {
-                    edit_regscreen_radio_male.isChecked = false
-                    gender = Gender.FEMALE
-                }
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
                     Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
@@ -150,13 +189,35 @@ class NewScreening : Fragment() {
                             sClass = edit_regscreen_class.text.toString().toInt(),
                             motherTongue = edit_regscreen_mothertongue.text.toString(),
                             institution = edit_regscreen_school.text.toString(),
-                            dob = selectedDate,
+                            dob = selectedDate.time,
                             gender = gender.toString()
                     ))
 
-                    /*screeningViewModel.select(
+                    mainRepository.saveParticipant(
+                            UUID.randomUUID().toString(),
+                            Participant(
+                                    name = edit_regscreen_name.text.toString(),
+                                    sClass = edit_regscreen_class.text.toString().toInt(),
+                                    motherTongue = edit_regscreen_mothertongue.text.toString(),
+                                    institution = edit_regscreen_school.text.toString(),
+                                    dob = selectedDate.time,
+                                    gender = gender.toString()
+                            )
+                    )
 
-                    )*/
+                    screeningViewModel.select(
+                            FirebaseScreening(
+                                    type = Type.JST,
+                                    totalQuestions = 21,
+                                    questionsCompleted = 0,
+                                    completed = false,
+                                    mediumOfInstruction = getString(R.string.locale_type),
+                                    participantId = UUID.randomUUID().toString(),
+                                    userId = mAuth.uid.toString(),
+                                    totalScore = 0,
+                                    scheduledDate = scheduleDate.time
+                            )
+                    )
 
                     showFragment(
                             Fragment.instantiate(
@@ -167,14 +228,6 @@ class NewScreening : Fragment() {
                     )
                 }
             }
-
-            DatePickerDialog(
-                    activity,
-                    date2,
-                    calendar.get(Calendar.DAY_OF_MONTH),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.YEAR)
-            ).show()
         }
     }
 
@@ -191,6 +244,8 @@ class NewScreening : Fragment() {
         calendar.set(Calendar.MONTH, monthOfYear)
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         scheduleDate = calendar.time
+        tv_screenreg_schedule_date.text = ""
+        tv_screenreg_schedule_time.text = ""
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

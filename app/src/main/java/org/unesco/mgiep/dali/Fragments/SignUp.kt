@@ -15,10 +15,12 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showFragment
 
@@ -28,12 +30,17 @@ class SignUp :Fragment() {
     private var gender = Gender.MALE
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mainReposirtory: MainReposirtory
+    private lateinit var firebaseRepository: FirebaseRepository
+
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
         mainReposirtory = MainReposirtory()
+        firebaseRepository = FirebaseRepository()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -55,8 +62,10 @@ class SignUp :Fragment() {
         btn_register_submit.setOnClickListener { v->
             when {
                 edit_register_email.text.isEmpty() -> edit_register_email.error = getString(R.string.required)
+                !edit_register_email.text.matches(emailPattern) -> Toast.makeText(activity, getString(R.string.improper_email), Toast.LENGTH_SHORT).show()
                 edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
                 edit_register_password.text.isEmpty() -> edit_register_password.error = getString(R.string.required)
+                edit_register_password.text.length < 6 -> Toast.makeText(activity, getString(R.string.password_length_error), Toast.LENGTH_SHORT).show()
                 edit_register_school.text.isEmpty() -> edit_register_school.error = getString(R.string.required)
                 edit_register_age.text.isEmpty() -> edit_register_age.error = getString(R.string.required)
                 edit_register_age.text.toString().toInt() <= 0 -> edit_register_age.error = getString(R.string.invalid_age)
@@ -81,23 +90,22 @@ class SignUp :Fragment() {
                                                 gender.toString()
                                         )
                                 )
-                                        .subscribeOn(Schedulers.newThread())
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .doOnComplete{
+                                        .addOnSuccessListener {
                                             Toast.makeText(activity,getString(R.string.user_saved),Toast.LENGTH_SHORT).show()
-                                            startActivity(Intent(activity,MainActivity::class.java))
+                                            startActivity(Intent(activity, MainActivity::class.java))
                                         }
-                                        .doOnError {
+                                        .addOnFailureListener {
                                             Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
-                                            Log.d("signup", getString(R.string.user_sync_error))
                                         }
 
                             },{
                                 Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
-                                Log.d("signup", getString(R.string.signup_fail))
+                                Log.d("signup", getString(R.string.signup_fail),it)
                             })
                 }
             }
         }
     }
+
 }
+

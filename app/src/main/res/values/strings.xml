@@ -109,8 +109,11 @@
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-    <string name="schedule">Schedule</string>
+    <string name="schedule">Schedule for later</string>
     <string name="start">Start</string>
+    <string name="password_length_error">Password must be atleast 6 characters</string>
+    <string name="improper_email">Improper Email Format</string>
+    <string name="next">Next</string>
 
 
     <string-array name="jst_questions">

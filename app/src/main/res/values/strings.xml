@@ -117,6 +117,8 @@
     <string name="change">Change</string>
     <string name="screening_saved">Screening Saved</string>
     <string name="save_screening_error">Error while saving!</string>
+    <string name="completed">COMPLETED</string>
+    <string name="pending">PENDING</string>
 
 
     <string-array name="jst_questions">

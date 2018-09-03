@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -11,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_new_screening.*
+import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.FirebaseScreening
 import org.unesco.mgiep.dali.Data.Gender
@@ -35,7 +38,6 @@ class NewScreening : Fragment() {
     private var gender = Gender.MALE
     private var selectedDate : Date = calendar.time
     private var scheduleDate: Date = calendar.time
-    private lateinit var screening: Screening
 
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
@@ -45,6 +47,10 @@ class NewScreening : Fragment() {
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
 
+    private lateinit var intent : Intent
+
+    private val participantId = UUID.randomUUID().toString()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -53,6 +59,7 @@ class NewScreening : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
+        intent = Intent(activity, ScreeningActivity::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -119,7 +126,7 @@ class NewScreening : Fragment() {
                     ))
 
                     mainRepository.saveParticipant(
-                            UUID.randomUUID().toString(),
+                            participantId,
                             Participant(
                                     name = edit_regscreen_name.text.toString(),
                                     sClass = edit_regscreen_class.text.toString().toInt(),
@@ -131,43 +138,16 @@ class NewScreening : Fragment() {
                     )
 
                     val age = calendar.time.year - selectedDate.year
+                    Log.d("Participant Age - ","$age")
                     if(age <= 7){
-                        screeningViewModel.select(
-                                FirebaseScreening(
-                                        type = Type.JST.toString(),
-                                        totalQuestions = 15,
-                                        questionsCompleted = 0,
-                                        completed = false,
-                                        mediumOfInstruction = getString(R.string.locale_type),
-                                        participantId = UUID.randomUUID().toString(),
-                                        userId = mAuth.uid.toString(),
-                                        totalScore = 0,
-                                        scheduledDate = calendar.time.time
-                                )
-                        )
+                        intent.putExtra("type",Type.JST.toString())
+                        intent.putExtra("participantId",participantId)
                     }else{
-                        screeningViewModel.select(
-                                FirebaseScreening(
-                                        type = Type.MST.toString(),
-                                        totalQuestions = 21,
-                                        questionsCompleted = 0,
-                                        completed = false,
-                                        mediumOfInstruction = getString(R.string.locale_type),
-                                        participantId = UUID.randomUUID().toString(),
-                                        userId = mAuth.uid.toString(),
-                                        totalScore = 0,
-                                        scheduledDate = calendar.time.time
-                                )
-                        )
+                        intent.putExtra("type",Type.MST.toString())
+                        intent.putExtra("participantId",participantId)
                     }
+                    startActivity(intent)
 
-                    showFragment(
-                            Fragment.instantiate(
-                                    activity,
-                                    Screening::class.java.name
-                            ),
-                            false
-                    )
                 }
             }
         }
@@ -192,7 +172,7 @@ class NewScreening : Fragment() {
                 else -> {
 
                     mainRepository.saveParticipant(
-                            UUID.randomUUID().toString(),
+                            participantId,
                             Participant(
                                     name = edit_regscreen_name.text.toString(),
                                     sClass = edit_regscreen_class.text.toString().toInt(),
@@ -210,14 +190,13 @@ class NewScreening : Fragment() {
                                 UUID.randomUUID().toString(),
                                 FirebaseScreening(
                                         type = Type.JST.toString(),
-                                        totalQuestions = 15,
-                                        questionsCompleted = 0,
                                         completed = false,
                                         mediumOfInstruction = getString(R.string.locale_type),
-                                        participantId = UUID.randomUUID().toString(),
+                                        participantId = participantId,
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
-                                        scheduledDate = scheduleDate.time
+                                        scheduledDate = scheduleDate.time,
+                                        comments = ""
                                 )
                         )
 
@@ -226,14 +205,13 @@ class NewScreening : Fragment() {
                                 UUID.randomUUID().toString(),
                                 FirebaseScreening(
                                         type = Type.MST.toString(),
-                                        totalQuestions = 21,
-                                        questionsCompleted = 0,
                                         completed = false,
                                         mediumOfInstruction = getString(R.string.locale_type),
-                                        participantId = UUID.randomUUID().toString(),
+                                        participantId = participantId,
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
-                                        scheduledDate = scheduleDate.time
+                                        scheduledDate = scheduleDate.time,
+                                        comments = ""
                                 )
                         )
 

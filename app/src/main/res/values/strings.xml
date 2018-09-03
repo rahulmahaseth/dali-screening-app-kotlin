@@ -115,6 +115,8 @@
     <string name="improper_email">Improper Email Format</string>
     <string name="next">Next</string>
     <string name="change">Change</string>
+    <string name="screening_saved">Screening Saved</string>
+    <string name="save_screening_error">Error while saving!</string>
 
 
     <string-array name="jst_questions">

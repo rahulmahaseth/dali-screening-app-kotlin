@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:hint="Comments"
+        android:id="@+id/edit_comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ems="10"
+        android:gravity="left|top"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+
+
+    </EditText>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_submit_screening"
+        android:text="@string/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

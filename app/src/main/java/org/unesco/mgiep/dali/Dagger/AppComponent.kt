@@ -20,4 +20,6 @@ interface AppComponent {
     fun inject(signUp: SignUp)
     fun inject(splashActivity: SplashActivity)
     fun inject(screening: Screening)
+    fun inject(comments: Comments)
+    fun inject(result: Result)
 }

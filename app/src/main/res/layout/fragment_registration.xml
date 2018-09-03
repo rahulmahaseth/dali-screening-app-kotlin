@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="center"
     android:paddingHorizontal="20dp">
 
     <EditText
@@ -29,13 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:hint="@string/confirm_password"
-        android:layout_marginTop="10dp"
-        android:id="@+id/edit_register_confirm_password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <EditText
         android:hint="@string/designation"
@@ -98,7 +91,7 @@
     <Button
         android:text="@string/sign_up"
         android:id="@+id/btn_register_submit"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

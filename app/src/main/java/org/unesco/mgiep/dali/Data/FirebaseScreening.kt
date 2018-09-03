@@ -10,6 +10,6 @@ data class FirebaseScreening (
         val mediumOfInstruction: String,
         val participantId: String,
         val userId: String,
-        val ScheduledDate: Date,
+        val scheduledDate: Date,
         var totalScore: Int
 )

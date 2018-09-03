@@ -4,5 +4,11 @@
     android:layout_height="match_parent"
     android:gravity="bottom">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/splash_fragment_container"
+        android:background="#ffff"/>
+
 
 </LinearLayout>

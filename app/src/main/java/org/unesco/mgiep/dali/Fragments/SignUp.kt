@@ -1,5 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -13,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
+import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.User
@@ -40,13 +42,21 @@ class SignUp :Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        btn_signup.setOnClickListener { v->
+        edit_radio_female.setOnClickListener {
+            edit_radio_male.isChecked = false
+            gender = Gender.FEMALE
+        }
+
+        edit_radio_male.setOnClickListener {
+            edit_radio_female.isChecked = false
+            gender = Gender.MALE
+        }
+
+        btn_register_submit.setOnClickListener { v->
             when {
                 edit_register_email.text.isEmpty() -> edit_register_email.error = getString(R.string.required)
                 edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
                 edit_register_password.text.isEmpty() -> edit_register_password.error = getString(R.string.required)
-                edit_register_confirm_password.text.isEmpty() -> edit_register_confirm_password.error = getString(R.string.required)
-                edit_register_confirm_password.text != edit_register_password.text -> edit_register_confirm_password.error = getString(R.string.confirm_password_diff_error)
                 edit_register_school.text.isEmpty() -> edit_register_school.error = getString(R.string.required)
                 edit_register_age.text.isEmpty() -> edit_register_age.error = getString(R.string.required)
                 edit_register_age.text.toString().toInt() <= 0 -> edit_register_age.error = getString(R.string.invalid_age)
@@ -54,20 +64,12 @@ class SignUp :Fragment() {
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
                     Toast.makeText(activity, getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
-                edit_radio_male.isChecked -> {
-                    edit_radio_female.isChecked = false
-                    gender = Gender.MALE
-                }
-                edit_radio_female.isChecked -> {
-                    edit_radio_male.isChecked = false
-                    gender = Gender.FEMALE
-                }
                 else->{
                     RxFirebaseAuth.createUserWithEmailAndPassword(mAuth,edit_register_email.text.toString(),edit_register_password.text.toString())
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe ({ authResult ->
-
+                                Log.d("userid-on-signup", authResult.user.uid)
                                 mainReposirtory.saveUser(
                                         authResult.user.uid,
                                         User(
@@ -83,29 +85,19 @@ class SignUp :Fragment() {
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .doOnComplete{
                                             Toast.makeText(activity,getString(R.string.user_saved),Toast.LENGTH_SHORT).show()
-                                            showFragment(
-                                                    Fragment.instantiate(
-                                                            activity,
-                                                            Dashboard::class.java.name
-                                                    ),
-                                            false
-                                            )
+                                            startActivity(Intent(activity,MainActivity::class.java))
                                         }
                                         .doOnError {
                                             Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
+                                            Log.d("signup", getString(R.string.user_sync_error))
                                         }
 
                             },{
                                 Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
+                                Log.d("signup", getString(R.string.signup_fail))
                             })
                 }
             }
         }
-    }
-
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
-                fragmentManager = activity!!.supportFragmentManager,
-                addToBackStack = addToBackStack)
     }
 }

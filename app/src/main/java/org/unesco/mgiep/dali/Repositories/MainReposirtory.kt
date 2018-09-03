@@ -11,10 +11,6 @@ import org.unesco.mgiep.dali.R
 class MainReposirtory {
 
     private val firebaseRepository = FirebaseRepository()
-    private val jstQuestionsArray = Resources.getSystem().getStringArray(R.array.jst_questions)
-    private val jstExampleArray = Resources.getSystem().getStringArray(R.array.jst_examples)
-    private val mstQuestionsArray = Resources.getSystem().getStringArray(R.array.mst_questions)
-    private val mstExamplesArray =  Resources.getSystem().getStringArray(R.array.mst_examples)
 
     private val mDatabase = FirebaseFirestore.getInstance()
     private val usersRef = mDatabase.collection("users")
@@ -57,20 +53,6 @@ class MainReposirtory {
         return firebaseRepository.fetchDocument(resultsRef.document(id),"result")
     }
 
-    fun nextQuestion(questionNumber : Int, type: Type):String{
-        return if(type == Type.JST){
-             jstQuestionsArray[questionNumber]
-        }else{
-            mstQuestionsArray[questionNumber]
-        }
-    }
 
-    fun nextExample(questionNumber : Int, type: Type):String{
-        return if(type == Type.JST){
-            jstExampleArray[questionNumber]
-        }else{
-            mstExamplesArray[questionNumber]
-        }
-    }
 
 }

@@ -86,7 +86,9 @@ class NewScreening : Fragment() {
                                         completed = false,
                                         mediumOfInstruction = getString(R.string.locale_type),
                                         participantId = UUID.randomUUID().toString(),
-                                        userId = mAuth.uid.toString()
+                                        userId = mAuth.uid.toString(),
+                                        totalScore = 0,
+                                        scheduledDate = calendar.time
                                 )
                         )
                     }else{
@@ -99,7 +101,8 @@ class NewScreening : Fragment() {
                                         mediumOfInstruction = getString(R.string.locale_type),
                                         participantId = UUID.randomUUID().toString(),
                                         userId = mAuth.uid.toString(),
-
+                                        totalScore = 0,
+                                        scheduledDate = calendar.time
                                 )
                         )
                     }
@@ -151,9 +154,9 @@ class NewScreening : Fragment() {
                             gender = gender.toString()
                     ))
 
-                    screeningViewModel.select(
+                    /*screeningViewModel.select(
 
-                    )
+                    )*/
 
                     showFragment(
                             Fragment.instantiate(

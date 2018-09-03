@@ -1,5 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import durdinapps.rxfirebase2.RxFirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 
 
@@ -44,13 +46,7 @@ class Login : Fragment() {
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe ({
-                                showFragment(
-                                        Fragment.instantiate(
-                                                activity,
-                                                Dashboard::class.java.name
-                                        ),
-                                        false
-                                )
+                                startActivity(Intent(activity, MainActivity::class.java))
                             },{
                                 Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
                             })
@@ -87,7 +83,7 @@ class Login : Fragment() {
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
+        fragment.showFragment(container = R.id.splash_fragment_container,
                 fragmentManager = activity!!.supportFragmentManager,
                 addToBackStack = addToBackStack)
     }

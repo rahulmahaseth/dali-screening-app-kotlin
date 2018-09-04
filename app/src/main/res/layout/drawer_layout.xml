@@ -11,30 +11,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <FrameLayout
-            android:elevation="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_container"
-            android:background="#ffff"/>
-
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null">
+            android:layout_height="wrap_content">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:background="@null"
-                android:theme="@style/AppTheme"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.Toolbar
+                    android:elevation="0dp"
+                    android:id="@+id/toolbar"
+                    android:background="@null"
+                    android:theme="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/fragment_container"
+                    android:background="#ffff"/>
+            </LinearLayout>
 
         </android.support.design.widget.AppBarLayout>
 
 
     </android.support.design.widget.CoordinatorLayout>
+
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

@@ -33,6 +33,16 @@
     <string name="user_saved">User Saved</string>
     <string name="user_sync_error">User Details not synced</string>
     <string name="locale_type">EN</string>
+    <string name="schedule">Schedule for later</string>
+    <string name="start">Start</string>
+    <string name="password_length_error">Password must be atleast 6 characters</string>
+    <string name="improper_email">Improper Email Format</string>
+    <string name="next">Next</string>
+    <string name="change">Change</string>
+    <string name="screening_saved">Screening Saved</string>
+    <string name="save_screening_error">Error while saving!</string>
+    <string name="completed">COMPLETED</string>
+    <string name="pending">PENDING</string>
 
     <string name="jst_q1">Difficulty in sound replacement games.</string>
     <string name="jst_q2">Difficulty in rhyming.</string>
@@ -109,17 +119,27 @@
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-    <string name="schedule">Schedule for later</string>
-    <string name="start">Start</string>
-    <string name="password_length_error">Password must be atleast 6 characters</string>
-    <string name="improper_email">Improper Email Format</string>
-    <string name="next">Next</string>
-    <string name="change">Change</string>
-    <string name="screening_saved">Screening Saved</string>
-    <string name="save_screening_error">Error while saving!</string>
-    <string name="completed">COMPLETED</string>
-    <string name="pending">PENDING</string>
+    <string name="sort">Sort</string>
+    <string name="add">Add</string>
 
+
+    <string-array name="jst_categories">
+        <item>sound</item>
+        <item>sound</item>
+        <item>reading</item>
+        <item>reading</item>
+        <item>reading</item>
+        <item>number</item>
+        <item>number</item>
+        <item>communication</item>
+        <item>communication</item>
+        <item>communication</item>
+        <item>motor</item>
+        <item>motor</item>
+        <item>behavior</item>
+        <item>behavior</item>
+        <item>behavior</item>
+    </string-array>
 
     <string-array name="jst_questions">
         <item>@string/jst_q1</item>
@@ -155,6 +175,30 @@
         <item>@string/jst_e13</item>
         <item>@string/jst_e14</item>
         <item>@string/jst_e15</item>
+    </string-array>
+
+    <string-array name="mst_categories">
+        <item>reading</item>
+        <item>reading</item>
+        <item>reading</item>
+        <item>reading</item>
+        <item>writing</item>
+        <item>writing</item>
+        <item>writing</item>
+        <item>writing</item>
+        <item>number</item>
+        <item>number</item>
+        <item>number</item>
+        <item>communication</item>
+        <item>communication</item>
+        <item>communication</item>
+        <item>memory</item>
+        <item>motor</item>
+        <item>motor</item>
+        <item>behavior</item>
+        <item>behavior</item>
+        <item>behavior</item>
+        <item>behavior</item>
     </string-array>
 
     <string-array name="mst_questions">

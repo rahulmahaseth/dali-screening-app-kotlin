@@ -22,4 +22,5 @@ interface AppComponent {
     fun inject(screening: Screening)
     fun inject(comments: Comments)
     fun inject(result: Result)
+    fun inject(dashboardContainer: DashboardContainer)
 }

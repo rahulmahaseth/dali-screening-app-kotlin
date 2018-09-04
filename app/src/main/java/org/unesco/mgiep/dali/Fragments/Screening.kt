@@ -55,8 +55,16 @@ class Screening : Fragment() {
             21
         }
 
-        tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
-        tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
+        if(screeningType == Type.JST.toString()){
+            addCategoryImage(resources.getStringArray(R.array.jst_categories)[questionsCompleted])
+            tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
+            tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
+        }else{
+            addCategoryImage(resources.getStringArray(R.array.mst_categories)[questionsCompleted])
+            tv_question.text = resources.getStringArray(R.array.mst_questions)[questionsCompleted]
+            tv_example.text = resources.getStringArray(R.array.mst_examples)[questionsCompleted]
+        }
+
         btn_usually.setOnClickListener {
             update(2)
         }
@@ -95,8 +103,28 @@ class Screening : Fragment() {
                     false
             )
         }else{
-            tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
-            tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
+            if(screeningType == Type.JST.toString()){
+                addCategoryImage(resources.getStringArray(R.array.jst_categories)[questionsCompleted])
+                tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
+                tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
+            }else{
+                addCategoryImage(resources.getStringArray(R.array.mst_categories)[questionsCompleted])
+                tv_question.text = resources.getStringArray(R.array.mst_questions)[questionsCompleted]
+                tv_example.text = resources.getStringArray(R.array.mst_examples)[questionsCompleted]
+            }
+        }
+    }
+
+    fun addCategoryImage(category: String){
+        when(category){
+            "sound" -> image_category.setImageResource(R.drawable.ic_hearing_01)
+            "communication" -> image_category.setImageResource(R.drawable.ic_communication_01)
+            "number" -> image_category.setImageResource(R.drawable.ic_numberconcept_01)
+            "memory" -> image_category.setImageResource(R.drawable.ic_memory_01)
+            "motor" -> image_category.setImageResource(R.drawable.ic_motorcordination_01)
+            "behavior" -> image_category.setImageResource(R.drawable.ic_behaviour_01)
+            "reading" -> image_category.setImageResource(R.drawable.ic_reading_01)
+            "writing" -> image_category.setImageResource(R.drawable.ic_writing_01)
         }
     }
 

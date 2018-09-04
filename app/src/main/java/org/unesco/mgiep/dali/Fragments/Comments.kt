@@ -37,22 +37,16 @@ class Comments: Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_submit_screening.setOnClickListener { v ->
-            when{
-                edit_comments.text.isEmpty() -> screening.comments = ""
-                else ->
-                {
-                    screening.comments = edit_comments.text.toString()
-                    mainReposirtory.saveScreening(UUID.randomUUID().toString(),screening)
-                            .addOnSuccessListener {
-                                Toast.makeText(activity, getString(R.string.screening_saved), Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(activity, MainActivity::class.java))
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(activity, getString(R.string.save_screening_error), Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(activity, MainActivity::class.java))
-                            }
-                }
-            }
+            screening.comments = edit_comments.text.toString()
+            mainReposirtory.saveScreening(UUID.randomUUID().toString(),screening)
+                    .addOnSuccessListener {
+                        Toast.makeText(activity, getString(R.string.screening_saved), Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(activity, MainActivity::class.java))
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(activity, getString(R.string.save_screening_error), Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(activity, MainActivity::class.java))
+                    }
         }
 
 

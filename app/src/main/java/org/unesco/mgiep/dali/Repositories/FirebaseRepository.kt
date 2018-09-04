@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import durdinapps.rxfirebase2.RxFirestore
 import io.reactivex.Maybe
 import io.reactivex.schedulers.Schedulers
@@ -60,8 +61,8 @@ class FirebaseRepository {
     }
 
 
-    fun fetchUserScreenings(userId: String){
-        screeningsRef
+    fun fetchUserScreenings(userId: String): Task<QuerySnapshot> {
+        return screeningsRef
                 .whereEqualTo("userId",userId)
                 .get()
                 .addOnCompleteListener { task ->
@@ -71,6 +72,24 @@ class FirebaseRepository {
                          }else{
                                 Log.d("fetch-screenings","failed!!No Such Document")
                          }
+                    }else{
+                        Log.d("fetch-screening","failed",task.exception)
+                    }
+                }
+    }
+
+    fun fetchPendingUserScreenings(userId: String): Task<QuerySnapshot> {
+        return screeningsRef
+                .whereEqualTo("userId",userId)
+                .whereEqualTo("completed", "false")
+                .get()
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        if(!task.result.isEmpty){
+                            Log.d("fetch-screenings","success")
+                        }else{
+                            Log.d("fetch-screenings","failed!!No Such Document")
+                        }
                     }else{
                         Log.d("fetch-screening","failed",task.exception)
                     }

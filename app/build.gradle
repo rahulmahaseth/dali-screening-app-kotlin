@@ -83,6 +83,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
 
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     //firebase auth
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     //firebase firestore

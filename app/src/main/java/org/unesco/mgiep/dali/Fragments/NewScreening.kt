@@ -137,7 +137,7 @@ class NewScreening : Fragment() {
                             )
                     )
 
-                    val age = calendar.time.year - selectedDate.year
+                    val age = Date().year - selectedDate.year
                     Log.d("Participant Age - ","$age")
                     if(age <= 7){
                         intent.putExtra("type",Type.JST.toString())

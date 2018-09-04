@@ -3,11 +3,15 @@ package org.unesco.mgiep.dali.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
+import org.unesco.mgiep.dali.Fragments.NewScreening
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 
@@ -34,15 +38,12 @@ class MainActivity: AppCompatActivity() {
         )
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
+
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.fragment_container,
                 fragmentManager = supportFragmentManager,
                 addToBackStack = addToBackStack)
     }
-
 
 }

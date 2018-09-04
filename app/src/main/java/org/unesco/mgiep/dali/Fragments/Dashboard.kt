@@ -3,11 +3,14 @@ package org.unesco.mgiep.dali.Fragments
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_dashboard_container.*
 import kotlinx.android.synthetic.main.item_screening.view.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -15,6 +18,7 @@ import org.unesco.mgiep.dali.Data.FirebaseScreening
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Utility.PagerAdapter
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 
@@ -64,9 +68,46 @@ class Dashboard: Fragment() {
         screening_recycler.adapter = lastAdapter
         screening_recycler.layoutManager = LinearLayoutManager(activity)
 
+
+        arguments?.takeIf {
+            it.containsKey("pending")
+        }
+                .apply {
+                    val pending = this!!.getBoolean("pending")
+                    if(!pending){
+                        firebaseRepository.fetchUserScreenings(mAuth.currentUser!!.uid)
+                                .addOnCompleteListener {
+                                    if(!it.result.isEmpty){
+                                        screenings.clear()
+                                        it.result.documents.forEach {
+                                            screenings.add(it.toObject(FirebaseScreening::class.java))
+                                        }
+                                    }else{
+                                        //show empty screen
+                                    }
+                                }
+                                .addOnCanceledListener {
+                                    Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                                }
+                    }else{
+                        firebaseRepository.fetchPendingUserScreenings(mAuth.currentUser!!.uid)
+                                .addOnCompleteListener {
+                                    if(!it.result.isEmpty){
+                                        screenings.clear()
+                                        it.result.documents.forEach {
+                                            screenings.add(it.toObject(FirebaseScreening::class.java))
+                                        }
+                                    }else{
+                                        //show empty screen
+                                    }
+                                }
+                                .addOnCanceledListener {
+                                    Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                                }
+                    }
+                }
+
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         activity!!.menuInflater.inflate(R.menu.toolbar_menu, menu)

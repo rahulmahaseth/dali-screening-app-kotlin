@@ -125,6 +125,14 @@
     <string name="screenings">Screenings</string>
     <string name="participants">Participants</string>
     <string name="settings">Settings</string>
+    <string name="relationship_with_child">Relationship With Child</string>
+    <string name="class_teacher">Class Teacher</string>
+    <string name="language_teacher">Language Teacher</string>
+    <string name="others">Others</string>
+    <string name="other">Other</string>
+    <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
+    <string name="months">Months</string>
+    <string name="relationship_with_child_none_select_error">Select Relationship with child</string>
 
 
     <string-array name="jst_categories">

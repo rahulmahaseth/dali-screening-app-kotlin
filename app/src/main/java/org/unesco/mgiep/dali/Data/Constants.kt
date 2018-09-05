@@ -11,3 +11,7 @@ enum class Gender{
 enum class Type{
     JST, MST
 }
+
+enum class Relationship{
+    CT, LT, OT
+}

@@ -15,10 +15,8 @@ import kotlinx.android.synthetic.main.fragment_new_screening.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.FirebaseScreening
-import org.unesco.mgiep.dali.Data.Gender
+import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
-import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
@@ -35,7 +33,10 @@ class NewScreening : Fragment() {
     val onlyDate = "MMM DD,YYYY"
     val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
     val sdf2 = SimpleDateFormat(onlyDate, Locale.ENGLISH)
+
     private var gender = Gender.MALE
+    private var relationShipWithChild = Relationship.CT
+
     private var selectedDate : Date = calendar.time
     private var scheduleDate: Date = calendar.time
 
@@ -69,13 +70,21 @@ class NewScreening : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         edit_regscreen_radio_female.setOnClickListener {
-            edit_regscreen_radio_male.isChecked = false
             gender = Gender.FEMALE
         }
 
         edit_regscreen_radio_male.setOnClickListener {
-            edit_regscreen_radio_female.isChecked = false
             gender = Gender.MALE
+        }
+
+        radio_class_teacher.setOnClickListener {
+            relationShipWithChild = Relationship.CT
+        }
+        radio_language_teacher.setOnClickListener {
+            relationShipWithChild = Relationship.LT
+        }
+        radio_others.setOnClickListener {
+            relationShipWithChild = Relationship.OT
         }
 
         switch_schedule.setOnCheckedChangeListener { compoundButton, b ->
@@ -106,15 +115,28 @@ class NewScreening : Fragment() {
             ).show()
         }
 
-        btn_screenreg_submit.setOnClickListener {
-            Log.d("screening-reg","onClick")
-
-            when {
+        btn_submit_participant.setOnClickListener {
+            when{
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
                     Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
+                else->{
+                    participant_input_layout.visibility = View.GONE
+                    metadata_input_layout.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        btn_screenreg_submit.setOnClickListener {
+            Log.d("screening-reg","onClick")
+
+            when {
+                !radio_class_teacher.isChecked && !radio_language_teacher.isChecked && !radio_others.isChecked ->{
+                    Toast.makeText(activity,getString(R.string.relationship_with_child_none_select_error),Toast.LENGTH_SHORT).show()
+                }
+                edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
                 else -> {
                     screeningParticipantViewModel.select(Participant(
                             name = edit_regscreen_name.text.toString(),
@@ -122,7 +144,9 @@ class NewScreening : Fragment() {
                             motherTongue = edit_regscreen_mothertongue.text.toString(),
                             institution = edit_regscreen_school.text.toString(),
                             dob = selectedDate.time,
-                            gender = gender.toString()
+                            gender = gender.toString(),
+                            relationShipWithChild = relationShipWithChild.toString(),
+                            timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
                     ))
 
                     mainRepository.saveParticipant(
@@ -133,7 +157,9 @@ class NewScreening : Fragment() {
                                     motherTongue = edit_regscreen_mothertongue.text.toString(),
                                     institution = edit_regscreen_school.text.toString(),
                                     dob = selectedDate.time,
-                                    gender = gender.toString()
+                                    gender = gender.toString(),
+                                    relationShipWithChild = relationShipWithChild.toString(),
+                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
                             )
                     )
 
@@ -179,7 +205,9 @@ class NewScreening : Fragment() {
                                     motherTongue = edit_regscreen_mothertongue.text.toString(),
                                     institution = edit_regscreen_school.text.toString(),
                                     dob = selectedDate.time,
-                                    gender = gender.toString()
+                                    gender = gender.toString(),
+                                    relationShipWithChild = relationShipWithChild.toString(),
+                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
                             )
                     )
 

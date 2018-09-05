@@ -7,5 +7,7 @@ data class Participant (
         val motherTongue: String,
         val institution: String,
         val dob: Long,
-        val gender: String
+        val gender: String,
+        val relationShipWithChild: String,
+        val timeSpentWithChild: Int
 )

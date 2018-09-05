@@ -24,4 +24,5 @@ interface AppComponent {
     fun inject(result: Result)
     fun inject(dashboardContainer: DashboardContainer)
     fun inject(settings: Settings)
+    fun inject(participantList: ParticipantList)
 }

@@ -121,6 +121,10 @@
     <string name="mst_e21"></string>
     <string name="sort">Sort</string>
     <string name="add">Add</string>
+    <string name="home">Home</string>
+    <string name="screenings">Screenings</string>
+    <string name="participants">Participants</string>
+    <string name="settings">Settings</string>
 
 
     <string-array name="jst_categories">

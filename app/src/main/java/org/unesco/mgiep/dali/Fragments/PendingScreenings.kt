@@ -3,96 +3,91 @@ package org.unesco.mgiep.dali.Fragments
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_dashboard_container.*
-import kotlinx.android.synthetic.main.item_screening.view.*
+import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.FirebaseScreening
 import org.unesco.mgiep.dali.Data.Type
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
-import org.unesco.mgiep.dali.Utility.PagerAdapter
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 
-class Dashboard: Fragment() {
+class PendingScreenings: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screenings = ObservableArrayList<FirebaseScreening>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mAuth: FirebaseAuth
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity!!.application as MyApplication).component.inject(this)
-        setHasOptionsMenu(true)
-        firebaseRepository = FirebaseRepository()
-        mAuth = FirebaseAuth.getInstance()
-    }
+    private lateinit var screeningViewModel: ScreeningViewModel
 
     fun initLastAdapter(): LastAdapter {
         return LastAdapter(screenings, BR.item)
                 .map<FirebaseScreening, ItemScreeningBinding>(R.layout.item_screening) {
                     onBind {
                         if(it.binding.item!!.type == Type.JST.toString() ){
-                            if(it.binding.item!!.totalScore < 16){
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
-                            }else{
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
-                            }
-                        }else{
-                            if(it.binding.item!!.totalScore < 19){
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
-                            }else{
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
-                            }
                         }
                     }
+                    onClick {
+                        screeningViewModel.select(it.binding.item!!)
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        ScreeningDetails::class.java.name
+                                ),
+                                true
+                        )
+                    }
                 }
-                .into(screening_recycler)
+                .into(pending_screening_recycler)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity!!.application as MyApplication).component.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
-            inflater.inflate(R.layout.fragment_dashboard, container, false)
+            inflater.inflate(R.layout.fragment_pendingscreenings, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         screening_recycler.adapter = lastAdapter
         screening_recycler.layoutManager = LinearLayoutManager(activity)
 
+        fetchPendingScreenings()
 
-        fetchScreenings()
-
-        screening_swipe_layout.setOnRefreshListener {
-            fetchScreenings()
+        pending_swipe_layout.setOnRefreshListener {
+            fetchPendingScreenings()
         }
+
 
     }
 
-    private fun fetchScreenings(){
-        firebaseRepository.fetchUserScreenings(mAuth.currentUser!!.uid)
+    private fun fetchPendingScreenings(){
+        firebaseRepository.fetchPendingUserScreenings(mAuth.currentUser!!.uid)
                 .addOnCompleteListener {
                     if(!it.result.isEmpty){
                         screenings.clear()
                         it.result.documents.forEach {
                             screenings.add(it.toObject(FirebaseScreening::class.java))
-                            screening_swipe_layout.isRefreshing = false
+                            pending_swipe_layout.isRefreshing = false
                         }
                     }else{
+                        pending_swipe_layout.isRefreshing = false
                         //show empty screen
-                        screening_swipe_layout.isRefreshing = false
                     }
                 }
                 .addOnCanceledListener {
-                    screening_swipe_layout.isRefreshing = false
+                    pending_swipe_layout.isRefreshing = false
                     Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
                 }
     }

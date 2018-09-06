@@ -2,18 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:icon="@drawable/ic_home_black_24dp"
             android:id="@+id/nav_home"
             android:title="@string/home"/>
 
         <item
+            android:icon="@drawable/ic_question_answer_black_24dp"
             android:id="@+id/nav_screenings"
-            android:title="@string/screenings" />
+            android:title="@string/pending_screenings" />
 
         <item
+            android:icon="@drawable/ic_people_black_24dp"
             android:id="@+id/nav_participants"
             android:title="@string/participants" />
 
         <item
+            android:icon="@drawable/ic_settings_black_24dp"
             android:id="@+id/nav_settings"
             android:title="@string/settings"/>
 

@@ -55,7 +55,7 @@ class MainActivity: AppCompatActivity() {
                     showFragment(
                             Fragment.instantiate(
                                     this,
-                                    Dashboard::class.java.name
+                                    PendingScreenings::class.java.name
                             ),
                             false
                     )

@@ -3,12 +3,14 @@ package org.unesco.mgiep.dali.Fragments
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.nitrico.lastadapter.BR
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_participantlist.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Participant
@@ -53,8 +55,36 @@ class ParticipantList : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
             inflater.inflate(R.layout.fragment_forgotpassword, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recycler_particpants.adapter = lastAdapter
+        recycler_particpants.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+        fetchParticpants()
+
+        screening_swipe_layout.setOnRefreshListener {
+            fetchParticpants()
+        }
+    }
+
+    private fun fetchParticpants(){
+        firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
+                .addOnCompleteListener {
+                    if(!it.result.isEmpty){
+                        participants.clear()
+                        it.result.documents.forEach {
+                            participants.add(it.toObject(Participant::class.java))
+                            lastAdapter.notifyDataSetChanged()
+                            screening_swipe_layout.isRefreshing = false
+                        }
+                    }else{
+                        screening_swipe_layout.isRefreshing = false
+                    }
+                }
+                .addOnFailureListener {
+                    screening_swipe_layout.isRefreshing = false
+                }
 
     }
 

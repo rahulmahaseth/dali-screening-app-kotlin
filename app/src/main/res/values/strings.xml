@@ -133,6 +133,7 @@
     <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
     <string name="months">Months</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with child</string>
+    <string name="pending_screenings">Pending Screenings</string>
 
 
     <string-array name="jst_categories">

@@ -113,8 +113,8 @@ class FirebaseRepository {
                 }
     }
 
-    fun fetchParticipants(userId: String){
-        participantsRef
+    fun fetchParticipants(userId: String): Task<QuerySnapshot> {
+        return participantsRef
                 .whereEqualTo("userId",userId)
                 .get()
                 .addOnCompleteListener { task ->

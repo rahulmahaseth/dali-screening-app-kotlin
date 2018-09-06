@@ -146,7 +146,8 @@ class NewScreening : Fragment() {
                             dob = selectedDate.time,
                             gender = gender.toString(),
                             relationShipWithChild = relationShipWithChild.toString(),
-                            timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
+                            timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
+                            createdBy = mAuth.currentUser!!.uid
                     ))
 
                     mainRepository.saveParticipant(
@@ -159,7 +160,8 @@ class NewScreening : Fragment() {
                                     dob = selectedDate.time,
                                     gender = gender.toString(),
                                     relationShipWithChild = relationShipWithChild.toString(),
-                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
+                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
+                                    createdBy = mAuth.currentUser!!.uid
                             )
                     )
 
@@ -207,7 +209,8 @@ class NewScreening : Fragment() {
                                     dob = selectedDate.time,
                                     gender = gender.toString(),
                                     relationShipWithChild = relationShipWithChild.toString(),
-                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt()
+                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
+                                    createdBy = mAuth.currentUser!!.uid
                             )
                     )
 
@@ -224,7 +227,8 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = ""
+                                        comments = "",
+                                        tempId = UUID.randomUUID().toString()
                                 )
                         )
 
@@ -239,7 +243,8 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = ""
+                                        comments = "",
+                                        tempId = UUID.randomUUID().toString()
                                 )
                         )
 

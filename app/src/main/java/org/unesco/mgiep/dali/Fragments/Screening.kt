@@ -92,7 +92,8 @@ class Screening : Fragment() {
                             userId = mAuth.currentUser!!.uid,
                             scheduledDate = Date().time,
                             totalScore = totalScore,
-                            comments = ""
+                            comments = "",
+                            tempId = UUID.randomUUID().toString()
                     )
             )
             showFragment(

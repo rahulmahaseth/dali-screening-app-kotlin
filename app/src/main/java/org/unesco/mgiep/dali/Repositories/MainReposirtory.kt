@@ -43,19 +43,19 @@ class MainReposirtory {
 
 
     //get data
-    fun getUser(id: String): Maybe<DocumentSnapshot> {
+    fun getUser(id: String): Maybe<DocumentSnapshot>? {
         return firebaseRepository.fetchDocument(usersRef.document(id),"user")
     }
 
-    fun getScreening(id: String): Maybe<DocumentSnapshot> {
+    fun getScreening(id: String): Maybe<DocumentSnapshot>? {
         return firebaseRepository.fetchDocument(screeningsRef.document(id),"screening")
     }
 
-    fun getParticipant(id:String): Maybe<DocumentSnapshot> {
+    fun getParticipant(id:String): Maybe<DocumentSnapshot>? {
         return firebaseRepository.fetchDocument(participantsRef.document(id),"participant")
     }
 
-    fun getResult(id: String): Maybe<DocumentSnapshot> {
+    fun getResult(id: String): Maybe<DocumentSnapshot>? {
         return firebaseRepository.fetchDocument(resultsRef.document(id),"result")
     }
 

@@ -1,5 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -52,6 +53,9 @@ class PendingScreenings: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        mAuth = FirebaseAuth.getInstance()
+        firebaseRepository = FirebaseRepository()
+        screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -60,14 +64,15 @@ class PendingScreenings: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        screening_recycler.adapter = lastAdapter
-        screening_recycler.layoutManager = LinearLayoutManager(activity)
+        pending_screening_recycler.adapter = lastAdapter
+        pending_screening_recycler.layoutManager = LinearLayoutManager(activity)
 
         fetchPendingScreenings()
 
-        pending_swipe_layout.setOnRefreshListener {
+
+        /*pending_swipe_layout.setOnRefreshListener {
             fetchPendingScreenings()
-        }
+        }*/
 
 
     }
@@ -79,15 +84,15 @@ class PendingScreenings: Fragment() {
                         screenings.clear()
                         it.result.documents.forEach {
                             screenings.add(it.toObject(FirebaseScreening::class.java))
-                            pending_swipe_layout.isRefreshing = false
+                           // pending_swipe_layout.isRefreshing = false
                         }
                     }else{
-                        pending_swipe_layout.isRefreshing = false
+                        //pending_swipe_layout.isRefreshing = false
                         //show empty screen
                     }
                 }
                 .addOnCanceledListener {
-                    pending_swipe_layout.isRefreshing = false
+                   // pending_swipe_layout.isRefreshing = false
                     Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
                 }
     }

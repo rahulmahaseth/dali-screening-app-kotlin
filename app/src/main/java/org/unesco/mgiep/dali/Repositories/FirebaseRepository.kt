@@ -44,7 +44,7 @@ class FirebaseRepository {
     }
 
     //functions to fetch data from Firestore
-    fun fetchDocument(documentReference: DocumentReference, type:String): Maybe<DocumentSnapshot>{
+    fun fetchDocument(documentReference: DocumentReference, type:String): Maybe<DocumentSnapshot>? {
 
         return RxFirestore.getDocument(documentReference).subscribeOn(Schedulers.newThread())
                 .doOnSuccess {
@@ -115,7 +115,7 @@ class FirebaseRepository {
 
     fun fetchParticipants(userId: String): Task<QuerySnapshot> {
         return participantsRef
-                .whereEqualTo("userId",userId)
+                .whereEqualTo("createdBy",userId)
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
@@ -160,6 +160,24 @@ class FirebaseRepository {
                         }
                     }else{
                         Log.d("fetch-SResults","failed",task.exception)
+                    }
+                }
+    }
+
+    fun fetchParticipantDetails(userId: String, screeningId: String): Task<QuerySnapshot> {
+        return participantsRef
+                .whereEqualTo("screeningId",screeningId)
+                .whereEqualTo("userId",userId)
+                .get()
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        if(!task.result.isEmpty){
+                            Log.d("fParticipantDetails","success")
+                        }else{
+                            Log.d("ParticipantDetails","failed!!No Such Document")
+                        }
+                    }else{
+                        Log.d("ParticipantDetails","failed",task.exception)
                     }
                 }
     }

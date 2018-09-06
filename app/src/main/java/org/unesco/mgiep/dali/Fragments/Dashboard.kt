@@ -1,10 +1,12 @@
 package org.unesco.mgiep.dali.Fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
@@ -16,6 +18,7 @@ import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.FirebaseScreening
 import org.unesco.mgiep.dali.Data.Type
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Utility.PagerAdapter
@@ -28,6 +31,7 @@ class Dashboard: Fragment() {
     private val screenings = ObservableArrayList<FirebaseScreening>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var screeningViewModel: ScreeningViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,7 @@ class Dashboard: Fragment() {
         setHasOptionsMenu(true)
         firebaseRepository = FirebaseRepository()
         mAuth = FirebaseAuth.getInstance()
+        screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
     }
 
     fun initLastAdapter(): LastAdapter {
@@ -55,6 +60,16 @@ class Dashboard: Fragment() {
                             }
                         }
                     }
+                    onClick {
+                        screeningViewModel.select(it.binding.item!!)
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        ScreeningDetails::class.java.name
+                                ),
+                        false
+                        )
+                    }
                 }
                 .into(screening_recycler)
     }
@@ -71,9 +86,9 @@ class Dashboard: Fragment() {
 
         fetchScreenings()
 
-        screening_swipe_layout.setOnRefreshListener {
+       /* screening_swipe_layout.setOnRefreshListener {
             fetchScreenings()
-        }
+        }*/
 
     }
 
@@ -84,15 +99,16 @@ class Dashboard: Fragment() {
                         screenings.clear()
                         it.result.documents.forEach {
                             screenings.add(it.toObject(FirebaseScreening::class.java))
-                            screening_swipe_layout.isRefreshing = false
+                            //screening_swipe_layout.isRefreshing = false
+                            lastAdapter.notifyDataSetChanged()
                         }
                     }else{
                         //show empty screen
-                        screening_swipe_layout.isRefreshing = false
+                        //screening_swipe_layout.isRefreshing = false
                     }
                 }
                 .addOnCanceledListener {
-                    screening_swipe_layout.isRefreshing = false
+                    //screening_swipe_layout.isRefreshing = false
                     Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
                 }
     }
@@ -126,5 +142,10 @@ class Dashboard: Fragment() {
         fragment.showFragment(container = R.id.fragment_container,
                 fragmentManager = activity!!.supportFragmentManager,
                 addToBackStack = addToBackStack)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("ParticipantList","Resumed")
     }
 }

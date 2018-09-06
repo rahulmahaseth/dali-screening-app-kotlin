@@ -8,5 +8,6 @@ data class FirebaseScreening (
         val userId: String = "",
         val scheduledDate: Long = 0,
         var totalScore: Int = 0,
-        var comments: String = ""
+        var comments: String = "",
+        var tempId: String = ""
 )

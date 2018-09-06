@@ -7,6 +7,11 @@
             type = "org.unesco.mgiep.dali.Data.FirebaseScreening"/>
     </data>
 
+    <android.support.v7.widget.CardView
+        android:layout_margin="10dp"
+        android:elevation="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:drawableBottom="@color/colorPrimary"
         android:id="@+id/item_layout"
@@ -38,4 +43,5 @@
 
         </LinearLayout>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
 </layout>

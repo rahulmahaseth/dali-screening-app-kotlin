@@ -57,7 +57,7 @@ class MainActivity: AppCompatActivity() {
                                     this,
                                     PendingScreenings::class.java.name
                             ),
-                            false
+                            true
                     )
                 }
                 R.id.nav_participants ->{
@@ -66,7 +66,7 @@ class MainActivity: AppCompatActivity() {
                                     this,
                                     ParticipantList::class.java.name
                             ),
-                            false
+                            true
                     )
                 }
                 R.id.nav_settings -> {
@@ -75,7 +75,7 @@ class MainActivity: AppCompatActivity() {
                                     this,
                                     Settings::class.java.name
                             ),
-                            false
+                            true
                     )
                 }
             }

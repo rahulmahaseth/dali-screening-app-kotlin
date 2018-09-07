@@ -3,7 +3,7 @@ package org.unesco.mgiep.dali.Data
 
 data class Participant (
         val name: String = "",
-        val sClass: Int = 1,
+        val sClass: Int = 0,
         val motherTongue: String = "",
         val institution: String = "",
         val dob: Long = 0,

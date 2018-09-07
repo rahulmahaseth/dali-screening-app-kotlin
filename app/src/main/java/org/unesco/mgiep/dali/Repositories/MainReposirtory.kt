@@ -1,14 +1,11 @@
 package org.unesco.mgiep.dali.Repositories
 
-import android.content.res.Resources
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import io.reactivex.Completable
 import io.reactivex.Maybe
 import org.unesco.mgiep.dali.Data.*
-import org.unesco.mgiep.dali.R
 
 class MainReposirtory {
 
@@ -26,7 +23,7 @@ class MainReposirtory {
         return firebaseRepository.writeDocument(usersRef.document(id),user,"user")
     }
 
-    fun saveScreening(id: String, screening: FirebaseScreening): Task<*> {
+    fun saveScreening(id: String, screening: Screening): Task<*> {
         Log.d("save","screening")
         return firebaseRepository.writeDocument(screeningsRef.document(id), screening,"screening")
     }
@@ -35,12 +32,6 @@ class MainReposirtory {
         Log.d("save","participant")
         return firebaseRepository.writeDocument(participantsRef.document(id),participant,"participant")
     }
-
-    fun saveResult(id: String, result: Result): Task<*> {
-        Log.d("save","result")
-        return firebaseRepository.writeDocument(resultsRef.document(id),result,"result")
-    }
-
 
     //get data
     fun getUser(id: String): Maybe<DocumentSnapshot>? {
@@ -51,8 +42,8 @@ class MainReposirtory {
         return firebaseRepository.fetchDocument(screeningsRef.document(id),"screening")
     }
 
-    fun getParticipant(id:String): Maybe<DocumentSnapshot>? {
-        return firebaseRepository.fetchDocument(participantsRef.document(id),"participant")
+    fun getParticipant(id:String): Task<DocumentSnapshot> {
+        return firebaseRepository.fetchFDocument(participantsRef.document(id),"participant")
     }
 
     fun getResult(id: String): Maybe<DocumentSnapshot>? {

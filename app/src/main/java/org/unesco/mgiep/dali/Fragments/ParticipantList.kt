@@ -55,7 +55,6 @@ class ParticipantList : Fragment(){
         firebaseRepository = FirebaseRepository()
         mAuth = FirebaseAuth.getInstance()
         participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -98,5 +97,10 @@ class ParticipantList : Fragment(){
         fragment.showFragment(container = R.id.fragment_container,
                 fragmentManager = activity!!.supportFragmentManager,
                 addToBackStack = addToBackStack)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = "Participants"
     }
 }

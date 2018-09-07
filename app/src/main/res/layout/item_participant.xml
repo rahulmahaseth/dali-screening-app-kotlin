@@ -27,7 +27,7 @@
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_child_01"/>
+                android:src="@drawable/ic_child_36"/>
 
             <LinearLayout
                 android:paddingLeft="24dp"

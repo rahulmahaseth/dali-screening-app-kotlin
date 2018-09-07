@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
@@ -12,23 +11,23 @@ import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_dashboard_container.*
 import kotlinx.android.synthetic.main.item_screening.view.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.FirebaseScreening
+import org.unesco.mgiep.dali.Data.Screening
+import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
-import org.unesco.mgiep.dali.Utility.PagerAdapter
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 
 class Dashboard: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
-    private val screenings = ObservableArrayList<FirebaseScreening>()
+    private val screenings = ObservableArrayList<Screening>()
+    private val participants = ObservableArrayList<Participant>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mAuth: FirebaseAuth
     private lateinit var screeningViewModel: ScreeningViewModel
@@ -44,8 +43,9 @@ class Dashboard: Fragment() {
 
     fun initLastAdapter(): LastAdapter {
         return LastAdapter(screenings, BR.item)
-                .map<FirebaseScreening, ItemScreeningBinding>(R.layout.item_screening) {
+                .map<Screening, ItemScreeningBinding>(R.layout.item_screening) {
                     onBind {
+
                         if(it.binding.item!!.type == Type.JST.toString() ){
                             if(it.binding.item!!.totalScore < 16){
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
@@ -67,7 +67,7 @@ class Dashboard: Fragment() {
                                         activity,
                                         ScreeningDetails::class.java.name
                                 ),
-                        false
+                        true
                         )
                     }
                 }
@@ -94,11 +94,11 @@ class Dashboard: Fragment() {
 
     private fun fetchScreenings(){
         firebaseRepository.fetchUserScreenings(mAuth.currentUser!!.uid)
-                .addOnCompleteListener {
-                    if(!it.result.isEmpty){
+                .addOnSuccessListener {
+                    if(!it.isEmpty){
                         screenings.clear()
-                        it.result.documents.forEach {
-                            screenings.add(it.toObject(FirebaseScreening::class.java))
+                        it.documents.forEach {
+                            screenings.add(it.toObject(Screening::class.java))
                             //screening_swipe_layout.isRefreshing = false
                             lastAdapter.notifyDataSetChanged()
                         }
@@ -109,6 +109,25 @@ class Dashboard: Fragment() {
                 }
                 .addOnCanceledListener {
                     //screening_swipe_layout.isRefreshing = false
+                    Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun fetchParticipants(){
+        firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
+                .addOnSuccessListener {
+                    if(!it.isEmpty){
+                        screenings.clear()
+                        it.documents.forEach {
+                            participants.add(it.toObject(Participant::class.java))
+                        }
+                            //screening_swipe_layout.isRefreshing = false }
+                    }else{
+                        //show empty screen
+                        //screening_swipe_layout.isRefreshing = false
+                    }
+                }
+                .addOnFailureListener {
                     Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
                 }
     }
@@ -146,6 +165,7 @@ class Dashboard: Fragment() {
 
     override fun onResume() {
         super.onResume()
+        activity!!.title = "Screenings"
         Log.d("ParticipantList","Resumed")
     }
 }

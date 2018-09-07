@@ -60,10 +60,25 @@ class FirebaseRepository {
                 }
     }
 
+    fun fetchFDocument(documentReference: DocumentReference, type:String): Task<DocumentSnapshot> {
+        return documentReference.get()
+                .addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Log.d("fetch-$type","Success")
+                    }else{
+                        Log.d("fetch-$type","failed",it.exception)
+                    }
+                }
+                .addOnCanceledListener {
+                    Log.d("fetch-$type","cancelled")
+                }
+    }
+
 
     fun fetchUserScreenings(userId: String): Task<QuerySnapshot> {
         return screeningsRef
                 .whereEqualTo("userId",userId)
+                .whereEqualTo("completed",true)
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
@@ -81,17 +96,17 @@ class FirebaseRepository {
     fun fetchPendingUserScreenings(userId: String): Task<QuerySnapshot> {
         return screeningsRef
                 .whereEqualTo("userId",userId)
-                .whereEqualTo("completed", "false")
+                .whereEqualTo("completed", false)
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         if(!task.result.isEmpty){
-                            Log.d("fetch-screenings","success")
+                            Log.d("fetch-Pendingscreenings","success")
                         }else{
-                            Log.d("fetch-screenings","failed!!No Such Document")
+                            Log.d("fetch-Pendingscreenings","failed!!No Such Document")
                         }
                     }else{
-                        Log.d("fetch-screening","failed",task.exception)
+                        Log.d("fetch-Pendingscreening","failed",task.exception)
                     }
                 }
     }

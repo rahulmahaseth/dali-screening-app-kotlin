@@ -21,6 +21,7 @@ class Participant: Fragment() {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
+        activity!!.title = participantViewModel.getParticipant().value!!.name
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -28,6 +29,7 @@ class Participant: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         tv_participant_name.text = participantViewModel.getParticipant().value!!.name
         tv_participant_class.text = participantViewModel.getParticipant().value!!.sClass.toString()

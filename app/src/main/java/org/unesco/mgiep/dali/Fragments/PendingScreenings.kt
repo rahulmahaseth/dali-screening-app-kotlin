@@ -9,11 +9,10 @@ import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.FirebaseScreening
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
@@ -24,14 +23,14 @@ import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 class PendingScreenings: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
-    private val screenings = ObservableArrayList<FirebaseScreening>()
+    private val screenings = ObservableArrayList<Screening>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mAuth: FirebaseAuth
     private lateinit var screeningViewModel: ScreeningViewModel
 
     fun initLastAdapter(): LastAdapter {
         return LastAdapter(screenings, BR.item)
-                .map<FirebaseScreening, ItemScreeningBinding>(R.layout.item_screening) {
+                .map<Screening, ItemScreeningBinding>(R.layout.item_screening) {
                     onBind {
                         if(it.binding.item!!.type == Type.JST.toString() ){
                         }
@@ -56,6 +55,7 @@ class PendingScreenings: Fragment() {
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -83,7 +83,8 @@ class PendingScreenings: Fragment() {
                     if(!it.result.isEmpty){
                         screenings.clear()
                         it.result.documents.forEach {
-                            screenings.add(it.toObject(FirebaseScreening::class.java))
+                            screenings.add(it.toObject(Screening::class.java))
+                            lastAdapter.notifyDataSetChanged()
                            // pending_swipe_layout.isRefreshing = false
                         }
                     }else{
@@ -120,6 +121,11 @@ class PendingScreenings: Fragment() {
                 super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = "Scheduled Screenings"
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

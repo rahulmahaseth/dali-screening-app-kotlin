@@ -5,8 +5,8 @@
     <string name="forgot_password">FORGOT PASSWORD</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
-    <string name="always">Always</string>
-    <string name="sometimes">SomeTIMES</string>
+    <string name="always">ALWAYS</string>
+    <string name="sometimes">SOMETIMES</string>
     <string name="never">NEVER</string>
     <string name="create">Create</string>
     <string name="male">Male</string>
@@ -134,6 +134,8 @@
     <string name="months">Months</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with child</string>
     <string name="pending_screenings">Pending Screenings</string>
+    <string name="back">Back</string>
+    <string name="select_option_error">Please Select An Option</string>
 
 
     <string-array name="jst_categories">
@@ -239,26 +241,26 @@
     </string-array>
 
     <string-array name="mst_examples">
-        <item>@string/mst_q1</item>
-        <item>@string/mst_q2</item>
-        <item>@string/mst_q3</item>
-        <item>@string/mst_q4</item>
-        <item>@string/mst_q5</item>
-        <item>@string/mst_q6</item>
-        <item>@string/mst_q7</item>
-        <item>@string/mst_q8</item>
-        <item>@string/mst_q9</item>
-        <item>@string/mst_q10</item>
-        <item>@string/mst_q11</item>
-        <item>@string/mst_q12</item>
-        <item>@string/mst_q13</item>
-        <item>@string/mst_q14</item>
-        <item>@string/mst_q15</item>
-        <item>@string/mst_q16</item>
-        <item>@string/mst_q17</item>
-        <item>@string/mst_q18</item>
-        <item>@string/mst_q19</item>
-        <item>@string/mst_q20</item>
-        <item>@string/mst_q21</item>
+        <item>@string/mst_e1</item>
+        <item>@string/mst_e2</item>
+        <item>@string/mst_e3</item>
+        <item>@string/mst_e4</item>
+        <item>@string/mst_e5</item>
+        <item>@string/mst_e6</item>
+        <item>@string/mst_e7</item>
+        <item>@string/mst_e8</item>
+        <item>@string/mst_e9</item>
+        <item>@string/mst_e10</item>
+        <item>@string/mst_e11</item>
+        <item>@string/mst_e12</item>
+        <item>@string/mst_e13</item>
+        <item>@string/mst_e14</item>
+        <item>@string/mst_e15</item>
+        <item>@string/mst_e16</item>
+        <item>@string/mst_e17</item>
+        <item>@string/mst_e18</item>
+        <item>@string/mst_e19</item>
+        <item>@string/mst_e20</item>
+        <item>@string/mst_e21</item>
     </string-array>
 </resources>

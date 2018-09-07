@@ -1,7 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.FirebaseScreening
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
@@ -22,7 +21,7 @@ import org.unesco.mgiep.dali.Utility.showFragment
 class ScreeningDetails: Fragment() {
 
     private lateinit var participant: Participant
-    private lateinit var screening: FirebaseScreening
+    private lateinit var screening: Screening
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
@@ -35,7 +34,6 @@ class ScreeningDetails: Fragment() {
         mainRepository = MainReposirtory()
         screening = screeningViewModel.getScreening().value!!
 
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -44,8 +42,8 @@ class ScreeningDetails: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainRepository.getParticipant(screening.participantId)!!
-                .doOnSuccess {
+        mainRepository.getParticipant(screening.participantId)
+                .addOnSuccessListener {
                     if(it.exists()){
                         participant = it.toObject(Participant::class.java)!!
                         Log.d("Participant-fetch","Success")
@@ -58,11 +56,16 @@ class ScreeningDetails: Fragment() {
                         Log.d("Participant-fetch","Failure")
                     }
                 }
-                .doOnError {
+                .addOnFailureListener {
                     Log.d("Participant-fetch","Error",it)
                 }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = "Screening Details"
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -3,16 +3,16 @@ package org.unesco.mgiep.dali.Data.ViewModels
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import org.unesco.mgiep.dali.Data.FirebaseScreening
+import org.unesco.mgiep.dali.Data.Screening
 
 class ScreeningViewModel: ViewModel() {
-    private var nextScreening = MutableLiveData<FirebaseScreening>()
+    private var nextScreening = MutableLiveData<Screening>()
 
-    fun select(screening: FirebaseScreening){
+    fun select(screening: Screening){
         nextScreening.value = screening
     }
 
-    fun getScreening(): LiveData<FirebaseScreening> {
+    fun getScreening(): LiveData<Screening> {
         return nextScreening
     }
 }

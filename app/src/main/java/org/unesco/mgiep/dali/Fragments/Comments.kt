@@ -11,7 +11,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.FirebaseScreening
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
@@ -21,7 +21,7 @@ class Comments: Fragment(){
 
     private lateinit var screeningViewModel: ScreeningViewModel
     lateinit var mainReposirtory: MainReposirtory
-    lateinit var screening: FirebaseScreening
+    lateinit var screening: Screening
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

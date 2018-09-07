@@ -2,12 +2,9 @@ package org.unesco.mgiep.dali.Data.ViewModels
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ScreeningsListViewModel @Inject constructor(val mainRepository: MainReposirtory): ViewModel() {

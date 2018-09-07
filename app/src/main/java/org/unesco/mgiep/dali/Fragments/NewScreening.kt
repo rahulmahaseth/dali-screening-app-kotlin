@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_new_screening.*
-import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
@@ -29,7 +28,7 @@ import java.util.*
 class NewScreening : Fragment() {
 
     val calendar = Calendar.getInstance()
-    val myFormat = "dd/MM/yy"
+    val myFormat = "dd/MM/yyyy"
     val onlyDate = "MMM DD,YYYY"
     val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
     val sdf2 = SimpleDateFormat(onlyDate, Locale.ENGLISH)
@@ -219,7 +218,7 @@ class NewScreening : Fragment() {
                     if(age <= 7){
                         mainRepository.saveScreening(
                                 UUID.randomUUID().toString(),
-                                FirebaseScreening(
+                                Screening(
                                         type = Type.JST.toString(),
                                         completed = false,
                                         mediumOfInstruction = getString(R.string.locale_type),
@@ -227,15 +226,14 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = "",
-                                        tempId = UUID.randomUUID().toString()
+                                        comments = ""
                                 )
                         )
 
                     }else{
                         mainRepository.saveScreening(
                                 UUID.randomUUID().toString(),
-                                FirebaseScreening(
+                                Screening(
                                         type = Type.MST.toString(),
                                         completed = false,
                                         mediumOfInstruction = getString(R.string.locale_type),
@@ -243,8 +241,7 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = "",
-                                        tempId = UUID.randomUUID().toString()
+                                        comments = ""
                                 )
                         )
 

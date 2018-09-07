@@ -26,7 +26,7 @@ class MainActivity: AppCompatActivity() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
         (application as MyApplication).component.inject(this)
         handleNavigationClick()
         showFragment(

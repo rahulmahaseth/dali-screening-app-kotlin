@@ -17,61 +17,142 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_weight="1"
-            android:text="Name: "
+        <LinearLayout
+            android:layout_above="@id/recycler_participant_screenings"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/white_bottom_border"
+            android:id="@+id/participant_container"
+            android:padding="20dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_participant_name"
-            android:layout_weight="1"
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/participant_name_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_participant_name"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/participant_class_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/sclass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_participant_class"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/participant_mother_tongue_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/mother_tongue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_participant_mother_tongue"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/participant_institution_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/institution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_participant_instituion"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/participant_age_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_participant_age"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:padding="20dp"
+            android:background="#919191"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/recycler_participant_screenings"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_weight="1"
-        android:text="Class: "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tv_participant_class"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_weight="1"
-        android:text="Mother Tongue: "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tv_participant_mother_tongue"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 </LinearLayout>

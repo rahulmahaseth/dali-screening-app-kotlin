@@ -93,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.6"
-        android:background="@drawable/black_border_vertical"
+        android:background="@drawable/white_bottom_border"
         android:orientation="vertical"
         android:padding="10dp">
 

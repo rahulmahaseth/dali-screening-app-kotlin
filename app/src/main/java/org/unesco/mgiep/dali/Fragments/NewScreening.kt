@@ -16,6 +16,7 @@ import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
@@ -50,7 +51,7 @@ class NewScreening : Fragment() {
     private lateinit var intent : Intent
 
     private val participantId = UUID.randomUUID().toString()
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -85,6 +86,8 @@ class NewScreening : Fragment() {
         radio_others.setOnClickListener {
             relationShipWithChild = Relationship.OT
         }
+
+
 
         switch_schedule.setOnCheckedChangeListener { compoundButton, b ->
             if(compoundButton.isEnabled){

@@ -2,13 +2,13 @@ package org.unesco.mgiep.dali.Data
 
 
 data class Participant (
-        val name: String = "",
-        val sClass: Int = 0,
-        val motherTongue: String = "",
-        val institution: String = "",
-        val dob: Long = 0,
-        val gender: String = "",
-        val relationShipWithChild: String = "",
-        val timeSpentWithChild: Int = 0,
+        var name: String = "",
+        var sClass: Int = 0,
+        var motherTongue: String = "",
+        var institution: String = "",
+        var dob: Long = 0,
+        var gender: String = "",
+        var relationShipWithChild: String = "",
+        var timeSpentWithChild: Int = 0,
         val createdBy: String = ""
 )

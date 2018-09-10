@@ -1,29 +1,31 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
-import com.google.firebase.auth.FirebaseUser
 import durdinapps.rxfirebase2.RxFirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.Login
+import java.util.*
 
 
 class Login : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
+    private val login = Login()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -36,6 +38,30 @@ class Login : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        edit_email.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_email.text.isEmpty()){
+                    edit_email.hint = getString(R.string.email)
+                }else{
+                    login.email = edit_email.text.toString()
+                }
+            }else{
+                edit_email.hint = ""
+            }
+        }
+
+        edit_password.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_password.text.isEmpty()){
+                    edit_password.hint = getString(R.string.password)
+                }else{
+                    login.password = edit_password.text.toString()
+                }
+            }else{
+                edit_password.hint = ""
+            }
+        }
 
         btn_login.setOnClickListener { v ->
             when{
@@ -65,7 +91,7 @@ class Login : Fragment() {
             )
         }
 
-        btn_forgot_password.setOnClickListener {
+        tv_forgot_password.setOnClickListener {
             if(edit_email.text.isEmpty()){edit_email.error = getString(R.string.required)}
             else {
                 AppPref.email = edit_email.text.toString()
@@ -80,6 +106,17 @@ class Login : Fragment() {
 
         }
 
+
+
+    }
+
+    fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        activity!!.resources.updateConfiguration(config, activity!!.resources.displayMetrics)
+        Toast.makeText(activity, "Locale in $lang !", Toast.LENGTH_LONG).show()
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

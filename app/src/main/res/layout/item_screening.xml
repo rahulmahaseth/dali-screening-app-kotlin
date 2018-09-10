@@ -22,6 +22,7 @@
         android:paddingVertical="20dp">
 
         <ImageView
+            android:tint="#313030"
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

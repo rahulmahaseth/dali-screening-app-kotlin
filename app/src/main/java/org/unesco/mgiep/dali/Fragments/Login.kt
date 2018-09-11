@@ -13,9 +13,6 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
-import durdinapps.rxfirebase2.RxFirebaseAuth
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Login
@@ -68,14 +65,13 @@ class Login : Fragment() {
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
-                    RxFirebaseAuth.signInWithEmailAndPassword(mAuth, login.email, login.password)
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
+                    mAuth.signInWithEmailAndPassword( edit_email.text.toString(), edit_password.text.toString())
+                            .addOnSuccessListener{
                                 startActivity(Intent(activity, MainActivity::class.java))
-                            }, {
+                            }
+                            .addOnFailureListener{
                                 Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
-                            })
+                            }
                 }
             }
             AppPref.email = edit_email.text.toString()

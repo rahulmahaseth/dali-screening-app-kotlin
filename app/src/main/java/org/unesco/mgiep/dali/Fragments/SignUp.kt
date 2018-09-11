@@ -160,10 +160,8 @@ class SignUp :Fragment() {
                     Toast.makeText(activity, getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
                 else->{
-                    RxFirebaseAuth.createUserWithEmailAndPassword(mAuth,user.email,password)
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe ({ authResult ->
+                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(),edit_register_password.text.toString())
+                            .addOnSuccessListener{ authResult ->
                                 Log.d("userid-on-signup", authResult.user.uid)
                                 mainReposirtory.saveUser(
                                         authResult.user.uid,
@@ -184,10 +182,11 @@ class SignUp :Fragment() {
                                             Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
                                         }
 
-                            },{
+                            }
+                            .addOnFailureListener{
                                 Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
                                 Log.d("signup", getString(R.string.signup_fail),it)
-                            })
+                            }
                 }
             }
         }

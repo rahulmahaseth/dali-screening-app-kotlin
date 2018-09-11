@@ -12,9 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.item_spinner.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -90,9 +88,9 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                 else -> {
                     progressBar1.show()
                     mAuth.signInWithEmailAndPassword( edit_email.text.toString(), edit_password.text.toString())
-                            .addOnSuccessListener{
+                            .addOnSuccessListener{ authResult ->
                                 Log.d("Login","Success")
-                                mainReposirtory.getUser(it.user.uid)
+                                mainReposirtory.getUser(authResult.user.uid)
                                         .addOnSuccessListener {
                                             Log.d("Fetch-User","Success")
                                             if(it.exists()){
@@ -155,11 +153,11 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-
+        //do nothing
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        when(p2){
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        when(position){
             0 -> {
                 Toast.makeText(activity, "0 Seleted", Toast.LENGTH_SHORT).show()
             }

@@ -140,6 +140,9 @@
     <string name="remember_me">Remember me</string>
     <string name="register">Register</string>
     <string name="already_registered_login_here">Already Registered? Login Here</string>
+    <string name="password_reset_instructions">We just need your registered Email id to send you password reset instructions.</string>
+    <string name="reset">Reset Password</string>
+    <string name="arrow_back"><![CDATA[<< Back]]></string>
 
 
     <string-array name="jst_categories">

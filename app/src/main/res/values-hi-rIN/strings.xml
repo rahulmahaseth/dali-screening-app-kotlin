@@ -135,4 +135,7 @@
     <string name="mst_e19">बच्चा एक स्थान पर बैठे रहने में कठिनाई अनुभव करता है। बच्चे का कक्षा में घूमना एवं अन्य छोत्रों की शांती भंग करना संभव है।</string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
+    <string name="password_reset_instructions">We just need your registered Email id to send you password reset instructions.</string>
+    <string name="reset">Reset</string>
+    <string name="arrow_back"><![CDATA[<< Back]]></string>
 </resources>

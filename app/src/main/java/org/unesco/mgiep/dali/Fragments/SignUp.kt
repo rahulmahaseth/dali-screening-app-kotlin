@@ -32,6 +32,10 @@ class SignUp :Fragment() {
     private lateinit var mainReposirtory: MainReposirtory
     private lateinit var firebaseRepository: FirebaseRepository
 
+    private val user = User()
+
+    private var password = ""
+
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()
 
 
@@ -49,6 +53,88 @@ class SignUp :Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        edit_register_name.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_name.text.isEmpty()){
+                    edit_register_name.hint = getString(R.string.name)
+                }else{
+                    user.name = edit_register_name.text.toString()
+                }
+            }else{
+                edit_register_name.hint = ""
+            }
+        }
+
+        edit_register_email.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_email.text.isEmpty()){
+                    edit_register_email.hint = getString(R.string.email)
+                }else{
+                    user.email = edit_register_email.text.toString()
+                }
+            }else{
+                edit_register_email.hint = ""
+            }
+        }
+
+        edit_register_password.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_password.text.isEmpty()){
+                    edit_register_password.hint = getString(R.string.password)
+                }else{
+                    password = edit_register_password.text.toString()
+                }
+            }else{
+                edit_register_password.hint = ""
+            }
+        }
+
+        edit_register_designation.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_designation.text.isEmpty()){
+                    edit_register_designation.hint = getString(R.string.designation)
+                }else{
+                    user.designation = edit_register_designation.text.toString()
+                }
+            }else{
+                edit_register_designation.hint = ""
+            }
+        }
+
+        edit_register_school.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_school.text.isEmpty()){
+                    edit_register_school.hint = getString(R.string.school_university)
+                }else{
+                    user.institution = edit_register_school.text.toString()
+                }
+            }else{
+                edit_register_school.hint = ""
+            }
+        }
+
+        edit_register_age.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_register_age.text.isEmpty()){
+                    edit_register_age.hint = getString(R.string.age)
+                }else{
+                    user.age = edit_register_age.text.toString().toInt()
+                }
+            }else{
+                edit_register_age.hint = ""
+            }
+        }
+
+        tv_already_registered.setOnClickListener {
+            showFragment(
+                    Fragment.instantiate(
+                            activity,
+                            Login::class.java.name
+                    ),
+                    false
+            )
+        }
+
         edit_radio_female.setOnClickListener {
             edit_radio_male.isChecked = false
             gender = Gender.FEMALE
@@ -61,20 +147,20 @@ class SignUp :Fragment() {
 
         btn_register_submit.setOnClickListener { v->
             when {
+                edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
                 edit_register_email.text.isEmpty() -> edit_register_email.error = getString(R.string.required)
                 !edit_register_email.text.matches(emailPattern) -> Toast.makeText(activity, getString(R.string.improper_email), Toast.LENGTH_SHORT).show()
-                edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
                 edit_register_password.text.isEmpty() -> edit_register_password.error = getString(R.string.required)
                 edit_register_password.text.length < 6 -> Toast.makeText(activity, getString(R.string.password_length_error), Toast.LENGTH_SHORT).show()
+                edit_register_designation.text.isEmpty() -> edit_register_designation.error = getString(R.string.required)
                 edit_register_school.text.isEmpty() -> edit_register_school.error = getString(R.string.required)
                 edit_register_age.text.isEmpty() -> edit_register_age.error = getString(R.string.required)
                 edit_register_age.text.toString().toInt() <= 0 -> edit_register_age.error = getString(R.string.invalid_age)
-                edit_register_designation.text.isEmpty() -> edit_register_designation.error = getString(R.string.required)
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
                     Toast.makeText(activity, getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
                 else->{
-                    RxFirebaseAuth.createUserWithEmailAndPassword(mAuth,edit_register_email.text.toString(),edit_register_password.text.toString())
+                    RxFirebaseAuth.createUserWithEmailAndPassword(mAuth,user.email,password)
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe ({ authResult ->
@@ -105,6 +191,12 @@ class SignUp :Fragment() {
                 }
             }
         }
+    }
+
+    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        fragment.showFragment(container = R.id.splash_fragment_container,
+                fragmentManager = activity!!.supportFragmentManager,
+                addToBackStack = addToBackStack)
     }
 
 }

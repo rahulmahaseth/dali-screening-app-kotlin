@@ -9,6 +9,7 @@ android {
     buildToolsVersion '27.0.3'
     dataBinding { enabled = true }
     defaultConfig {
+        multiDexEnabled = true
         applicationId "org.unesco.mgiep.dali"
         minSdkVersion 19
         targetSdkVersion 27
@@ -35,6 +36,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'

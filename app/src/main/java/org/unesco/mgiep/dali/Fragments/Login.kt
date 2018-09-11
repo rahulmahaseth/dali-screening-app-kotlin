@@ -32,7 +32,7 @@ class Login : Fragment() {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_login, container, false)
 
 
@@ -40,40 +40,40 @@ class Login : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         edit_email.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_email.text.isEmpty()){
+            if (!b) {
+                if (edit_email.text.isEmpty()) {
                     edit_email.hint = getString(R.string.email)
-                }else{
+                } else {
                     login.email = edit_email.text.toString()
                 }
-            }else{
+            } else {
                 edit_email.hint = ""
             }
         }
 
         edit_password.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_password.text.isEmpty()){
+            if (!b) {
+                if (edit_password.text.isEmpty()) {
                     edit_password.hint = getString(R.string.password)
-                }else{
+                } else {
                     login.password = edit_password.text.toString()
                 }
-            }else{
+            } else {
                 edit_password.hint = ""
             }
         }
 
         btn_login.setOnClickListener { v ->
-            when{
+            when {
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
-                    RxFirebaseAuth.signInWithEmailAndPassword(mAuth,edit_email.text.toString(),edit_password.text.toString())
+                    RxFirebaseAuth.signInWithEmailAndPassword(mAuth, login.email, login.password)
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe ({
+                            .subscribe({
                                 startActivity(Intent(activity, MainActivity::class.java))
-                            },{
+                            }, {
                                 Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
                             })
                 }
@@ -92,22 +92,16 @@ class Login : Fragment() {
         }
 
         tv_forgot_password.setOnClickListener {
-            if(edit_email.text.isEmpty()){edit_email.error = getString(R.string.required)}
-            else {
-                AppPref.email = edit_email.text.toString()
-                showFragment(
-                        Fragment.instantiate(
-                                activity,
-                                ForgotPassword::class.java.name
-                        ),
-                        true
-                )
-            }
 
+            AppPref.email = edit_email.text.toString()
+            showFragment(
+                    Fragment.instantiate(
+                            activity,
+                            ForgotPassword::class.java.name
+                    ),
+                    true
+            )
         }
-
-
-
     }
 
     fun setLocale(lang: String) {

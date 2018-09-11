@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.fragment_forgotpassword.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
-import javax.annotation.meta.When
 
 class ForgotPassword : Fragment(){
 

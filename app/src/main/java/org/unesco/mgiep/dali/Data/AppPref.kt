@@ -4,5 +4,6 @@ import com.chibatching.kotpref.KotprefModel
 
 object AppPref: KotprefModel() {
     var loggedIn by booleanPref(false)
-    var email by stringPref()
+    var name by stringPref("")
+    var designation by stringPref("")
 }

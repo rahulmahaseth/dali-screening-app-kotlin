@@ -46,6 +46,7 @@
 
 
     <android.support.design.widget.NavigationView
+        app:itemIconTint="@color/white"
         android:background="@color/colorPrimaryDark"
         app:itemTextColor="@color/white"
         app:menu="@menu/drawer_menu"
@@ -53,7 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
         android:layout_gravity="start"
-        android:paddingTop="150dp"/>
+        android:paddingTop="10dp"/>
 
 </android.support.v4.widget.DrawerLayout>

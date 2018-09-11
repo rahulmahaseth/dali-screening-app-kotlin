@@ -4,11 +4,13 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
@@ -16,6 +18,10 @@ import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Login
+import org.unesco.mgiep.dali.Data.User
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import java.util.*
 
 
@@ -23,10 +29,12 @@ class Login : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private val login = Login()
+    private lateinit var mainReposirtory: MainReposirtory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
+        mainReposirtory = MainReposirtory()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -65,17 +73,41 @@ class Login : Fragment() {
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
+                    progressBar1.show()
                     mAuth.signInWithEmailAndPassword( edit_email.text.toString(), edit_password.text.toString())
                             .addOnSuccessListener{
-                                startActivity(Intent(activity, MainActivity::class.java))
+                                Log.d("Login","Success")
+                                mainReposirtory.getUser(it.user.uid)
+                                        .addOnSuccessListener {
+                                            Log.d("Fetch-User","Success")
+                                            if(it.exists()){
+                                                Log.d("Fetch-User","Document Exists")
+                                                val user = it.toObject(User::class.java)
+                                                AppPref.name = user!!.name
+                                                AppPref.designation = user.designation
+                                                progressBar1.hide()
+                                                startActivity(Intent(activity, MainActivity::class.java))
+                                            }else{
+                                                Log.d("Fetch-User","Document doesn't Exists")
+                                                progressBar1.hide()
+                                                mAuth.signOut()
+                                                Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
+                                        .addOnFailureListener {
+                                            Log.d("Fetch-User","Failed")
+                                            progressBar1.hide()
+                                            mAuth.signOut()
+                                            Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                                        }
                             }
                             .addOnFailureListener{
+                                Log.d("Login","Failed")
+                                progressBar1.hide()
                                 Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
                             }
                 }
             }
-            AppPref.email = edit_email.text.toString()
-
         }
         btn_signup.setOnClickListener {
             showFragment(
@@ -88,8 +120,6 @@ class Login : Fragment() {
         }
 
         tv_forgot_password.setOnClickListener {
-
-            AppPref.email = edit_email.text.toString()
             showFragment(
                     Fragment.instantiate(
                             activity,

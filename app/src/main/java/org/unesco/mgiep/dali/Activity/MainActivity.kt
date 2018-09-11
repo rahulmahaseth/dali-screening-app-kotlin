@@ -1,16 +1,22 @@
 package org.unesco.mgiep.dali.Activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.*
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -22,13 +28,14 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
         (application as MyApplication).component.inject(this)
         handleNavigationClick()
+        mAuth = FirebaseAuth.getInstance()
+
         showFragment(
                 Fragment.instantiate(
                 this,
@@ -78,6 +85,18 @@ class MainActivity: AppCompatActivity() {
                             true
                     )
                 }
+                R.id.nav_logout -> {
+                    AlertDialog.Builder(this)
+                            .setMessage(getString(R.string.logout_warn_message))
+                            .setPositiveButton("Yes"){_,_->
+                                mAuth.signOut()
+                                startActivity(Intent(this, SplashActivity::class.java))
+                            }
+                            .setNegativeButton("No"){_,_->}
+                            .create()
+                            .show()
+
+                }
             }
             drawer_layout.closeDrawers()
             true
@@ -88,7 +107,7 @@ class MainActivity: AppCompatActivity() {
         val count = supportFragmentManager.backStackEntryCount
         if(count == 0){
             AlertDialog.Builder(this)
-                    .setMessage("Do you want to exit?")
+                    .setMessage(getString(R.string.exit_warn_message))
                     .setPositiveButton("Yes"){_,_->finish()}
                     .setNegativeButton("No"){_,_->}
                     .create()

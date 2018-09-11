@@ -22,6 +22,8 @@ import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -160,6 +162,7 @@ class SignUp :Fragment() {
                     Toast.makeText(activity, getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
                 else->{
+                    progressBar2.show()
                     mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(),edit_register_password.text.toString())
                             .addOnSuccessListener{ authResult ->
                                 Log.d("userid-on-signup", authResult.user.uid)
@@ -176,14 +179,17 @@ class SignUp :Fragment() {
                                 )
                                         .addOnSuccessListener {
                                             Toast.makeText(activity,getString(R.string.user_saved),Toast.LENGTH_SHORT).show()
+                                            progressBar2.hide()
                                             startActivity(Intent(activity, MainActivity::class.java))
                                         }
                                         .addOnFailureListener {
+                                            progressBar2.hide()
                                             Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
                                         }
 
                             }
                             .addOnFailureListener{
+                                progressBar2.hide()
                                 Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
                                 Log.d("signup", getString(R.string.signup_fail),it)
                             }

@@ -12,8 +12,10 @@ import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.item_screening.view.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Type
@@ -85,6 +87,8 @@ class Dashboard: Fragment() {
 
 
         fetchScreenings()
+
+
 
        /* screening_swipe_layout.setOnRefreshListener {
             fetchScreenings()

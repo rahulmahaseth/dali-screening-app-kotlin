@@ -14,10 +14,8 @@ import org.unesco.mgiep.dali.Data.User
 
 class FirebaseRepository {
     private val mDatabase = FirebaseFirestore.getInstance()
-    private val usersRef = mDatabase.collection("users")
     private val screeningsRef = mDatabase.collection("screenings")
     private val participantsRef = mDatabase.collection("participants")
-    private val resultsRef = mDatabase.collection("results")
 
 
 
@@ -32,35 +30,8 @@ class FirebaseRepository {
                 }
     }
 
-    fun writeUser(id: String, user:User){
-        Log.d("firebase-save","user")
-        mDatabase.collection("user").document(id).set(user)
-                .addOnSuccessListener {
-                    Log.d("fb-write user", "success")
-                }
-                .addOnFailureListener {
-                    Log.d("fb-write user", "error",it)
-                }
-    }
 
-    //functions to fetch data from Firestore
-    fun fetchDocument(documentReference: DocumentReference, type:String): Maybe<DocumentSnapshot>? {
-
-        return RxFirestore.getDocument(documentReference).subscribeOn(Schedulers.newThread())
-                .doOnSuccess {
-                    if(it.exists()){
-                        it
-                        Log.d("fetch$type","Success")
-                    }else{
-                        Log.d("fetchUserDetails","Document does not exist")
-                    }
-                }
-                .doOnError {
-                    Log.d("fetchUserDetails","Failed to fetch",it)
-                }
-    }
-
-    fun fetchFDocument(documentReference: DocumentReference, type:String): Task<DocumentSnapshot> {
+    fun fetchDocument(documentReference: DocumentReference, type:String): Task<DocumentSnapshot> {
         return documentReference.get()
                 .addOnCompleteListener {
                     if(it.isSuccessful){
@@ -145,39 +116,6 @@ class FirebaseRepository {
                 }
     }
 
-    fun fetchParticipantResults(participantId: String){
-        resultsRef
-                .whereEqualTo("participantId",participantId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        if(!task.result.isEmpty){
-                            Log.d("fetch-PResults","success")
-                        }else{
-                            Log.d("fetch-PResults","failed!!No Such Document")
-                        }
-                    }else{
-                        Log.d("fetch-PResults","failed",task.exception)
-                    }
-                }
-    }
-
-    fun fetchScreeningResult(screeningId: String){
-        resultsRef
-                .whereEqualTo("screeningId",screeningId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        if(!task.result.isEmpty){
-                            Log.d("fetch-SResults","success")
-                        }else{
-                            Log.d("fetch-SResults","failed!!No Such Document")
-                        }
-                    }else{
-                        Log.d("fetch-SResults","failed",task.exception)
-                    }
-                }
-    }
 
     fun fetchParticipantDetails(userId: String, screeningId: String): Task<QuerySnapshot> {
         return participantsRef

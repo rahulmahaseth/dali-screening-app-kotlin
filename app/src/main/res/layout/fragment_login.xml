@@ -22,12 +22,14 @@
 
 
     <Spinner
+        android:backgroundTint="@color/white"
+        android:entries="@array/locales"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:id="@+id/spinner_language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        android:layout_margin="8dp"/>
 
     <LinearLayout
         android:layout_centerVertical="true"

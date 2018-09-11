@@ -273,4 +273,9 @@
         <item>@string/mst_e20</item>
         <item>@string/mst_e21</item>
     </string-array>
+
+    <string-array name="locales">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
 </resources>

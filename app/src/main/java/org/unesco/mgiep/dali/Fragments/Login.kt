@@ -8,10 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.item_spinner.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -23,18 +26,24 @@ import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import java.util.*
+import kotlin.collections.ArrayList
 
 
-class Login : Fragment() {
+class Login : Fragment(), AdapterView.OnItemSelectedListener {
+
 
     private lateinit var mAuth: FirebaseAuth
     private val login = Login()
     private lateinit var mainReposirtory: MainReposirtory
+
+    private val stringArray = ArrayList<String>()
+    private lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
         mainReposirtory = MainReposirtory()
+        arrayAdapter = ArrayAdapter(activity, R.layout.item_spinner, stringArray)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -43,6 +52,12 @@ class Login : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        stringArray.add("English")
+        stringArray.add("हिन्दी")
+        spinner_language.adapter = arrayAdapter
+
+        spinner_language.onItemSelectedListener = this
 
         edit_email.setOnFocusChangeListener { view, b ->
             if (!b) {
@@ -137,6 +152,21 @@ class Login : Fragment() {
         config.locale = locale
         activity!!.resources.updateConfiguration(config, activity!!.resources.displayMetrics)
         Toast.makeText(activity, "Locale in $lang !", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        when(p2){
+            0 -> {
+                Toast.makeText(activity, "0 Seleted", Toast.LENGTH_SHORT).show()
+            }
+            1 -> {
+                Toast.makeText(activity, "1 Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

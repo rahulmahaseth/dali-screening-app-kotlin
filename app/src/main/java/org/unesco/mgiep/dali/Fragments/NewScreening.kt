@@ -29,8 +29,10 @@ import java.util.*
 class NewScreening : Fragment() {
 
     val calendar = Calendar.getInstance()
+
     val myFormat = "dd/MM/yyyy"
     val onlyDate = "MMM DD,YYYY"
+
     val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
     val sdf2 = SimpleDateFormat(onlyDate, Locale.ENGLISH)
 
@@ -51,6 +53,8 @@ class NewScreening : Fragment() {
     private lateinit var intent : Intent
 
     private val participantId = UUID.randomUUID().toString()
+
+    private val participant = Participant()
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,17 +91,102 @@ class NewScreening : Fragment() {
             relationShipWithChild = Relationship.OT
         }
 
+        edit_regscreen_name.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_name.text.isEmpty()){
+                    edit_regscreen_name.hint = getString(R.string.name)
+                }else{
+                    participant.name = edit_regscreen_name.text.toString()
+                }
+            }else{
+                edit_regscreen_name.hint = ""
+            }
+        }
+
+        edit_regscreen_class.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_class.text.isEmpty()){
+                    edit_regscreen_class.hint = getString(R.string.sgd)
+                }else{
+                    participant.sClass = edit_regscreen_class.text.toString().toInt()
+                }
+            }else{
+                edit_regscreen_class.hint = ""
+            }
+        }
+
+        edit_regscreen_section.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_section.text.isEmpty()){
+                    edit_regscreen_section.hint = getString(R.string.section)
+                }else{
+                    participant.section = edit_regscreen_section.text.toString()
+                }
+            }else{
+                edit_regscreen_section.hint = ""
+            }
+        }
+
+        edit_regscreen_mothertongue.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_mothertongue.text.isEmpty()){
+                    edit_regscreen_mothertongue.hint = getString(R.string.mother_tongue)
+                }else{
+                    participant.motherTongue = edit_regscreen_mothertongue.text.toString()
+                }
+            }else{
+                edit_regscreen_mothertongue.hint = ""
+            }
+        }
+
+        edit_regscreen_school.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_school.text.isEmpty()){
+                    edit_regscreen_school.hint = getString(R.string.school_university)
+                }else{
+                    participant.institution = edit_regscreen_school.text.toString()
+                }
+            }else{
+                edit_regscreen_school.hint = ""
+            }
+        }
+
+        edit_regscreen_dob.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_regscreen_dob.text.isEmpty()){
+                    edit_regscreen_dob.hint = getString(R.string.date_of_birth)
+                }else{
+                    participant.dob = edit_regscreen_dob.text.toString().toLong()
+                }
+            }else{
+                edit_regscreen_dob.hint = ""
+            }
+        }
+
+        edit_time_spent_with_child.setOnFocusChangeListener { view, b ->
+            if(!b){
+                if(edit_time_spent_with_child.text.isEmpty()){
+                    edit_time_spent_with_child.hint = getString(R.string.estimated_time_spent_with_child)
+                }else{
+                    participant.name = edit_time_spent_with_child.text.toString()
+                }
+            }else{
+                edit_time_spent_with_child.hint = ""
+            }
+        }
+
+        val dateDialog = DatePickerDialog(
+                activity,
+                date2,
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR)
+        )
 
 
         switch_schedule.setOnCheckedChangeListener { compoundButton, b ->
-            if(compoundButton.isEnabled){
-                DatePickerDialog(
-                        activity,
-                        date2,
-                        calendar.get(Calendar.DAY_OF_MONTH),
-                        calendar.get(Calendar.MONTH),
-                        calendar.get(Calendar.YEAR)
-                ).show()
+            if(compoundButton.isChecked){
+                dateDialog.show()
                 btn_screenreg_schedule_submit.visibility = View.VISIBLE
                 btn_screenreg_submit.visibility = View.GONE
             }else{
@@ -105,6 +194,10 @@ class NewScreening : Fragment() {
                 btn_screenreg_schedule_submit.visibility = View.GONE
                 btn_screenreg_submit.visibility = View.VISIBLE
             }
+        }
+
+        dateDialog.setOnCancelListener {
+            switch_schedule.isChecked = false
         }
 
         btn_change_scheduled_date.setOnClickListener {
@@ -120,7 +213,11 @@ class NewScreening : Fragment() {
         btn_submit_participant.setOnClickListener {
             when{
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
-                edit_regscreen_mothertongue.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
+                edit_regscreen_class.text.isEmpty() -> edit_regscreen_class.error = getString(R.string.required)
+                edit_regscreen_section.text.isEmpty() -> edit_regscreen_section.error = getString(R.string.required)
+                edit_regscreen_mothertongue.text.isEmpty()-> edit_regscreen_name.error = getString(R.string.required)
+                edit_regscreen_school.text.isEmpty() -> edit_regscreen_school.error = getString(R.string.required)
+                edit_regscreen_dob.text.isEmpty() -> edit_regscreen_dob.error = getString(R.string.required)
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
                     Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
                 }
@@ -141,8 +238,10 @@ class NewScreening : Fragment() {
                 edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
                 else -> {
                     screeningParticipantViewModel.select(Participant(
+                            id= participantId,
                             name = edit_regscreen_name.text.toString(),
                             sClass = edit_regscreen_class.text.toString().toInt(),
+                            section = edit_regscreen_section.text.toString(),
                             motherTongue = edit_regscreen_mothertongue.text.toString(),
                             institution = edit_regscreen_school.text.toString(),
                             dob = selectedDate.time,
@@ -155,8 +254,10 @@ class NewScreening : Fragment() {
                     mainRepository.saveParticipant(
                             participantId,
                             Participant(
+                                    id= participantId,
                                     name = edit_regscreen_name.text.toString(),
                                     sClass = edit_regscreen_class.text.toString().toInt(),
+                                    section = edit_regscreen_section.text.toString(),
                                     motherTongue = edit_regscreen_mothertongue.text.toString(),
                                     institution = edit_regscreen_school.text.toString(),
                                     dob = selectedDate.time,
@@ -204,8 +305,10 @@ class NewScreening : Fragment() {
                     mainRepository.saveParticipant(
                             participantId,
                             Participant(
+                                    id= participantId,
                                     name = edit_regscreen_name.text.toString(),
                                     sClass = edit_regscreen_class.text.toString().toInt(),
+                                    section = edit_regscreen_section.text.toString(),
                                     motherTongue = edit_regscreen_mothertongue.text.toString(),
                                     institution = edit_regscreen_school.text.toString(),
                                     dob = selectedDate.time,

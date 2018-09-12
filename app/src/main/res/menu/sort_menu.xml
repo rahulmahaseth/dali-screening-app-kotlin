@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_chevron_right_black_24dp"
+        android:title="JST Only"
+        android:id="@+id/sort_only_jst">
+    </item>
+
+    <item
+        android:icon="@drawable/ic_chevron_right_black_24dp"
+        android:title="MST Only"
+        android:id="@+id/sort_only_mst">
+    </item>
+
+</menu>

@@ -2,8 +2,10 @@ package org.unesco.mgiep.dali.Data
 
 
 data class Participant (
+        var id: String = "",
         var name: String = "",
         var sClass: Int = 0,
+        var section: String = "",
         var motherTongue: String = "",
         var institution: String = "",
         var dob: Long = 0,

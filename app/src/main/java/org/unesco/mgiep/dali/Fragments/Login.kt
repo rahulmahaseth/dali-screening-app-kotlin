@@ -11,12 +11,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Login
 import org.unesco.mgiep.dali.Data.User
@@ -36,6 +38,8 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val stringArray = ArrayList<String>()
     private lateinit var arrayAdapter: ArrayAdapter<String>
+
+    private var spinnerTouched = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -51,6 +55,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        stringArray.add("Language")
         stringArray.add("English")
         stringArray.add("हिन्दी")
         spinner_language.adapter = arrayAdapter
@@ -86,39 +91,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                 edit_email.text.isEmpty() -> edit_email.error = getString(R.string.required)
                 edit_password.text.isEmpty() -> edit_password.error = getString(R.string.required)
                 else -> {
-                    progressBar1.show()
-                    mAuth.signInWithEmailAndPassword( edit_email.text.toString(), edit_password.text.toString())
-                            .addOnSuccessListener{ authResult ->
-                                Log.d("Login","Success")
-                                mainReposirtory.getUser(authResult.user.uid)
-                                        .addOnSuccessListener {
-                                            Log.d("Fetch-User","Success")
-                                            if(it.exists()){
-                                                Log.d("Fetch-User","Document Exists")
-                                                val user = it.toObject(User::class.java)
-                                                AppPref.name = user!!.name
-                                                AppPref.designation = user.designation
-                                                progressBar1.hide()
-                                                startActivity(Intent(activity, MainActivity::class.java))
-                                            }else{
-                                                Log.d("Fetch-User","Document doesn't Exists")
-                                                progressBar1.hide()
-                                                mAuth.signOut()
-                                                Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                        .addOnFailureListener {
-                                            Log.d("Fetch-User","Failed")
-                                            progressBar1.hide()
-                                            mAuth.signOut()
-                                            Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
-                                        }
-                            }
-                            .addOnFailureListener{
-                                Log.d("Login","Failed")
-                                progressBar1.hide()
-                                Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
-                            }
+                    signIn()
                 }
             }
         }
@@ -141,15 +114,84 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                     true
             )
         }
+
+        spinner_language.setOnTouchListener { view, motionEvent ->
+            spinnerTouched = true
+            false
+        }
+    }
+
+    private fun signIn() {
+        disableViews()
+        progressBar1.show()
+        mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
+                .addOnSuccessListener { authResult ->
+                    Log.d("Login", "Success")
+                    fetchUser(authResult)
+                }
+                .addOnFailureListener {
+                    Log.d("Login", "Failed")
+                    progressBar1.hide()
+                    enableViews()
+                    Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun fetchUser(authResult: AuthResult) {
+        mainReposirtory.getUser(authResult.user.uid)
+                .addOnSuccessListener {
+                    Log.d("Fetch-User", "Success")
+                    if (it.exists()) {
+                        Log.d("Fetch-User", "Document Exists")
+                        val user = it.toObject(User::class.java)
+                        AppPref.name = user!!.name
+                        AppPref.designation = user.designation
+                        progressBar1.hide()
+                        startActivity(Intent(activity, MainActivity::class.java))
+                    } else {
+                        Log.d("Fetch-User", "Document doesn't Exists")
+                        progressBar1.hide()
+                        mAuth.signOut()
+                        Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Log.d("Fetch-User", "Failed")
+                    progressBar1.hide()
+                    enableViews()
+                    mAuth.signOut()
+                    Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun disableViews(){
+        edit_email.isEnabled = false
+        edit_password.isEnabled = false
+        btn_login.isEnabled = false
+        btn_signup.isEnabled = false
+        tv_forgot_password.isEnabled = false
+        spinner_language.isEnabled = false
+    }
+
+    private fun enableViews(){
+        edit_email.isEnabled = true
+        edit_password.isEnabled = true
+        btn_login.isEnabled = true
+        btn_signup.isEnabled = true
+        tv_forgot_password.isEnabled = true
+        spinner_language.isEnabled = true
     }
 
     fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
         val config = Configuration()
+        //val conf = resources.configuration
+        //val dm = resources.displayMetrics
         config.locale = locale
         activity!!.resources.updateConfiguration(config, activity!!.resources.displayMetrics)
-        Toast.makeText(activity, "Locale in $lang !", Toast.LENGTH_LONG).show()
+        startActivity(Intent(activity, SplashActivity::class.java))
+        activity!!.finish()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -157,14 +199,20 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        when(position){
-            0 -> {
-                Toast.makeText(activity, "0 Seleted", Toast.LENGTH_SHORT).show()
-            }
+
+        when (position) {
             1 -> {
-                Toast.makeText(activity, "1 Selected", Toast.LENGTH_SHORT).show()
+                if (spinnerTouched) {
+                    setLocale("en")
+                }
+            }
+            2 -> {
+                if (spinnerTouched) {
+                    setLocale("hi")
+                }
             }
         }
+
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

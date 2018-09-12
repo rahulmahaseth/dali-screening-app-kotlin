@@ -41,11 +41,30 @@
 
                 <TextView
                     android:layout_weight="1"
-                    android:id="@+id/tv_screening_type"
-                    android:textColor="#313030"
+                    android:textColor="#333"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{item.name.toUpperCase()}"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="String.valueOf(@{item.sClass})"
+                        android:textColor="#333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:text="@{item.section}"
+                        android:textColor="#333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
 
             </LinearLayout>

@@ -52,6 +52,7 @@ class Screening : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         updateButtons()
+        updateNavButtons()
 
         totalQuestions = if (screeningType == Type.JST.toString()) {
             15
@@ -59,7 +60,7 @@ class Screening : Fragment() {
             21
         }
 
-        tv_questions_completed.text = (questionsCompleted+1).toString()
+        tv_questions_completed.text = (questionsCompleted + 1).toString()
         tv_total_questions.text = totalQuestions.toString()
 
         if (screeningType == Type.JST.toString()) {
@@ -129,48 +130,69 @@ class Screening : Fragment() {
         }
     }
 
+    private fun updateNavButtons() {
+        Log.d("Q", "$questionsCompleted / $totalQuestions")
+        when {
+            questionsCompleted == 0 -> {
+                btn_screening_back.isEnabled = false
+            }
+            questionsCompleted <= totalQuestions -> {
+                btn_screening_back.isEnabled = true
+                btn_screening_next.visibility = View.VISIBLE
+                btn_screening_submit.visibility = View.GONE
+            }
+
+        }
+
+    }
+
     private fun next() {
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
             Toast.makeText(activity, getString(R.string.select_option_error), Toast.LENGTH_SHORT).show()
         } else {
-            questionsCompleted += 1
-            questionAnswerMap[questionsCompleted] = -1
+            ++questionsCompleted
+            if (questionAnswerMap[questionsCompleted] == null) {
+                questionAnswerMap[questionsCompleted] = -1
+                screening_radio_group.clearCheck()
+            }
             updateButtons()
-            screening_radio_group.clearCheck()
+            updateNavButtons()
 
-            tv_questions_completed.text = questionsCompleted.toString()
-            tv_total_questions.text = totalQuestions.toString()
-            if (questionsCompleted == totalQuestions) {
+            if((questionsCompleted + 1) == totalQuestions) {
                 btn_screening_next.visibility = View.GONE
                 btn_screening_submit.visibility = View.VISIBLE
-            } else {
-                if (screeningType == Type.JST.toString()) {
-                    addCategoryImage(resources.getStringArray(R.array.jst_categories)[questionsCompleted])
-                    tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
-                    tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
-                } else {
-                    addCategoryImage(resources.getStringArray(R.array.mst_categories)[questionsCompleted])
-                    tv_question.text = resources.getStringArray(R.array.mst_questions)[questionsCompleted]
-                    tv_example.text = resources.getStringArray(R.array.mst_examples)[questionsCompleted]
-                }
             }
+
+            tv_questions_completed.text = (questionsCompleted + 1).toString()
+            tv_total_questions.text = totalQuestions.toString()
+            if (screeningType == Type.JST.toString()) {
+                addCategoryImage(resources.getStringArray(R.array.jst_categories)[questionsCompleted])
+                tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
+                tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
+            } else {
+                addCategoryImage(resources.getStringArray(R.array.mst_categories)[questionsCompleted])
+                tv_question.text = resources.getStringArray(R.array.mst_questions)[questionsCompleted]
+                tv_example.text = resources.getStringArray(R.array.mst_examples)[questionsCompleted]
+            }
+
         }
     }
 
     private fun back() {
-        questionsCompleted -= 1
+        --questionsCompleted
+        updateNavButtons()
         updateButtons()
         tv_questions_completed.text = questionsCompleted.toString()
         tv_total_questions.text = totalQuestions.toString()
 
         if (screeningType == Type.JST.toString()) {
-            tv_questions_completed.text = questionsCompleted.toString()
+            tv_questions_completed.text = (questionsCompleted + 1).toString()
             tv_total_questions.text = totalQuestions.toString()
             addCategoryImage(resources.getStringArray(R.array.jst_categories)[questionsCompleted])
             tv_question.text = resources.getStringArray(R.array.jst_questions)[questionsCompleted]
             tv_example.text = resources.getStringArray(R.array.jst_examples)[questionsCompleted]
         } else {
-            tv_questions_completed.text = questionsCompleted.toString()
+            tv_questions_completed.text = (questionsCompleted + 1).toString()
             tv_total_questions.text = totalQuestions.toString()
             addCategoryImage(resources.getStringArray(R.array.mst_categories)[questionsCompleted])
             tv_question.text = resources.getStringArray(R.array.mst_questions)[questionsCompleted]

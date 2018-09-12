@@ -11,8 +11,10 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.item_screening.view.*
+import kotlinx.android.synthetic.main.layout_menu.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -22,6 +24,7 @@ import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.R.id.action_sort
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
@@ -29,6 +32,7 @@ import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 class Dashboard: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
+    private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
     private val participants = ObservableArrayList<Participant>()
     private lateinit var firebaseRepository: FirebaseRepository
@@ -90,7 +94,6 @@ class Dashboard: Fragment() {
         fetchScreenings()
 
 
-
        /* screening_swipe_layout.setOnRefreshListener {
             fetchScreenings()
         }*/
@@ -103,6 +106,7 @@ class Dashboard: Fragment() {
                     if(!it.isEmpty){
                         screenings.clear()
                         it.documents.forEach {
+                            screeningsContainer.add(it.toObject(Screening::class.java))
                             screenings.add(it.toObject(Screening::class.java))
                             //screening_swipe_layout.isRefreshing = false
                             lastAdapter.notifyDataSetChanged()
@@ -158,6 +162,35 @@ class Dashboard: Fragment() {
             }
             else -> {
                 super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        activity!!.menuInflater.inflate(R.menu.sort_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        return when(item!!.itemId){
+            R.id.sort_only_jst -> {
+                screeningsContainer.filter { it.type == "jst" }
+                        .map {
+                            screenings.add(it)
+                            lastAdapter.notifyDataSetChanged()
+                        }
+                true
+            }
+            R.id.sort_only_mst -> {
+                screeningsContainer.filter { it.type == "mst" }
+                        .map {
+                            screenings.add(it)
+                            lastAdapter.notifyDataSetChanged()
+                        }
+                true
+            }
+            else -> {
+                super.onContextItemSelected(item)
             }
         }
     }

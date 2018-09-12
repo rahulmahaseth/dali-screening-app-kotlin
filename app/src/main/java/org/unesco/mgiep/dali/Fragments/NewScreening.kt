@@ -270,12 +270,12 @@ class NewScreening : Fragment() {
 
                     val age = Date().year - selectedDate.year
                     Log.d("Participant Age - ","$age")
+                    intent.putExtra("participantId",participantId)
+                    intent.putExtra("participantName", edit_regscreen_name.text.toString())
                     if(age <= 7){
                         intent.putExtra("type",Type.JST.toString())
-                        intent.putExtra("participantId",participantId)
                     }else{
                         intent.putExtra("type",Type.MST.toString())
-                        intent.putExtra("participantId",participantId)
                     }
                     startActivity(intent)
 
@@ -332,7 +332,8 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = ""
+                                        comments = "",
+                                        participantName = edit_regscreen_name.text.toString()
                                 )
                         )
 
@@ -347,7 +348,8 @@ class NewScreening : Fragment() {
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
                                         scheduledDate = scheduleDate.time,
-                                        comments = ""
+                                        comments = "",
+                                        participantName = edit_regscreen_name.text.toString()
                                 )
                         )
 

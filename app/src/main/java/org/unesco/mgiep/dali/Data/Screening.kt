@@ -5,6 +5,7 @@ data class Screening (
         var completed: Boolean = false,
         val mediumOfInstruction: String = "English",
         val participantId: String = "",
+        val participantName: String = "",
         val userId: String = "",
         val scheduledDate: Long = 0,
         var totalScore: Int = 0,

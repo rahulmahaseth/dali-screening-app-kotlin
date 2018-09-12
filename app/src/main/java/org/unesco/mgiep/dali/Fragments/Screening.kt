@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
@@ -32,8 +33,10 @@ class Screening : Fragment() {
     private var totalScore = 0
     private var screeningType = ""
     private var participantId = ""
+    private var participantName = ""
     private lateinit var mAuth: FirebaseAuth
     private val questionAnswerMap: HashMap<Int, Int> = hashMapOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,7 @@ class Screening : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         screeningType = activity!!.intent.getStringExtra("type")
         participantId = activity!!.intent.getStringExtra("participantId")
+        participantName = activity!!.intent.getStringExtra("participantName")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -221,7 +225,8 @@ class Screening : Fragment() {
                             userId = mAuth.currentUser!!.uid,
                             scheduledDate = Date().time,
                             totalScore = totalScore,
-                            comments = ""
+                            comments = "",
+                            participantName = participantName
                     )
             )
             showFragment(

@@ -5,6 +5,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:focusable="true"
+    android:background="@color/colorPrimary"
     android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 

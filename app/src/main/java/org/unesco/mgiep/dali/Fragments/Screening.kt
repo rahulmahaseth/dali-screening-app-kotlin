@@ -81,7 +81,7 @@ class Screening : Fragment() {
         btn_usually.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 2
             updateButtons()
-            if(questionsCompleted < totalQuestions){
+            if(questionsCompleted < (totalQuestions - 1)){
                 next()
             }
         }
@@ -144,7 +144,6 @@ class Screening : Fragment() {
     }
 
     private fun updateNavButtons() {
-        Log.d("Q", "$questionsCompleted / $totalQuestions")
         when {
             questionsCompleted == 0 -> {
                 btn_screening_back.isEnabled = false
@@ -160,10 +159,13 @@ class Screening : Fragment() {
     }
 
     private fun next() {
+
+
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
             Toast.makeText(activity, getString(R.string.select_option_error), Toast.LENGTH_SHORT).show()
         } else {
             ++questionsCompleted
+            Log.d("Q", "$questionsCompleted / $totalQuestions")
             if (questionAnswerMap[questionsCompleted] == null) {
                 questionAnswerMap[questionsCompleted] = -1
                 screening_radio_group.clearCheck()
@@ -193,6 +195,7 @@ class Screening : Fragment() {
 
     private fun back() {
         --questionsCompleted
+        Log.d("Q", "$questionsCompleted / $totalQuestions")
         updateNavButtons()
         updateButtons()
         tv_questions_completed.text = questionsCompleted.toString()

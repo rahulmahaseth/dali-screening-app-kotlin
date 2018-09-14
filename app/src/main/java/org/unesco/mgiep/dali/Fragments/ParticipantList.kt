@@ -77,7 +77,7 @@ class ParticipantList : Fragment(){
     }
 
     private fun fetchParticpants(){
-        participantlist_progressBar.show()
+        participantlist_progressBar?.show()
         firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
                 .addOnCompleteListener {
                     if(!it.result.isEmpty){
@@ -85,16 +85,16 @@ class ParticipantList : Fragment(){
                         it.result.documents.forEach {
                             participants.add(it.toObject(Participant::class.java))
                             lastAdapter.notifyDataSetChanged()
-                            participantlist_progressBar.hide()
+                            participantlist_progressBar?.hide()
                             //particpant_swipe_layout.isRefreshing = false
                         }
                     }else{
-                        participantlist_progressBar.hide()
+                        participantlist_progressBar?.hide()
                         //particpant_swipe_layout.isRefreshing = false
                     }
                 }
                 .addOnFailureListener {
-                    participantlist_progressBar.hide()
+                    participantlist_progressBar?.hide()
                     Toast.makeText(activity,  getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                     //particpant_swipe_layout.isRefreshing = false
                 }

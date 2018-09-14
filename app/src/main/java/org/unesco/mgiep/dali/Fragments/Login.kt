@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -40,6 +41,8 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var arrayAdapter: ArrayAdapter<String>
 
     private var spinnerTouched = false
+
+    private var locale = Locale.ENGLISH
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -184,15 +187,24 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
+        val config = activity!!.baseContext.resources.configuration
+        val lang = AppPref.locale
+        val systemLocale = getSystemLocale(config).language
+        if("" != lang && systemLocale != lang){
+            locale = Locale(lang)
+            setSystemLocale(config, locale)
+            updateConfiguration(config)
+        }
+        /*
+        val conf = resources.configuration
+        val dm = resources.displayMetrics
         config.locale = locale
-        activity!!.resources.updateConfiguration(config, activity!!.resources.displayMetrics)
+        activity!!.resources.updateConfiguration(conf, dm)
+        */
         startActivity(Intent(activity, SplashActivity::class.java))
         activity!!.finish()
+
+
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -216,6 +228,42 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
 
+    }
+
+    override fun onConfigurationChanged(newConfig:Configuration ) {
+        super.onConfigurationChanged(newConfig)
+        if (locale != null) {
+            setSystemLocale(newConfig, locale)
+            Locale.setDefault(locale)
+            updateConfiguration(newConfig)
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    fun getSystemLocale(config: Configuration): Locale {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return config.locales.get(0)
+        } else {
+            return config.locale
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    fun setSystemLocale(config : Configuration , locale: Locale ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale)
+        } else {
+            config.locale = locale
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    fun updateConfiguration(config: Configuration ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            activity!!.baseContext.createConfigurationContext(config);
+        } else {
+            activity!!.baseContext.resources.updateConfiguration(config, activity!!.baseContext.resources.displayMetrics)
+        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark">
 
     <FrameLayout
         android:id="@+id/participantlist_progressBar"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ProgressBar
-            android:progressTint="@color/white"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progressTint="@color/white" />
     </FrameLayout>
 
 
-                <android.support.v7.widget.RecyclerView
-                    android:backgroundTint="#c7c2c2"
-                    android:elevation="0dp"
-                    android:id="@+id/recycler_particpants"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-</LinearLayout>
+   <android.support.v4.widget.NestedScrollView
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recycler_particpants"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scrollbarAlwaysDrawVerticalTrack="true"
+           android:scrollbarStyle="outsideOverlay"
+           android:scrollbars="vertical" />
+   </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -12,16 +12,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_new_screening.*
+import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
-import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
-import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,7 +28,7 @@ class NewScreening2 : Fragment() {
 
     val calendar = Calendar.getInstance()
 
-    val onlyDate = "MMM DD,YYYY"
+    val onlyDate = "MMM DD,yyyy"
 
     val sdf = SimpleDateFormat(onlyDate, Locale.ENGLISH)
 
@@ -37,7 +36,6 @@ class NewScreening2 : Fragment() {
 
     private var scheduleDate: Date = calendar.time
 
-    private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
     private lateinit var mAuth: FirebaseAuth
@@ -57,7 +55,6 @@ class NewScreening2 : Fragment() {
         super.onCreate(savedInstanceState)
 
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
-        screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
@@ -242,14 +239,8 @@ class NewScreening2 : Fragment() {
                         )
 
                     }
+                    startActivity(Intent(activity, MainActivity::class.java))
 
-                    showFragment(
-                            Fragment.instantiate(
-                                    activity,
-                                    Dashboard::class.java.name
-                            ),
-                            false
-                    )
                 }
             }
         }
@@ -263,11 +254,5 @@ class NewScreening2 : Fragment() {
         scheduleDate = calendar.time
         btn_change_scheduled_date.visibility = View.VISIBLE
         tv_screenreg_schedule_date.text = sdf.format(scheduleDate)
-    }
-
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
-                fragmentManager = activity!!.supportFragmentManager,
-                addToBackStack = addToBackStack)
     }
 }

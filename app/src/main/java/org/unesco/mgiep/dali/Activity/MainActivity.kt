@@ -105,15 +105,15 @@ class MainActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        if(count == 0){
-            AlertDialog.Builder(this)
+        when {
+            drawer_layout.isDrawerOpen(GravityCompat.START) -> drawer_layout.closeDrawer(GravityCompat.START)
+            count == 0 -> AlertDialog.Builder(this)
                     .setMessage(getString(R.string.exit_warn_message))
                     .setPositiveButton("Yes"){_,_->finish()}
                     .setNegativeButton("No"){_,_->}
                     .create()
                     .show()
-        }else {
-            supportFragmentManager.popBackStack()
+            else -> supportFragmentManager.popBackStack()
         }
     }
 

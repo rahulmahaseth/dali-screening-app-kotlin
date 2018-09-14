@@ -3,16 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:iconTint="@color/white"
         android:id="@+id/action_sort"
         android:icon="@drawable/ic_filter_list_white_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:title="@string/sort">
+
+        <item
+            android:icon="@drawable/ic_chevron_right_black_24dp"
+            android:title="JST Only"
+            android:id="@+id/sort_only_jst">
+        </item>
+
+        <item
+            android:icon="@drawable/ic_chevron_right_black_24dp"
+            android:title="MST Only"
+            android:id="@+id/sort_only_mst">
+        </item>
+
     </item>
 
     <item
+        app:showAsAction="ifRoom"
         android:id="@+id/action_add"
         android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="ifRoom"
         android:title="@string/add">
+
     </item>
 </menu>

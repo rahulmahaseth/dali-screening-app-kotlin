@@ -17,6 +17,8 @@ import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 
@@ -78,6 +80,7 @@ class PendingScreenings: Fragment() {
     }
 
     private fun fetchPendingScreenings(){
+        pending_screening_progressBar.show()
         firebaseRepository.fetchPendingUserScreenings(mAuth.currentUser!!.uid)
                 .addOnCompleteListener {
                     if(!it.result.isEmpty){
@@ -85,16 +88,20 @@ class PendingScreenings: Fragment() {
                         it.result.documents.forEach {
                             screenings.add(it.toObject(Screening::class.java))
                             lastAdapter.notifyDataSetChanged()
+                            pending_screening_progressBar.hide()
                            // pending_swipe_layout.isRefreshing = false
                         }
                     }else{
                         //pending_swipe_layout.isRefreshing = false
                         //show empty screen
+                        pending_screening_progressBar.hide()
+
                     }
                 }
                 .addOnCanceledListener {
                    // pending_swipe_layout.isRefreshing = false
-                    Toast.makeText(activity,"Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                    pending_screening_progressBar.show()
+                    Toast.makeText(activity,getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                 }
     }
 

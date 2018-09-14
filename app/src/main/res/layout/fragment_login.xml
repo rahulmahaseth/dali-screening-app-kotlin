@@ -20,7 +20,6 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
-
     <Spinner
         android:backgroundTint="@color/white"
         android:entries="@array/locales"
@@ -30,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"/>
+
 
     <LinearLayout
         android:layout_centerVertical="true"
@@ -72,6 +72,8 @@
             android:textColorHint="@color/white" />
 
         <Button
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +82,8 @@
             android:text="@string/login" />
 
         <Button
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

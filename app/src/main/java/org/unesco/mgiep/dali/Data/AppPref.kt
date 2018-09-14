@@ -6,4 +6,5 @@ object AppPref: KotprefModel() {
     var loggedIn by booleanPref(false)
     var name by stringPref("")
     var designation by stringPref("")
+    var locale by stringPref("en")
 }

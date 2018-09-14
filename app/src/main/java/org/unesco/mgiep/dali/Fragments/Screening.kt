@@ -81,16 +81,25 @@ class Screening : Fragment() {
         btn_usually.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 2
             updateButtons()
+            if(questionsCompleted < totalQuestions){
+                next()
+            }
         }
 
         btn_sometimes.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 1
             updateButtons()
+            if(questionsCompleted < totalQuestions){
+                next()
+            }
         }
 
         btn_never.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 0
             updateButtons()
+            if(questionsCompleted < totalQuestions){
+                next()
+            }
         }
 
         btn_screening_next.setOnClickListener {

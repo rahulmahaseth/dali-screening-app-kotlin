@@ -5,32 +5,61 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark">
 
+    <FrameLayout
+        android:id="@+id/screeningdetail_progressBar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:progressTint="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:textColor="@color/white"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="NAME:" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:textColor="@color/white"
-                android:id="@+id/tv_screeeningdetail_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="NAME:" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_screeeningdetail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,6 +82,15 @@
 
         </LinearLayout>
 
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +111,15 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,25 +142,30 @@
 
         </LinearLayout>
 
+        </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.6"
-        android:background="@drawable/white_bottom_border"
+        android:background="@drawable/custom_edit_text"
         android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
-            android:textColor="#000"
+            android:textSize="@dimen/h3"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Comments" />
 
         <TextView
-            android:textColor="#000"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
             android:id="@+id/tv_screeeningdetail_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

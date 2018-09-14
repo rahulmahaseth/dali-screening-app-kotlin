@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:windowSoftInputMode="adjustResize">
 
     <EditText
+        android:background="@drawable/custom_edit_text"
         android:hint="Comments"
         android:id="@+id/edit_comments"
         android:layout_width="match_parent"
@@ -14,16 +18,17 @@
 
         <requestFocus />
 
-
     </EditText>
 
     <Button
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_alignParentBottom="true"
         android:id="@+id/btn_submit_screening"
         android:text="@string/submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
 
 </RelativeLayout>

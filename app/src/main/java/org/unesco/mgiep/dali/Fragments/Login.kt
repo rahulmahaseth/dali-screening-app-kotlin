@@ -150,6 +150,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                         startActivity(Intent(activity, MainActivity::class.java))
                     } else {
                         Log.d("Fetch-User", "Document doesn't Exists")
+                        enableViews()
                         progressBar1.hide()
                         mAuth.signOut()
                         Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
@@ -204,11 +205,13 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
             1 -> {
                 if (spinnerTouched) {
                     setLocale("en")
+                    AppPref.locale = "en"
                 }
             }
             2 -> {
                 if (spinnerTouched) {
                     setLocale("hi")
+                    AppPref.locale = "hi"
                 }
             }
         }

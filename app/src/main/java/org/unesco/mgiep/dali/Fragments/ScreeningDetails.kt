@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
@@ -15,6 +17,8 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -42,6 +46,7 @@ class ScreeningDetails: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        screeningdetail_progressBar.show()
         mainRepository.getParticipant(screening.participantId)
                 .addOnSuccessListener {
                     if(it.exists()){
@@ -52,12 +57,17 @@ class ScreeningDetails: Fragment() {
                         tv_screeningdetail_score.text = screening.totalScore.toString()
                         tv_screeningdetail_type.text = screening.type
                         tv_screeeningdetail_comment.text = screening.comments
+                        screeningdetail_progressBar.hide()
                     }else{
                         Log.d("Participant-fetch","Failure")
+                        screeningdetail_progressBar.hide()
+                        Toast.makeText(activity, getString(R.string.data_not_found), Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener {
                     Log.d("Participant-fetch","Error",it)
+                    screeningdetail_progressBar.hide()
+                    Toast.makeText(activity, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                 }
 
 

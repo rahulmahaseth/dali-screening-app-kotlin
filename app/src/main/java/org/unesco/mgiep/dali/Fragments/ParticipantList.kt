@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.github.nitrico.lastadapter.BR
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,8 @@ import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemParticipantBinding
 
@@ -74,6 +77,7 @@ class ParticipantList : Fragment(){
     }
 
     private fun fetchParticpants(){
+        participantlist_progressBar.show()
         firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
                 .addOnCompleteListener {
                     if(!it.result.isEmpty){
@@ -81,13 +85,17 @@ class ParticipantList : Fragment(){
                         it.result.documents.forEach {
                             participants.add(it.toObject(Participant::class.java))
                             lastAdapter.notifyDataSetChanged()
+                            participantlist_progressBar.hide()
                             //particpant_swipe_layout.isRefreshing = false
                         }
                     }else{
+                        participantlist_progressBar.hide()
                         //particpant_swipe_layout.isRefreshing = false
                     }
                 }
                 .addOnFailureListener {
+                    participantlist_progressBar.hide()
+                    Toast.makeText(activity,  getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                     //particpant_swipe_layout.isRefreshing = false
                 }
 

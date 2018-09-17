@@ -17,16 +17,13 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Login
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
-import org.unesco.mgiep.dali.Utility.hide
-import org.unesco.mgiep.dali.Utility.show
-import org.unesco.mgiep.dali.Utility.showAsToast
+import org.unesco.mgiep.dali.Utility.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -217,14 +214,14 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         when (position) {
             1 -> {
                 if (spinnerTouched) {
-                    setLocale("en")
                     AppPref.locale = "en"
+                    LocaleManager().setLocale(activity!!.baseContext)
                 }
             }
             2 -> {
                 if (spinnerTouched) {
-                    setLocale("hi")
                     AppPref.locale = "hi"
+                    LocaleManager().setLocale(activity!!.baseContext)
                 }
             }
         }
@@ -241,16 +238,16 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     @SuppressWarnings("deprecation")
-    fun getSystemLocale(config: Configuration): Locale {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return config.locales.get(0)
+    private fun getSystemLocale(config: Configuration): Locale {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.locales.get(0)
         } else {
-            return config.locale
+            config.locale
         }
     }
 
     @SuppressWarnings("deprecation")
-    fun setSystemLocale(config: Configuration, locale: Locale) {
+    private fun setSystemLocale(config: Configuration, locale: Locale) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             config.setLocale(locale)
         } else {
@@ -259,8 +256,8 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     @SuppressWarnings("deprecation")
-    fun updateConfiguration(config: Configuration) {
-        if (Build.VERSION.SDK_INT >= 17) {
+    private fun updateConfiguration(config: Configuration) {
+        if (Build.VERSION.SDK_INT >= 19) {
             context!!.createConfigurationContext(config)
         } else {
             resources.updateConfiguration(config, resources.displayMetrics)

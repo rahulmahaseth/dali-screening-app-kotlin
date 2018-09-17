@@ -1,5 +1,6 @@
 package org.unesco.mgiep.dali.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -50,5 +52,9 @@ class SplashActivity: AppCompatActivity() {
                     addToBackStack = false
             )
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleManager().setLocale(newBase!!))
     }
 }

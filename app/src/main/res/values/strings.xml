@@ -151,6 +151,10 @@
     <string name="data_not_found">Data not found!</string>
     <string name="scheduled">Scheduled</string>
     <string name="welcome">WELCOME</string>
+    <string name="dali">DALI</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="language">Language</string>
 
 
     <string-array name="jst_categories">

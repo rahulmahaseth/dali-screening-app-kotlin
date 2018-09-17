@@ -193,7 +193,7 @@ class Dashboard : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = "Screenings"
+        activity!!.title = getString(R.string.screenings)
         Log.d("ParticipantList", "Resumed")
     }
 }

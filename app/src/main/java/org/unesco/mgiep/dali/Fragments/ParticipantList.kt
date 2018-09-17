@@ -109,6 +109,6 @@ class ParticipantList : Fragment(){
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = "Participants"
+        activity!!.title = getString(R.string.participants)
     }
 }

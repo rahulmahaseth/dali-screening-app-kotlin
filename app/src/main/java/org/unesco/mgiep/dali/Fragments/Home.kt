@@ -41,6 +41,6 @@ class Home: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = getString(R.string.home)
+        activity!!.title = getString(R.string.dali)
     }
 }

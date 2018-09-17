@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single"
+        android:id="@+id/screening_sort">
+        <item
+            android:iconTint="@color/white"
+            android:id="@+id/action_sort"
+            android:icon="@drawable/ic_filter_list_white_24dp"
+            app:showAsAction="always"
+            android:title="@string/sort">
+
+            <item
+                android:icon="@drawable/ic_chevron_right_black_24dp"
+                android:title="JST Only"
+                android:id="@+id/sort_only_jst">
+            </item>
+
+            <item
+                android:icon="@drawable/ic_chevron_right_black_24dp"
+                android:title="MST Only"
+                android:id="@+id/sort_only_mst">
+            </item>
+
+        </item>
+    </group>
+</menu>

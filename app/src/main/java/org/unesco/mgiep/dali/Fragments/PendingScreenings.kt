@@ -132,7 +132,7 @@ class PendingScreenings: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = "Scheduled Screenings"
+        activity!!.title = getString(R.string.scheduled)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

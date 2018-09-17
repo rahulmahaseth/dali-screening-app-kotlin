@@ -35,7 +35,7 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        stringArray.add("Language")
+        stringArray.add(getString(R.string.language))
         stringArray.add("English")
         stringArray.add("हिन्दी")
         setting_language_spinner.adapter = arrayAdapter
@@ -84,9 +84,8 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
-                fragmentManager = activity!!.supportFragmentManager,
-                addToBackStack = addToBackStack)
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = getString(R.string.settings)
     }
 }

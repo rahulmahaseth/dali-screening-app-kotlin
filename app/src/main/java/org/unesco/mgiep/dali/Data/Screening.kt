@@ -1,6 +1,7 @@
 package org.unesco.mgiep.dali.Data
 
 data class Screening (
+        var id: String = "",
         val type: String = Type.JST.toString(),
         var completed: Boolean = false,
         val mediumOfInstruction: String = "English",

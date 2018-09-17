@@ -46,6 +46,7 @@ class NewScreening2 : Fragment() {
     private lateinit var intent : Intent
 
     private val participantId = UUID.randomUUID().toString()
+    private val screeningId = UUID.randomUUID().toString()
 
     private var participant = Participant()
 
@@ -167,6 +168,7 @@ class NewScreening2 : Fragment() {
 
                     val age = Date().year - Date(participant.dob).year
                     Log.d("Participant Age - ","$age")
+                    intent.putExtra("screeningId", screeningId)
                     intent.putExtra("participantId",participantId)
                     intent.putExtra("participantName", participant.name)
                     if(age <= 7){
@@ -208,8 +210,9 @@ class NewScreening2 : Fragment() {
                     val age = calendar.time.year - Date(participant.dob).year
                     if(age <= 7){
                         mainRepository.saveScreening(
-                                UUID.randomUUID().toString(),
+                                screeningId,
                                 Screening(
+                                        id = screeningId,
                                         type = Type.JST.toString(),
                                         completed = false,
                                         mediumOfInstruction = AppPref.locale,
@@ -226,6 +229,7 @@ class NewScreening2 : Fragment() {
                         mainRepository.saveScreening(
                                 UUID.randomUUID().toString(),
                                 Screening(
+                                        id = screeningId,
                                         type = Type.MST.toString(),
                                         completed = false,
                                         mediumOfInstruction = AppPref.locale,

@@ -1,6 +1,7 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
+import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Participant
@@ -30,6 +32,8 @@ class ScreeningDetails: Fragment() {
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
 
+    private var scheduled = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -37,7 +41,7 @@ class ScreeningDetails: Fragment() {
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
         screening = screeningViewModel.getScreening().value!!
-
+        scheduled = !screening.completed
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -70,12 +74,23 @@ class ScreeningDetails: Fragment() {
                     Toast.makeText(activity, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                 }
 
+        if(scheduled){
+            screening_comment_layout.visibility = View.GONE
+            btn_screening_detail_start.visibility = View.VISIBLE
+        }
 
+        btn_screening_detail_start.setOnClickListener {
+            startActivity(Intent(activity!!, ScreeningActivity::class.java)
+                    .putExtra("screeningId", screening.id)
+                    .putExtra("type", screening.type)
+                    .putExtra("participantId", screening.participantId)
+                    .putExtra("participantName", screening.participantName))
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = "Screening Details"
+        activity!!.title = screening.participantName
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

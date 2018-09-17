@@ -34,6 +34,7 @@ class Screening : Fragment() {
     private var screeningType = ""
     private var participantId = ""
     private var participantName = ""
+    private var screeningId = ""
     private lateinit var mAuth: FirebaseAuth
     private val questionAnswerMap: HashMap<Int, Int> = hashMapOf()
 
@@ -44,6 +45,7 @@ class Screening : Fragment() {
         mainReposirtory = MainReposirtory()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
+        screeningId = activity!!.intent.getStringExtra("screeningId")
         screeningType = activity!!.intent.getStringExtra("type")
         participantId = activity!!.intent.getStringExtra("participantId")
         participantName = activity!!.intent.getStringExtra("participantName")
@@ -89,7 +91,7 @@ class Screening : Fragment() {
         btn_sometimes.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 1
             updateButtons()
-            if(questionsCompleted < totalQuestions){
+            if(questionsCompleted < (totalQuestions - 1)){
                 next()
             }
         }
@@ -97,7 +99,7 @@ class Screening : Fragment() {
         btn_never.setOnClickListener {
             questionAnswerMap[questionsCompleted] = 0
             updateButtons()
-            if(questionsCompleted < totalQuestions){
+            if(questionsCompleted < (totalQuestions - 1)){
                 next()
             }
         }
@@ -230,6 +232,7 @@ class Screening : Fragment() {
 
             screeningViewModel.select(
                     Screening(
+                            id = screeningId,
                             type = screeningType,
                             completed = true,
                             mediumOfInstruction = "English",

@@ -9,6 +9,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import durdinapps.rxfirebase2.RxFirestore
 import io.reactivex.Maybe
 import io.reactivex.schedulers.Schedulers
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.User
 
 
@@ -80,6 +81,10 @@ class FirebaseRepository {
                         Log.d("fetch-Pendingscreening","failed",task.exception)
                     }
                 }
+    }
+
+    fun updateScreeningCompletion(id: String, screening: Screening): Task<Void> {
+        return screeningsRef.document(id).set(screening)
     }
 
     fun fetchParticipantScreenings(participantId: String){

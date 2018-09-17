@@ -151,6 +151,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/screening_comment_layout"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -173,6 +174,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:visibility="gone"
+        android:padding="20dp"
+        android:text="@string/start"
+        android:id="@+id/btn_screening_detail_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

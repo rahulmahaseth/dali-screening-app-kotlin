@@ -52,11 +52,10 @@
 
 
     <android.support.design.widget.NavigationView
-        app:itemIconTint="@color/white"
-        android:background="@color/colorPrimaryDark"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@drawable/drawer_item_color"
+        app:itemTextColor="@drawable/drawer_item_color"
+        android:background="@color/white"
         app:menu="@menu/drawer_menu"
-
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -10,7 +10,7 @@
     <string name="sometimes">"कभी कभी "</string>
     <string name="never">कभी नहीँ</string>
     <string name="create">"बनाएं "</string>
-    <string name="male">"नर "</string>
+    <string name="male">"पुरुष "</string>
     <string name="female">"महिला "</string>
     <string name="submit">"जमा करें "</string>
     <string name="school_university">विद्यालय</string>
@@ -58,6 +58,9 @@
     <string name="screenings">स्क्रीनिंग</string>
     <string name="back">वापस</string>
     <string name="select_option_error">"कृपया एक विकल्प चुनें "</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="language">भाषा</string>
 
     <string name="jst_q1">ध्वनि बदलाव खेलों में कठिनाई </string>
     <string name="jst_q2">तुकबंदी करने में कठिनाई</string>
@@ -128,15 +131,30 @@
     <string name="mst_e12">बच्चे का अध्यापक से निर्देश को दोहराने के लिए कहना। उदाहरण:, "मुझे समझ में नहीं आया। क्या आप फिर से कह सकते हैं?"</string>
     <string name="mst_e13">‘आकृति’ को “आकति” कहना। बच्चा छोटे अथवा/एवं  अधूरे वाक्य बनाता है।</string>
     <string name="mst_e14">पूरे वाक्य में बात करने में असमर्थता। बच्चा मिश्रित अथवा/एवं  जटिल वाक्य नहीं बना पाता है। उदाहरण: “स्वास्थ्य ठीक ना होने के कारण मैं अध्याय नहीं पढ़ पाया।” (जटिल वाक्य); “मैंने अंग्रेजी का अध्याय पढ़ा परन्तु गणित के प्रश्न का उत्तर नहीं लिख सका।” (मिश्रित वाक्य)।</string>
-    <string name="mst_e15">circle, square and triangle</string>
+    <string name="mst_e15"></string>
     <string name="mst_e16"></string>
-    <string name="mst_e17">The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
-    <string name="mst_e18">Has difficulty in sitting in one postion. May roam in the class. May disturb other children in the class.</string>
+    <string name="mst_e17">बच्चा आसानी से ऊब जाता है और कार्यों को अधूरा छोड़ देता है। शिक्षक / माता-पिता को लगातार बच्चे को ध्यान देने और / या कार्य को पूरा करने के लिए कहा जाता है।</string>
+    <string name="mst_e18"></string>
     <string name="mst_e19">बच्चा एक स्थान पर बैठे रहने में कठिनाई अनुभव करता है। बच्चे का कक्षा में घूमना एवं अन्य छोत्रों की शांती भंग करना संभव है।</string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-    <string name="password_reset_instructions">We just need your registered Email id to send you password reset instructions.</string>
-    <string name="reset">Reset</string>
+    <string name="password_reset_instructions">पासवर्ड रीसेट निर्देश भेजने के लिए हमें बस आपके पंजीकृत ईमेल आईडी की आवश्यकता है।</string>
+    <string name="reset">"पासवर्ड रीसेट "</string>
     <string name="arrow_back"><![CDATA[<< Back]]></string>
-    <string name="exit_warn_message">Are you sure you wish to exit?</string>
+    <string name="exit_warn_message">क्या आप वाकई बाहर निकलना चाहते हैं?</string>
+    <string name="dali">"डाली "</string>
+    <string name="welcome">स्वागत</string>
+    <string name="scheduled">अनुसूचित</string>
+    <string name="data_not_found">"डेटा नहीं मिला! "</string>
+    <string name="network_error">"नेटवर्क त्रुटि! "</string>
+    <string name="change_language">"भाषा बदलो "</string>
+    <string name="logout_warn_message">"क्या आप वाकई लॉगआउट करना चाहते हैं? "</string>
+    <string name="sign_out">"साइन आउट "</string>
+    <string name="already_registered_login_here">"पहले से पंजीकृत? यहां लॉगिन करें "</string>
+    <string name="register">"रजिस्टर "</string>
+    <string name="remember_me">"मुझे याद रखना "</string>
+    <string name="institution">संस्था</string>
+    <string name="relationship_with_child_none_select_error">प्रतिभागी के साथ संबंध का चयन करें</string>
+    <string name="months">महीने</string>
+    <string name="estimated_time_spent_with_child">अनुमानित समय बच्चे के साथ बिताया</string>
 </resources>

@@ -42,7 +42,7 @@ class ParticipantList : Fragment(){
                         showFragment(
                                 Fragment.instantiate(
                                         activity,
-                                        org.unesco.mgiep.dali.Fragments.Participant::class.java.name
+                                        org.unesco.mgiep.dali.Fragments.ParticipantDetail::class.java.name
                                 ),
                                 true
                         )

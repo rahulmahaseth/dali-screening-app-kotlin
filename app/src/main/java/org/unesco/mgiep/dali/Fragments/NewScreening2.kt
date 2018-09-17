@@ -167,7 +167,7 @@ class NewScreening2 : Fragment() {
                     )
 
                     val age = Date().year - Date(participant.dob).year
-                    Log.d("Participant Age - ","$age")
+                    Log.d("ParticipantDetail Age - ","$age")
                     intent.putExtra("screeningId", screeningId)
                     intent.putExtra("participantId",participantId)
                     intent.putExtra("participantName", participant.name)

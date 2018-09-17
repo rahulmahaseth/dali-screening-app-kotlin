@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#3c3f41">
 
     <FrameLayout
         android:id="@+id/particpant_progressBar"
@@ -18,6 +19,7 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/participant_top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_two_color"
@@ -31,36 +33,25 @@
 
     </LinearLayout>
 
+    <TextView
+        android:gravity="center"
+        android:textSize="@dimen/h1"
+        android:text="Ankit Anand"
+        android:layout_below="@id/participant_top_layout"
+        android:id="@+id/tv_participant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white" />
 
     <LinearLayout
-        android:id="@+id/participant_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#919191"
+        android:id="@+id/partipant_detail_layout"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/custom_edit_text"
+        android:layout_below="@id/tv_participant_name"
         android:orientation="vertical"
-        android:padding="20dp">
-
-        <LinearLayout
-            android:id="@+id/participant_name_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/name"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/tv_participant_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white" />
-        </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/participant_class_layout"
@@ -78,6 +69,29 @@
 
             <TextView
                 android:id="@+id/tv_participant_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/participant_section_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/section"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_participant_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -155,5 +169,72 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:textSize="@dimen/h2"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@id/partipant_detail_layout"
+        android:text="Result"
+        android:id="@+id/tv_participant_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_participant_result"
+        android:orientation="horizontal"
+        android:id="@+id/participant_score_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="50dp"
+            android:text="15"
+            android:textColor="@color/white"
+            android:id="@+id/tv_participant_score"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:text="/"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="50dp"
+            android:text="21"
+            android:textColor="@color/white"
+            android:id="@+id/tv_participant_total"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_participant_done"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#3c3f41"
+        android:text="@string/done"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/participant_progressBar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:progressTint="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+</RelativeLayout>

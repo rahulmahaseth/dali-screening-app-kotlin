@@ -87,8 +87,8 @@ class FirebaseRepository {
         return screeningsRef.document(id).set(screening)
     }
 
-    fun fetchParticipantScreenings(participantId: String){
-        screeningsRef
+    fun fetchParticipantScreenings(participantId: String): Task<QuerySnapshot> {
+        return screeningsRef
                 .whereEqualTo("participantId",participantId)
                 .get()
                 .addOnCompleteListener { task ->

@@ -55,7 +55,7 @@ class ScreeningDetails: Fragment() {
                 .addOnSuccessListener {
                     if(it.exists()){
                         participant = it.toObject(Participant::class.java)!!
-                        Log.d("Participant-fetch","Success")
+                        Log.d("ParticipantDetail-fetch","Success")
                         tv_screeeningdetail_name.text = participant.name
                         tv_screeningdetail_language.text = screening.mediumOfInstruction
                         tv_screeningdetail_score.text = screening.totalScore.toString()
@@ -63,13 +63,13 @@ class ScreeningDetails: Fragment() {
                         tv_screeeningdetail_comment.text = screening.comments
                         screeningdetail_progressBar.hide()
                     }else{
-                        Log.d("Participant-fetch","Failure")
+                        Log.d("ParticipantDetail-fetch","Failure")
                         screeningdetail_progressBar.hide()
                         Toast.makeText(activity, getString(R.string.data_not_found), Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener {
-                    Log.d("Participant-fetch","Error",it)
+                    Log.d("ParticipantDetail-fetch","Error",it)
                     screeningdetail_progressBar.hide()
                     Toast.makeText(activity, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                 }

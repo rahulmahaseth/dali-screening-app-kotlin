@@ -22,6 +22,6 @@ interface AppComponent {
     fun inject(settings: Settings)
     fun inject(participantList: ParticipantList)
     fun inject(pendingScreenings: PendingScreenings)
-    fun inject(participant: Participant)
+    fun inject(participantDetail: ParticipantDetail)
     fun inject(screeningDetails: ScreeningDetails)
 }

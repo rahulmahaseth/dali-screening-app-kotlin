@@ -39,7 +39,7 @@ class MainActivity: AppCompatActivity() {
         showFragment(
                 Fragment.instantiate(
                 this,
-                        Dashboard::class.java.name
+                        Home::class.java.name
                 ),
                 addToBackStack = false
         )
@@ -53,12 +53,21 @@ class MainActivity: AppCompatActivity() {
                     showFragment(
                             Fragment.instantiate(
                                     this,
-                                    Dashboard::class.java.name
+                                    Home::class.java.name
                             ),
                             false
                     )
                 }
                 R.id.nav_screenings -> {
+                    showFragment(
+                            Fragment.instantiate(
+                                    this,
+                                    Dashboard::class.java.name
+                            ),
+                            true
+                    )
+                }
+                R.id.nav_scheduled -> {
                     showFragment(
                             Fragment.instantiate(
                                     this,

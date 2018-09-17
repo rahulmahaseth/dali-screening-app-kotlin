@@ -26,6 +26,7 @@ import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
+import org.unesco.mgiep.dali.Utility.showAsToast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -136,7 +137,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                     Log.d("Login", "Failed")
                     progressBar1.hide()
                     enableViews()
-                    Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                    getString(R.string.login_fail).showAsToast(activity!!)
                 }
     }
 
@@ -168,7 +169,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                 }
     }
 
-    private fun disableViews(){
+    private fun disableViews() {
         edit_email.isEnabled = false
         edit_password.isEnabled = false
         btn_login.isEnabled = false
@@ -177,7 +178,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         spinner_language.isEnabled = false
     }
 
-    private fun enableViews(){
+    private fun enableViews() {
         edit_email.isEnabled = true
         edit_password.isEnabled = true
         btn_login.isEnabled = true
@@ -187,10 +188,10 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     fun setLocale(lang: String) {
-        val config = activity!!.baseContext.resources.configuration
-        val lang = AppPref.locale
+        Log.d("setLocale:", lang)
+        val config = resources.configuration
         val systemLocale = getSystemLocale(config).language
-        if("" != lang && systemLocale != lang){
+        if ("" != lang && systemLocale != lang) {
             locale = Locale(lang)
             setSystemLocale(config, locale)
             updateConfiguration(config)
@@ -230,7 +231,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    override fun onConfigurationChanged(newConfig:Configuration ) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (locale != null) {
             setSystemLocale(newConfig, locale)
@@ -249,7 +250,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     @SuppressWarnings("deprecation")
-    fun setSystemLocale(config : Configuration , locale: Locale ) {
+    fun setSystemLocale(config: Configuration, locale: Locale) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             config.setLocale(locale)
         } else {
@@ -258,11 +259,11 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     @SuppressWarnings("deprecation")
-    fun updateConfiguration(config: Configuration ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            activity!!.baseContext.createConfigurationContext(config);
+    fun updateConfiguration(config: Configuration) {
+        if (Build.VERSION.SDK_INT >= 17) {
+            context!!.createConfigurationContext(config)
         } else {
-            activity!!.baseContext.resources.updateConfiguration(config, activity!!.baseContext.resources.displayMetrics)
+            resources.updateConfiguration(config, resources.displayMetrics)
         }
     }
 

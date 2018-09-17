@@ -1,8 +1,12 @@
 package org.unesco.mgiep.dali.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Fragments.Screening
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -21,6 +25,24 @@ class ScreeningActivity: AppCompatActivity() {
                 false
         )
 
+    }
+
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        when {
+            drawer_layout.isDrawerOpen(GravityCompat.START) -> drawer_layout.closeDrawer(GravityCompat.START)
+            count == 0 -> {
+                AlertDialog.Builder(this)
+                        .setMessage(getString(R.string.exit_screening_prompt))
+                        .setPositiveButton(getString(R.string.yes)){ _, _->
+                            startActivity(Intent(this, MainActivity::class.java))
+                        }
+                        .setNegativeButton(getString(R.string.no)){ _, _->}
+                        .create()
+                        .show()
+            }
+            else -> supportFragmentManager.popBackStack()
+        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

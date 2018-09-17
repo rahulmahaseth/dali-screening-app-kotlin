@@ -155,6 +155,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="language">Language</string>
+    <string name="exit_screening_prompt">Are You Sure you want to stop current session?</string>
 
 
     <string-array name="jst_categories">

@@ -5,7 +5,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingVertical="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
         android:gravity="center"
         android:id="@+id/quesiton_layout"
         android:background="@color/colorPrimaryDark"

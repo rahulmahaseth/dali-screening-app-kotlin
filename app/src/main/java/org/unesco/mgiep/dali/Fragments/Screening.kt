@@ -1,9 +1,11 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.util.*
 import kotlin.collections.HashMap
@@ -56,6 +59,13 @@ class Screening : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if(Locale.getDefault().language == "hi"){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                tv_question.letterSpacing = 0.2f
+                tv_example.letterSpacing = 0.2f
+            }
+        }
 
         updateButtons()
         updateNavButtons()
@@ -164,7 +174,7 @@ class Screening : Fragment() {
 
 
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
-            Toast.makeText(activity, getString(R.string.select_option_error), Toast.LENGTH_SHORT).show()
+            getString(R.string.select_option_error).showAsToast(activity!!)
         } else {
             ++questionsCompleted
             Log.d("Q", "$questionsCompleted / $totalQuestions")
@@ -221,36 +231,45 @@ class Screening : Fragment() {
     private fun submit() {
 
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
-            Toast.makeText(activity, getString(R.string.select_option_error), Toast.LENGTH_SHORT).show()
+            getString(R.string.select_option_error).showAsToast(activity!!)
         } else {
-            questionAnswerMap.forEach {
-                Log.d("Q - ${it.key}", "${it.value}")
-                totalScore += it.value
-            }
 
-            Log.d("totalScore", "$totalScore")
+            AlertDialog.Builder(activity!!)
+                    .setMessage(getString(R.string.submit_screening_prompt))
+                    .setPositiveButton(getString(R.string.yes)){ _, _->
+                        questionAnswerMap.forEach {
+                            Log.d("Q - ${it.key}", "${it.value}")
+                            totalScore += it.value
+                        }
 
-            screeningViewModel.select(
-                    Screening(
-                            id = screeningId,
-                            type = screeningType,
-                            completed = true,
-                            mediumOfInstruction = "English",
-                            participantId = participantId,
-                            userId = mAuth.currentUser!!.uid,
-                            scheduledDate = Date().time,
-                            totalScore = totalScore,
-                            comments = "",
-                            participantName = participantName
-                    )
-            )
-            showFragment(
-                    Fragment.instantiate(
-                            activity,
-                            Comments::class.java.name
-                    ),
-                    false
-            )
+                        Log.d("totalScore", "$totalScore")
+
+                        screeningViewModel.select(
+                                Screening(
+                                        id = screeningId,
+                                        type = screeningType,
+                                        completed = true,
+                                        mediumOfInstruction = "English",
+                                        participantId = participantId,
+                                        userId = mAuth.currentUser!!.uid,
+                                        scheduledDate = Date().time,
+                                        totalScore = totalScore,
+                                        comments = "",
+                                        participantName = participantName
+                                )
+                        )
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        Comments::class.java.name
+                                ),
+                                false
+                        )
+                    }
+                    .setNegativeButton(getString(R.string.no)){ _, _->}
+                    .create()
+                    .show()
+
         }
     }
 

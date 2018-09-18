@@ -16,6 +16,9 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
+import org.unesco.mgiep.dali.Utility.showAsToast
 import java.util.*
 
 class Comments: Fragment(){
@@ -41,14 +44,16 @@ class Comments: Fragment(){
         super.onActivityCreated(savedInstanceState)
         btn_submit_screening.setOnClickListener { v ->
             screening.comments = edit_comments.text.toString()
-
+            comments_progressBar.show()
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
-                        Toast.makeText(activity, getString(R.string.screening_saved), Toast.LENGTH_SHORT).show()
+                        comments_progressBar.hide()
+                        getString(R.string.screening_saved).showAsToast(activity!!)
                         startActivity(Intent(activity, MainActivity::class.java))
                     }
                     .addOnFailureListener {
-                        Toast.makeText(activity, getString(R.string.save_screening_error), Toast.LENGTH_SHORT).show()
+                        comments_progressBar.hide()
+                        getString(R.string.save_screening_error).showAsToast(activity!!)
                         startActivity(Intent(activity, MainActivity::class.java))
                     }
         }

@@ -157,4 +157,26 @@
     <string name="relationship_with_child_none_select_error">प्रतिभागी के साथ संबंध का चयन करें</string>
     <string name="months">महीने</string>
     <string name="estimated_time_spent_with_child">अनुमानित समय बच्चे के साथ बिताया</string>
+    <string name="exit_screening_prompt">क्या आप वाकई इस गतिविधि को रोकना चाहते हैं?</string>
+    <string name="done">"ठीक "</string>
+    <string name="result">परिणाम</string>
+    <string name="submit_screening_prompt">क्या आप वाकई सबमिट करना चाहते हैं?</string>
+
+
+    <string-array name="languages">
+        <item>अंग्रेज़ी</item>
+        <item>हिंदी</item>
+        <item>बंगाली</item>
+        <item>तेलुगू</item>
+        <item>मराठी</item>
+        <item>तमिल</item>
+        <item>उर्दू</item>
+        <item>कन्नड़</item>
+        <item>गुजराती</item>
+        <item>ओड़िया</item>
+        <item>मलयालम</item>
+        <item>संस्कृत</item>
+        <item>पंजाबी</item>
+        <item>असमिया</item>
+    </string-array>
 </resources>

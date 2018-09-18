@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:gravity="center"
     android:orientation="vertical"
-    android:focusable="true"
-    android:background="@color/colorPrimary"
-    android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 
     <LinearLayout
@@ -17,15 +17,15 @@
         android:padding="10dp">
 
         <EditText
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:padding="8dp"
-            android:background="@drawable/custom_edit_text"
             android:id="@+id/edit_regscreen_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
             android:hint="@string/name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,69 +34,69 @@
             android:orientation="horizontal">
 
             <EditText
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:background="@drawable/custom_edit_text"
                 android:id="@+id/edit_regscreen_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/custom_edit_text"
                 android:hint="@string/sgd"
-                android:inputType="number" />
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <EditText
-                android:layout_marginLeft="4dp"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:background="@drawable/custom_edit_text"
                 android:id="@+id/edit_regscreen_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:layout_weight="1"
+                android:background="@drawable/custom_edit_text"
                 android:hint="@string/section"
-                android:inputType="textCapCharacters" />
+                android:inputType="textCapCharacters"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
         </LinearLayout>
 
-        <EditText
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:padding="8dp"
-            android:background="@drawable/custom_edit_text"
+        <AutoCompleteTextView
             android:id="@+id/edit_regscreen_mothertongue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edit_text"
             android:hint="@string/mother_tongue"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:padding="8dp"
-            android:background="@drawable/custom_edit_text"
             android:id="@+id/edit_regscreen_school"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edit_text"
             android:hint="@string/school_university"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:padding="8dp"
-            android:background="@drawable/custom_edit_text"
             android:id="@+id/edit_regscreen_dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edit_text"
             android:clickable="true"
             android:cursorVisible="false"
             android:focusable="true"
             android:focusableInTouchMode="false"
-            android:hint="@string/date_of_birth" />
+            android:hint="@string/date_of_birth"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
 
         <LinearLayout
@@ -106,11 +106,10 @@
             android:orientation="horizontal">
 
 
-
             <RadioGroup
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -118,22 +117,22 @@
                     android:layout_weight="1" />
 
                 <RadioButton
-                    android:textColorHint="@color/white"
-                    android:buttonTint="@color/white"
                     android:id="@+id/edit_regscreen_radio_male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/male" />
+                    android:buttonTint="@color/white"
+                    android:hint="@string/male"
+                    android:textColorHint="@color/white" />
 
                 <RadioButton
-                    android:textColorHint="@color/white"
-                    android:buttonTint="@color/white"
                     android:id="@+id/edit_regscreen_radio_female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/female" />
+                    android:buttonTint="@color/white"
+                    android:hint="@string/female"
+                    android:textColorHint="@color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -142,28 +141,26 @@
             </RadioGroup>
 
 
-
         </LinearLayout>
 
         <Button
-            android:layout_marginTop="80dp"
-            android:text="@string/next"
             android:id="@+id/btn_submit_participant"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/next" />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/metadata_input_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,26 +168,26 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:tint="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_date_range_black_24dp" />
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:tint="@color/white" />
 
             <TextView
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
-                android:text="@string/schedule" />
+                android:text="@string/schedule"
+                android:textColor="@color/white" />
 
             <Switch
-                android:textColorHint="@color/white"
-                android:buttonTint="@color/white"
                 android:id="@+id/switch_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:buttonTint="@color/white"
+                android:textColorHint="@color/white" />
 
         </LinearLayout>
 
@@ -201,12 +198,12 @@
             android:paddingVertical="10dp">
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/tv_screenreg_schedule_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="32dp" />
+                android:paddingLeft="32dp"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btn_change_scheduled_date"
@@ -219,61 +216,61 @@
         </LinearLayout>
 
         <TextView
-            android:paddingVertical="10dp"
-            android:textSize="@dimen/h3"
-            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/relationship_with_child" />
+            android:paddingVertical="10dp"
+            android:text="@string/relationship_with_child"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h3" />
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:id="@+id/radio_class_teacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/class_teacher" />
+                android:buttonTint="@color/white"
+                android:text="@string/class_teacher"
+                android:textColor="@color/white" />
 
             <RadioButton
-                android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:id="@+id/radio_language_teacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/language_teacher" />
+                android:buttonTint="@color/white"
+                android:text="@string/language_teacher"
+                android:textColor="@color/white" />
 
             <RadioButton
-                android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:id="@+id/radio_others"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/other" />
+                android:buttonTint="@color/white"
+                android:text="@string/other"
+                android:textColor="@color/white" />
         </RadioGroup>
 
         <TextView
-            android:textSize="@dimen/h3"
-            android:textColor="@color/white"
-            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/estimated_time_spent_with_child" />
+            android:paddingTop="20dp"
+            android:text="@string/estimated_time_spent_with_child"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h3" />
 
 
-            <EditText
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:padding="8dp"
-                android:background="@drawable/custom_edit_text"
-                android:id="@+id/edit_time_spent_with_child"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/months"
-                android:inputType="number" />
+        <EditText
+            android:id="@+id/edit_time_spent_with_child"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
+            android:hint="@string/months"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

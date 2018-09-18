@@ -5,10 +5,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_new_screening.*
@@ -22,6 +24,7 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,6 +58,11 @@ class NewScreening : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val stringArray = resources.getStringArray(R.array.languages)
+        val adapter = ArrayAdapter<String>(activity, R.layout.select_dialog_singlechoice_material, stringArray)
+        edit_regscreen_mothertongue.threshold = 1
+        edit_regscreen_mothertongue.setAdapter(adapter)
 
         edit_regscreen_radio_female.setOnClickListener {
             gender = Gender.FEMALE
@@ -147,7 +155,7 @@ class NewScreening : Fragment() {
                 edit_regscreen_school.text.isEmpty() -> edit_regscreen_school.error = getString(R.string.required)
                 edit_regscreen_dob.text.isEmpty() -> edit_regscreen_dob.error = getString(R.string.required)
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
-                    Toast.makeText(activity,getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
+                    getString(R.string.select_gender).showAsToast(activity!!)
                 }
                 else->{
                     screeningParticipantViewModel.select(
@@ -172,8 +180,6 @@ class NewScreening : Fragment() {
                 }
             }
         }
-
-
 
         edit_regscreen_dob.setOnClickListener {
             DatePickerDialog(

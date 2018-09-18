@@ -155,8 +155,15 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="language">Language</string>
-    <string name="exit_screening_prompt">Are You Sure you want to stop current session?</string>
+    <string name="exit_screening_prompt">Are you sure you want to stop current session?</string>
     <string name="done">Done</string>
+    <string name="result">Result</string>
+    <string name="submit_screening_prompt">Are you sure you want to Submit?</string>
+    <string name="mail_sent">Mail Sent</string>
+    <string name="mail_error">Error while sending mail!</string>
+    <string name="score">SCORE</string>
+    <string name="type">TYPE</string>
+    <string name="comments">Comments</string>
 
 
     <string-array name="jst_categories">
@@ -288,6 +295,37 @@
     <string-array name="locales">
         <item>English</item>
         <item>Hindi</item>
+    </string-array>
+    
+    <string-array name="designations">
+        <item>Audiologist</item>
+        <item>Clinical Psychologist</item>
+        <item>Developmental Psychologist</item>
+        <item>Pediatrician</item>
+        <item>Psychiatrist</item>
+        <item>Psychologist</item>
+        <item>School Teacher</item>
+        <item>Special Educator</item>
+        <item>Speech Language Pathologist</item>
+        <item>Research</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Bengali</item>
+        <item>Telugu</item>
+        <item>Marathi</item>
+        <item>Tamil</item>
+        <item>Urdu</item>
+        <item>Kannada</item>
+        <item>Gujarati</item>
+        <item>Odia</item>
+        <item>Malayalam</item>
+        <item>Sanskrit</item>
+        <item>Punjabi</item>
+        <item>Assamese</item>
     </string-array>
 
 </resources>

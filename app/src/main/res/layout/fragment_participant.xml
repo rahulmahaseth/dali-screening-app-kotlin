@@ -174,7 +174,7 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:layout_below="@id/partipant_detail_layout"
-        android:text="Result"
+        android:text="@string/result"
         android:id="@+id/tv_participant_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -184,12 +184,13 @@
         android:layout_below="@id/tv_participant_result"
         android:orientation="horizontal"
         android:id="@+id/participant_score_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:paddingRight="10dp"
+            android:gravity="right"
             android:textSize="50dp"
-            android:text="15"
             android:textColor="@color/white"
             android:id="@+id/tv_participant_score"
             android:layout_weight="1"
@@ -197,6 +198,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/participant_score_separator"
             android:textSize="50dp"
             android:textColor="@color/white"
             android:text="/"
@@ -204,8 +206,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:paddingLeft="10dp"
             android:textSize="50dp"
-            android:text="21"
             android:textColor="@color/white"
             android:id="@+id/tv_participant_total"
             android:layout_weight="1"

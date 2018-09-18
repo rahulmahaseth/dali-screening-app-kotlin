@@ -19,6 +19,7 @@ import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 
@@ -101,7 +102,7 @@ class PendingScreenings: Fragment() {
                 .addOnCanceledListener {
                    // pending_swipe_layout.isRefreshing = false
                     pending_screening_progressBar.show()
-                    Toast.makeText(activity,getString(R.string.network_error), Toast.LENGTH_SHORT).show()
+                    getString(R.string.network_error).showAsToast(activity!!)
                 }
     }
 

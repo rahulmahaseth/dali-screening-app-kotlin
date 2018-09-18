@@ -15,12 +15,14 @@ import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Participant
+import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -57,21 +59,25 @@ class ScreeningDetails: Fragment() {
                         participant = it.toObject(Participant::class.java)!!
                         Log.d("ParticipantDetail-fetch","Success")
                         tv_screeeningdetail_name.text = participant.name
+                        tv_screeningdetail_class.text = participant.sClass.toString()
+                        tv_screeeningdetail_section.text = participant.section
                         tv_screeningdetail_language.text = screening.mediumOfInstruction
                         tv_screeningdetail_score.text = screening.totalScore.toString()
                         tv_screeningdetail_type.text = screening.type
                         tv_screeeningdetail_comment.text = screening.comments
+                        tv_screening_detail_separator.text = "/"
+                        tv_screeningdetail_total_score.text = if(screening.type == Type.JST.toString())"15" else "21"
                         screeningdetail_progressBar.hide()
                     }else{
                         Log.d("ParticipantDetail-fetch","Failure")
                         screeningdetail_progressBar.hide()
-                        Toast.makeText(activity, getString(R.string.data_not_found), Toast.LENGTH_SHORT).show()
+                        getString(R.string.data_not_found).showAsToast(activity!!)
                     }
                 }
                 .addOnFailureListener {
                     Log.d("ParticipantDetail-fetch","Error",it)
                     screeningdetail_progressBar.hide()
-                    Toast.makeText(activity, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
+                    getString(R.string.network_error).showAsToast(activity!!)
                 }
 
         if(scheduled){

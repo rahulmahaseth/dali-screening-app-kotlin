@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Dagger
 
 import dagger.Component
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Fragments.*
 import javax.inject.Singleton
@@ -24,4 +25,5 @@ interface AppComponent {
     fun inject(pendingScreenings: PendingScreenings)
     fun inject(participantDetail: ParticipantDetail)
     fun inject(screeningDetails: ScreeningDetails)
+    fun inject(newScreeningActivity: NewScreeningActivity)
 }

@@ -22,7 +22,6 @@ class SplashActivity: AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         (application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
-
         showFragment(
                 Fragment.instantiate(
                         this,

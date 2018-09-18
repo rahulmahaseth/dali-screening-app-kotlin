@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_forgotpassword.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class ForgotPassword : Fragment(){
@@ -45,10 +46,10 @@ class ForgotPassword : Fragment(){
                 else -> {
                     mAuth.sendPasswordResetEmail(edit_reset_pass_email.text.toString())
                             .addOnSuccessListener {
-                                Toast.makeText(activity, "Mail Sent", Toast.LENGTH_SHORT).show()
+                                getString(R.string.mail_sent).showAsToast(activity!!)
                             }
                             .addOnFailureListener {
-                                Toast.makeText(activity, "Error while sending mail!", Toast.LENGTH_SHORT).show()
+                                getString(R.string.mail_error).showAsToast(activity!!)
                             }
                 }
             }

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
 import android.widget.Toast
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -56,12 +57,12 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        stringArray.add("Language")
+        stringArray.add(getString(R.string.language))
         stringArray.add("English")
         stringArray.add("हिन्दी")
-        spinner_language.adapter = arrayAdapter
+        //spinner_language.adapter = arrayAdapter
 
-        spinner_language.onItemSelectedListener = this
+        //spinner_language.onItemSelectedListener = this
 
         edit_email.setOnFocusChangeListener { view, b ->
             if (!b) {
@@ -116,10 +117,10 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
             )
         }
 
-        spinner_language.setOnTouchListener { view, motionEvent ->
+        /*spinner_language.setOnTouchListener { view, motionEvent ->
             spinnerTouched = true
             false
-        }
+        }*/
     }
 
     private fun signIn() {
@@ -145,8 +146,6 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                     if (it.exists()) {
                         Log.d("Fetch-User", "Document Exists")
                         val user = it.toObject(User::class.java)
-                        AppPref.name = user!!.name
-                        AppPref.designation = user.designation
                         progressBar1.hide()
                         startActivity(Intent(activity, MainActivity::class.java))
                     } else {
@@ -154,7 +153,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                         enableViews()
                         progressBar1.hide()
                         mAuth.signOut()
-                        Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                        getString(R.string.login_fail).showAsToast(activity!!)
                     }
                 }
                 .addOnFailureListener {
@@ -162,7 +161,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                     progressBar1.hide()
                     enableViews()
                     mAuth.signOut()
-                    Toast.makeText(activity, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                    getString(R.string.login_fail).showAsToast(activity!!)
                 }
     }
 
@@ -172,7 +171,7 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         btn_login.isEnabled = false
         btn_signup.isEnabled = false
         tv_forgot_password.isEnabled = false
-        spinner_language.isEnabled = false
+        //spinner_language.isEnabled = false
     }
 
     private fun enableViews() {
@@ -181,29 +180,9 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         btn_login.isEnabled = true
         btn_signup.isEnabled = true
         tv_forgot_password.isEnabled = true
-        spinner_language.isEnabled = true
+        //spinner_language.isEnabled = true
     }
 
-    fun setLocale(lang: String) {
-        Log.d("setLocale:", lang)
-        val config = resources.configuration
-        val systemLocale = getSystemLocale(config).language
-        if ("" != lang && systemLocale != lang) {
-            locale = Locale(lang)
-            setSystemLocale(config, locale)
-            updateConfiguration(config)
-        }
-        /*
-        val conf = resources.configuration
-        val dm = resources.displayMetrics
-        config.locale = locale
-        activity!!.resources.updateConfiguration(conf, dm)
-        */
-        startActivity(Intent(activity, SplashActivity::class.java))
-        activity!!.finish()
-
-
-    }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         //do nothing
@@ -214,54 +193,22 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         when (position) {
             1 -> {
                 if (spinnerTouched) {
-                    AppPref.locale = "en"
-                    LocaleManager().setLocale(activity!!.baseContext)
+                    AppPref(activity!!.applicationContext).locale = "en"
+                    LocaleManager().setLocale(activity!!.applicationContext)
+                    startActivity(Intent(activity, SplashActivity::class.java))
+                    activity!!.finish()
                 }
             }
             2 -> {
                 if (spinnerTouched) {
-                    AppPref.locale = "hi"
-                    LocaleManager().setLocale(activity!!.baseContext)
+                    AppPref(activity!!.applicationContext).locale = "hi"
+                    LocaleManager().setLocale(activity!!.applicationContext)
+                    startActivity(Intent(activity, SplashActivity::class.java))
+                    activity!!.finish()
                 }
             }
         }
 
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        if (locale != null) {
-            setSystemLocale(newConfig, locale)
-            Locale.setDefault(locale)
-            updateConfiguration(newConfig)
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private fun getSystemLocale(config: Configuration): Locale {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.locales.get(0)
-        } else {
-            config.locale
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private fun setSystemLocale(config: Configuration, locale: Locale) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.setLocale(locale)
-        } else {
-            config.locale = locale
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    private fun updateConfiguration(config: Configuration) {
-        if (Build.VERSION.SDK_INT >= 19) {
-            context!!.createConfigurationContext(config)
-        } else {
-            resources.updateConfiguration(config, resources.displayMetrics)
-        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

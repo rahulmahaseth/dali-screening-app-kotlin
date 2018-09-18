@@ -6,6 +6,20 @@
     android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 
+    <FrameLayout
+        android:id="@+id/comments_progressBar"
+        android:visibility="gone"
+        android:background="#c6262323"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:progressTint="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
     <EditText
         android:background="@drawable/custom_edit_text"
         android:hint="Comments"

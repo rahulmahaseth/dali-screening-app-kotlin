@@ -1,10 +1,9 @@
 package org.unesco.mgiep.dali.Data
 
+import android.content.Context
 import com.chibatching.kotpref.KotprefModel
 
-object AppPref: KotprefModel() {
-    var loggedIn by booleanPref(false)
-    var name by stringPref("")
-    var designation by stringPref("")
+class AppPref(context: Context): KotprefModel(context) {
     var locale by stringPref("en")
+
 }

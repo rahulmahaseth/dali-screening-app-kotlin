@@ -19,6 +19,7 @@ import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.*
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class MainActivity: AppCompatActivity() {
@@ -35,7 +36,6 @@ class MainActivity: AppCompatActivity() {
         (application as MyApplication).component.inject(this)
         handleNavigationClick()
         mAuth = FirebaseAuth.getInstance()
-
         showFragment(
                 Fragment.instantiate(
                 this,

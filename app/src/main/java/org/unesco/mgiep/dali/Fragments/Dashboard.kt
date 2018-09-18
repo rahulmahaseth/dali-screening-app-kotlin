@@ -27,6 +27,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
+import org.unesco.mgiep.dali.Utility.showAsToast
 
 
 class Dashboard : Fragment() {
@@ -123,7 +124,7 @@ class Dashboard : Fragment() {
                 .addOnCanceledListener {
                     dashboard_progressBar.hide()
                     //screening_swipe_layout.isRefreshing = false
-                    Toast.makeText(activity, "Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                    getString(R.string.network_error).showAsToast(activity!!)
                 }
     }
 
@@ -142,7 +143,7 @@ class Dashboard : Fragment() {
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(activity, "Error While Fetching Data! Check Network Connection.", Toast.LENGTH_SHORT).show()
+                    getString(R.string.network_error).showAsToast(activity!!)
                 }
     }
 

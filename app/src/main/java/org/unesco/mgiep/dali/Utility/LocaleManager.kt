@@ -17,7 +17,7 @@ class LocaleManager {
     }
 
     private fun getLanguage(c: Context): String{
-        return AppPref.locale
+        return AppPref(c).locale
     }
 
     private fun updatedResources(context: Context, language: String):Context{

@@ -50,6 +50,7 @@ class ParticipantDetail: Fragment() {
         tv_participant_name.text = participant.name
         tv_participant_class.text = participant.sClass.toString()
         tv_participant_section.text = participant.section
+        tv_participant_instituion.text = participant.institution
         tv_participant_mother_tongue.text = participant.motherTongue
         tv_participant_age.text = (Date().year - Date(participant.dob).year).toString()
 

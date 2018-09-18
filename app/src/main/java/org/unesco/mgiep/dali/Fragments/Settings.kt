@@ -71,13 +71,13 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
             1 -> {
                 if (spinnerTouched) {
                     setLocale("en")
-                    AppPref.locale = "en"
+                    AppPref(activity!!.baseContext).locale = "en"
                 }
             }
             2 -> {
                 if (spinnerTouched) {
                     setLocale("hi")
-                    AppPref.locale = "en"
+                    AppPref(activity!!.baseContext).locale = "en"
                 }
             }
         }

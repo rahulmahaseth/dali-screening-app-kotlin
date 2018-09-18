@@ -21,6 +21,7 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.showAsToast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +29,7 @@ class NewScreening2 : Fragment() {
 
     val calendar = Calendar.getInstance()
 
-    val onlyDate = "MMM DD,yyyy"
+    val onlyDate = "dd/MM/yyyy"
 
     val sdf = SimpleDateFormat(onlyDate, Locale.ENGLISH)
 
@@ -131,7 +132,7 @@ class NewScreening2 : Fragment() {
 
             when {
                 !radio_class_teacher.isChecked && !radio_language_teacher.isChecked && !radio_others.isChecked ->{
-                    Toast.makeText(activity,getString(R.string.relationship_with_child_none_select_error), Toast.LENGTH_SHORT).show()
+                    getString(R.string.relationship_with_child_none_select_error).showAsToast(activity!!)
                 }
                 edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
                 else -> {
@@ -167,7 +168,7 @@ class NewScreening2 : Fragment() {
                     )
 
                     val age = Date().year - Date(participant.dob).year
-                    Log.d("ParticipantDetail Age - ","$age")
+                    Log.d("ParticipantDetailAge - ","$age")
                     intent.putExtra("screeningId", screeningId)
                     intent.putExtra("participantId",participantId)
                     intent.putExtra("participantName", participant.name)
@@ -185,7 +186,7 @@ class NewScreening2 : Fragment() {
         btn_screenreg_schedule_submit.setOnClickListener {
             when {
                 !radio_class_teacher.isChecked && !radio_language_teacher.isChecked && !radio_others.isChecked ->{
-                    Toast.makeText(activity,getString(R.string.relationship_with_child_none_select_error), Toast.LENGTH_SHORT).show()
+                    getString(R.string.relationship_with_child_none_select_error).showAsToast(activity!!)
                 }
                 edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
                 else -> {
@@ -215,7 +216,7 @@ class NewScreening2 : Fragment() {
                                         id = screeningId,
                                         type = Type.JST.toString(),
                                         completed = false,
-                                        mediumOfInstruction = AppPref.locale,
+                                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
                                         participantId = participantId,
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,
@@ -232,7 +233,7 @@ class NewScreening2 : Fragment() {
                                         id = screeningId,
                                         type = Type.MST.toString(),
                                         completed = false,
-                                        mediumOfInstruction = AppPref.locale,
+                                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
                                         participantId = participantId,
                                         userId = mAuth.uid.toString(),
                                         totalScore = 0,

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Fragments.Screening
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class ScreeningActivity: AppCompatActivity() {
@@ -16,7 +17,6 @@ class ScreeningActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screening)
-
         showFragment(
                 Fragment.instantiate(
                         this,
@@ -29,9 +29,8 @@ class ScreeningActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        when {
-            drawer_layout.isDrawerOpen(GravityCompat.START) -> drawer_layout.closeDrawer(GravityCompat.START)
-            count == 0 -> {
+        when (count) {
+            0 -> {
                 AlertDialog.Builder(this)
                         .setMessage(getString(R.string.exit_screening_prompt))
                         .setPositiveButton(getString(R.string.yes)){ _, _->

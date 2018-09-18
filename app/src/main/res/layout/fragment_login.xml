@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
 
     <FrameLayout
         android:id="@+id/progressBar1"
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
-    <Spinner
+   <!-- <Spinner
         android:backgroundTint="@color/white"
         android:entries="@array/locales"
         android:layout_alignParentTop="true"
@@ -28,7 +29,7 @@
         android:id="@+id/spinner_language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"/> -->
 
 
     <LinearLayout
@@ -98,14 +99,7 @@
             android:orientation="horizontal"
             android:paddingVertical="10dp">
 
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:buttonTint="@color/white"
-                android:hint="@string/remember_me"
-                android:textColorHint="@color/white" />
+
 
             <TextView
                 android:width="0dp"

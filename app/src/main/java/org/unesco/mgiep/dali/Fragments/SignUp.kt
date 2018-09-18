@@ -24,6 +24,7 @@ import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
+import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -159,7 +160,7 @@ class SignUp :Fragment() {
                 edit_register_age.text.isEmpty() -> edit_register_age.error = getString(R.string.required)
                 edit_register_age.text.toString().toInt() <= 0 -> edit_register_age.error = getString(R.string.invalid_age)
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
-                    Toast.makeText(activity, getString(R.string.select_gender),Toast.LENGTH_SHORT).show()
+                    getString(R.string.select_gender).showAsToast(activity!!)
                 }
                 else->{
                     progressBar2.show()
@@ -178,19 +179,19 @@ class SignUp :Fragment() {
                                         )
                                 )
                                         .addOnSuccessListener {
-                                            Toast.makeText(activity,getString(R.string.user_saved),Toast.LENGTH_SHORT).show()
+                                            getString(R.string.user_saved).showAsToast(activity!!)
                                             progressBar2.hide()
                                             startActivity(Intent(activity, MainActivity::class.java))
                                         }
                                         .addOnFailureListener {
                                             progressBar2.hide()
-                                            Toast.makeText(activity,getString(R.string.user_sync_error),Toast.LENGTH_SHORT).show()
+                                            getString(R.string.user_sync_error).showAsToast(activity!!)
                                         }
 
                             }
                             .addOnFailureListener{
                                 progressBar2.hide()
-                                Toast.makeText(activity, getString(R.string.signup_fail), Toast.LENGTH_SHORT).show()
+                                getString(R.string.signup_fail).showAsToast(activity!!)
                                 Log.d("signup", getString(R.string.signup_fail),it)
                             }
                 }

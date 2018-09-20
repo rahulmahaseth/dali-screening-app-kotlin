@@ -165,6 +165,8 @@
     <string name="type">TYPE</string>
     <string name="comments">Comments</string>
     <string name="enter_details_of_the_participant">Enter details of the participant</string>
+    <string name="usually">USUALLY</string>
+    <string name="additional_comments">Additional Comments</string>
 
 
     <string-array name="jst_categories">

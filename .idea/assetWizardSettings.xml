@@ -20,7 +20,7 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="C:\Users\a_anand\Pictures\assets dali\Home\Home Dali-01.png" />
-                                      <entry key="outputName" value="ic_dali_logo" />
+                                      <entry key="outputName" value="ic_launcher" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="153243" />
                                     </map>
@@ -38,6 +38,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="scalingPercent" value="96" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -48,18 +49,15 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\a_anand\Pictures\assets dali\Home\Home Dali-01.png" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="foregroundImage" value="C:\Users\a_anand\Pictures\dali_logo.png" />
                                       <entry key="outputName" value="ic_dali" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
@@ -98,11 +96,11 @@
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="autoMirrored" value="true" />
                             <entry key="color" value="ffffff" />
-                            <entry key="height" value="399" />
-                            <entry key="outputName" value="ic_cartoonshome" />
+                            <entry key="height" value="168" />
+                            <entry key="outputName" value="ic_child_01" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\a_anand\Downloads\cartoonshome-01 (2).svg" />
-                            <entry key="width" value="1377" />
+                            <entry key="sourceFile" value="C:\Users\a_anand\Downloads\child-01.svg" />
+                            <entry key="width" value="168" />
                           </map>
                         </option>
                       </PersistentState>

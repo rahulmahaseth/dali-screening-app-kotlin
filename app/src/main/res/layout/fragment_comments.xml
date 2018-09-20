@@ -22,7 +22,7 @@
 
     <EditText
         android:background="@drawable/custom_edit_text"
-        android:hint="Comments"
+        android:hint="@string/additional_comments"
         android:id="@+id/edit_comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

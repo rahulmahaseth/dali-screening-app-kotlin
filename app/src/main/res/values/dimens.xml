@@ -6,4 +6,5 @@
     <dimen name="question_dimen">22sp</dimen>
     <dimen name="example_dimen">18sp</dimen>
     <dimen name="h4">12sp</dimen>
+    <dimen name="aliens">140dp</dimen>
 </resources>

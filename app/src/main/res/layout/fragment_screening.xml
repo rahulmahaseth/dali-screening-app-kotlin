@@ -70,7 +70,7 @@
                 android:id="@+id/btn_usually"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/always" />
+                android:text="@string/usually" />
 
             <RadioButton
                 android:textSize="@dimen/h2"

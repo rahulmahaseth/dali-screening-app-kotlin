@@ -53,7 +53,6 @@ class Login : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         edit_email.setOnFocusChangeListener { view, b ->
             if (!b) {
                 if (edit_email.text.isEmpty()) {

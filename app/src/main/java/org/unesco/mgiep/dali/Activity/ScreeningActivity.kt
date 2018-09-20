@@ -12,7 +12,10 @@ import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
-class ScreeningActivity: AppCompatActivity() {
+class ScreeningActivity: BaseActivity() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_screening
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

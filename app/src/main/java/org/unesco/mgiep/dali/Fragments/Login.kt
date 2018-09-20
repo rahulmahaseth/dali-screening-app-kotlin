@@ -29,8 +29,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class Login : Fragment(), AdapterView.OnItemSelectedListener {
-
+class Login : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private val login = Login()
@@ -39,9 +38,6 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     private val stringArray = ArrayList<String>()
     private lateinit var arrayAdapter: ArrayAdapter<String>
 
-    private var spinnerTouched = false
-
-    private var locale = Locale.ENGLISH
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
@@ -57,12 +53,6 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        stringArray.add(getString(R.string.language))
-        stringArray.add("English")
-        stringArray.add("हिन्दी")
-        //spinner_language.adapter = arrayAdapter
-
-        //spinner_language.onItemSelectedListener = this
 
         edit_email.setOnFocusChangeListener { view, b ->
             if (!b) {
@@ -116,11 +106,6 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
                     true
             )
         }
-
-        /*spinner_language.setOnTouchListener { view, motionEvent ->
-            spinnerTouched = true
-            false
-        }*/
     }
 
     private fun signIn() {
@@ -181,34 +166,6 @@ class Login : Fragment(), AdapterView.OnItemSelectedListener {
         btn_signup.isEnabled = true
         tv_forgot_password.isEnabled = true
         //spinner_language.isEnabled = true
-    }
-
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        //do nothing
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-
-        when (position) {
-            1 -> {
-                if (spinnerTouched) {
-                    AppPref(activity!!.applicationContext).locale = "en"
-                    LocaleManager().setLocale(activity!!.applicationContext)
-                    startActivity(Intent(activity, SplashActivity::class.java))
-                    activity!!.finish()
-                }
-            }
-            2 -> {
-                if (spinnerTouched) {
-                    AppPref(activity!!.applicationContext).locale = "hi"
-                    LocaleManager().setLocale(activity!!.applicationContext)
-                    startActivity(Intent(activity, SplashActivity::class.java))
-                    activity!!.finish()
-                }
-            }
-        }
-
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

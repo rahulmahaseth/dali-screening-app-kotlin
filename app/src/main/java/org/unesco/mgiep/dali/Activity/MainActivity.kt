@@ -22,7 +22,11 @@ import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: BaseActivity() {
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
 
     private lateinit var mAuth: FirebaseAuth
 

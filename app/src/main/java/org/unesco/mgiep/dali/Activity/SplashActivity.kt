@@ -14,7 +14,10 @@ import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity: BaseActivity() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_splash
+    }
 
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {

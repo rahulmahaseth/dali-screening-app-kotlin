@@ -11,7 +11,10 @@ import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
-class NewScreeningActivity : AppCompatActivity(){
+class NewScreeningActivity : BaseActivity(){
+    override fun getLayoutId(): Int {
+        return R.layout.activity_newscreening
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

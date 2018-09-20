@@ -14,6 +14,7 @@ import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.util.*
 
@@ -70,14 +71,21 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
         when (position) {
             1 -> {
                 if (spinnerTouched) {
-                    setLocale("en")
-                    AppPref(activity!!.baseContext).locale = "en"
+                    //setLocale("en")
+                    AppPref(activity!!.applicationContext).locale = "en"
+                    LocaleManager().setLocale(activity!!.applicationContext)
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    activity!!.finish()
                 }
             }
             2 -> {
                 if (spinnerTouched) {
-                    setLocale("hi")
-                    AppPref(activity!!.baseContext).locale = "en"
+                    //setLocale("hi")
+                    AppPref(activity!!.applicationContext).locale = "hi"
+                    LocaleManager().setLocale(activity!!.applicationContext)
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    activity!!.finish()
+
                 }
             }
         }

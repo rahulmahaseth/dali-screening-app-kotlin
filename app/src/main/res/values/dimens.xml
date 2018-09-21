@@ -7,4 +7,6 @@
     <dimen name="example_dimen">18sp</dimen>
     <dimen name="h4">12sp</dimen>
     <dimen name="aliens">140dp</dimen>
+    <dimen name="dots_height"></dimen>
+    <dimen name="dots_margin_bottom"></dimen>
 </resources>

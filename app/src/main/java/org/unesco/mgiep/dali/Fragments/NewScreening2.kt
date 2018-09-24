@@ -9,9 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_new_screening.*
+import kotlinx.android.synthetic.main.fragment_newscreening2.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Data.*
@@ -21,6 +20,8 @@ import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
+import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -92,40 +93,6 @@ class NewScreening2 : Fragment() {
             }
         }
 
-        val dateDialog = DatePickerDialog(
-                activity,
-                date2,
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR)
-        )
-
-
-        switch_schedule.setOnCheckedChangeListener { compoundButton, b ->
-            if(compoundButton.isChecked){
-                dateDialog.show()
-                btn_screenreg_schedule_submit.visibility = View.VISIBLE
-                btn_screenreg_submit.visibility = View.GONE
-            }else{
-                btn_change_scheduled_date.visibility = View.GONE
-                btn_screenreg_schedule_submit.visibility = View.GONE
-                btn_screenreg_submit.visibility = View.VISIBLE
-            }
-        }
-
-        dateDialog.setOnCancelListener {
-            switch_schedule.isChecked = false
-        }
-
-        btn_change_scheduled_date.setOnClickListener {
-            DatePickerDialog(
-                    activity,
-                    date2,
-                    calendar.get(Calendar.DAY_OF_MONTH),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.YEAR)
-            ).show()
-        }
 
         btn_screenreg_submit.setOnClickListener {
             Log.d("screening-reg","onClick")
@@ -150,34 +117,7 @@ class NewScreening2 : Fragment() {
                             createdBy = mAuth.currentUser!!.uid
                     ))
 
-                    mainRepository.saveParticipant(
-                            participantId,
-                            Participant(
-                                    id= participantId,
-                                    name = participant.name,
-                                    sClass = participant.sClass,
-                                    section = participant.section,
-                                    motherTongue = participant.motherTongue,
-                                    institution = participant.institution,
-                                    dob = participant.dob,
-                                    gender = participant.gender,
-                                    relationShipWithChild = relationShipWithChild.toString(),
-                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
-                                    createdBy = mAuth.currentUser!!.uid
-                            )
-                    )
-
-                    val age = Date().year - Date(participant.dob).year
-                    Log.d("ParticipantDetailAge - ","$age")
-                    intent.putExtra("screeningId", screeningId)
-                    intent.putExtra("participantId",participantId)
-                    intent.putExtra("participantName", participant.name)
-                    if(age <= 7){
-                        intent.putExtra("type", Type.JST.toString())
-                    }else{
-                        intent.putExtra("type", Type.MST.toString())
-                    }
-                    startActivity(intent)
+                    saveParticipant()
 
                 }
             }
@@ -190,6 +130,7 @@ class NewScreening2 : Fragment() {
                 }
                 edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
                 else -> {
+                    newscreening_progressBar?.show()
                     mainRepository.saveParticipant(
                             participantId,
                             Participant(
@@ -206,45 +147,18 @@ class NewScreening2 : Fragment() {
                                     createdBy = mAuth.currentUser!!.uid
                             )
                     )
-
-
-                    val age = calendar.time.year - Date(participant.dob).year
-                    if(age <= 7){
-                        mainRepository.saveScreening(
-                                screeningId,
-                                Screening(
-                                        id = screeningId,
-                                        type = Type.JST.toString(),
-                                        completed = false,
-                                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
-                                        participantId = participantId,
-                                        userId = mAuth.uid.toString(),
-                                        totalScore = 0,
-                                        scheduledDate = scheduleDate.time,
-                                        comments = "",
-                                        participantName = participant.name
-                                )
-                        )
-
-                    }else{
-                        mainRepository.saveScreening(
-                                UUID.randomUUID().toString(),
-                                Screening(
-                                        id = screeningId,
-                                        type = Type.MST.toString(),
-                                        completed = false,
-                                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
-                                        participantId = participantId,
-                                        userId = mAuth.uid.toString(),
-                                        totalScore = 0,
-                                        scheduledDate = scheduleDate.time,
-                                        comments = "",
-                                        participantName = participant.name
-                                )
-                        )
-
-                    }
-                    startActivity(Intent(activity, MainActivity::class.java))
+                            .addOnSuccessListener {
+                                val age = calendar.time.year - Date(participant.dob).year
+                                if(age <= 7){
+                                    saveScreening(Type.JST.toString())
+                                }else{
+                                    saveScreening(Type.MST.toString())
+                                }
+                            }
+                            .addOnCanceledListener {
+                                newscreening_progressBar?.hide()
+                                getString(R.string.participate_saving_error).showAsToast(activity!!)
+                            }
 
                 }
             }
@@ -252,12 +166,72 @@ class NewScreening2 : Fragment() {
 
     }
 
-    var date2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        calendar.set(Calendar.YEAR, year)
-        calendar.set(Calendar.MONTH, monthOfYear)
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-        scheduleDate = calendar.time
-        btn_change_scheduled_date.visibility = View.VISIBLE
-        tv_screenreg_schedule_date.text = sdf.format(scheduleDate)
+    private fun saveScreening(type: String){
+        mainRepository.saveScreening(
+                UUID.randomUUID().toString(),
+                Screening(
+                        id = screeningId,
+                        type = type,
+                        completed = false,
+                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
+                        participantId = participantId,
+                        userId = mAuth.uid.toString(),
+                        totalScore = 0,
+                        scheduledDate = scheduleDate.time,
+                        comments = "",
+                        participantName = participant.name
+                )
+        )
+                .addOnSuccessListener {
+                    newscreening_progressBar?.hide()
+                    startActivity(Intent(activity, MainActivity::class.java))
+                }
+                .addOnCanceledListener {
+                    newscreening_progressBar?.hide()
+                    getString(R.string.participate_saving_error).showAsToast(activity!!)
+                }
     }
+
+    private fun saveParticipant() {
+        newscreening_progressBar?.show()
+        mainRepository.saveParticipant(
+                participantId,
+                Participant(
+                        id= participantId,
+                        name = participant.name,
+                        sClass = participant.sClass,
+                        section = participant.section,
+                        motherTongue = participant.motherTongue,
+                        institution = participant.institution,
+                        dob = participant.dob,
+                        gender = participant.gender,
+                        relationShipWithChild = relationShipWithChild.toString(),
+                        timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
+                        createdBy = mAuth.currentUser!!.uid
+                )
+        )
+                .addOnSuccessListener {
+                    startScreening()
+                }
+                .addOnCanceledListener {
+                    newscreening_progressBar?.hide()
+                    getString(R.string.participate_saving_error).showAsToast(activity!!)
+                }
+    }
+
+    private fun startScreening(){
+        val age = Date().year - Date(participant.dob).year
+        Log.d("ParticipantDetailAge - ","$age")
+        intent.putExtra("screeningId", screeningId)
+        intent.putExtra("participantId",participantId)
+        intent.putExtra("participantName", participant.name)
+        if(age <= 7){
+            intent.putExtra("type", Type.JST.toString())
+        }else{
+            intent.putExtra("type", Type.MST.toString())
+        }
+        newscreening_progressBar?.hide()
+        startActivity(intent)
+    }
+
 }

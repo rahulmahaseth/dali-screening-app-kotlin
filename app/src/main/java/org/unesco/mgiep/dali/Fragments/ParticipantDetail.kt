@@ -54,14 +54,14 @@ class ParticipantDetail: Fragment() {
         tv_participant_mother_tongue.text = participant.motherTongue
         tv_participant_age.text = (Date().year - Date(participant.dob).year).toString()
 
-        participant_progressBar.show()
+        participant_progressBar?.show()
 
         firebaseRepository.fetchParticipantScreenings(participant.id)
                 .addOnSuccessListener {
                     if(!it.isEmpty){
                         it.documents.forEach {
                             screening = it.toObject(Screening::class.java)!!
-                            participant_progressBar.hide()
+                            participant_progressBar?.hide()
                             tv_participant_score.text = "${screening.totalScore}"
                             if(screening.type == Type.JST.toString()){
                                 tv_participant_total.text = "15"
@@ -70,12 +70,12 @@ class ParticipantDetail: Fragment() {
                             }
                         }
                     }else{
-                        participant_progressBar.hide()
+                        participant_progressBar?.hide()
                         Log.d("fetchPScreenings","empty doc")
                     }
                 }
                 .addOnFailureListener {
-                    participant_progressBar.hide()
+                    participant_progressBar?.hide()
                     Log.d("fetchPScreenings","error")
                 }
 

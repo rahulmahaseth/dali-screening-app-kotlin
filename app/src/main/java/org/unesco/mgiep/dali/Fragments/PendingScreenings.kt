@@ -81,7 +81,7 @@ class PendingScreenings: Fragment() {
     }
 
     private fun fetchPendingScreenings(){
-        pending_screening_progressBar.show()
+        pending_screening_progressBar?.show()
         firebaseRepository.fetchPendingUserScreenings(mAuth.currentUser!!.uid)
                 .addOnCompleteListener {
                     if(!it.result.isEmpty){
@@ -89,19 +89,19 @@ class PendingScreenings: Fragment() {
                         it.result.documents.forEach {
                             screenings.add(it.toObject(Screening::class.java))
                             lastAdapter.notifyDataSetChanged()
-                            pending_screening_progressBar.hide()
+                            pending_screening_progressBar?.hide()
                            // pending_swipe_layout.isRefreshing = false
                         }
                     }else{
                         //pending_swipe_layout.isRefreshing = false
                         //show empty screen
-                        pending_screening_progressBar.hide()
+                        pending_screening_progressBar?.hide()
 
                     }
                 }
                 .addOnCanceledListener {
                    // pending_swipe_layout.isRefreshing = false
-                    pending_screening_progressBar.show()
+                    pending_screening_progressBar?.show()
                     getString(R.string.network_error).showAsToast(activity!!)
                 }
     }

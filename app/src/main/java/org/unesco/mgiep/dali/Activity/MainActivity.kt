@@ -114,6 +114,13 @@ class MainActivity: BaseActivity() {
             drawer_layout.closeDrawers()
             true
         }
+
+        this.supportFragmentManager.addOnBackStackChangedListener {
+            if(getCurrentFragment() == Home::class.java){
+                nav_view.setCheckedItem(R.id.nav_home)
+            }
+
+        }
     }
 
     override fun onBackPressed() {
@@ -127,6 +134,9 @@ class MainActivity: BaseActivity() {
                         .setNegativeButton(getString(R.string.no)){ _, _->}
                         .create()
                         .show()
+            }
+            AppPref(this).loading -> {
+
             }
             else -> supportFragmentManager.popBackStack()
         }
@@ -143,9 +153,18 @@ class MainActivity: BaseActivity() {
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+
+        if(supportFragmentManager.backStackEntryCount > 0){
+            supportFragmentManager.popBackStackImmediate()
+        }
+
         fragment.showFragment(container = R.id.fragment_container,
                 fragmentManager = supportFragmentManager,
                 addToBackStack = addToBackStack)
+    }
+
+    private fun getCurrentFragment(): Fragment {
+        return supportFragmentManager.findFragmentById(R.id.fragment_container)
     }
 
 }

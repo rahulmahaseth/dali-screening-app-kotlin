@@ -9,58 +9,19 @@
     android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:tint="@color/white"
+    <FrameLayout
+        android:id="@+id/newscreening_progressBar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_date_range_black_24dp" />
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
-        <TextView
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="@string/schedule" />
-
-        <Switch
-            android:textColorHint="@color/white"
-            android:buttonTint="@color/white"
-            android:id="@+id/switch_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingVertical="10dp">
-
-        <TextView
-            android:textColor="@color/white"
-            android:id="@+id/tv_screenreg_schedule_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="32dp" />
-
-        <Button
-            android:id="@+id/btn_change_scheduled_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/change"
-            android:visibility="gone" />
-
-    </LinearLayout>
 
     <TextView
         android:paddingVertical="10dp"
@@ -131,23 +92,22 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_screenreg_schedule_submit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/next"
-            android:visibility="gone" />
+            android:text="SAVE FOR LATER" />
 
         <Button
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_screenreg_submit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/next" />
+            android:text="START NOW" />
     </LinearLayout>
 
 </LinearLayout>

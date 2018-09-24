@@ -60,20 +60,20 @@
     <string name="jst_q14">Restless and/or over-active.</string>
     <string name="jst_q15">Tends to be anxious, withdrawn, disruptive.</string>
 
-    <string name="jst_e1">Replace sound /r/ in RED with /b/ to get BED.</string>
-    <string name="jst_e2">Which of the following two words rhyme? BAR, CAR, BUS</string>
-    <string name="jst_e3">WAS, HAT, DAY, OUT, etc.</string>
-    <string name="jst_e4">If asked to point out the letter "J", the child is unable to do so.</string>
-    <string name="jst_e5">THE, FOR, CAT, SUN, etc.</string>
-    <string name="jst_e6">If asked to point out the number "5", the child is unable to do so.</string>
-    <string name="jst_e7">Is 4 greater than 7? What comes after 8? The child should be able to do such sequencing up to 8.</string>
-    <string name="jst_e8">Difficulty in understanding commands involving two or three steps. For example, "Open chapter number 4 and get to page number 34".</string>
-    <string name="jst_e9">The child may be unable to retrieve the word "bottle" and say instead,"I filled water in the ... uh .. box."</string>
+    <string name="jst_e1">For Ex: Replace sound /r/ in RED with /b/ to get BED.</string>
+    <string name="jst_e2">For Ex: Which of the following two words rhyme? BAR, CAR, BUS</string>
+    <string name="jst_e3">For Ex: WAS, HAT, DAY, OUT, etc.</string>
+    <string name="jst_e4">For Ex: If asked to point out the letter "J", the child is unable to do so.</string>
+    <string name="jst_e5">For Ex: THE, FOR, CAT, SUN, etc.</string>
+    <string name="jst_e6">For Ex: If asked to point out the number "5", the child is unable to do so.</string>
+    <string name="jst_e7">For Ex: Is 4 greater than 7? What comes after 8? The child should be able to do such sequencing up to 8.</string>
+    <string name="jst_e8">For Ex: Difficulty in understanding commands involving two or three steps. For example, "Open chapter number 4 and get to page number 34".</string>
+    <string name="jst_e9">For Ex: The child may be unable to retrieve the word "bottle" and say instead,"I filled water in the ... uh .. box."</string>
     <string name="jst_e10"></string>
     <string name="jst_e11"></string>
-    <string name="jst_e12">Difficulty in forming letters of common words e.g.:HAT.</string>
-    <string name="jst_e13">The child gets bored easily and leaves tasks incomplete. The teacher or parent has to constantly ask the child to pay attention and/or to finish the task.</string>
-    <string name="jst_e14">Has difficulty in sitting in one position. May roam in the class. May disturb other children in class.</string>
+    <string name="jst_e12">For Ex: Difficulty in forming letters of common words e.g.:HAT.</string>
+    <string name="jst_e13">For Ex: The child gets bored easily and leaves tasks incomplete. The teacher or parent has to constantly ask the child to pay attention and/or to finish the task.</string>
+    <string name="jst_e14">For Ex: Has difficulty in sitting in one position. May roam in the class. May disturb other children in class.</string>
     <string name="jst_e15"></string>
 
     <string name="mst_q1">Reads slowly and/or guesses words, and/or uncomfortable reading aloud.</string>
@@ -99,23 +99,23 @@
     <string name="mst_q21">Difficulty in memorizing school content such as multiplication tables, poems, etc.</string>
 
     <string name="mst_e1"></string>
-    <string name="mst_e2">The child may pronounce "hear" as "her", or omit word(s) while reading.</string>
-    <string name="mst_e3">The child is unable to say that /k/ is the first sound in the word CATCH.</string>
-    <string name="mst_e4">Problems in understanding written content both in books and on blackboard. Difficulty in comprehending passages about 6–8 lines.</string>
-    <string name="mst_e5">The child writes letters and/or numbers that are inconsistent or unusual in form and size.</string>
-    <string name="mst_e6">Difficulty in copying material rom black board or textbooks. Unable to use lines and margins properly.</string>
+    <string name="mst_e2">For Ex: The child may pronounce "hear" as "her", or omit word(s) while reading.</string>
+    <string name="mst_e3">For Ex: The child is unable to say that /k/ is the first sound in the word CATCH.</string>
+    <string name="mst_e4">For Ex: Problems in understanding written content both in books and on blackboard. Difficulty in comprehending passages about 6–8 lines.</string>
+    <string name="mst_e5">For Ex: The child writes letters and/or numbers that are inconsistent or unusual in form and size.</string>
+    <string name="mst_e6">For Ex: Difficulty in copying material rom black board or textbooks. Unable to use lines and margins properly.</string>
     <string name="mst_e7"></string>
-    <string name="mst_e8">Has difficulties in expressing ideas on a given topic. Expression is not age appropriate.</string>
-    <string name="mst_e9">Difficulty in using basic signs or is unable to understand the relationship between arithmetic concepts.</string>
+    <string name="mst_e8">For Ex: Has difficulties in expressing ideas on a given topic. Expression is not age appropriate.</string>
+    <string name="mst_e9">For Ex: Difficulty in using basic signs or is unable to understand the relationship between arithmetic concepts.</string>
     <string name="mst_e10"></string>
-    <string name="mst_e11">Still continues to count on finger, takes significantly long to do simple calculations.</string>
-    <string name="mst_e12">The child often asks the teacher to repeat instructuins saying, "did not understand. Can you please say it again?"</string>
-    <string name="mst_e13">"tractor" produced as "taktor".</string>
-    <string name="mst_e14">Difficulty in speaking complete sentences.</string>
-    <string name="mst_e15">circle, square and triangle</string>
+    <string name="mst_e11">For Ex: Still continues to count on finger, takes significantly long to do simple calculations.</string>
+    <string name="mst_e12">For Ex: The child often asks the teacher to repeat instructuins saying, "did not understand. Can you please say it again?"</string>
+    <string name="mst_e13">For Ex: "tractor" produced as "taktor".</string>
+    <string name="mst_e14">For Ex: Difficulty in speaking complete sentences.</string>
+    <string name="mst_e15">For Ex: circle, square and triangle</string>
     <string name="mst_e16"></string>
-    <string name="mst_e17">The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
-    <string name="mst_e18">Has difficulty in sitting in one postion. May roam in the class. May disturb other children in the class.</string>
+    <string name="mst_e17">For Ex: The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
+    <string name="mst_e18">For Ex: Has difficulty in sitting in one postion. May roam in the class. May disturb other children in the class.</string>
     <string name="mst_e19"></string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
@@ -168,6 +168,7 @@
     <string name="usually">USUALLY</string>
     <string name="additional_comments">Additional Comments</string>
     <string name="skip">Skip</string>
+    <string name="participate_saving_error">Participant Details Not Updated</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

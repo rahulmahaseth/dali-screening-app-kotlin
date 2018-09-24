@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.crashlytics.android.Crashlytics
 import com.google.firebase.auth.FirebaseAuth
+import io.fabric.sdk.android.Fabric
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
@@ -24,6 +26,9 @@ class SplashActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         (application as MyApplication).component.inject(this)
+
+        Fabric.with(this, Crashlytics())
+        
         mAuth = FirebaseAuth.getInstance()
         showFragment(
                 Fragment.instantiate(

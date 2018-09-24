@@ -27,6 +27,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Utility.showAsToast
 
 
@@ -103,7 +104,7 @@ class Dashboard : Fragment() {
     }
 
     private fun fetchScreenings() {
-        dashboard_progressBar.show()
+        dashboard_progressBar?.show()
         firebaseRepository.fetchUserScreenings(mAuth.currentUser!!.uid)
                 .addOnSuccessListener {
                     if (!it.isEmpty) {
@@ -112,17 +113,16 @@ class Dashboard : Fragment() {
                             screeningsContainer.add(it.toObject(Screening::class.java))
                             screenings.add(it.toObject(Screening::class.java))
                             //screening_swipe_layout.isRefreshing = false
-                            dashboard_progressBar.hide()
+                            dashboard_progressBar?.hide()
                             lastAdapter.notifyDataSetChanged()
                         }
                     } else {
-                        //show empty screen
                         //screening_swipe_layout.isRefreshing = false
-                        dashboard_progressBar.hide()
+                        dashboard_progressBar?.hide()
                     }
                 }
                 .addOnCanceledListener {
-                    dashboard_progressBar.hide()
+                    dashboard_progressBar?.hide()
                     //screening_swipe_layout.isRefreshing = false
                     getString(R.string.network_error).showAsToast(activity!!)
                 }

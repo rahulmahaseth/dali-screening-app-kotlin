@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
+import kotlinx.android.synthetic.main.fragment_screening_detail.view.*
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
@@ -52,7 +54,17 @@ class ScreeningDetails: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        screeningdetail_progressBar.show()
+       /* screeningdetail_progressBar.setOnKeyListener { view, i, keyEvent ->
+            if(i == KeyEvent.KEYCODE_BACK && !keyEvent.isCanceled){
+                if(screeningdetail_progressBar.isEnabled){
+                    screeningdetail_progressBar.hide()
+                }
+                true
+            }
+            false
+        }
+            */
+        screeningdetail_progressBar?.show()
         mainRepository.getParticipant(screening.participantId)
                 .addOnSuccessListener {
                     if(it.exists()){
@@ -66,17 +78,17 @@ class ScreeningDetails: Fragment() {
                         tv_screeningdetail_type.text = screening.type
                         tv_screeeningdetail_comment.text = screening.comments
                         tv_screening_detail_separator.text = "/"
-                        tv_screeningdetail_total_score.text = if(screening.type == Type.JST.toString())"15" else "21"
-                        screeningdetail_progressBar.hide()
+                        tv_screeningdetail_total_score.text = if(screening.type == Type.JST.toString())"30" else "42"
+                        screeningdetail_progressBar?.hide()
                     }else{
                         Log.d("ParticipantDetail-fetch","Failure")
-                        screeningdetail_progressBar.hide()
+                        screeningdetail_progressBar?.hide()
                         getString(R.string.data_not_found).showAsToast(activity!!)
                     }
                 }
                 .addOnFailureListener {
                     Log.d("ParticipantDetail-fetch","Error",it)
-                    screeningdetail_progressBar.hide()
+                    screeningdetail_progressBar?.hide()
                     getString(R.string.network_error).showAsToast(activity!!)
                 }
 

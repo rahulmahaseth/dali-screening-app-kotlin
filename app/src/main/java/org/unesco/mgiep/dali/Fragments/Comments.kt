@@ -44,15 +44,15 @@ class Comments: Fragment(){
         super.onActivityCreated(savedInstanceState)
         btn_submit_screening.setOnClickListener { v ->
             screening.comments = edit_comments.text.toString()
-            comments_progressBar.show()
+            comments_progressBar?.show()
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
-                        comments_progressBar.hide()
+                        comments_progressBar?.hide()
                         getString(R.string.screening_saved).showAsToast(activity!!)
                         startActivity(Intent(activity, MainActivity::class.java))
                     }
                     .addOnFailureListener {
-                        comments_progressBar.hide()
+                        comments_progressBar?.hide()
                         getString(R.string.save_screening_error).showAsToast(activity!!)
                         startActivity(Intent(activity, MainActivity::class.java))
                     }

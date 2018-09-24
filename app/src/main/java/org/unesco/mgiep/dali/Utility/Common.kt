@@ -26,7 +26,7 @@ fun View.show(){
 }
 
 fun View.hide(){
-    if(visibility != View.GONE || visibility != View.INVISIBLE){
+    if(visibility != View.GONE && visibility != View.INVISIBLE){
         visibility = View.GONE
     }
 }

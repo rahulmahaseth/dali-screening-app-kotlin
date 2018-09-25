@@ -169,6 +169,7 @@
     <string name="additional_comments">Additional Comments</string>
     <string name="skip">Skip</string>
     <string name="participate_saving_error">Participant Details Not Updated</string>
+    <string name="fetch_participant_error">Error While Participant Details!</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

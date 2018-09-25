@@ -28,6 +28,8 @@ import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
 import org.unesco.mgiep.dali.Data.AppPref
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showAsToast
 
 
@@ -38,8 +40,10 @@ class Dashboard : Fragment() {
     private val screenings = ObservableArrayList<Screening>()
     private val participants = ObservableArrayList<Participant>()
     private lateinit var firebaseRepository: FirebaseRepository
+    private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
     private lateinit var screeningViewModel: ScreeningViewModel
+    private lateinit var participantViewModel: ScreeningParticipantViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,8 +51,10 @@ class Dashboard : Fragment() {
         (activity!!.application as MyApplication).component.inject(this)
         setHasOptionsMenu(true)
         firebaseRepository = FirebaseRepository()
+        mainRepository = MainReposirtory()
         mAuth = FirebaseAuth.getInstance()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
+        participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
     }
 
     fun initLastAdapter(): LastAdapter {
@@ -72,6 +78,7 @@ class Dashboard : Fragment() {
                     }
                     onClick {
                         screeningViewModel.select(it.binding.item!!)
+                        fetchParticipant(it.binding.item!!.participantId)
                         showFragment(
                                 Fragment.instantiate(
                                         activity,
@@ -128,22 +135,18 @@ class Dashboard : Fragment() {
                 }
     }
 
-    private fun fetchParticipants() {
-        firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
+    private fun fetchParticipant(id: String) {
+        dashboard_progressBar?.show()
+        mainRepository.getParticipant(id)
                 .addOnSuccessListener {
-                    if (!it.isEmpty) {
-                        screenings.clear()
-                        it.documents.forEach {
-                            participants.add(it.toObject(Participant::class.java))
-                        }
-                        //screening_swipe_layout.isRefreshing = false }
-                    } else {
-                        //show empty screen
-                        //screening_swipe_layout.isRefreshing = false
+                    if(it.exists()){
+                        participantViewModel.select(it.toObject(Participant::class.java)!!)
+                        dashboard_progressBar?.hide()
                     }
                 }
-                .addOnFailureListener {
-                    getString(R.string.network_error).showAsToast(activity!!)
+                .addOnCanceledListener {
+                    dashboard_progressBar?.hide()
+                    getString(R.string.fetch_participant_error).showAsToast(activity!!)
                 }
     }
 

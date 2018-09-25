@@ -38,7 +38,6 @@ class Dashboard : Fragment() {
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
-    private val participants = ObservableArrayList<Participant>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
@@ -79,13 +78,7 @@ class Dashboard : Fragment() {
                     onClick {
                         screeningViewModel.select(it.binding.item!!)
                         fetchParticipant(it.binding.item!!.participantId)
-                        showFragment(
-                                Fragment.instantiate(
-                                        activity,
-                                        ScreeningDetails::class.java.name
-                                ),
-                                true
-                        )
+
                     }
                 }
                 .into(screening_recycler)
@@ -104,14 +97,14 @@ class Dashboard : Fragment() {
         fetchScreenings()
 
 
-        /* screening_swipe_layout.setOnRefreshListener {
+        dashboard_refresh_layout.setOnRefreshListener {
              fetchScreenings()
-         }*/
+         }
 
     }
 
     private fun fetchScreenings() {
-        dashboard_progressBar?.show()
+        if(dashboard_refresh_layout.isRefreshing) dashboard_progressBar?.hide() else dashboard_progressBar?.show()
         firebaseRepository.fetchUserScreenings(mAuth.currentUser!!.uid)
                 .addOnSuccessListener {
                     if (!it.isEmpty) {
@@ -119,18 +112,18 @@ class Dashboard : Fragment() {
                         it.documents.forEach {
                             screeningsContainer.add(it.toObject(Screening::class.java))
                             screenings.add(it.toObject(Screening::class.java))
-                            //screening_swipe_layout.isRefreshing = false
+                            dashboard_refresh_layout?.isRefreshing = false
                             dashboard_progressBar?.hide()
                             lastAdapter.notifyDataSetChanged()
                         }
                     } else {
-                        //screening_swipe_layout.isRefreshing = false
+                        dashboard_refresh_layout?.isRefreshing = false
                         dashboard_progressBar?.hide()
                     }
                 }
                 .addOnCanceledListener {
                     dashboard_progressBar?.hide()
-                    //screening_swipe_layout.isRefreshing = false
+                    dashboard_refresh_layout?.isRefreshing = false
                     getString(R.string.network_error).showAsToast(activity!!)
                 }
     }
@@ -142,6 +135,13 @@ class Dashboard : Fragment() {
                     if(it.exists()){
                         participantViewModel.select(it.toObject(Participant::class.java)!!)
                         dashboard_progressBar?.hide()
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        ScreeningDetails::class.java.name
+                                ),
+                                true
+                        )
                     }
                 }
                 .addOnCanceledListener {

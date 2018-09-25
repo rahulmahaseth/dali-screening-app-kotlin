@@ -47,13 +47,7 @@ class PendingScreenings: Fragment() {
                     onClick {
                         screeningViewModel.select(it.binding.item!!)
                         fetchParticipant(it.binding.item!!.participantId)
-                        showFragment(
-                                Fragment.instantiate(
-                                        activity,
-                                        ScreeningDetails::class.java.name
-                                ),
-                                true
-                        )
+
                     }
                 }
                 .into(pending_screening_recycler)
@@ -64,6 +58,7 @@ class PendingScreenings: Fragment() {
         (activity!!.application as MyApplication).component.inject(this)
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
+        mainRepository = MainReposirtory()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
     }
@@ -120,6 +115,13 @@ class PendingScreenings: Fragment() {
                     if(it.exists()){
                         participantViewModel.select(it.toObject(Participant::class.java)!!)
                         pending_screening_progressBar?.hide()
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        ScreeningDetails::class.java.name
+                                ),
+                                true
+                        )
                     }
                 }
                 .addOnCanceledListener {

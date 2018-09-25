@@ -80,7 +80,7 @@ class MainActivity: BaseActivity() {
                             true
                     )
                 }
-                R.id.nav_participants ->{
+                /*R.id.nav_participants ->{
                     showFragment(
                             Fragment.instantiate(
                                     this,
@@ -88,7 +88,7 @@ class MainActivity: BaseActivity() {
                             ),
                             true
                     )
-                }
+                }*/
                 R.id.nav_settings -> {
                     showFragment(
                             Fragment.instantiate(
@@ -160,7 +160,8 @@ class MainActivity: BaseActivity() {
 
         fragment.showFragment(container = R.id.fragment_container,
                 fragmentManager = supportFragmentManager,
-                addToBackStack = addToBackStack)
+                addToBackStack = addToBackStack,
+                animate = false)
     }
 
     private fun getCurrentFragment(): Fragment {

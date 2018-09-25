@@ -15,6 +15,7 @@
         android:layout_height="match_parent">
 
         <ProgressBar
+            android:theme="@style/ProgressBarTheme"
             android:progressTint="@color/white"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

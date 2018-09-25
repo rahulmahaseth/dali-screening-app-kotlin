@@ -19,11 +19,11 @@
             android:title="@string/scheduled"/>
 
 
-
+ <!--
         <item
             android:icon="@drawable/ic_people_white_24dp"
             android:id="@+id/nav_participants"
-            android:title="@string/participants" />
+            android:title="@string/participants" /> -->
 
     </group>
 

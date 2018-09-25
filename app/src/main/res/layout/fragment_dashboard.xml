@@ -6,12 +6,14 @@
     android:background="@color/colorPrimaryDark">
 
         <FrameLayout
+            android:elevation="4dp"
             android:id="@+id/dashboard_progressBar"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
                 <ProgressBar
+                    android:theme="@style/ProgressBarTheme"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -20,12 +22,13 @@
 
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/screening_refresh_layout"
+            android:id="@+id/dashboard_refresh_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
 
                 <android.support.v7.widget.RecyclerView
+                    android:elevation="0dp"
                     android:scrollbars="vertical"
                     android:id="@+id/screening_recycler"
                     android:layout_width="match_parent"

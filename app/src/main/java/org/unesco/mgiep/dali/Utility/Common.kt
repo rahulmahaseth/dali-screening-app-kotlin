@@ -14,6 +14,9 @@ import org.unesco.mgiep.dali.R
 fun Fragment.showFragment(container: Int, fragmentManager: FragmentManager,
                           addToBackStack: Boolean = false, animate: Boolean = true) {
     val fm = fragmentManager.beginTransaction()
+    if(animate){
+        fm.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
     fm.replace(container, this, this.javaClass.name)
     if (addToBackStack) fm.addToBackStack(null)
     fm.commit()

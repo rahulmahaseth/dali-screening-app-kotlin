@@ -170,6 +170,9 @@
     <string name="skip">Skip</string>
     <string name="participate_saving_error">Participant Details Not Updated</string>
     <string name="fetch_participant_error">Error While Participant Details!</string>
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="select_screening_language">Select Screening Language</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

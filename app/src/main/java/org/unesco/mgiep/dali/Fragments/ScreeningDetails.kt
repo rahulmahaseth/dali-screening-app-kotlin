@@ -13,6 +13,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.view.*
+import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
@@ -84,7 +85,7 @@ class ScreeningDetails: Fragment() {
         }
 
         btn_screening_detail_start.setOnClickListener {
-            startActivity(Intent(activity!!, ScreeningActivity::class.java)
+            startActivity(Intent(activity!!, LanguageSelect::class.java)
                     .putExtra("screeningId", screening.id)
                     .putExtra("type", screening.type)
                     .putExtra("participantId", screening.participantId)

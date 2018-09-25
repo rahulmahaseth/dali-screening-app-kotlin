@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_newscreening2.*
+import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Data.*
@@ -61,7 +62,7 @@ class NewScreening2 : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
-        intent = Intent(activity, ScreeningActivity::class.java)
+        intent = Intent(activity, LanguageSelect::class.java)
         participant = screeningParticipantViewModel.getParticipant().value!!
     }
 

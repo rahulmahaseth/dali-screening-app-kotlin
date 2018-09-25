@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Utility
 
 import android.content.Context
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.util.Log
 import org.unesco.mgiep.dali.Data.AppPref
@@ -9,9 +10,12 @@ import java.util.*
 
 class LocaleManager {
 
-    fun setLocale(c: Context): Context {
-        Log.d("setLocale","$c - ${getLanguage(c)}")
-        return setNewLocale(c, getLanguage(c))
+    val langEnglish = "en"
+    val langHindi = "hi"
+
+    fun setLocale(c: Context?): Context {
+        Log.d("setLocale","${getLanguage(c!!)}")
+        return setNewLocale(c!!, getLanguage(c))
     }
 
     fun setNewLocale(c: Context, language: String): Context {
@@ -23,24 +27,23 @@ class LocaleManager {
     }
 
     private fun updatedResources(context: Context, language: String):Context{
-        Log.d("updatedResources","$context - $language")
+        Log.d("updatedResources","$language")
         var c= context
         val locale = Locale(language)
         Locale.setDefault(locale)
-        Log.d("default lcoale","${Locale.getDefault()}")
 
-        val res = c.resources
+        val res = context.resources
         val config = Configuration(res.configuration)
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= 17) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 Log.d("1PRECHANGE-BUILD > N)","${config.locales[0]}")
             }else{
                 Log.d("1PRECHANGE-BUILD > N","${config.locale}")
             }
             config.setLocale(locale)
-            c = c.createConfigurationContext(config)
+            c = context.createConfigurationContext(config)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 Log.d("1POSTCHANGE-BUILD > N)","${config.locales[0]}")
             }else{
@@ -53,14 +56,19 @@ class LocaleManager {
                 Log.d("2PRECHANGE-BUILD ELSE","${config.locale}")
             }
             config.locale = locale
+            res.updateConfiguration(config, res.displayMetrics)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 Log.d("2POSTCHANGE-BUILD > N)","${config.locales[0]}")
             }else{
                 Log.d("2POSTCHANGE-BUILD ELSE","${config.locale}")
             }
-            res.updateConfiguration(config, res.displayMetrics)
         }
         return c
+    }
+
+    fun getLocale(res: Resources): Locale{
+        val config = res.configuration
+        return if(Build.VERSION.SDK_INT >= 24) config.locales[0] else  config.locale
     }
 }

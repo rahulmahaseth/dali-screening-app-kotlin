@@ -50,17 +50,6 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
-        config.locale = locale
-        activity!!.resources.updateConfiguration(config, activity!!.resources.displayMetrics)
-        startActivity(Intent(activity, MainActivity::class.java))
-        activity!!.finish()
-    }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         //do nothing

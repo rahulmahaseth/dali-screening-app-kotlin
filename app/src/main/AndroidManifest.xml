@@ -25,6 +25,10 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
 
+        <activity android:name=".Activity.LanguageSelect">
+
+        </activity>
+
         <activity android:name=".Activity.SplashActivity"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustResize">

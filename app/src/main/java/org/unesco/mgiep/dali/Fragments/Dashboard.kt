@@ -27,6 +27,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
+import kotlinx.android.synthetic.main.item_screening.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
@@ -73,6 +74,10 @@ class Dashboard : Fragment() {
                             } else {
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
                             }
+                        }
+
+                        if(it.binding.item!!.completed){
+                            it.itemView.item_screening_done.visibility =View.VISIBLE
                         }
                     }
                     onClick {

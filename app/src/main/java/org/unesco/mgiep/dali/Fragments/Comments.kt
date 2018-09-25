@@ -2,6 +2,9 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -49,15 +52,35 @@ class Comments: Fragment(){
                     .addOnSuccessListener {
                         comments_progressBar?.hide()
                         getString(R.string.screening_saved).showAsToast(activity!!)
-                        startActivity(Intent(activity, MainActivity::class.java))
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            setLocale(Resources.getSystem().configuration.locales[0].language)
+                        }else{
+                            setLocale(Resources.getSystem().configuration.locale.language)
+                        }
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()
                         getString(R.string.save_screening_error).showAsToast(activity!!)
-                        startActivity(Intent(activity, MainActivity::class.java))
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            setLocale(Resources.getSystem().configuration.locales[0].language)
+                        }else{
+                            setLocale(Resources.getSystem().configuration.locale.language)
+                        }
                     }
         }
+    }
 
-
+    fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        //val conf = resources.configuration
+        //val dm = resources.displayMetrics
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
+        startActivity(
+                Intent(activity, MainActivity::class.java)
+        )
+        activity!!.finish()
     }
 }

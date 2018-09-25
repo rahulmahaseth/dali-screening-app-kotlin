@@ -192,4 +192,5 @@
     <string name="fetch_participant_error">प्रतिभागी विवरण के दौरान त्रुटि!</string>
     <string name="english">अंग्रेज़ी</string>
     <string name="hindi">"हिंदी "</string>
+    <string name="select_screening_language">स्क्रीनिंग भाषा का चयन करें</string>
 </resources>

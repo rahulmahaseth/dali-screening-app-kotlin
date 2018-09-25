@@ -9,14 +9,18 @@ import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
+import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
@@ -28,8 +32,10 @@ class PendingScreenings: Fragment() {
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screenings = ObservableArrayList<Screening>()
     private lateinit var firebaseRepository: FirebaseRepository
+    private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
     private lateinit var screeningViewModel: ScreeningViewModel
+    private lateinit var participantViewModel: ScreeningParticipantViewModel
 
     fun initLastAdapter(): LastAdapter {
         return LastAdapter(screenings, BR.item)
@@ -40,6 +46,7 @@ class PendingScreenings: Fragment() {
                     }
                     onClick {
                         screeningViewModel.select(it.binding.item!!)
+                        fetchParticipant(it.binding.item!!.participantId)
                         showFragment(
                                 Fragment.instantiate(
                                         activity,
@@ -58,7 +65,7 @@ class PendingScreenings: Fragment() {
         mAuth = FirebaseAuth.getInstance()
         firebaseRepository = FirebaseRepository()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
-
+        participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -103,6 +110,21 @@ class PendingScreenings: Fragment() {
                    // pending_swipe_layout.isRefreshing = false
                     pending_screening_progressBar?.show()
                     getString(R.string.network_error).showAsToast(activity!!)
+                }
+    }
+
+    private fun fetchParticipant(id: String) {
+        pending_screening_progressBar?.show()
+        mainRepository.getParticipant(id)
+                .addOnSuccessListener {
+                    if(it.exists()){
+                        participantViewModel.select(it.toObject(Participant::class.java)!!)
+                        pending_screening_progressBar?.hide()
+                    }
+                }
+                .addOnCanceledListener {
+                    pending_screening_progressBar?.hide()
+                    getString(R.string.fetch_participant_error).showAsToast(activity!!)
                 }
     }
 

@@ -80,6 +80,7 @@ class ScreeningDetails: Fragment() {
         tv_screeningdetail_total_score.text = if(screening.type == Type.JST.toString())"30" else "42"
 
         if(scheduled){
+            screening_detail_score_layout.visibility = View.GONE
             screening_comment_layout.visibility = View.GONE
             btn_screening_detail_start.visibility = View.VISIBLE
         }

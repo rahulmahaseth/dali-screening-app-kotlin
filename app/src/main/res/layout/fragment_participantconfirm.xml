@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="@dimen/h2"
+            android:text="@string/confirm_participant_details"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_centerVertical="true"
+            android:background="@drawable/custom_edit_text"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/sgd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_class"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/mother_tongue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_mother_tongue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/school_university"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_school"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/select_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/relationship_with_child"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_relationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/estimated_time_spent_with_child"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_timespent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<Button
+            android:id="@+id/btn_confirm_partiicpant_back"
+            android:text="@string/back"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" /> -->
+
+        <Button
+            android:textSize="@dimen/h2"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/btn_confirm_partiicpant"
+            android:text="CONFIRM"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

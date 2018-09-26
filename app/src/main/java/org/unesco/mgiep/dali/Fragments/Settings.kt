@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -35,6 +36,8 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.nav_view.menu.getItem(3).isChecked = true
+
 
         stringArray.add(getString(R.string.language))
         stringArray.add("English")
@@ -61,6 +64,7 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
             1 -> {
                 if (spinnerTouched) {
                     //setLocale("en")
+                    LocaleManager().persistLanguage(activity!!.applicationContext, "en")
                     AppPref(activity!!.applicationContext).locale = "en"
                     LocaleManager().setLocale(activity!!.applicationContext)
                     startActivity(Intent(activity, MainActivity::class.java))
@@ -70,6 +74,7 @@ class Settings : Fragment(), AdapterView.OnItemSelectedListener {
             2 -> {
                 if (spinnerTouched) {
                     //setLocale("hi")
+                    LocaleManager().persistLanguage(activity!!.applicationContext, "hi")
                     AppPref(activity!!.applicationContext).locale = "hi"
                     LocaleManager().setLocale(activity!!.applicationContext)
                     startActivity(Intent(activity, MainActivity::class.java))

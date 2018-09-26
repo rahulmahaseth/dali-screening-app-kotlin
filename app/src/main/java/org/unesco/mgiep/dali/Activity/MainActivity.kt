@@ -135,9 +135,6 @@ class MainActivity: BaseActivity() {
                         .create()
                         .show()
             }
-            AppPref(this).loading -> {
-
-            }
             else -> supportFragmentManager.popBackStack()
         }
     }

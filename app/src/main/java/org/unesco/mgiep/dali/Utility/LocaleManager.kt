@@ -7,23 +7,38 @@ import android.os.Build
 import android.util.Log
 import org.unesco.mgiep.dali.Data.AppPref
 import java.util.*
+import android.R.id.edit
+import android.preference.PreferenceManager
+import android.content.SharedPreferences
+import android.annotation.SuppressLint
+
+
 
 class LocaleManager {
 
-    val langEnglish = "en"
-    val langHindi = "hi"
+    val LANGUAGE_ENGLISH = "en"
+    val LANGUAGE_HINDI = "hi"
+    private val LANGUAGE_KEY = "language_key"
+
 
     fun setLocale(c: Context?): Context {
         Log.d("setLocale","${getLanguage(c!!)}")
-        return setNewLocale(c!!, getLanguage(c))
+        return setNewLocale(c!!, getLanguage(c)!!)
     }
 
     fun setNewLocale(c: Context, language: String): Context {
         return updatedResources(c, language)
     }
 
-    private fun getLanguage(c: Context): String{
-        return AppPref(c).locale
+    fun getLanguage(c: Context): String? {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(c)
+        return prefs.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
+    }
+
+    @SuppressLint("ApplySharedPref")
+    fun persistLanguage(c: Context, language: String) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(c)
+        prefs.edit().putString(LANGUAGE_KEY, language).commit()
     }
 
     private fun updatedResources(context: Context, language: String):Context{
@@ -36,33 +51,12 @@ class LocaleManager {
         val config = Configuration(res.configuration)
 
 
-        if (Build.VERSION.SDK_INT >= 17) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Log.d("1PRECHANGE-BUILD > N)","${config.locales[0]}")
-            }else{
-                Log.d("1PRECHANGE-BUILD > N","${config.locale}")
-            }
+        if (Build.VERSION.SDK_INT >= 17) {config.setLocale(locale)
             config.setLocale(locale)
             c = context.createConfigurationContext(config)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Log.d("1POSTCHANGE-BUILD > N)","${config.locales[0]}")
-            }else{
-                Log.d("1POSTCHANGE-BUILD > N","${config.locale}")
-            }
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Log.d("2PRECHANGE-BUILD > N)","${config.locales[0]}")
-            }else{
-                Log.d("2PRECHANGE-BUILD ELSE","${config.locale}")
-            }
             config.locale = locale
             res.updateConfiguration(config, res.displayMetrics)
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Log.d("2POSTCHANGE-BUILD > N)","${config.locales[0]}")
-            }else{
-                Log.d("2POSTCHANGE-BUILD ELSE","${config.locale}")
-            }
         }
         return c
     }

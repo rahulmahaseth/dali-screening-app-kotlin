@@ -25,14 +25,14 @@ class MyApplication: Application() {
     companion object {
         lateinit var instance: MyApplication
     }
-/*
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(LocaleManager().setLocale(instance))
+
+    /*override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(LocaleManager().setLocale(base))
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
-        LocaleManager().setLocale(instance)
+        LocaleManager().setLocale(this)
     }
-    */
+*/
 }

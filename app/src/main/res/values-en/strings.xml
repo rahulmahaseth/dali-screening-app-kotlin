@@ -159,4 +159,21 @@
     <string name="language">Language</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Bengali</item>
+        <item>Telugu</item>
+        <item>Marathi</item>
+        <item>Tamil</item>
+        <item>Urdu</item>
+        <item>Kannada</item>
+        <item>Gujarati</item>
+        <item>Odia</item>
+        <item>Malayalam</item>
+        <item>Sanskrit</item>
+        <item>Punjabi</item>
+        <item>Assamese</item>
+    </string-array>
 </resources>

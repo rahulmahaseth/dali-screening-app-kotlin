@@ -61,7 +61,4 @@ class SplashActivity: BaseActivity() {
         }
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(LocaleManager().setLocale(newBase!!))
-    }
 }

@@ -233,6 +233,7 @@ class NewScreening2 : Fragment() {
         }
         newscreening_progressBar?.hide()
         startActivity(intent)
+        activity!!.finish()
     }
 
 }

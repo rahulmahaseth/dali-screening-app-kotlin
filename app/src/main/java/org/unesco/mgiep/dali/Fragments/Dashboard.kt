@@ -27,6 +27,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
+import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.item_screening.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
@@ -94,6 +95,7 @@ class Dashboard : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.nav_view.menu.getItem(1).isChecked = true
 
         screening_recycler.adapter = lastAdapter
         screening_recycler.layoutManager = LinearLayoutManager(activity)

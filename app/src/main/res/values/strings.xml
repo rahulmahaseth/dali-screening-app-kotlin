@@ -174,7 +174,7 @@
     <string name="hindi">Hindi</string>
     <string name="select_screening_language">Select Screening Language</string>
     <string name="home_description">DALI screening is the first online screening tool for dyslexia in regional Indian languages.</string>
-    <string name="prescreen_text_1">This Screening tool is designed to be used as a referral questionnaire. As per the language research, Children should be screened in their regional language which should also be used as the medium of instruction.</string>
+    <string name="prescreen_text_1">This Screening tool is designed to be used as a referral questionnaire. As per the language research, children should be screened in their regional language and the medium of instruction.</string>
     <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
     <string name="information">Information</string>
 

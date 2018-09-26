@@ -2,6 +2,8 @@ package org.unesco.mgiep.dali.Activity
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.select_language.*
@@ -36,13 +38,18 @@ class LanguageSelect: AppCompatActivity() {
 
 
     fun setLocale(lang: String) {
-        val locale = Locale(lang)
+        val locale = getLocale(lang)
+
+        val res = this.getResources()
+        // Change locale settings in the app.
+        val dm = res.getDisplayMetrics()
+        val conf = res.getConfiguration()
+        // TODO(raacker): deprecated. change to setLocale(). It needs to be set minSdk to 17. Configure project's minSdk first
+        conf.locale = locale
+        res.updateConfiguration(conf, dm)
+
         Locale.setDefault(locale)
-        val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
-        config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
+
         startActivity(
                 Intent(this, ScreeningActivity::class.java)
                     .putExtra("type", screeningType)
@@ -53,4 +60,22 @@ class LanguageSelect: AppCompatActivity() {
         )
         finish()
     }
+
+    private fun getLocale(languageTag: String?): Locale {
+        return if (languageTag == null) {
+            getDeviceLocale()
+        } else {
+            val values = languageTag.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            when (values.size) {
+                3 -> Locale(values[0], values[1], values[2])
+                2 -> Locale(values[0], values[1])
+                else -> Locale(values[0])
+            }
+        }
+    }
+
+    fun getDeviceLocale(): Locale {
+        return Resources.getSystem().configuration.locale
+    }
+
 }

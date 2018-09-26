@@ -9,6 +9,7 @@ import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import org.unesco.mgiep.dali.BR
@@ -66,8 +67,9 @@ class PendingScreenings: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
             inflater.inflate(R.layout.fragment_pendingscreenings, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity!!.nav_view.menu.getItem(2).isChecked = true
 
         pending_screening_recycler.adapter = lastAdapter
         pending_screening_recycler.layoutManager = LinearLayoutManager(activity)

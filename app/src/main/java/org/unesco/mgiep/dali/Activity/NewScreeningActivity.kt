@@ -34,6 +34,7 @@ class NewScreeningActivity : BaseActivity(){
         val count = supportFragmentManager.backStackEntryCount
         if(count == 0){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }else {
             supportFragmentManager.popBackStack()
         }

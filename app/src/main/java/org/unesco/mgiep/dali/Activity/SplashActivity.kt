@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.auth.FirebaseAuth
 import io.fabric.sdk.android.Fabric
+import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
@@ -58,6 +61,18 @@ class SplashActivity: BaseActivity() {
                     ),
                     addToBackStack = false
             )
+        }
+    }
+
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        when {
+            drawer_layout.isDrawerOpen(GravityCompat.START) -> drawer_layout.closeDrawer(GravityCompat.START)
+            count == 0 -> {
+                startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                finish()
+            }
+            else -> supportFragmentManager.popBackStack()
         }
     }
 

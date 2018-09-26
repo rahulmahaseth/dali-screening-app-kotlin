@@ -130,7 +130,10 @@ class MainActivity: BaseActivity() {
             count == 0 -> {
                 AlertDialog.Builder(this)
                         .setMessage(getString(R.string.exit_warn_message))
-                        .setPositiveButton(getString(R.string.yes)){ _, _->finish()}
+                        .setPositiveButton(getString(R.string.yes)){ _, _->
+                            startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                            finish()
+                        }
                         .setNegativeButton(getString(R.string.no)){ _, _->}
                         .create()
                         .show()

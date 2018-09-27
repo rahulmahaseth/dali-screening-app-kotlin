@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
+import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.R
 
@@ -14,6 +15,7 @@ class Home: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        (activity!!.application as MyApplication).component.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =

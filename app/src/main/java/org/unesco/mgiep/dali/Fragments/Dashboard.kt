@@ -16,9 +16,6 @@ import kotlinx.android.synthetic.main.item_screening.view.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.Screening
-import org.unesco.mgiep.dali.Data.Participant
-import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
@@ -29,7 +26,8 @@ import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.item_screening.*
-import org.unesco.mgiep.dali.Data.AppPref
+import org.unesco.mgiep.dali.Data.*
+import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showAsToast
@@ -40,6 +38,8 @@ class Dashboard : Fragment() {
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
+    private val particpants = ObservableArrayList<Participant>()
+    private var participant = Participant()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
@@ -77,6 +77,15 @@ class Dashboard : Fragment() {
                             }
                         }
 
+                        participant = particpants.filter { participant -> participant.id == it.binding.item!!.participantId }.single()
+
+                        if(participant.gender == Gender.MALE.toString()){
+                            item_screening_child.setImageDrawable(R.drawable.ic_child_36)
+                        }else{
+                            item_screening_child.setImageResource(R.drawable.ic_femalestudent)
+                        }
+
+
                         if(it.binding.item!!.completed){
                             it.itemView.item_screening_done.visibility =View.VISIBLE
                         }
@@ -102,10 +111,12 @@ class Dashboard : Fragment() {
 
 
         fetchScreenings()
+        fetchParticpants()
 
 
         dashboard_refresh_layout.setOnRefreshListener {
              fetchScreenings()
+            fetchParticpants()
          }
 
     }
@@ -131,6 +142,29 @@ class Dashboard : Fragment() {
                 .addOnCanceledListener {
                     dashboard_progressBar?.hide()
                     dashboard_refresh_layout?.isRefreshing = false
+                    getString(R.string.network_error).showAsToast(activity!!)
+                }
+    }
+
+    private fun fetchParticpants(){
+        if(dashboard_refresh_layout.isRefreshing) dashboard_progressBar?.hide() else dashboard_progressBar?.show()
+        firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
+                .addOnSuccessListener {
+                    if(!it.isEmpty){
+                        particpants.clear()
+                        it.documents.forEach {
+                            particpants.add(it.toObject(Participant::class.java))
+                            dashboard_refresh_layout?.isRefreshing = false
+                            dashboard_progressBar?.hide()
+                        }
+                    }else{
+                        dashboard_refresh_layout?.isRefreshing = false
+                        dashboard_progressBar?.hide()
+                    }
+                }
+                .addOnCanceledListener {
+                    dashboard_refresh_layout?.isRefreshing = false
+                    dashboard_progressBar?.hide()
                     getString(R.string.network_error).showAsToast(activity!!)
                 }
     }

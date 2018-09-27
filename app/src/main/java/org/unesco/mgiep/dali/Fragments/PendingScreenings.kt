@@ -5,12 +5,11 @@ import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
-import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -31,6 +30,7 @@ import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 class PendingScreenings: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
+    private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
@@ -105,16 +105,18 @@ class PendingScreenings: Fragment() {
                 }
                 .addOnCanceledListener {
                    // pending_swipe_layout.isRefreshing = false
-                    pending_screening_progressBar?.show()
+                    pending_screening_progressBar?.hide()
                     getString(R.string.network_error).showAsToast(activity!!)
                 }
     }
 
     private fun fetchParticipant(id: String) {
+        Log.d("fetchParticipant","start")
         pending_screening_progressBar?.show()
         mainRepository.getParticipant(id)
                 .addOnSuccessListener {
                     if(it.exists()){
+                        Log.d("fetchParticipantSuccess","${it.data}")
                         participantViewModel.select(it.toObject(Participant::class.java)!!)
                         pending_screening_progressBar?.hide()
                         showFragment(
@@ -127,6 +129,7 @@ class PendingScreenings: Fragment() {
                     }
                 }
                 .addOnCanceledListener {
+                    Log.d("fetchParticipant","cancelled")
                     pending_screening_progressBar?.hide()
                     getString(R.string.fetch_participant_error).showAsToast(activity!!)
                 }

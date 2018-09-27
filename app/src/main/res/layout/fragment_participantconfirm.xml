@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/grey">
+
+    <FrameLayout
+        android:id="@+id/confirmparticiapnt_progressBar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:theme="@style/ProgressBarTheme"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
     <LinearLayout
         android:padding="10dp"
@@ -33,6 +47,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -56,6 +71,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -79,6 +95,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -101,6 +118,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -123,6 +141,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -145,6 +164,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -153,7 +173,7 @@
                         android:padding="@dimen/h4"
                         android:textSize="@dimen/h3"
                         android:layout_weight="1"
-                        android:text="@string/select_gender"
+                        android:text="@string/gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -167,6 +187,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -190,6 +211,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/black_bottom_border"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -224,19 +246,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--<Button
-            android:id="@+id/btn_confirm_partiicpant_back"
-            android:text="@string/back"
+        <Button
+            android:layout_marginRight="2dp"
+            android:textSize="@dimen/h2"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/btn_confirm_partiicpant_save"
+            android:text="@string/save"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" /> -->
+            android:layout_height="wrap_content" />
 
         <Button
+            android:layout_marginLeft="2dp"
             android:textSize="@dimen/h2"
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"
             android:id="@+id/btn_confirm_partiicpant"
-            android:text="CONFIRM"
+            android:text="@string/start"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -1,105 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="10dp"
     android:background="@color/colorPrimary"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 
 
-    <FrameLayout
-        android:id="@+id/newscreening_progressBar"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ProgressBar
-            android:theme="@style/ProgressBarTheme"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
-
-
-    <TextView
-        android:paddingVertical="10dp"
-        android:textSize="@dimen/h3"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/relationship_with_child" />
-
-    <RadioGroup
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:buttonTint="@color/white"
+        <TextView
             android:textColor="@color/white"
-            android:id="@+id/radio_class_teacher"
+            android:textSize="@dimen/h2"
+            android:gravity="center"
+            android:text="Participant Information"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/class_teacher" />
+            android:layout_height="wrap_content" />
 
-        <RadioButton
-            android:buttonTint="@color/white"
-            android:textColor="@color/white"
-            android:id="@+id/radio_language_teacher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/language_teacher" />
-
-        <RadioButton
-            android:buttonTint="@color/white"
-            android:textColor="@color/white"
-            android:id="@+id/radio_others"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/other" />
-    </RadioGroup>
-
-    <TextView
-        android:layout_marginVertical="10dp"
-        android:textSize="@dimen/h3"
-        android:textColor="@color/white"
-        android:paddingTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/estimated_time_spent_with_child" />
-
-
-    <EditText
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:padding="8dp"
-        android:background="@drawable/custom_edit_text"
-        android:id="@+id/edit_time_spent_with_child"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/months"
-        android:inputType="number" />
+    </LinearLayout>
 
     <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:id="@+id/btn_screenreg_schedule_submit"
+        <TextView
+            android:paddingVertical="10dp"
+            android:textSize="@dimen/h3"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="SAVE FOR LATER" />
+            android:text="@string/relationship_with_child" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:buttonTint="@color/white"
+                android:textColor="@color/white"
+                android:id="@+id/radio_class_teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/class_teacher" />
+
+            <RadioButton
+                android:buttonTint="@color/white"
+                android:textColor="@color/white"
+                android:id="@+id/radio_language_teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/language_teacher" />
+
+            <RadioButton
+                android:buttonTint="@color/white"
+                android:textColor="@color/white"
+                android:id="@+id/radio_others"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/other" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_marginVertical="10dp"
+            android:textSize="@dimen/h3"
+            android:textColor="@color/white"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estimated_time_spent_with_child" />
+
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:padding="8dp"
+            android:background="@drawable/custom_edit_text"
+            android:id="@+id/edit_time_spent_with_child"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/months"
+            android:inputType="number" />
+    </LinearLayout>
+
+
 
         <Button
+            android:textSize="@dimen/h2"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
@@ -108,7 +107,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="START NOW" />
-    </LinearLayout>
+            android:text="@string/next" />
 
-</LinearLayout>
+</RelativeLayout>

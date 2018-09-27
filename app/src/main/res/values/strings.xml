@@ -178,6 +178,8 @@
     <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
     <string name="information">Information</string>
     <string name="confirm_participant_details">Confirm Participant Details</string>
+    <string name="gender">Gender</string>
+    <string name="save">Save</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_newscreening2.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
+import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Screening
@@ -24,6 +25,7 @@ import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
+import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,10 +45,6 @@ class NewScreening2 : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
 
-    private lateinit var firebaseRepository: FirebaseRepository
-    private lateinit var mainRepository: MainReposirtory
-
-    private lateinit var intent : Intent
 
     private val participantId = UUID.randomUUID().toString()
     private val screeningId = UUID.randomUUID().toString()
@@ -57,12 +55,9 @@ class NewScreening2 : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        (activity!!.application as MyApplication).component.inject(this)
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
-        firebaseRepository = FirebaseRepository()
-        mainRepository = MainReposirtory()
-        intent = Intent(activity, LanguageSelect::class.java)
         participant = screeningParticipantViewModel.getParticipant().value!!
     }
 
@@ -118,48 +113,15 @@ class NewScreening2 : Fragment() {
                             createdBy = mAuth.currentUser!!.uid
                     ))
 
-                    saveParticipant()
+                    //saveParticipant()
 
-                }
-            }
-        }
-
-        btn_screenreg_schedule_submit.setOnClickListener {
-            when {
-                !radio_class_teacher.isChecked && !radio_language_teacher.isChecked && !radio_others.isChecked ->{
-                    getString(R.string.relationship_with_child_none_select_error).showAsToast(activity!!)
-                }
-                edit_time_spent_with_child.text.isEmpty() -> edit_time_spent_with_child.error = getString(R.string.required)
-                else -> {
-                    newscreening_progressBar?.show()
-                    mainRepository.saveParticipant(
-                            participantId,
-                            Participant(
-                                    id= participantId,
-                                    name = participant.name,
-                                    sClass = participant.sClass,
-                                    section = participant.section,
-                                    motherTongue = participant.motherTongue,
-                                    institution = participant.institution,
-                                    dob = participant.dob,
-                                    gender = participant.gender,
-                                    relationShipWithChild = relationShipWithChild.toString(),
-                                    timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
-                                    createdBy = mAuth.currentUser!!.uid
-                            )
+                    showFragment(
+                            Fragment.instantiate(
+                                    activity,
+                                    ParticipantConfirm::class.java.name
+                            ),
+                            true
                     )
-                            .addOnSuccessListener {
-                                val age = calendar.time.year - Date(participant.dob).year
-                                if(age <= 7){
-                                    saveScreening(Type.JST.toString())
-                                }else{
-                                    saveScreening(Type.MST.toString())
-                                }
-                            }
-                            .addOnCanceledListener {
-                                newscreening_progressBar?.hide()
-                                getString(R.string.participate_saving_error).showAsToast(activity!!)
-                            }
 
                 }
             }
@@ -167,73 +129,11 @@ class NewScreening2 : Fragment() {
 
     }
 
-    private fun saveScreening(type: String){
-        mainRepository.saveScreening(
-                UUID.randomUUID().toString(),
-                Screening(
-                        id = screeningId,
-                        type = type,
-                        completed = false,
-                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
-                        participantId = participantId,
-                        userId = mAuth.uid.toString(),
-                        totalScore = 0,
-                        scheduledDate = scheduleDate.time,
-                        comments = "",
-                        participantName = participant.name
-                )
-        )
-                .addOnSuccessListener {
-                    newscreening_progressBar?.hide()
-                    startActivity(Intent(activity, MainActivity::class.java))
-                }
-                .addOnCanceledListener {
-                    newscreening_progressBar?.hide()
-                    getString(R.string.participate_saving_error).showAsToast(activity!!)
-                }
-    }
 
-    private fun saveParticipant() {
-        newscreening_progressBar?.show()
-        mainRepository.saveParticipant(
-                participantId,
-                Participant(
-                        id= participantId,
-                        name = participant.name,
-                        sClass = participant.sClass,
-                        section = participant.section,
-                        motherTongue = participant.motherTongue,
-                        institution = participant.institution,
-                        dob = participant.dob,
-                        gender = participant.gender,
-                        relationShipWithChild = relationShipWithChild.toString(),
-                        timeSpentWithChild = edit_time_spent_with_child.text.toString().toInt(),
-                        createdBy = mAuth.currentUser!!.uid
-                )
-        )
-                .addOnSuccessListener {
-                    startScreening()
-                }
-                .addOnCanceledListener {
-                    newscreening_progressBar?.hide()
-                    getString(R.string.participate_saving_error).showAsToast(activity!!)
-                }
-    }
-
-    private fun startScreening(){
-        val age = Date().year - Date(participant.dob).year
-        Log.d("ParticipantDetailAge - ","$age")
-        intent.putExtra("screeningId", screeningId)
-        intent.putExtra("participantId",participantId)
-        intent.putExtra("participantName", participant.name)
-        if(age <= 7){
-            intent.putExtra("type", Type.JST.toString())
-        }else{
-            intent.putExtra("type", Type.MST.toString())
-        }
-        newscreening_progressBar?.hide()
-        startActivity(intent)
-        activity!!.finish()
+    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        fragment.showFragment(container = R.id.new_screening_fragment_container,
+                fragmentManager = activity!!.supportFragmentManager,
+                addToBackStack = addToBackStack)
     }
 
 }

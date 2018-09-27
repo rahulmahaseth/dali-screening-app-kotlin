@@ -26,4 +26,9 @@ interface AppComponent {
     fun inject(participantDetail: ParticipantDetail)
     fun inject(screeningDetails: ScreeningDetails)
     fun inject(newScreeningActivity: NewScreeningActivity)
+    fun inject(home: Home)
+    fun inject(newScreening2: NewScreening2)
+    fun inject(participantConfirm: ParticipantConfirm)
+    fun inject(preScreeningIntro: PreScreeningIntro)
+    fun inject(screeningIntro: ScreeningIntro)
 }

@@ -59,16 +59,6 @@ class ScreeningDetails: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       /* screeningdetail_progressBar.setOnKeyListener { view, i, keyEvent ->
-            if(i == KeyEvent.KEYCODE_BACK && !keyEvent.isCanceled){
-                if(screeningdetail_progressBar.isEnabled){
-                    screeningdetail_progressBar.hide()
-                }
-                true
-            }
-            false
-        }
-            */
         tv_screeeningdetail_name.text = participant.name
         tv_screeningdetail_class.text = participant.sClass.toString()
         tv_screeeningdetail_section.text = participant.section

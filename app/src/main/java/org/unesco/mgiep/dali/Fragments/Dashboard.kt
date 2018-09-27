@@ -3,7 +3,6 @@ package org.unesco.mgiep.dali.Fragments
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.ObservableArrayList
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,7 +11,6 @@ import android.view.*
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.item_screening.view.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -24,6 +22,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import android.view.MenuInflater
 import kotlinx.android.synthetic.main.drawer_layout.*
+import kotlinx.android.synthetic.main.item_screeningparticipant.view.*
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
@@ -35,10 +34,10 @@ import org.unesco.mgiep.dali.databinding.ItemScreeningparticipantBinding
 class Dashboard : Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
-    private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
     private val particpants = ObservableArrayList<Participant>()
     private val screeningParticipants = ObservableArrayList<ScreeningParticipant>()
+    private val screeningParticipantsContainer = ObservableArrayList<ScreeningParticipant>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
@@ -133,8 +132,8 @@ class Dashboard : Fragment() {
                 .addOnSuccessListener {
                     if (!it.isEmpty) {
                         screenings.clear()
+
                         it.documents.forEach {
-                            screeningsContainer.add(it.toObject(Screening::class.java))
                             screenings.add(it.toObject(Screening::class.java))
                         }
                         fetchParticpants()
@@ -151,17 +150,19 @@ class Dashboard : Fragment() {
     }
 
     private fun fetchParticpants(){
-        //AsyncTask.execute {
             firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
                     .addOnSuccessListener {
                         if(!it.isEmpty){
                             particpants.clear()
+
                             it.documents.forEach {
                                 particpants.add(it.toObject(Participant::class.java))
                                 screeningParticipants.clear()
+                                screeningParticipantsContainer.clear()
                                 screenings.forEach {s->
                                     particpants.forEach {p->
                                         if(s.participantId == p.id){
+                                            screeningParticipantsContainer.add(ScreeningParticipant(s,p))
                                             screeningParticipants.add(ScreeningParticipant(s,p))
                                         }
                                     }
@@ -198,22 +199,21 @@ class Dashboard : Fragment() {
                 true
             }
             R.id.sort_only_jst -> {
-                screenings.clear()
-                screeningsContainer.filter { it.type == Type.JST.toString() }
-                        .map {
-                            screenings.add(it)
-                            lastAdapter.notifyDataSetChanged()
+                screeningParticipants.clear()
+                screeningParticipantsContainer.filter { it.screening.type == Type.JST.toString() }
+                        .forEach {
+                            screeningParticipants.add(it)
                         }
+                lastAdapter.notifyDataSetChanged()
                 true
             }
             R.id.sort_only_mst -> {
-                screenings.clear()
-                screeningsContainer.filter { it.type == Type.MST.toString() }
+                screeningParticipants.clear()
+                screeningParticipantsContainer.filter { it.screening.type == Type.MST.toString() }
                         .map {
-                            screenings.add(it)
-                            lastAdapter.notifyDataSetChanged()
+                            screeningParticipants.add(it)
                         }
-
+                lastAdapter.notifyDataSetChanged()
                 true
             }
             else -> {

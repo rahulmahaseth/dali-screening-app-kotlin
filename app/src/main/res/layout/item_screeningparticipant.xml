@@ -21,26 +21,31 @@
             android:drawableBottom="@color/colorPrimary"
             android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/item_screening_male"
+            <LinearLayout
                 android:layout_centerVertical="true"
                 android:paddingLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_child_36"/>
+                android:id="@+id/item_screening_imagelayout"
+                android:orientation="vertical"
+                android:layout_width="36dp"
+                android:layout_height="36dp">
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/item_screening_female"
-                android:layout_centerVertical="true"
-                android:paddingLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_femalestudent"/>
+                <ImageView
+                    android:id="@+id/item_screening_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_child_36"/>
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/item_screening_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_femalestudent"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_toLeftOf="@+id/item_screening_done"
-                android:layout_toRightOf="@+id/item_screening_male"
+                android:layout_toRightOf="@+id/item_screening_imagelayout"
                 android:id="@+id/item_screening_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_registration.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
@@ -36,6 +37,7 @@ class SignUp :Fragment() {
     private lateinit var firebaseRepository: FirebaseRepository
 
     private val user = User()
+    private var user2 = User()
 
     private var password = ""
 
@@ -167,20 +169,26 @@ class SignUp :Fragment() {
                     mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(),edit_register_password.text.toString())
                             .addOnSuccessListener{ authResult ->
                                 Log.d("userid-on-signup", authResult.user.uid)
+                                user2 = User(
+                                        edit_register_email.text.toString(),
+                                        edit_register_name.text.toString(),
+                                        edit_register_designation.text.toString(),
+                                        edit_register_school.text.toString(),
+                                        edit_register_age.text.toString().toInt(),
+                                        gender.toString()
+                                )
                                 mainReposirtory.saveUser(
                                         authResult.user.uid,
-                                        User(
-                                                edit_register_email.text.toString(),
-                                                edit_register_name.text.toString(),
-                                                edit_register_designation.text.toString(),
-                                                edit_register_school.text.toString(),
-                                                edit_register_age.text.toString().toInt(),
-                                                gender.toString()
-                                        )
+                                        user2
                                 )
                                         .addOnSuccessListener {
                                             getString(R.string.user_saved).showAsToast(activity!!)
                                             progressBar2.hide()
+                                            AppPref(activity!!.applicationContext).userEmail = user2.email
+                                            AppPref(activity!!.applicationContext).userName = user2.name
+                                            AppPref(activity!!.applicationContext).userDesignation = user2.designation
+                                            AppPref(activity!!.applicationContext).userInstitution = user2.institution
+                                            AppPref(activity!!.applicationContext).userAge = user2.age
                                             startActivity(Intent(activity, MainActivity::class.java))
                                         }
                                         .addOnFailureListener {

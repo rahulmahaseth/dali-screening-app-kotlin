@@ -1,25 +1,16 @@
 package org.unesco.mgiep.dali.Activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.util.AttributeSet
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.*
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class MainActivity: BaseActivity() {
@@ -89,7 +80,7 @@ class MainActivity: BaseActivity() {
                             true
                     )
                 }*/
-                R.id.nav_settings -> {
+                R.id.nav_profile -> {
                     showFragment(
                             Fragment.instantiate(
                                     this,

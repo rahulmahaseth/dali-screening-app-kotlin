@@ -67,7 +67,6 @@ class SplashActivity: BaseActivity() {
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
         when {
-            drawer_layout.isDrawerOpen(GravityCompat.START) -> drawer_layout.closeDrawer(GravityCompat.START)
             count == 0 -> {
                 startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 finish()

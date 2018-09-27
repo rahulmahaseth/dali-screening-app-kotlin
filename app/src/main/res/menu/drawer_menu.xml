@@ -30,9 +30,9 @@
     <group android:checkableBehavior="single"
         android:id="@+id/setting_menu">
         <item
-            android:icon="@drawable/ic_settings_white_24dp"
-            android:id="@+id/nav_settings"
-            android:title="@string/settings"/>
+            android:icon="@drawable/ic_person_black"
+            android:id="@+id/nav_profile"
+            android:title="@string/profile"/>
 
         <item
             android:icon="@drawable/ic_power_settings_new_white_24dp"

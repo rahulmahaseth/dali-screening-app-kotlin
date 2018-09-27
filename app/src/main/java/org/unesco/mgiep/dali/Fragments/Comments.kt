@@ -48,6 +48,7 @@ class Comments: Fragment(){
         btn_submit_screening.setOnClickListener { v ->
             screening.comments = edit_comments.text.toString()
             comments_progressBar?.show()
+            btn_submit_screening.isEnabled = false
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
                         comments_progressBar?.hide()

@@ -9,4 +9,6 @@
     <dimen name="aliens">140dp</dimen>
     <dimen name="dots_height"></dimen>
     <dimen name="dots_margin_bottom"></dimen>
+    <dimen name="reg_image_width">64dp</dimen>
+    <dimen name="reg_image_height">64dp</dimen>
 </resources>

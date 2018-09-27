@@ -180,6 +180,7 @@
     <string name="confirm_participant_details">Confirm Participant Details</string>
     <string name="gender">Gender</string>
     <string name="save">Save</string>
+    <string name="profile">Profile</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

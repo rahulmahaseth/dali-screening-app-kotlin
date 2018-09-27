@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -96,6 +97,14 @@ class Login : Fragment() {
             )
         }
 
+        tv_forgot_password.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+
+            }else{
+                tv_forgot_password.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            }
+        }
+
         tv_forgot_password.setOnClickListener {
             showFragment(
                     Fragment.instantiate(
@@ -130,6 +139,11 @@ class Login : Fragment() {
                     if (it.exists()) {
                         Log.d("Fetch-User", "Document Exists")
                         val user = it.toObject(User::class.java)
+                        AppPref(activity!!.applicationContext).userEmail = user!!.email
+                        AppPref(activity!!.applicationContext).userName = user.name
+                        AppPref(activity!!.applicationContext).userDesignation = user.designation
+                        AppPref(activity!!.applicationContext).userInstitution = user.institution
+                        AppPref(activity!!.applicationContext).userAge = user.age
                         progressBar1.hide()
                         startActivity(Intent(activity, MainActivity::class.java))
                     } else {

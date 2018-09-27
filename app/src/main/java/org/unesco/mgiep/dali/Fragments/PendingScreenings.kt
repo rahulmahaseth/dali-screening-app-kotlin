@@ -92,10 +92,11 @@ class PendingScreenings: Fragment() {
                         screenings.clear()
                         it.result.documents.forEach {
                             screenings.add(it.toObject(Screening::class.java))
-                            lastAdapter.notifyDataSetChanged()
-                            pending_screening_progressBar?.hide()
+
                            // pending_swipe_layout.isRefreshing = false
                         }
+                        lastAdapter.notifyDataSetChanged()
+                        pending_screening_progressBar?.hide()
                     }else{
                         //pending_swipe_layout.isRefreshing = false
                         //show empty screen

@@ -3,12 +3,12 @@ package org.unesco.mgiep.dali.Fragments
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.ObservableArrayList
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -22,15 +22,14 @@ import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
-import org.unesco.mgiep.dali.databinding.ItemScreeningBinding
 import android.view.MenuInflater
 import kotlinx.android.synthetic.main.drawer_layout.*
-import kotlinx.android.synthetic.main.item_screening.*
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.showAsToast
+import org.unesco.mgiep.dali.databinding.ItemScreeningparticipantBinding
 
 
 class Dashboard : Fragment() {
@@ -39,7 +38,7 @@ class Dashboard : Fragment() {
     private val screeningsContainer = ObservableArrayList<Screening>()
     private val screenings = ObservableArrayList<Screening>()
     private val particpants = ObservableArrayList<Participant>()
-    private var participant = Participant()
+    private val screeningParticipants = ObservableArrayList<ScreeningParticipant>()
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
@@ -59,42 +58,51 @@ class Dashboard : Fragment() {
     }
 
     fun initLastAdapter(): LastAdapter {
-        return LastAdapter(screenings, BR.item)
-                .map<Screening, ItemScreeningBinding>(R.layout.item_screening) {
+        return LastAdapter(screeningParticipants, BR.item)
+                .map<ScreeningParticipant, ItemScreeningparticipantBinding>(R.layout.item_screeningparticipant) {
                     onBind {
 
-                        if (it.binding.item!!.type == Type.JST.toString()) {
-                            if (it.binding.item!!.totalScore < 16) {
+                        if (it.binding.item!!.screening.type == Type.JST.toString()) {
+                            if (it.binding.item!!.screening.totalScore < 16) {
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
                             } else {
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
                             }
                         } else {
-                            if (it.binding.item!!.totalScore < 19) {
+                            if (it.binding.item!!.screening.totalScore < 19) {
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
                             } else {
                                 it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
                             }
                         }
 
-                        participant = particpants.filter { participant -> participant.id == it.binding.item!!.participantId }.single()
 
-                        if(participant.gender == Gender.MALE.toString()){
-                            item_screening_child.setImageDrawable(R.drawable.ic_child_36)
+                        if(it.binding.item!!.participant.gender == Gender.MALE.toString()){
+                            it.itemView.item_screening_male.visibility = View.VISIBLE
+                            it.itemView.item_screening_female.visibility = View.GONE
                         }else{
-                            item_screening_child.setImageResource(R.drawable.ic_femalestudent)
+                            it.itemView.item_screening_male.visibility = View.GONE
+                            it.itemView.item_screening_female.visibility = View.VISIBLE
                         }
 
 
-                        if(it.binding.item!!.completed){
+                        if(it.binding.item!!.screening.completed){
                             it.itemView.item_screening_done.visibility =View.VISIBLE
                         }
-                    }
-                    onClick {
-                        screeningViewModel.select(it.binding.item!!)
-                        fetchParticipant(it.binding.item!!.participantId)
 
                     }
+                    onClick {
+                        screeningViewModel.select(it.binding.item!!.screening)
+                        participantViewModel.select(it.binding.item!!.participant)
+                        showFragment(
+                                Fragment.instantiate(
+                                        activity,
+                                        ScreeningDetails::class.java.name
+                                ),
+                                true
+                        )
+                    }
+
                 }
                 .into(screening_recycler)
     }
@@ -111,12 +119,10 @@ class Dashboard : Fragment() {
 
 
         fetchScreenings()
-        fetchParticpants()
 
 
         dashboard_refresh_layout.setOnRefreshListener {
              fetchScreenings()
-            fetchParticpants()
          }
 
     }
@@ -130,10 +136,8 @@ class Dashboard : Fragment() {
                         it.documents.forEach {
                             screeningsContainer.add(it.toObject(Screening::class.java))
                             screenings.add(it.toObject(Screening::class.java))
-                            dashboard_refresh_layout?.isRefreshing = false
-                            dashboard_progressBar?.hide()
-                            lastAdapter.notifyDataSetChanged()
                         }
+                        fetchParticpants()
                     } else {
                         dashboard_refresh_layout?.isRefreshing = false
                         dashboard_progressBar?.hide()
@@ -147,49 +151,38 @@ class Dashboard : Fragment() {
     }
 
     private fun fetchParticpants(){
-        if(dashboard_refresh_layout.isRefreshing) dashboard_progressBar?.hide() else dashboard_progressBar?.show()
-        firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
-                .addOnSuccessListener {
-                    if(!it.isEmpty){
-                        particpants.clear()
-                        it.documents.forEach {
-                            particpants.add(it.toObject(Participant::class.java))
+        //AsyncTask.execute {
+            firebaseRepository.fetchParticipants(mAuth.currentUser!!.uid)
+                    .addOnSuccessListener {
+                        if(!it.isEmpty){
+                            particpants.clear()
+                            it.documents.forEach {
+                                particpants.add(it.toObject(Participant::class.java))
+                                screeningParticipants.clear()
+                                screenings.forEach {s->
+                                    particpants.forEach {p->
+                                        if(s.participantId == p.id){
+                                            screeningParticipants.add(ScreeningParticipant(s,p))
+                                        }
+                                    }
+                                }
+                            }
+
+                                lastAdapter.notifyDataSetChanged()
+                                dashboard_refresh_layout?.isRefreshing = false
+                                dashboard_progressBar?.hide()
+                        }else{
+                                dashboard_refresh_layout?.isRefreshing = false
+                                dashboard_progressBar?.hide()
+                            }
+                    }
+                    .addOnCanceledListener {
                             dashboard_refresh_layout?.isRefreshing = false
                             dashboard_progressBar?.hide()
-                        }
-                    }else{
-                        dashboard_refresh_layout?.isRefreshing = false
-                        dashboard_progressBar?.hide()
+                            getString(R.string.network_error).showAsToast(activity!!)
                     }
-                }
-                .addOnCanceledListener {
-                    dashboard_refresh_layout?.isRefreshing = false
-                    dashboard_progressBar?.hide()
-                    getString(R.string.network_error).showAsToast(activity!!)
-                }
     }
 
-    private fun fetchParticipant(id: String) {
-        dashboard_progressBar?.show()
-        mainRepository.getParticipant(id)
-                .addOnSuccessListener {
-                    if(it.exists()){
-                        participantViewModel.select(it.toObject(Participant::class.java)!!)
-                        dashboard_progressBar?.hide()
-                        showFragment(
-                                Fragment.instantiate(
-                                        activity,
-                                        ScreeningDetails::class.java.name
-                                ),
-                                true
-                        )
-                    }
-                }
-                .addOnCanceledListener {
-                    dashboard_progressBar?.hide()
-                    getString(R.string.fetch_participant_error).showAsToast(activity!!)
-                }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         activity!!.menuInflater.inflate(R.menu.toolbar_menu, menu)

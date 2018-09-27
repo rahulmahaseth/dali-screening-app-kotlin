@@ -212,4 +212,7 @@
     <string name="prescreen_text_2">"भारत की भाषा नीति के अनुसार बच्चे में डिस्लेक्सिया की पहचान के लिए छात्रों का मूल्यांकन प्रत्येक भाषा में हो जिस में छात्रों को शिक्षा प्राप्त हो रही है | "</string>
     <string name="information">"जानकारी "</string>
     <string name="gender">लिंग</string>
+    <string name="home_description">"भारतीय भाषाओँ में डिस्लेक्सिया की पहचान करवाने वाला एंड्राइड ऐप| "</string>
+    <string name="confirm_participant_details">प्रतिभागी विवरण की पुष्टि करें</string>
+    <string name="save">संचयन करे</string>
 </resources>

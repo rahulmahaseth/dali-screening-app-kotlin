@@ -9,5 +9,5 @@ class AppPref(context: Context): KotprefModel(context) {
     var userName by stringPref("")
     var userDesignation by stringPref("")
     var userInstitution by stringPref("")
-    var userAge by intPref(0)
+    var userAge by stringPref("")
 }

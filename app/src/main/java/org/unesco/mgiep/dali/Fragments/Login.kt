@@ -118,7 +118,7 @@ class Login : Fragment() {
 
     private fun signIn() {
         disableViews()
-        progressBar1.show()
+        progressBar1?.show()
         mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
                 .addOnSuccessListener { authResult ->
                     Log.d("Login", "Success")
@@ -126,7 +126,7 @@ class Login : Fragment() {
                 }
                 .addOnFailureListener {
                     Log.d("Login", "Failed")
-                    progressBar1.hide()
+                    progressBar1?.hide()
                     enableViews()
                     getString(R.string.login_fail).showAsToast(activity!!)
                 }
@@ -143,20 +143,26 @@ class Login : Fragment() {
                         AppPref(activity!!.applicationContext).userName = user.name
                         AppPref(activity!!.applicationContext).userDesignation = user.designation
                         AppPref(activity!!.applicationContext).userInstitution = user.institution
-                        AppPref(activity!!.applicationContext).userAge = user.age
-                        progressBar1.hide()
-                        startActivity(Intent(activity, MainActivity::class.java))
+                        AppPref(activity!!.applicationContext).userAge = user.age.toString()
+
+                        if(AppPref(activity!!.applicationContext).userEmail == ""){
+                            mAuth.signOut()
+                        }else{
+                            progressBar1?.hide()
+                            startActivity(Intent(activity, MainActivity::class.java))
+                            activity!!.finish()
+                        }
                     } else {
                         Log.d("Fetch-User", "Document doesn't Exists")
                         enableViews()
-                        progressBar1.hide()
+                        progressBar1?.hide()
                         mAuth.signOut()
                         getString(R.string.login_fail).showAsToast(activity!!)
                     }
                 }
                 .addOnFailureListener {
                     Log.d("Fetch-User", "Failed")
-                    progressBar1.hide()
+                    progressBar1?.hide()
                     enableViews()
                     mAuth.signOut()
                     getString(R.string.login_fail).showAsToast(activity!!)
@@ -169,7 +175,6 @@ class Login : Fragment() {
         btn_login.isEnabled = false
         btn_signup.isEnabled = false
         tv_forgot_password.isEnabled = false
-        //spinner_language.isEnabled = false
     }
 
     private fun enableViews() {
@@ -178,7 +183,6 @@ class Login : Fragment() {
         btn_login.isEnabled = true
         btn_signup.isEnabled = true
         tv_forgot_password.isEnabled = true
-        //spinner_language.isEnabled = true
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

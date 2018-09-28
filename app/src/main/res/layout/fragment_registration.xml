@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <FrameLayout
+            android:elevation="4dp"
             android:id="@+id/progressBar2"
             android:visibility="gone"
             android:background="#c6262323"

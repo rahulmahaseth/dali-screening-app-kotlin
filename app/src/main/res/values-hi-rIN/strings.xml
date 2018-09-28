@@ -215,4 +215,5 @@
     <string name="home_description">"भारतीय भाषाओँ में डिस्लेक्सिया की पहचान करवाने वाला एंड्राइड ऐप| "</string>
     <string name="confirm_participant_details">प्रतिभागी विवरण की पुष्टि करें</string>
     <string name="save">संचयन करे</string>
+    <string name="profile">प्रोफ़ाइल</string>
 </resources>

@@ -165,7 +165,7 @@ class SignUp :Fragment() {
                     getString(R.string.select_gender).showAsToast(activity!!)
                 }
                 else->{
-                    progressBar2.show()
+                    progressBar2?.show()
                     mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(),edit_register_password.text.toString())
                             .addOnSuccessListener{ authResult ->
                                 Log.d("userid-on-signup", authResult.user.uid)
@@ -183,16 +183,18 @@ class SignUp :Fragment() {
                                 )
                                         .addOnSuccessListener {
                                             getString(R.string.user_saved).showAsToast(activity!!)
-                                            progressBar2.hide()
-                                            AppPref(activity!!.applicationContext).userEmail = user2.email
-                                            AppPref(activity!!.applicationContext).userName = user2.name
-                                            AppPref(activity!!.applicationContext).userDesignation = user2.designation
-                                            AppPref(activity!!.applicationContext).userInstitution = user2.institution
-                                            AppPref(activity!!.applicationContext).userAge = user2.age
-                                            startActivity(Intent(activity, MainActivity::class.java))
+                                            progressBar2?.hide()
+                                            AppPref(activity!!.applicationContext).userEmail = user!!.email
+                                            AppPref(activity!!.applicationContext).userName = user.name
+                                            AppPref(activity!!.applicationContext).userDesignation = user.designation
+                                            AppPref(activity!!.applicationContext).userInstitution = user.institution
+                                            AppPref(activity!!.applicationContext).userAge = user.age.toString()
+                                                progressBar2?.hide()
+                                                startActivity(Intent(activity, MainActivity::class.java))
+                                                activity!!.finish()
                                         }
                                         .addOnFailureListener {
-                                            progressBar2.hide()
+                                            progressBar2?.hide()
                                             getString(R.string.user_sync_error).showAsToast(activity!!)
                                         }
 

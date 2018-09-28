@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
 import org.unesco.mgiep.dali.R
@@ -52,7 +53,19 @@ class SplashActivity: BaseActivity() {
         super.onStart()
         val currentUser = mAuth.currentUser
         if(currentUser != null){
-            startActivity(Intent(this, MainActivity::class.java))
+            if(AppPref(applicationContext).userAge == ""){
+                mAuth.signOut()
+                showFragment(
+                        Fragment.instantiate(
+                                this,
+                                Login::class.java.name
+                        ),
+                        addToBackStack = false
+                )
+            }else{
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+
         }else{
             showFragment(
                     Fragment.instantiate(

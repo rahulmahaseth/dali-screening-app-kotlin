@@ -8,6 +8,7 @@
     android:background="@color/colorPrimaryDark">
 
     <FrameLayout
+        android:elevation="4dp"
         android:id="@+id/progressBar1"
         android:visibility="gone"
         android:background="#c6262323"

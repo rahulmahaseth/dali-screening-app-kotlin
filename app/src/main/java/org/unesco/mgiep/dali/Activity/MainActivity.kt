@@ -9,6 +9,7 @@ import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.*
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -94,6 +95,11 @@ class MainActivity: BaseActivity() {
                             .setMessage(getString(R.string.logout_warn_message))
                             .setPositiveButton(getString(R.string.yes)){_,_->
                                 mAuth.signOut()
+                                AppPref(applicationContext).userEmail = ""
+                                AppPref(applicationContext).userName = ""
+                                AppPref(applicationContext).userDesignation = ""
+                                AppPref(applicationContext).userInstitution = ""
+                                AppPref(applicationContext).userAge = ""
                                 startActivity(Intent(this, SplashActivity::class.java))
                             }
                             .setNegativeButton(getString(R.string.no)){_,_->}

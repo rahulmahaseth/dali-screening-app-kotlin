@@ -4,10 +4,22 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
+    <FrameLayout
+        android:elevation="4dp"
+        android:id="@+id/setting_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
     <TextView
         android:layout_above="@id/profile_card"
         android:gravity="center"
-        android:text="Ankit Anand"
         android:textSize="@dimen/h1"
         android:textColor="#000"
         android:id="@+id/user_name"

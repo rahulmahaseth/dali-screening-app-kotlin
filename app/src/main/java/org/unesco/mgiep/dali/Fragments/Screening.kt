@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
@@ -159,11 +160,18 @@ class Screening : Fragment() {
         when {
             questionsCompleted == 0 -> {
                 btn_screening_back.isEnabled = false
+                btn_screening_back.setTextColor(ContextCompat.getColor(activity!!,R.color.colorPrimaryDark))
             }
-            questionsCompleted <= totalQuestions -> {
+            questionsCompleted > 0 && questionsCompleted < (totalQuestions - 1) -> {
+                btn_screening_back.setTextColor(ContextCompat.getColor(activity!!,R.color.white))
                 btn_screening_back.isEnabled = true
                 btn_screening_next.visibility = View.VISIBLE
                 btn_screening_submit.visibility = View.GONE
+            }
+            else -> {
+
+                btn_screening_next.visibility = View.GONE
+                btn_screening_submit.visibility = View.VISIBLE
             }
 
         }
@@ -185,10 +193,7 @@ class Screening : Fragment() {
             updateButtons()
             updateNavButtons()
 
-            if((questionsCompleted + 1) == totalQuestions) {
-                btn_screening_next.visibility = View.GONE
-                btn_screening_submit.visibility = View.VISIBLE
-            }
+
 
             tv_questions_completed.text = (questionsCompleted + 1).toString()
             tv_total_questions.text = totalQuestions.toString()
@@ -212,6 +217,8 @@ class Screening : Fragment() {
         updateButtons()
         tv_questions_completed.text = questionsCompleted.toString()
         tv_total_questions.text = totalQuestions.toString()
+
+
 
         if (screeningType == Type.JST.toString()) {
             tv_questions_completed.text = (questionsCompleted + 1).toString()

@@ -25,12 +25,15 @@ import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ParticipantConfirm: Fragment() {
 
     val calendar = Calendar.getInstance()
+    val onlyDate = "dd/MM/yyyy"
 
+    val sdf = SimpleDateFormat(onlyDate, Locale.ENGLISH)
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
@@ -65,6 +68,7 @@ class ParticipantConfirm: Fragment() {
         tv_confirm_participant_timespent.text = participant.timeSpentWithChild.toString()
         tv_confirm_participant_school.text = participant.institution
         tv_confirm_participant_section.text = participant.section
+        tv_confirm_participant_dob.text = sdf.format(participant.dob)
 
         btn_confirm_partiicpant.setOnClickListener {
             saveParticipant()

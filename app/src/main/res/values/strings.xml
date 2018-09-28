@@ -181,6 +181,7 @@
     <string name="gender">Gender</string>
     <string name="save">Save</string>
     <string name="profile">Profile</string>
+    <string name="pre_screening_info_1">On the screening tool, kindly depict the child\'s performance with respect to other children in the same class. Please take into consideration the respective child\'s home and social environment (native language, socio-economic background etc.) when evaluating the child.</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

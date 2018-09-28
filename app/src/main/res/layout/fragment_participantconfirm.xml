@@ -196,6 +196,29 @@
                         android:padding="@dimen/h4"
                         android:textSize="@dimen/h3"
                         android:layout_weight="1"
+                        android:text="@string/date_of_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:background="@drawable/black_bottom_border"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
                         android:text="@string/relationship_with_child"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

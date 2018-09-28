@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.Screening
+import org.unesco.mgiep.dali.Fragments.ScreeningTutorial1
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -28,7 +29,7 @@ class ScreeningActivity: BaseActivity() {
         showFragment(
                 Fragment.instantiate(
                         this,
-                        Screening::class.java.name
+                        ScreeningTutorial1::class.java.name
                 ),
                 false
         )

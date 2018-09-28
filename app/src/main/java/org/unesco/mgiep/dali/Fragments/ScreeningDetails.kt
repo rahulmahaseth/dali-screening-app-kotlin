@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_screening_detail.view.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.Gender
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Participant
 import org.unesco.mgiep.dali.Data.Type
@@ -62,7 +63,7 @@ class ScreeningDetails: Fragment() {
         tv_screeeningdetail_name.text = participant.name
         tv_screeningdetail_class.text = participant.sClass.toString()
         tv_screeeningdetail_section.text = participant.section
-        tv_screeningdetail_language.text = screening.mediumOfInstruction
+        tv_screeningdetail_mothertongue.text = participant.motherTongue
         tv_screeningdetail_score.text = screening.totalScore.toString()
         tv_screeningdetail_type.text = screening.type
         tv_screeeningdetail_comment.text = screening.comments
@@ -81,6 +82,14 @@ class ScreeningDetails: Fragment() {
                     .putExtra("type", screening.type)
                     .putExtra("participantId", screening.participantId)
                     .putExtra("participantName", screening.participantName))
+        }
+
+        if(participant.gender == Gender.FEMALE.toString()){
+            screendetail_female.visibility = View.VISIBLE
+            screendetail_male.visibility = View.GONE
+        }else{
+            screendetail_female.visibility = View.GONE
+            screendetail_male.visibility = View.VISIBLE
         }
     }
 

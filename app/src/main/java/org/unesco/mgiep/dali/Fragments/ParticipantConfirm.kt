@@ -9,15 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_newscreening2.*
 import kotlinx.android.synthetic.main.fragment_participantconfirm.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.AppPref
-import org.unesco.mgiep.dali.Data.Participant
+import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Screening
-import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
@@ -64,7 +61,13 @@ class ParticipantConfirm: Fragment() {
         tv_confirm_participant_class.text = participant.sClass.toString()
         tv_confirm_participant_gender.text = participant.gender
         tv_confirm_participant_mother_tongue.text = participant.motherTongue
-        tv_confirm_participant_relationship.text = participant.relationShipWithChild
+
+        when {
+            participant.relationShipWithChild == Relationship.LT.toString() -> tv_confirm_participant_relationship.text = getString(R.string.language_teacher)
+            participant.relationShipWithChild == Relationship.CT.toString() -> tv_confirm_participant_relationship.text = getString(R.string.class_teacher)
+            else -> tv_confirm_participant_relationship.text = getString(R.string.other)
+        }
+
         tv_confirm_participant_timespent.text = participant.timeSpentWithChild.toString()
         tv_confirm_participant_school.text = participant.institution
         tv_confirm_participant_section.text = participant.section

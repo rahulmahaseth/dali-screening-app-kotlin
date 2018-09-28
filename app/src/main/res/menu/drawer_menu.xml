@@ -18,13 +18,6 @@
             android:id="@+id/nav_scheduled"
             android:title="@string/scheduled"/>
 
-
- <!--
-        <item
-            android:icon="@drawable/ic_people_white_24dp"
-            android:id="@+id/nav_participants"
-            android:title="@string/participants" /> -->
-
     </group>
 
     <group android:checkableBehavior="single"
@@ -33,6 +26,11 @@
             android:icon="@drawable/ic_person_black"
             android:id="@+id/nav_profile"
             android:title="@string/profile"/>
+
+        <item
+            android:icon="@drawable/ic_info_black_24dp"
+            android:id="@+id/nav_about"
+            android:title="@string/about"/>
 
         <item
             android:icon="@drawable/ic_power_settings_new_white_24dp"

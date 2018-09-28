@@ -6,15 +6,9 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.drawer_layout.*
-import org.unesco.mgiep.dali.Data.AppPref
-import org.unesco.mgiep.dali.Fragments.Screening
 import org.unesco.mgiep.dali.Fragments.ScreeningTutorial1
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.util.*
 

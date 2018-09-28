@@ -11,4 +11,5 @@
     <dimen name="dots_margin_bottom"></dimen>
     <dimen name="reg_image_width">64dp</dimen>
     <dimen name="reg_image_height">64dp</dimen>
+    <dimen name="name_size">18sp</dimen>
 </resources>

@@ -8,17 +8,22 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.R
 
-class Profile : Fragment(){
+class About:Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_profile, container, false)
+            inflater.inflate(R.layout.fragment_about, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity!!.nav_view.menu.getItem(3).isChecked = true
+        activity!!.nav_view.menu.getItem(4).isChecked = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = getString(R.string.about)
     }
 }

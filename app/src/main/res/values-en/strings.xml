@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DALI</string>
+    <string name="app_name">DALIScreen</string>
     <string name="login">Login</string>
     <string name="sign_up">SIGN UP</string>
     <string name="forgot_password">Forgot Password?</string>

@@ -72,20 +72,20 @@ class MainActivity: BaseActivity() {
                             true
                     )
                 }
-                /*R.id.nav_participants ->{
-                    showFragment(
-                            Fragment.instantiate(
-                                    this,
-                                    ParticipantList::class.java.name
-                            ),
-                            true
-                    )
-                }*/
                 R.id.nav_profile -> {
                     showFragment(
                             Fragment.instantiate(
                                     this,
                                     Settings::class.java.name
+                            ),
+                            true
+                    )
+                }
+                R.id.nav_about -> {
+                    showFragment(
+                            Fragment.instantiate(
+                                    this,
+                                    About::class.java.name
                             ),
                             true
                     )
@@ -163,6 +163,11 @@ class MainActivity: BaseActivity() {
 
     private fun getCurrentFragment(): Fragment {
         return supportFragmentManager.findFragmentById(R.id.fragment_container)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        title = getString(R.string.app_name)
     }
 
 }

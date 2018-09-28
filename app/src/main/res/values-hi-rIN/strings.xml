@@ -216,4 +216,8 @@
     <string name="confirm_participant_details">प्रतिभागी विवरण की पुष्टि करें</string>
     <string name="save">संचयन करे</string>
     <string name="profile">प्रोफ़ाइल</string>
+    <string name="design">डिज़ाइन</string>
+    <string name="concept_and_research">संकल्पना और अनुसंधान</string>
+    <string name="development_team">डेवलपमेंट</string>
+    <string name="about">जानकारी</string>
 </resources>

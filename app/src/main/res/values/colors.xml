@@ -23,6 +23,8 @@
     <color name="dot_light_screen3">#93c6fd</color>
     <color name="dot_light_screen4">#e4b5fc</color>
     <color name="grey">#d2d2d2</color>
+    <color name="black">#000</color>
+    <color name="dark_grey">#2e2c2c</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

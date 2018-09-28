@@ -1,8 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
-import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -11,19 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_newscreening2.*
-import org.unesco.mgiep.dali.Activity.LanguageSelect
-import org.unesco.mgiep.dali.Activity.MainActivity
-import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
-import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningParticipantViewModel
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Repositories.FirebaseRepository
-import org.unesco.mgiep.dali.Repositories.MainReposirtory
-import org.unesco.mgiep.dali.Utility.hide
-import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat

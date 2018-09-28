@@ -40,7 +40,7 @@
                     android:id="@+id/item_screening_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_femalestudent"/>
+                    android:src="@drawable/ic_femalestudent_36"/>
             </LinearLayout>
 
             <LinearLayout

@@ -1,9 +1,7 @@
 package org.unesco.mgiep.dali.Activity
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.select_language.*

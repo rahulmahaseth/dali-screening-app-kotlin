@@ -16,9 +16,17 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/screendetail_male"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_child_72" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/screendetail_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_femalestudent_72" />
 
     </LinearLayout>
 
@@ -116,7 +124,7 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/tv_screeningdetail_language"
+                android:id="@+id/tv_screeningdetail_mothertongue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

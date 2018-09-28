@@ -46,7 +46,8 @@ class SplashActivity: BaseActivity() {
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.splash_fragment_container,
                 fragmentManager = supportFragmentManager,
-                addToBackStack = addToBackStack)
+                addToBackStack = addToBackStack,
+                animate = false)
     }
 
     public override fun onStart() {

@@ -1,22 +1,15 @@
 package org.unesco.mgiep.dali.Activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.auth.FirebaseAuth
 import io.fabric.sdk.android.Fabric
-import kotlinx.android.synthetic.main.drawer_layout.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
-import org.unesco.mgiep.dali.Fragments.Dashboard
 import org.unesco.mgiep.dali.Fragments.Login
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
@@ -34,25 +27,8 @@ class SplashActivity: BaseActivity() {
         Fabric.with(this, Crashlytics())
         
         mAuth = FirebaseAuth.getInstance()
-        showFragment(
-                Fragment.instantiate(
-                        this,
-                        Login::class.java.name
-                ),
-                addToBackStack = false
-        )
-    }
-
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.splash_fragment_container,
-                fragmentManager = supportFragmentManager,
-                addToBackStack = addToBackStack,
-                animate = false)
-    }
-
-    public override fun onStart() {
-        super.onStart()
         val currentUser = mAuth.currentUser
+
         if(currentUser != null){
             if(AppPref(applicationContext).userEmail == "" && AppPref(applicationContext).userInstitution == "" && AppPref(applicationContext).userName == ""){
                 mAuth.signOut()
@@ -76,6 +52,19 @@ class SplashActivity: BaseActivity() {
                     addToBackStack = false
             )
         }
+    }
+
+    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        fragment.showFragment(container = R.id.splash_fragment_container,
+                fragmentManager = supportFragmentManager,
+                addToBackStack = addToBackStack,
+                animate = false)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onBackPressed() {

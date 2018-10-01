@@ -91,7 +91,7 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
                     edit_time_spent_with_child_month.hint = getString(R.string.months)
                 }else{
                     participant.timeSpentWithChild = edit_time_spent_with_child_month.text.toString().toInt()
-                    if(edit_time_spent_with_child_month.text.toString().toInt() !in 1..12){
+                    if(edit_time_spent_with_child_month.text.toString().toInt() !in 0..12){
                         edit_time_spent_with_child_month.error = getString(R.string.month_range_error)
                     }
                 }
@@ -113,7 +113,16 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
                 !radio_class_teacher.isChecked && !radio_language_teacher.isChecked && !radio_others.isChecked ->{
                     getString(R.string.relationship_with_child_none_select_error).showAsToast(activity!!)
                 }
-                edit_time_spent_with_child_month.text.isEmpty() -> edit_time_spent_with_child_month.error = getString(R.string.required)
+                edit_time_spent_with_child_month.text.isEmpty() && edit_time_spent_with_child_year.text.isEmpty() -> edit_time_spent_with_child_month.error = getString(R.string.required)
+                (!edit_time_spent_with_child_year.text.isEmpty()) && (edit_time_spent_with_child_month.text.toString().toInt() !in 0..12) -> {
+                    edit_time_spent_with_child_month.error = getString(R.string.month_range_error)
+                }
+                edit_time_spent_with_child_year.text.isEmpty() && (edit_time_spent_with_child_month.text.toString().toInt() !in 3..12) -> {
+                    edit_time_spent_with_child_month.error = getString(R.string.month_range_error2)
+                }
+                edit_time_spent_with_child_year.text.toString().toInt() == 0  && edit_time_spent_with_child_month.text.toString().toInt() !in 3..12 -> {
+                    edit_time_spent_with_child_month.error = getString(R.string.month_range_error2)
+                }
 
                 else -> {
                     screeningParticipantViewModel.select(Participant(
@@ -129,8 +138,6 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
                             timeSpentWithChild = getTimeSpentWithchild(),
                             createdBy = mAuth.currentUser!!.uid
                     ))
-
-                    //saveParticipant()
 
                     showFragment(
                             Fragment.instantiate(

@@ -280,14 +280,38 @@ class Screening : Fragment() {
 
     fun addCategoryImage(category: String) {
         when (category) {
-            "sound" -> image_category.setImageResource(R.drawable.ic_hearing_01)
-            "communication" -> image_category.setImageResource(R.drawable.ic_communication_01)
-            "number" -> image_category.setImageResource(R.drawable.ic_numberconcept_01)
-            "memory" -> image_category.setImageResource(R.drawable.ic_memory_01)
-            "motor" -> image_category.setImageResource(R.drawable.ic_motorcordination_01)
-            "behavior" -> image_category.setImageResource(R.drawable.ic_behaviour_01)
-            "reading" -> image_category.setImageResource(R.drawable.ic_reading_01)
-            "writing" -> image_category.setImageResource(R.drawable.ic_writing_01)
+            "sound" -> {
+                tv_category.text = getString(R.string.cat_sound)
+                image_category.setImageResource(R.drawable.ic_hearing_01)
+            }
+            "communication" -> {
+                tv_category.text = getString(R.string.cat_communication)
+                image_category.setImageResource(R.drawable.ic_communication_01)
+            }
+            "number" -> {
+                tv_category.text = getString(R.string.cat_number)
+                image_category.setImageResource(R.drawable.ic_numberconcept_01)
+            }
+            "memory" -> {
+                tv_category.text = getString(R.string.cat_memory)
+                image_category.setImageResource(R.drawable.ic_memory_01)
+            }
+            "motor" -> {
+                tv_category.text = getString(R.string.cat_motor)
+                image_category.setImageResource(R.drawable.ic_motorcordination_01)
+            }
+            "behavior" -> {
+                tv_category.text = getString(R.string.cat_behavior)
+                image_category.setImageResource(R.drawable.ic_behaviour_01)
+            }
+            "reading" -> {
+                tv_category.text = getString(R.string.cat_print)
+                image_category.setImageResource(R.drawable.ic_reading_01)
+            }
+            "writing" -> {
+                tv_category.text = getString(R.string.cat_writing)
+                image_category.setImageResource(R.drawable.ic_writing_01)
+            }
         }
     }
 

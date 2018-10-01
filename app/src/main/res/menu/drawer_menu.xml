@@ -16,7 +16,7 @@
         <item
             android:icon="@drawable/ic_schedule_white_24dp"
             android:id="@+id/nav_scheduled"
-            android:title="@string/scheduled"/>
+            android:title="@string/drafts"/>
 
     </group>
 

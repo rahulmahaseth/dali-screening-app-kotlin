@@ -36,7 +36,7 @@ class SignUp :Fragment() {
 
     private var password = ""
 
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z.]+".toRegex()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,52 +53,12 @@ class SignUp :Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        edit_register_name.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_register_name.text.isEmpty()){
-                    edit_register_name.hint = getString(R.string.name)
-                }else{
-                    user.name = edit_register_name.text.toString()
-                }
-            }else{
-                edit_register_name.hint = ""
-            }
-        }
 
         edit_register_email.setOnFocusChangeListener { view, b ->
             if(!b){
-                if(edit_register_email.text.isEmpty()){
-                    edit_register_email.hint = getString(R.string.email)
-                }else{
-                    user.email = edit_register_email.text.toString()
+                if(!edit_register_email.text.matches(emailPattern)){
+                    edit_register_email.error = getString(R.string.improper_email)
                 }
-            }else{
-                edit_register_email.hint = ""
-            }
-        }
-
-        edit_register_password.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_register_password.text.isEmpty()){
-                    edit_register_password.hint = getString(R.string.password)
-                }else{
-                    password = edit_register_password.text.toString()
-                }
-            }else{
-                edit_register_password.hint = ""
-            }
-        }
-
-
-        edit_register_school.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_register_school.text.isEmpty()){
-                    edit_register_school.hint = getString(R.string.school_university)
-                }else{
-                    user.institution = edit_register_school.text.toString()
-                }
-            }else{
-                edit_register_school.hint = ""
             }
         }
 
@@ -149,19 +109,14 @@ class SignUp :Fragment() {
                                         user2
                                 )
                                         .addOnSuccessListener {
-                                            getString(R.string.user_saved).showAsToast(activity!!)
-                                            progressBar2?.hide()
                                             AppPref(activity!!.applicationContext).userEmail = user.email
                                             AppPref(activity!!.applicationContext).userName = user.name
                                             AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                                            if(AppPref(activity!!.applicationContext).userEmail == "" && AppPref(activity!!.applicationContext).userInstitution == "" && AppPref(activity!!.applicationContext).userName == ""){
-                                                mAuth.signOut()
-                                            }else{
                                                 progressBar2?.hide()
                                                 startActivity(Intent(activity, MainActivity::class.java))
+                                                getString(R.string.user_saved).showAsToast(activity!!)
                                                 activity!!.finish()
-                                            }
                                         }
                                         .addOnFailureListener {
                                             progressBar2?.hide()

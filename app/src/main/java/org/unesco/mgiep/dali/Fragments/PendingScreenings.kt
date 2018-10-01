@@ -1,6 +1,7 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.item_screeningparticipant.view.*
+import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
@@ -167,13 +169,8 @@ class PendingScreenings: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when(item!!.itemId){
             R.id.action_add -> {
-                showFragment(
-                        Fragment.instantiate(
-                                activity,
-                                NewScreening::class.java.name
-                        ),
-                        true
-                )
+                startActivity(Intent(activity!!, NewScreeningActivity::class.java))
+                activity!!.finish()
                 true
             }
             R.id.sort_only_jst -> {
@@ -194,6 +191,12 @@ class PendingScreenings: Fragment() {
                 lastAdapter.notifyDataSetChanged()
                 true
             }
+            R.id.sort_all -> {
+                screeningParticipants.clear()
+                screeningParticipants.addAll(screeningParticipantContainer)
+                lastAdapter.notifyDataSetChanged()
+                true
+            }
             else -> {
                 super.onOptionsItemSelected(item)
             }
@@ -202,7 +205,7 @@ class PendingScreenings: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = getString(R.string.scheduled)
+        activity!!.title = getString(R.string.drafts)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

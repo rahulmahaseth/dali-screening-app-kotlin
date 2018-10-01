@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.view.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
+import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Activity.ScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Gender
@@ -67,13 +68,12 @@ class ScreeningDetails: Fragment() {
         tv_screeningdetail_score.text = screening.totalScore.toString()
         tv_screeningdetail_type.text = screening.type
         tv_screeeningdetail_comment.text = screening.comments
-        tv_screening_detail_separator.text = "/"
-        tv_screeningdetail_total_score.text = if(screening.type == Type.JST.toString())"30" else "42"
 
         if(scheduled){
-            screening_detail_score_layout.visibility = View.GONE
-            screening_comment_layout.visibility = View.GONE
-            btn_screening_detail_start.visibility = View.VISIBLE
+            btn_screening_detail_result.hide()
+            screening_detail_score_layout.hide()
+            screening_comment_layout.hide()
+            btn_screening_detail_start.show()
         }
 
         btn_screening_detail_start.setOnClickListener {
@@ -90,6 +90,15 @@ class ScreeningDetails: Fragment() {
         }else{
             screendetail_female.visibility = View.GONE
             screendetail_male.visibility = View.VISIBLE
+        }
+
+        btn_screening_detail_result.setOnClickListener {
+            startActivity(
+                    Intent(activity, ResultActivity::class.java)
+                    .putExtra("name",screening.participantName)
+                    .putExtra("score",screening.totalScore)
+                    .putExtra("type",screening.type)
+            )
         }
     }
 

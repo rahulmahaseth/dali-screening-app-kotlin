@@ -216,6 +216,12 @@ class Dashboard : Fragment() {
                 lastAdapter.notifyDataSetChanged()
                 true
             }
+            R.id.sort_all -> {
+                screeningParticipants.clear()
+                screeningParticipants.addAll(screeningParticipantsContainer)
+                lastAdapter.notifyDataSetChanged()
+                true
+            }
             else -> {
                 super.onOptionsItemSelected(item)
             }

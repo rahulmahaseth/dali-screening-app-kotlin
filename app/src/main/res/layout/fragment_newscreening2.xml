@@ -130,23 +130,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </LinearLayout>
-
-
-
         <Button
+            android:layout_marginTop="20dp"
             android:textSize="@dimen/h2"
             android:textColor="@color/colorPrimary"
             android:background="@drawable/custom_button"
-            android:layout_alignParentBottom="true"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_screenreg_submit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:text="@string/next" />
+
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

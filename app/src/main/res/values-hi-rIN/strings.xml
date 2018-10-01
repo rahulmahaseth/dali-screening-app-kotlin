@@ -221,5 +221,22 @@
     <string name="development_team">डेवलपमेंट</string>
     <string name="about">जानकारी</string>
     <string name="pre_screening_info_1">"कृपया ध्यान दें इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षिणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
-    <string name="clas_range_error">कक्षा 1 और 12 के बीच होनी चाहिए</string>
+    <string name="clas_range_error">कक्षा 1 और 5 के बीच होनी चाहिए</string>
+    <string name="cat_writing">लेखन जागरूकता</string>
+    <string name="cat_memory">मेमोरी</string>
+    <string name="cat_behavior">व्यवहार</string>
+    <string name="cat_motor">स्नायु समन्वयन</string>
+    <string name="cat_number">संख्या अवधारणा</string>
+    <string name="cat_print">कौशल अधिग्रहण</string>
+    <string name="cat_communication">संवाद</string>
+    <string name="cat_sound">ध्वनि जागरूकता</string>
+    <string name="drafts">ड्राफ्ट</string>
+    <string name="please_provide_special_comments_for_the_child">कृपया बच्चे के लिए विशेष टिप्पणियां प्रदान करें</string>
+    <string name="recommendation">अनुशंसाएँ</string>
+    <string name="eye_sight_test">"बच्चे के दृष्टि की परीक्षा एक नेत्र रोग विशेषज्ञ द्वारा आवश्यक है "</string>
+    <string name="audio_test">"बच्चे के श्रवण शक्ति की परीक्षा एक कर्ण वैज्ञानिक द्वारा आवश्यक है "</string>
+    <string name="cognitive_test">"इस के पश्चात बच्चे को शैक्षणिक मनोवैज्ञानिक अथवा नैदानिक मनोवैज्ञानिक के पास मूल्यांकन के लिए लेकर जाना आवश्यक है "</string>
+    <string name="medium_of_instruction">कृपया निर्देश का माध्यम चुनें</string>
+    <string name="month_range_error2">महीने 3 से 12 के बीच होना चाहिए</string>
+    <string name="month_range_error">महीने 0 से 12 के बीच होना चाहिए</string>
 </resources>

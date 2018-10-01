@@ -33,7 +33,6 @@ import kotlin.collections.ArrayList
 class Login : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
-    private val login = Login()
     private lateinit var mainReposirtory: MainReposirtory
 
     private val stringArray = ArrayList<String>()
@@ -53,30 +52,6 @@ class Login : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        edit_email.setOnFocusChangeListener { view, b ->
-            if (!b) {
-                if (edit_email.text.isEmpty()) {
-                    edit_email.hint = getString(R.string.email)
-                } else {
-                    login.email = edit_email.text.toString()
-                }
-            } else {
-                edit_email.hint = ""
-            }
-        }
-
-        edit_password.setOnFocusChangeListener { view, b ->
-            if (!b) {
-                if (edit_password.text.isEmpty()) {
-                    edit_password.hint = getString(R.string.password)
-                } else {
-                    login.password = edit_password.text.toString()
-                }
-            } else {
-                edit_password.hint = ""
-            }
-        }
 
         btn_login.setOnClickListener { v ->
             when {
@@ -98,9 +73,9 @@ class Login : Fragment() {
         }
 
         tv_forgot_password.setOnFocusChangeListener { v, hasFocus ->
-            if(!hasFocus){
+            if (!hasFocus) {
 
-            }else{
+            } else {
                 tv_forgot_password.paintFlags = Paint.UNDERLINE_TEXT_FLAG
             }
         }
@@ -143,13 +118,10 @@ class Login : Fragment() {
                         AppPref(activity!!.applicationContext).userName = user.name
                         AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                        if(AppPref(activity!!.applicationContext).userEmail == "" && AppPref(activity!!.applicationContext).userInstitution == "" && AppPref(activity!!.applicationContext).userName == ""){
-                            mAuth.signOut()
-                        }else{
-                            progressBar1?.hide()
-                            startActivity(Intent(activity, MainActivity::class.java))
-                            activity!!.finish()
-                        }
+                        AppPref(activity!!.applicationContext).loggedIn = true
+                        progressBar1?.hide()
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        activity!!.finish()
                     } else {
                         Log.d("Fetch-User", "Document doesn't Exists")
                         enableViews()

@@ -86,7 +86,7 @@ class NewScreening : Fragment() {
                     edit_regscreen_class.hint = getString(R.string.sgd)
                 }else{
                     participant.sClass = edit_regscreen_class.text.toString().toInt()
-                    if(edit_regscreen_class.text.toString().toInt() !in 1..12){
+                    if(edit_regscreen_class.text.toString().toInt() !in 1..5){
                         edit_regscreen_class.error = getString(R.string.clas_range_error)
                     }
                 }

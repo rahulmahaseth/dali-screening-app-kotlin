@@ -174,34 +174,12 @@
                 android:text="@string/score"
                 android:textColor="@color/white" />
 
-            <LinearLayout
+            <TextView
                 android:layout_weight="1"
-                android:orientation="horizontal"
+                android:id="@+id/tv_screeningdetail_score"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:paddingRight="10dp"
-                    android:gravity="right"
-                    android:id="@+id/tv_screeningdetail_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:id="@+id/tv_screening_detail_separator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:paddingLeft="10dp"
-                    android:id="@+id/tv_screeningdetail_total_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
@@ -233,12 +211,25 @@
     </LinearLayout>
 
     <Button
+        android:textSize="@dimen/name_size"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/btn_screening_detail_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="10dp"
         android:text="@string/start"
         android:visibility="gone" />
 
+    <Button
+        android:textSize="@dimen/name_size"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/btn_screening_detail_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/recommendation"
+        android:visibility="visible" />
 
 </LinearLayout>

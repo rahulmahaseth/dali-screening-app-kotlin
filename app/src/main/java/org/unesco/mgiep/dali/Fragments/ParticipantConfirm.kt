@@ -25,16 +25,15 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ParticipantConfirm: Fragment() {
+class ParticipantConfirm : Fragment() {
 
-    val calendar = Calendar.getInstance()
     val onlyDate = "dd/MM/yyyy"
 
     val sdf = SimpleDateFormat(onlyDate, Locale.ENGLISH)
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
-    private lateinit var intent : Intent
+    private lateinit var intent: Intent
     private var participant = Participant()
     private val screeningId = UUID.randomUUID().toString()
     private lateinit var mAuth: FirebaseAuth
@@ -67,7 +66,7 @@ class ParticipantConfirm: Fragment() {
             else -> tv_confirm_participant_relationship.text = getString(R.string.other)
         }
 
-        tv_confirm_participant_timespent.text = participant.timeSpentWithChild.toString()
+        tv_confirm_participant_timespent.text = getFormattedTSWC(participant.timeSpentWithChild)
         tv_confirm_participant_school.text = participant.institution
         tv_confirm_participant_section.text = participant.section
         tv_confirm_participant_dob.text = sdf.format(participant.dob)
@@ -82,18 +81,21 @@ class ParticipantConfirm: Fragment() {
         }
     }
 
+    private fun getFormattedTSWC(timeSpentWithChild: Int): String {
+        val years = timeSpentWithChild / 12
+        val months = timeSpentWithChild % 12
+        return "$years years and $months months"
+    }
+
     private fun saveParticipant(start: Boolean) {
         confirmparticiapnt_progressBar?.show()
         mainRepository.saveParticipant(participant.id, participant)
                 .addOnSuccessListener {
-                    if(start){
-                        startScreening()
-                    }else{
-                        if(participant.sClass <= 2){
-                            saveScreening(Type.JST.toString())
-                        }else{
-                            saveScreening(Type.MST.toString())
-                        }
+
+                    if (participant.sClass <= 2) {
+                        saveScreening(Type.JST.toString(), start)
+                    } else {
+                        saveScreening(Type.MST.toString(), start)
                     }
                 }
                 .addOnCanceledListener {
@@ -103,13 +105,13 @@ class ParticipantConfirm: Fragment() {
     }
 
 
-    private fun startScreening(){
+    private fun startScreening() {
         intent.putExtra("screeningId", screeningId)
-        intent.putExtra("participantId",participant.id)
+        intent.putExtra("participantId", participant.id)
         intent.putExtra("participantName", participant.name)
-        if(participant.sClass <= 2){
+        if (participant.sClass <= 2) {
             intent.putExtra("type", Type.JST.toString())
-        }else{
+        } else {
             intent.putExtra("type", Type.MST.toString())
         }
         confirmparticiapnt_progressBar?.hide()
@@ -117,7 +119,7 @@ class ParticipantConfirm: Fragment() {
         activity!!.finish()
     }
 
-    private fun saveScreening(type: String){
+    private fun saveScreening(type: String, start: Boolean) {
         mainRepository.saveScreening(
                 screeningId,
                 Screening(
@@ -135,9 +137,13 @@ class ParticipantConfirm: Fragment() {
         )
                 .addOnSuccessListener {
                     confirmparticiapnt_progressBar?.hide()
-                    getString(R.string.screening_saved).showAsToast(activity!!)
-                    startActivity(Intent(activity, MainActivity::class.java))
-                    activity!!.finish()
+                    if(start){
+                        startScreening()
+                    }else{
+                        getString(R.string.screening_saved).showAsToast(activity!!)
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        activity!!.finish()
+                    }
                 }
                 .addOnCanceledListener {
                     confirmparticiapnt_progressBar?.hide()

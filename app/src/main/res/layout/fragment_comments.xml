@@ -20,19 +20,35 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
-    <EditText
-        android:background="@drawable/custom_edit_text"
-        android:hint="@string/additional_comments"
-        android:id="@+id/edit_comments"
+    <LinearLayout
+        android:layout_marginHorizontal="10dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:gravity="left|top"
-        android:inputType="textMultiLine" >
+        android:layout_height="300dp">
 
-        <requestFocus />
+        <TextView
+            android:paddingVertical="10dp"
+            android:textSize="@dimen/name_size"
+            android:text="@string/please_provide_special_comments_for_the_child"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    </EditText>
+        <EditText
+            android:padding="10dp"
+            android:background="@drawable/custom_edit_text_primary"
+            android:hint="@string/additional_comments"
+            android:id="@+id/edit_comments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="left|top"
+            android:inputType="textMultiLine" >
+
+            <requestFocus />
+
+        </EditText>
+    </LinearLayout>
 
     <Button
         android:textColor="@color/white"

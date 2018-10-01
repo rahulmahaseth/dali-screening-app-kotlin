@@ -12,4 +12,6 @@
     <dimen name="reg_image_width">64dp</dimen>
     <dimen name="reg_image_height">64dp</dimen>
     <dimen name="name_size">18sp</dimen>
+    <dimen name="result_score">60sp</dimen>
+    <dimen name="desc_margin_home">100dp</dimen>
 </resources>

@@ -13,21 +13,18 @@
 
         <activity android:name=".Activity.MainActivity"
             android:windowSoftInputMode="adjustResize"
-            >
+            />
 
-        </activity>
 
         <activity android:name=".Activity.ScreeningActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name=".Activity.NewScreeningActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".Activity.LanguageSelect">
+        <activity android:name=".Activity.LanguageSelect"/>
 
-        </activity>
+        <activity android:name=".Activity.ResultActivity"/>
 
         <activity android:name=".Activity.SplashActivity"
             android:theme="@style/SplashTheme"

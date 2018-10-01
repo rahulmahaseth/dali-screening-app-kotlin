@@ -89,17 +89,6 @@ class SignUp :Fragment() {
             }
         }
 
-        edit_register_designation.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_register_designation.text.isEmpty()){
-                    edit_register_designation.hint = getString(R.string.designation)
-                }else{
-                    user.designation = edit_register_designation.text.toString()
-                }
-            }else{
-                edit_register_designation.hint = ""
-            }
-        }
 
         edit_register_school.setOnFocusChangeListener { view, b ->
             if(!b){
@@ -113,17 +102,6 @@ class SignUp :Fragment() {
             }
         }
 
-        edit_register_age.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_register_age.text.isEmpty()){
-                    edit_register_age.hint = getString(R.string.age)
-                }else{
-                    user.age = edit_register_age.text.toString().toInt()
-                }
-            }else{
-                edit_register_age.hint = ""
-            }
-        }
 
         tv_already_registered.setOnClickListener {
             showFragment(
@@ -152,10 +130,6 @@ class SignUp :Fragment() {
                 !edit_register_email.text.matches(emailPattern) -> Toast.makeText(activity, getString(R.string.improper_email), Toast.LENGTH_SHORT).show()
                 edit_register_password.text.isEmpty() -> edit_register_password.error = getString(R.string.required)
                 edit_register_password.text.length < 6 -> Toast.makeText(activity, getString(R.string.password_length_error), Toast.LENGTH_SHORT).show()
-                edit_register_designation.text.isEmpty() -> edit_register_designation.error = getString(R.string.required)
-                edit_register_school.text.isEmpty() -> edit_register_school.error = getString(R.string.required)
-                edit_register_age.text.isEmpty() -> edit_register_age.error = getString(R.string.required)
-                edit_register_age.text.toString().toInt() <= 0 -> edit_register_age.error = getString(R.string.invalid_age)
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
                     getString(R.string.select_gender).showAsToast(activity!!)
                 }
@@ -167,9 +141,7 @@ class SignUp :Fragment() {
                                 user2 = User(
                                         edit_register_email.text.toString(),
                                         edit_register_name.text.toString(),
-                                        edit_register_designation.text.toString(),
                                         edit_register_school.text.toString(),
-                                        edit_register_age.text.toString().toInt(),
                                         gender.toString()
                                 )
                                 mainReposirtory.saveUser(
@@ -179,14 +151,17 @@ class SignUp :Fragment() {
                                         .addOnSuccessListener {
                                             getString(R.string.user_saved).showAsToast(activity!!)
                                             progressBar2?.hide()
-                                            AppPref(activity!!.applicationContext).userEmail = user!!.email
+                                            AppPref(activity!!.applicationContext).userEmail = user.email
                                             AppPref(activity!!.applicationContext).userName = user.name
-                                            AppPref(activity!!.applicationContext).userDesignation = user.designation
                                             AppPref(activity!!.applicationContext).userInstitution = user.institution
-                                            AppPref(activity!!.applicationContext).userAge = user.age.toString()
+
+                                            if(AppPref(activity!!.applicationContext).userEmail == "" && AppPref(activity!!.applicationContext).userInstitution == "" && AppPref(activity!!.applicationContext).userName == ""){
+                                                mAuth.signOut()
+                                            }else{
                                                 progressBar2?.hide()
                                                 startActivity(Intent(activity, MainActivity::class.java))
                                                 activity!!.finish()
+                                            }
                                         }
                                         .addOnFailureListener {
                                             progressBar2?.hide()

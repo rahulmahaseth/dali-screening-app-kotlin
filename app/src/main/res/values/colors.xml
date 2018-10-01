@@ -39,4 +39,7 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+    <color name="red">#bc0d16</color>
+    <color name="green">#f7089e0b</color>
 </resources>

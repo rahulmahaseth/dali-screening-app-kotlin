@@ -131,7 +131,7 @@
     <string name="others">Others</string>
     <string name="other">Other</string>
     <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
-    <string name="months">Months</string>
+    <string name="months">Months (minimum 3)</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with participantDetail</string>
     <string name="pending_screenings">Pending Screenings</string>
     <string name="back">Back</string>
@@ -166,7 +166,7 @@
     <string name="comments">Comments</string>
     <string name="enter_details_of_the_participant">Enter details of the participant</string>
     <string name="usually">USUALLY</string>
-    <string name="additional_comments">Additional Comments</string>
+    <string name="additional_comments">Please provide special comments for the child.</string>
     <string name="skip">Skip</string>
     <string name="participate_saving_error">Participant Details Not Updated</string>
     <string name="fetch_participant_error">Error While Participant Details!</string>
@@ -174,7 +174,7 @@
     <string name="hindi">Hindi</string>
     <string name="select_screening_language">Select Screening Language</string>
     <string name="home_description">DALI screening is the first online screening tool for dyslexia in regional Indian languages.</string>
-    <string name="prescreen_text_1">This Screening tool is designed to be used as a referral questionnaire. As per the language research, children should be screened in their regional language and the medium of instruction.</string>
+    <string name="prescreen_text_1">This screening tool is designed to be used as a referral questionnaire. As per language research, children should be screened in all the languages in which they receive instruction.</string>
     <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
     <string name="information">Information</string>
     <string name="confirm_participant_details">Confirm Participant Details</string>
@@ -189,9 +189,15 @@
     <string name="dali_about">The screening tools were developed for school teachers to screen children between classes 1-5, at risk for dyslexia. They are based on research carried by Nandini Chatterjee Singh for the development of DALI (Dyslexia Assessment for Languages of India) at the National Brain Research Centre, Manesar, India under a grant funded by the Department of Science and Technology, Govt. Department of Science and Technology, Govt. of India. Should the child be at risk, a formal assessment by a clinical psychologist MUST be carried out for confirmation.</string>
     <string name="copyright_title">The copyright for the screening tool is owned by</string>
     <string name="clas_range_error">Class should be in between 1 and 12</string>
-    <string name="years">Years (minimum 3)</string>
+    <string name="years">Years</string>
     <string name="month_range_error">Months should be in between 1 to 12</string>
-    <string name="medium_of_instruction">Medium Of Instruction</string>
+    <string name="medium_of_instruction">Choose medium of instruction</string>
+    <string name="eye_sight_test">Eye-sight test by a qualified opthalmologist to rule out problems with vision.</string>
+    <string name="audio_test">Hearing test by a qualified otologist to rule out problems with auditory processes.</string>
+    <string name="cognitive_test">Cognitive assesssment by a school counsellor, who then refers the child to psychologist.</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="at_risk">At Risk</string>
+    <string name="not_at_risk">Not at Risk</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

@@ -141,11 +141,9 @@ class Login : Fragment() {
                         val user = it.toObject(User::class.java)
                         AppPref(activity!!.applicationContext).userEmail = user!!.email
                         AppPref(activity!!.applicationContext).userName = user.name
-                        AppPref(activity!!.applicationContext).userDesignation = user.designation
                         AppPref(activity!!.applicationContext).userInstitution = user.institution
-                        AppPref(activity!!.applicationContext).userAge = user.age.toString()
 
-                        if(AppPref(activity!!.applicationContext).userEmail == ""){
+                        if(AppPref(activity!!.applicationContext).userEmail == "" && AppPref(activity!!.applicationContext).userInstitution == "" && AppPref(activity!!.applicationContext).userName == ""){
                             mAuth.signOut()
                         }else{
                             progressBar1?.hide()

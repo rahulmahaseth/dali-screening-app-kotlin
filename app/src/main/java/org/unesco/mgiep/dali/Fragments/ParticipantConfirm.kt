@@ -36,7 +36,6 @@ class ParticipantConfirm: Fragment() {
     private lateinit var mainRepository: MainReposirtory
     private lateinit var intent : Intent
     private var participant = Participant()
-    private val participantId = UUID.randomUUID().toString()
     private val screeningId = UUID.randomUUID().toString()
     private lateinit var mAuth: FirebaseAuth
 
@@ -72,34 +71,30 @@ class ParticipantConfirm: Fragment() {
         tv_confirm_participant_school.text = participant.institution
         tv_confirm_participant_section.text = participant.section
         tv_confirm_participant_dob.text = sdf.format(participant.dob)
+        tv_confirm_participant_med_inst.text = AppPref(activity!!.applicationContext).instructionMedium
 
         btn_confirm_partiicpant.setOnClickListener {
-            saveParticipant()
+            saveParticipant(true)
         }
 
         btn_confirm_partiicpant_save.setOnClickListener {
-            confirmparticiapnt_progressBar?.show()
-            mainRepository.saveParticipant(participant.id,participant)
-                    .addOnSuccessListener {
-                        val age = calendar.time.year - Date(participant.dob).year
-                        if(age <= 7){
+            saveParticipant(false)
+        }
+    }
+
+    private fun saveParticipant(start: Boolean) {
+        confirmparticiapnt_progressBar?.show()
+        mainRepository.saveParticipant(participant.id, participant)
+                .addOnSuccessListener {
+                    if(start){
+                        startScreening()
+                    }else{
+                        if(participant.sClass <= 2){
                             saveScreening(Type.JST.toString())
                         }else{
                             saveScreening(Type.MST.toString())
                         }
                     }
-                    .addOnCanceledListener {
-                        confirmparticiapnt_progressBar?.hide()
-                        getString(R.string.participate_saving_error).showAsToast(activity!!)
-                    }
-        }
-    }
-
-    private fun saveParticipant() {
-        confirmparticiapnt_progressBar?.show()
-        mainRepository.saveParticipant(participant.id, participant)
-                .addOnSuccessListener {
-                    startScreening()
                 }
                 .addOnCanceledListener {
                     confirmparticiapnt_progressBar?.hide()
@@ -109,12 +104,10 @@ class ParticipantConfirm: Fragment() {
 
 
     private fun startScreening(){
-        val age = Date().year - Date(participant.dob).year
-        Log.d("ParticipantDetailAge - ","$age")
         intent.putExtra("screeningId", screeningId)
-        intent.putExtra("participantId",participantId)
+        intent.putExtra("participantId",participant.id)
         intent.putExtra("participantName", participant.name)
-        if(age <= 7){
+        if(participant.sClass <= 2){
             intent.putExtra("type", Type.JST.toString())
         }else{
             intent.putExtra("type", Type.MST.toString())
@@ -126,13 +119,13 @@ class ParticipantConfirm: Fragment() {
 
     private fun saveScreening(type: String){
         mainRepository.saveScreening(
-                UUID.randomUUID().toString(),
+                screeningId,
                 Screening(
                         id = screeningId,
                         type = type,
                         completed = false,
-                        mediumOfInstruction = AppPref(activity!!.baseContext).locale,
-                        participantId = participantId,
+                        mediumOfInstruction = AppPref(activity!!).instructionMedium,
+                        participantId = participant.id,
                         userId = mAuth.uid.toString(),
                         totalScore = 0,
                         scheduledDate = Date().time,

@@ -13,6 +13,7 @@ import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
+import org.unesco.mgiep.dali.Utility.hide
 
 class Settings : Fragment() {
 
@@ -37,11 +38,12 @@ class Settings : Fragment() {
             fetchUser()
         }*/
         user_name.text = AppPref(activity!!.applicationContext).userName
-
-        user_age.text = AppPref(activity!!.applicationContext).userAge
-        user_designation.text = AppPref(activity!!.applicationContext).userDesignation
         user_email.text = AppPref(activity!!.applicationContext).userEmail
-        user_institution.text = AppPref(activity!!.applicationContext).userInstitution
+        if(AppPref(activity!!.applicationContext).userInstitution.isEmpty()){
+            card_user_institution.hide()
+        }else{
+            user_institution.text = AppPref(activity!!.applicationContext).userInstitution
+        }
 
 
     }

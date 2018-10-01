@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Type
@@ -24,6 +25,10 @@ class Home: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity!!.nav_view.menu.getItem(0).isChecked = true
+
+        btn_start_adding_participant.setOnClickListener {
+            startActivity(Intent(activity!!, NewScreeningActivity::class.java))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

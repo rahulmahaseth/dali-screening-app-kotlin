@@ -177,4 +177,6 @@
         <item>Punjabi</item>
         <item>Assamese</item>
     </string-array>
+    <string name="prescreen_text_1">This screening tool is designed to be used as a referral questionnaire. As per language research, children should be screened in all the languages in which they receive instructions.</string>
+    <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
 </resources>

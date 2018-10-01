@@ -97,9 +97,7 @@ class MainActivity: BaseActivity() {
                                 mAuth.signOut()
                                 AppPref(applicationContext).userEmail = ""
                                 AppPref(applicationContext).userName = ""
-                                AppPref(applicationContext).userDesignation = ""
                                 AppPref(applicationContext).userInstitution = ""
-                                AppPref(applicationContext).userAge = ""
                                 startActivity(Intent(this, SplashActivity::class.java))
                             }
                             .setNegativeButton(getString(R.string.no)){_,_->}

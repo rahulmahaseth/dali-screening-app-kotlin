@@ -54,7 +54,7 @@ class SplashActivity: BaseActivity() {
         super.onStart()
         val currentUser = mAuth.currentUser
         if(currentUser != null){
-            if(AppPref(applicationContext).userAge == ""){
+            if(AppPref(applicationContext).userEmail == "" && AppPref(applicationContext).userInstitution == "" && AppPref(applicationContext).userName == ""){
                 mAuth.signOut()
                 showFragment(
                         Fragment.instantiate(

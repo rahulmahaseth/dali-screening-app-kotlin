@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
@@ -80,7 +81,10 @@ class Comments: Fragment(){
         config.locale = locale
         resources.updateConfiguration(config, resources.displayMetrics)
         startActivity(
-                Intent(activity, MainActivity::class.java)
+                Intent(activity, ResultActivity::class.java)
+                        .putExtra("name",screening.participantName)
+                        .putExtra("score",screening.totalScore)
+                        .putExtra("type",screening.type)
         )
         activity!!.finish()
     }

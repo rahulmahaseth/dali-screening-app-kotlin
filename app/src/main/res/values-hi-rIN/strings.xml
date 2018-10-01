@@ -239,4 +239,6 @@
     <string name="medium_of_instruction">कृपया निर्देश का माध्यम चुनें</string>
     <string name="month_range_error2">महीने 3 से 12 के बीच होना चाहिए</string>
     <string name="month_range_error">महीने 0 से 12 के बीच होना चाहिए</string>
+    <string name="start_adding_participant">प्रतिभागी जोड़ना शुरू करें</string>
+    <string name="years">साल</string>
 </resources>

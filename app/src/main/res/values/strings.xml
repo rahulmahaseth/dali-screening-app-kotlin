@@ -209,6 +209,7 @@
     <string name="cat_behavior">BEHAVIOR</string>
     <string name="cat_memory">MEMORY</string>
     <string name="cat_writing">WRITING AWARENESS</string>
+    <string name="start_adding_participant">Start Adding Participant</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

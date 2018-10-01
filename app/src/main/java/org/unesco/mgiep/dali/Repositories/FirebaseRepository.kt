@@ -6,11 +6,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import durdinapps.rxfirebase2.RxFirestore
-import io.reactivex.Maybe
-import io.reactivex.schedulers.Schedulers
 import org.unesco.mgiep.dali.Data.Screening
-import org.unesco.mgiep.dali.Data.User
 
 
 class FirebaseRepository {
@@ -73,7 +69,7 @@ class FirebaseRepository {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         if(!task.result.isEmpty){
-                            Log.d("fetch-Pendingscreenings","success")
+                            Log.d("fetch-Pendingscreenings","${task.result.documents.size}")
                         }else{
                             Log.d("fetch-Pendingscreenings","failed!!No Such Document")
                         }

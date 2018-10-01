@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey">
 
     <FrameLayout
+        android:elevation="10dp"
         android:id="@+id/confirmparticiapnt_progressBar"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/pc_title"
         android:padding="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
@@ -32,10 +34,13 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-
+    <ScrollView
+        android:layout_above="@+id/cpl_bottom_button"
+        android:layout_below="@+id/pc_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
-            android:layout_centerVertical="true"
             android:background="@drawable/custom_edit_text"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -257,13 +262,40 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:background="@drawable/black_bottom_border"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:text="@string/medium_of_instruction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:padding="@dimen/h4"
+                        android:textSize="@dimen/h3"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_confirm_participant_med_inst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 
         </android.support.v7.widget.CardView>
 
+    </ScrollView>
+
 
     <LinearLayout
+        android:id="@+id/cpl_bottom_button"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"

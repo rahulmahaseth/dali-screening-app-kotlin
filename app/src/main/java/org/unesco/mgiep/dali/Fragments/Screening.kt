@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
@@ -253,7 +254,7 @@ class Screening : Fragment() {
                                         id = screeningId,
                                         type = screeningType,
                                         completed = true,
-                                        mediumOfInstruction = "English",
+                                        mediumOfInstruction = AppPref(activity!!.applicationContext).instructionMedium,
                                         participantId = participantId,
                                         userId = mAuth.currentUser!!.uid,
                                         scheduledDate = Date().time,

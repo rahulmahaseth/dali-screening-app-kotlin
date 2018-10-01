@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:focusable="true"
     android:fillViewport="true"
+    android:focusable="true"
     android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize">
 
@@ -13,35 +13,35 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:gravity="center"
-                android:background="@color/colorPrimaryDark"
                 android:id="@+id/s1_tv_layout"
-                android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:padding="10dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="@dimen/h2"
                     android:padding="10dp"
                     android:text="@string/enter_details_of_the_participant"
                     android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/h2" />
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center_vertical"
                 android:id="@+id/participant_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/edit_regscreen_name"
@@ -126,64 +126,60 @@
                     android:textColorHint="@color/white" />
 
 
-                <LinearLayout
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-
-                    <RadioGroup
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                    <RadioButton
+                        android:id="@+id/edit_regscreen_radio_male"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:hint="@string/male"
+                        android:textColorHint="@color/white" />
 
-                        <RadioButton
-                            android:id="@+id/edit_regscreen_radio_male"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:buttonTint= "@color/white"
-                            android:hint="@string/male"
-                            android:textColorHint="@color/white" />
+                    <RadioButton
+                        android:id="@+id/edit_regscreen_radio_female"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:hint="@string/female"
+                        android:textColorHint="@color/white" />
 
-                        <RadioButton
-                            android:id="@+id/edit_regscreen_radio_female"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:buttonTint="@color/white"
-                            android:hint="@string/female"
-                            android:textColorHint="@color/white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </RadioGroup>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </RadioGroup>
-
-
-                </LinearLayout>
-
+                <Button
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/btn_submit_participant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/custom_button"
+                    android:text="@string/next"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/h2" />
 
             </LinearLayout>
+
+
         </LinearLayout>
 
 
-        <Button
-            android:textSize="@dimen/h2"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimaryDark"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/btn_submit_participant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/next" />
+
     </RelativeLayout>
 
 </ScrollView>

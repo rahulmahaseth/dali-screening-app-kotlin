@@ -12,7 +12,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="submit">Submit</string>
-    <string name="school_university">School/University</string>
+    <string name="school_university">School</string>
     <string name="mother_tongue">Mother Tongue</string>
     <string name="section">Section</string>
     <string name="sgd">Class</string>
@@ -188,6 +188,10 @@
     <string name="design">Design</string>
     <string name="dali_about">The screening tools were developed for school teachers to screen children between classes 1-5, at risk for dyslexia. They are based on research carried by Nandini Chatterjee Singh for the development of DALI (Dyslexia Assessment for Languages of India) at the National Brain Research Centre, Manesar, India under a grant funded by the Department of Science and Technology, Govt. Department of Science and Technology, Govt. of India. Should the child be at risk, a formal assessment by a clinical psychologist MUST be carried out for confirmation.</string>
     <string name="copyright_title">The copyright for the screening tool is owned by</string>
+    <string name="clas_range_error">Class should be in between 1 and 12</string>
+    <string name="years">Years (minimum 3)</string>
+    <string name="month_range_error">Months should be in between 1 to 12</string>
+    <string name="medium_of_instruction">Medium Of Instruction</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

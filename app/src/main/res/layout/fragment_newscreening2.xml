@@ -80,24 +80,64 @@
             android:text="@string/estimated_time_spent_with_child" />
 
 
-        <EditText
-            android:textColorHint="@color/white"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:background="@drawable/custom_edit_text"
+                android:id="@+id/edit_time_spent_with_child_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/years"
+                android:inputType="number" />
+
+            <EditText
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:background="@drawable/custom_edit_text"
+                android:id="@+id/edit_time_spent_with_child_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/months"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginVertical="10dp"
+            android:textSize="@dimen/h3"
             android:textColor="@color/white"
-            android:padding="8dp"
-            android:background="@drawable/custom_edit_text"
-            android:id="@+id/edit_time_spent_with_child"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/months"
-            android:inputType="number" />
+            android:text="@string/medium_of_instruction" />
+
+        <Spinner
+            android:backgroundTint="@color/white"
+            android:spinnerMode="dialog"
+            android:theme="@style/ProgressBarTheme"
+            android:id="@+id/spinner_medium_of_inst"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 
 
         <Button
             android:textSize="@dimen/h2"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/custom_button"
             android:layout_alignParentBottom="true"
             android:clickable="true"
             android:focusable="true"

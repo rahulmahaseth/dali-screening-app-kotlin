@@ -9,13 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import durdinapps.rxfirebase2.RxFirebaseAuth
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import org.unesco.mgiep.dali.Activity.MainActivity
-import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Gender

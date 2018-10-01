@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,8 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
+import java.lang.Exception
+
 
 class NewScreening : Fragment() {
 
@@ -30,7 +33,7 @@ class NewScreening : Fragment() {
 
     private var gender = Gender.MALE
 
-    private var selectedDate : Date = calendar.time
+    var selectedDate : Date = Date()
 
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
@@ -83,6 +86,9 @@ class NewScreening : Fragment() {
                     edit_regscreen_class.hint = getString(R.string.sgd)
                 }else{
                     participant.sClass = edit_regscreen_class.text.toString().toInt()
+                    if(edit_regscreen_class.text.toString().toInt() !in 1..12){
+                        edit_regscreen_class.error = getString(R.string.clas_range_error)
+                    }
                 }
             }else{
                 edit_regscreen_class.hint = ""
@@ -141,6 +147,7 @@ class NewScreening : Fragment() {
             when{
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_class.text.isEmpty() -> edit_regscreen_class.error = getString(R.string.required)
+                edit_regscreen_class.text.toString().toInt() !in 1..12 -> edit_regscreen_class.error = getString(R.string.clas_range_error)
                 edit_regscreen_section.text.isEmpty() -> edit_regscreen_section.error = getString(R.string.required)
                 edit_regscreen_mothertongue.text.isEmpty()-> edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_school.text.isEmpty() -> edit_regscreen_school.error = getString(R.string.required)
@@ -172,16 +179,22 @@ class NewScreening : Fragment() {
             }
         }
 
-        edit_regscreen_dob.setOnClickListener {
-            DatePickerDialog(
-                    activity,
-                    date,
-                    calendar.get(Calendar.DAY_OF_MONTH),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.YEAR)
-            ).show()
-        }
+        var dialogPicker = DatePickerDialog(
+                activity,
+                date,
+                selectedDate.year,
+                selectedDate.month,
+                selectedDate.day
+        )
 
+        dialogPicker.updateDate(selectedDate.year, selectedDate.month, selectedDate.day)
+        dialogPicker.datePicker.maxDate = Date().time
+        dialogPicker.datePicker.minDate = subtractYear(Date())
+
+        edit_regscreen_dob.setOnClickListener {
+            Log.d("selected date","$selectedDate")
+            dialogPicker.show()
+        }
 
     }
 
@@ -193,7 +206,17 @@ class NewScreening : Fragment() {
         selectedDate = calendar.time
     }
 
-
+    private fun subtractYear(date: Date): Long{
+        return try {
+            calendar.time = date
+            calendar.add(Calendar.YEAR, -15)
+            calendar.timeInMillis
+        }catch ( e: Exception )
+        {
+            e.printStackTrace()
+            0
+        }
+    }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.new_screening_fragment_container,

@@ -66,13 +66,6 @@ dependencies {
     implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
     kapt "com.android.databinding:compiler:$gradle_version"
 
-    ///retrofit - rest helper
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-
     //moshi - json serialize/de-serialize
     implementation "com.squareup.moshi:moshi-adapters:$moshi_version"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
@@ -85,8 +78,6 @@ dependencies {
     implementation "com.chibatching.kotpref:kotpref:$kotpref_version"
     implementation "com.chibatching.kotpref:initializer:$kotpref_version"
 
-    //SpinKit
-    implementation 'com.github.ybq:Android-SpinKit:1.1.0'
 
     //lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
@@ -98,14 +89,11 @@ dependencies {
     //firebase firestore
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
 
-    implementation 'com.github.FrangSierra:RxFirebase:1.5.0'
     // Check for v11.4.2 or higher
     implementation 'com.google.firebase:firebase-core:16.0.3'
 
     // Add dependency
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
-
-
 }
 repositories {
     mavenCentral()

@@ -13,7 +13,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="submit">Submit</string>
-    <string name="school_university">School/University</string>
+    <string name="school_university">School</string>
     <string name="mother_tongue">Mother Tongue</string>
     <string name="section">Section</string>
     <string name="sgd">Class</string>
@@ -159,6 +159,7 @@
     <string name="language">Language</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="clas_range_error">Class should be between 1 and 12</string>
 
     <string-array name="languages">
         <item>English</item>

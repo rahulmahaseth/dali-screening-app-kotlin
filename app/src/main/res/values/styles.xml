@@ -16,4 +16,8 @@
         <item name="android:colorAccent">@color/white</item>
     </style>
 
+    <style name="SpinnerTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorAccent">@color/white</item>
+    </style>
+
 </resources>

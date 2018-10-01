@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -103,12 +104,13 @@ class PendingScreenings: Fragment() {
     private fun fetchPendingScreenings(){
         if(pending_swipe_refresh.isRefreshing) pending_screening_progressBar?.hide() else pending_screening_progressBar?.show()
         firebaseRepository.fetchPendingUserScreenings(mAuth.currentUser!!.uid)
-                .addOnCompleteListener {
-                    if(!it.result.isEmpty){
+                .addOnSuccessListener {
+                    if(!it.isEmpty){
                         screenings.clear()
-                        it.result.documents.forEach {
+                        it.documents.forEach {
                             screenings.add(it.toObject(Screening::class.java))
                         }
+                        Log.d("screenings_add", "${screenings.size}")
                         fetchParticpants()
                     }else{
                         pending_swipe_refresh?.isRefreshing = false
@@ -141,6 +143,7 @@ class PendingScreenings: Fragment() {
                                 }
                             }
                         }
+                        Log.d("screening_participants","${screeningParticipants.size}")
                         lastAdapter.notifyDataSetChanged()
                         pending_swipe_refresh?.isRefreshing = false
                         pending_screening_progressBar?.hide()

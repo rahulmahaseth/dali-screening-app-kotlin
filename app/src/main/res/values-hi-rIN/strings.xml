@@ -15,8 +15,8 @@
     <string name="submit">"जमा करें "</string>
     <string name="school_university">विद्यालय</string>
     <string name="mother_tongue">"मातृ भाषा "</string>
-    <string name="section">"अनुभाग "</string>
-    <string name="sgd">"कक्षा "</string>
+    <string name="section">अनुभाग</string>
+    <string name="sgd">कक्षा</string>
     <string name="name">नाम</string>
     <string name="date_of_birth">"जन्म की तारीख "</string>
     <string name="age">आयु</string>
@@ -220,4 +220,6 @@
     <string name="concept_and_research">संकल्पना और अनुसंधान</string>
     <string name="development_team">डेवलपमेंट</string>
     <string name="about">जानकारी</string>
+    <string name="pre_screening_info_1">"कृपया ध्यान दें इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षिणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
+    <string name="clas_range_error">कक्षा 1 और 12 के बीच होनी चाहिए</string>
 </resources>

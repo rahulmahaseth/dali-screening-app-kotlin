@@ -10,4 +10,5 @@ class AppPref(context: Context): KotprefModel(context) {
     var userDesignation by stringPref("")
     var userInstitution by stringPref("")
     var userAge by stringPref("")
+    var instructionMedium by stringPref("")
 }

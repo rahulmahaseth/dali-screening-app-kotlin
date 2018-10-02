@@ -132,7 +132,8 @@ class ParticipantConfirm : Fragment() {
                         totalScore = 0,
                         scheduledDate = Date().time,
                         comments = "",
-                        participantName = participant.name
+                        participantName = participant.name,
+                        assesmentLanguage = ""
                 )
         )
                 .addOnSuccessListener {

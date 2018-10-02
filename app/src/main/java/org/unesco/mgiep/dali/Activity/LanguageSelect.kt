@@ -5,6 +5,9 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.select_language.*
+import org.unesco.mgiep.dali.Data.AppPref
+import org.unesco.mgiep.dali.Data.AssessmentLanguage
+import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import java.util.*
 
@@ -15,6 +18,7 @@ class LanguageSelect: AppCompatActivity() {
     private var participantId = ""
     private var participantName = ""
     private var screeningId = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +31,12 @@ class LanguageSelect: AppCompatActivity() {
 
         btn_language_english.setOnClickListener {
             setLocale("en")
+            AppPref(applicationContext).assessmentLanguage = AssessmentLanguage.ENGLISH.toString()
         }
 
         btn_language_hindi.setOnClickListener {
             setLocale("hi")
+            AppPref(applicationContext).assessmentLanguage = AssessmentLanguage.HINDI.toString()
         }
     }
 

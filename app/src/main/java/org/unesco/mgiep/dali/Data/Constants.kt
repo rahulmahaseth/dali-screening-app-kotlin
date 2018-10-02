@@ -15,3 +15,7 @@ enum class Type{
 enum class Relationship{
     CT, LT, OT
 }
+
+enum class AssessmentLanguage{
+    HINDI, ENGLISH
+}

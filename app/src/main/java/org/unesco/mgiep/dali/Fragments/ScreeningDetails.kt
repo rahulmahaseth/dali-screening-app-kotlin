@@ -98,6 +98,7 @@ class ScreeningDetails: Fragment() {
                     .putExtra("name",screening.participantName)
                     .putExtra("score",screening.totalScore)
                     .putExtra("type",screening.type)
+                    .putExtra("language", screening.assesmentLanguage)
             )
         }
     }

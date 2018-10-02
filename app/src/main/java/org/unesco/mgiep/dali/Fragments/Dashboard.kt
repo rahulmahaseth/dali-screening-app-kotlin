@@ -61,17 +61,35 @@ class Dashboard : Fragment() {
                 .map<ScreeningParticipant, ItemScreeningparticipantBinding>(R.layout.item_screeningparticipant) {
                     onBind {
 
-                        if (it.binding.item!!.screening.type == Type.JST.toString()) {
-                            if (it.binding.item!!.screening.totalScore < 16) {
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+
+
+                        if(it.binding.item!!.screening.assesmentLanguage == AssessmentLanguage.ENGLISH.toString()){
+                            if (it.binding.item!!.screening.type == Type.JST.toString()) {
+                                if (it.binding.item!!.screening.totalScore <= 12) {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+                                } else {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                }
                             } else {
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                if (it.binding.item!!.screening.totalScore <= 23) {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+                                } else {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                }
                             }
-                        } else {
-                            if (it.binding.item!!.screening.totalScore < 19) {
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+                        }else{
+                            if (it.binding.item!!.screening.type == Type.JST.toString()) {
+                                if (it.binding.item!!.screening.totalScore <= 16) {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+                                } else {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                }
                             } else {
-                                it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                if (it.binding.item!!.screening.totalScore <= 19) {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_green)
+                                } else {
+                                    it.itemView.item_layout.background = resources.getDrawable(R.drawable.rectangle_red)
+                                }
                             }
                         }
 

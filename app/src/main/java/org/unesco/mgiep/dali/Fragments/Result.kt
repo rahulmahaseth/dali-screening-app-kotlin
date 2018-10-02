@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_result.*
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Data.AssessmentLanguage
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.show
@@ -17,12 +18,14 @@ class Result: Fragment() {
     private var name = ""
     private var score = 0
     private var type = ""
+    private var language = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         name = activity!!.intent.getStringExtra("name")
         score = activity!!.intent.getIntExtra("score", 0)
         type = activity!!.intent.getStringExtra("type")
+        language = activity!!.intent.getStringExtra("language")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -33,22 +36,43 @@ class Result: Fragment() {
 
         tv_result_student_name.text = name
         tv_result_score.text = score.toString()
-        if(type == Type.JST.toString()){
-            tv_result_total.text = 30.toString()
-            if(score > 15){
-                result_recommendation_layout.show()
-                tv_result_summary.text = getString(R.string.at_risk)
+        if(language == AssessmentLanguage.ENGLISH.toString()){
+            if(type == Type.JST.toString()){
+                tv_result_total.text = 30.toString()
+                if(score > 12){
+                    result_recommendation_layout.show()
+                    tv_result_summary.text = getString(R.string.at_risk)
 
+                }else{
+                    tv_result_summary.text = getString(R.string.not_at_risk)
+                }
             }else{
-                tv_result_summary.text = getString(R.string.not_at_risk)
+                tv_result_total.text = 42.toString()
+                if(score > 23){
+                    result_recommendation_layout.show()
+                    tv_result_summary.text = getString(R.string.at_risk)
+                }else{
+                    tv_result_summary.text = getString(R.string.not_at_risk)
+                }
             }
         }else{
-            tv_result_total.text = 42.toString()
-            if(score > 21){
-                result_recommendation_layout.show()
-                tv_result_summary.text = getString(R.string.at_risk)
+            if(type == Type.JST.toString()){
+                tv_result_total.text = 30.toString()
+                if(score > 16){
+                    result_recommendation_layout.show()
+                    tv_result_summary.text = getString(R.string.at_risk)
+
+                }else{
+                    tv_result_summary.text = getString(R.string.not_at_risk)
+                }
             }else{
-                tv_result_summary.text = getString(R.string.not_at_risk)
+                tv_result_total.text = 42.toString()
+                if(score > 19){
+                    result_recommendation_layout.show()
+                    tv_result_summary.text = getString(R.string.at_risk)
+                }else{
+                    tv_result_summary.text = getString(R.string.not_at_risk)
+                }
             }
         }
 

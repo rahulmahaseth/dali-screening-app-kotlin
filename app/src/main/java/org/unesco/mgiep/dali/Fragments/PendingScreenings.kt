@@ -46,8 +46,6 @@ class PendingScreenings: Fragment() {
         return LastAdapter(screeningParticipants, BR.item)
                 .map<ScreeningParticipant, ItemScreeningparticipantBinding>(R.layout.item_screeningparticipant) {
                     onBind {
-                        if(it.binding.item!!.screening.type == Type.JST.toString() ){
-                        }
 
                         if(it.binding.item!!.participant.gender == Gender.MALE.toString()){
                             it.itemView.item_screening_male.visibility = View.VISIBLE

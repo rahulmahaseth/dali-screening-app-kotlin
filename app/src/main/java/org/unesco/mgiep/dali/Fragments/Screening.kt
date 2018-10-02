@@ -260,7 +260,8 @@ class Screening : Fragment() {
                                         scheduledDate = Date().time,
                                         totalScore = totalScore,
                                         comments = "",
-                                        participantName = participantName
+                                        participantName = participantName,
+                                        assesmentLanguage = AppPref(activity!!.applicationContext).assessmentLanguage
                                 )
                         )
                         showFragment(

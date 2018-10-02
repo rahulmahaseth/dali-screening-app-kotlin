@@ -155,7 +155,7 @@
     <string name="remember_me">"मुझे याद रखना "</string>
     <string name="institution">संस्था</string>
     <string name="relationship_with_child_none_select_error">प्रतिभागी के साथ संबंध का चयन करें</string>
-    <string name="months">महीने</string>
+    <string name="months">महीने(न्यूनतम 3)</string>
     <string name="estimated_time_spent_with_child">अनुमानित समय बच्चे के साथ बिताया</string>
     <string name="exit_screening_prompt">क्या आप वाकई इस गतिविधि को रोकना चाहते हैं?</string>
     <string name="done">"ठीक "</string>
@@ -164,8 +164,8 @@
 
 
     <string-array name="languages">
-        <item>अंग्रेज़ी</item>
         <item>हिंदी</item>
+        <item>अंग्रेज़ी</item>
         <item>बंगाली</item>
         <item>तेलुगू</item>
         <item>मराठी</item>
@@ -178,20 +178,6 @@
         <item>संस्कृत</item>
         <item>पंजाबी</item>
         <item>असमिया</item>
-        <item>English</item>
-        <item>Hindi</item>
-        <item>Bengali</item>
-        <item>Telugu</item>
-        <item>Marathi</item>
-        <item>Tamil</item>
-        <item>Urdu</item>
-        <item>Kannada</item>
-        <item>Gujarati</item>
-        <item>Odia</item>
-        <item>Malayalam</item>
-        <item>Sanskrit</item>
-        <item>Punjabi</item>
-        <item>Assamese</item>
     </string-array>
 
     <string name="mail_sent">"संदेश भेज दिया गया "</string>
@@ -241,4 +227,10 @@
     <string name="month_range_error">महीने 0 से 12 के बीच होना चाहिए</string>
     <string name="start_adding_participant">प्रतिभागी जोड़ना शुरू करें</string>
     <string name="years">साल</string>
+    <string name="at_risk">विस्तार से जाँच करवायें</string>
+    <string name="not_at_risk">सही पथ पर</string>
+    <string name="years_and">साल और</string>
+    <string name="months_">महीने</string>
+    <string name="screening_lanuage">स्क्रीनिंग भाषा</string>
+    <string name="medium_of_instruction2">"निर्देश का माध्यम "</string>
 </resources>

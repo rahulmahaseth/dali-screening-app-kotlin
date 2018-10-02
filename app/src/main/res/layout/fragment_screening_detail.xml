@@ -183,31 +183,62 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/screening_detail_langugage_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/screening_lanuage"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/tv_screeningdetail_lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/tv_screeeningdetail_comments_title"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/comments"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h3" />
 
     <LinearLayout
         android:id="@+id/screening_comment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1.6"
         android:background="@drawable/custom_edit_text"
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
+        <ScrollView
+            android:fadeScrollbars="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/comments"
-            android:textColor="@color/white"
-            android:textSize="@dimen/h3" />
-
-        <TextView
-            android:id="@+id/tv_screeeningdetail_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_screeeningdetail_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
+        </ScrollView>
     </LinearLayout>
 
     <Button

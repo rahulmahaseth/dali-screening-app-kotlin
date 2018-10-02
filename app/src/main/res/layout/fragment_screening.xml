@@ -52,69 +52,75 @@
 
 
 
-    <LinearLayout
+    <ScrollView
+        android:paddingTop="10dp"
+        android:fadeScrollbars="false"
         android:layout_above="@+id/screening_bottom_nav"
-        android:gravity="center"
         android:layout_below="@+id/quesiton_layout"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RadioGroup
-            android:id="@+id/screening_radio_group"
+        <RelativeLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RadioButton
-                android:textSize="@dimen/h2"
-                android:focusable="true"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="10dp"
-                android:gravity="center"
-                android:button="@android:color/transparent"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_radio_button"
-                android:layout_margin="10dp"
-                android:id="@+id/btn_usually"
+            <RadioGroup
+                android:layout_centerInParent="true"
+                android:id="@+id/screening_radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/usually" />
+                android:layout_height="wrap_content">
 
-            <RadioButton
-                android:textSize="@dimen/h2"
-                android:focusable="true"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="10dp"
-                android:gravity="center"
-                android:button="@android:color/transparent"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_radio_button"
-                android:layout_margin="10dp"
-                android:id="@+id/btn_sometimes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sometimes" />
+                <RadioButton
+                    android:textSize="@dimen/h2"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:button="@android:color/transparent"
+                    android:textColor="@color/white"
+                    android:background="@drawable/custom_radio_button"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_usually"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usually" />
 
-            <RadioButton
-                android:textSize="@dimen/h2"
-                android:focusable="true"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="10dp"
-                android:gravity="center"
-                android:button="@android:color/transparent"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_radio_button"
-                android:layout_margin="10dp"
-                android:id="@+id/btn_never"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/never" />
-        </RadioGroup>
-    </LinearLayout>
+                <RadioButton
+                    android:textSize="@dimen/h2"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:button="@android:color/transparent"
+                    android:textColor="@color/white"
+                    android:background="@drawable/custom_radio_button"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_sometimes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sometimes" />
+
+                <RadioButton
+                    android:textSize="@dimen/h2"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:button="@android:color/transparent"
+                    android:textColor="@color/white"
+                    android:background="@drawable/custom_radio_button"
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_never"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/never" />
+            </RadioGroup>
+        </RelativeLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/screening_bottom_nav"
@@ -135,7 +141,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="1"
             android:id="@+id/tv_questions_completed"
             android:gravity="center"
@@ -151,7 +158,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="21"
             android:id="@+id/tv_total_questions"
             android:gravity="center"
@@ -179,7 +187,6 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 </RelativeLayout>

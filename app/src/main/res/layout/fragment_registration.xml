@@ -47,6 +47,7 @@
 
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/reg_name_layout"
                 android:hint="@string/name"
                 android:layout_marginTop="8dp"
                 app:hintTextAppearance="@style/CustomEditText"
@@ -58,7 +59,6 @@
 
                 <EditText
                     android:drawableTint="@color/white"
-                    android:drawableRight="@drawable/ic_star_black_24dp"
                     android:drawableLeft="@drawable/ic_person_white_24dp"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
@@ -73,6 +73,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/reg_email_layout"
                 android:layout_marginTop="8dp"
                 app:hintTextAppearance="@style/CustomEditText"
                 app:passwordToggleTint="@color/white"
@@ -83,7 +84,6 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:drawableTint="@color/white"
-                    android:drawableRight="@drawable/ic_star_black_24dp"
                     android:drawableLeft="@drawable/ic_email_email_24dp"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
@@ -98,6 +98,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/reg_pass_layout"
                 app:hintTextAppearance="@style/CustomEditText"
                 android:layout_marginTop="8dp"
                 app:passwordToggleTint="@color/white"

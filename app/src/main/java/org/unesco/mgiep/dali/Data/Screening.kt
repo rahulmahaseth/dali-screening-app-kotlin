@@ -11,5 +11,5 @@ data class Screening (
         val scheduledDate: Long = 0,
         var totalScore: Int = 0,
         var comments: String = "",
-        var assesmentLanguage: String
+        var assesmentLanguage: String = ""
 )

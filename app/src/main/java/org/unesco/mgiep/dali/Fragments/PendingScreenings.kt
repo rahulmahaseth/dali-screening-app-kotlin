@@ -144,6 +144,7 @@ class PendingScreenings: Fragment() {
                             }
                         }
                         Log.d("screening_participants","${screeningParticipants.size}")
+                        screeningParticipants.sortByDescending { it.screening.scheduledDate }
                         lastAdapter.notifyDataSetChanged()
                         pending_swipe_refresh?.isRefreshing = false
                         pending_screening_progressBar?.hide()
@@ -177,6 +178,7 @@ class PendingScreenings: Fragment() {
                         .forEach {
                             screeningParticipants.add(it)
                         }
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }
@@ -186,12 +188,14 @@ class PendingScreenings: Fragment() {
                         .map {
                             screeningParticipants.add(it)
                         }
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }
             R.id.sort_all -> {
                 screeningParticipants.clear()
                 screeningParticipants.addAll(screeningParticipantContainer)
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }

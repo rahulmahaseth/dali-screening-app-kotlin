@@ -18,10 +18,7 @@ import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
-import org.unesco.mgiep.dali.Utility.hide
-import org.unesco.mgiep.dali.Utility.show
-import org.unesco.mgiep.dali.Utility.showAsToast
-import org.unesco.mgiep.dali.Utility.showFragment
+import org.unesco.mgiep.dali.Utility.*
 
 
 class SignUp :Fragment() {
@@ -54,6 +51,9 @@ class SignUp :Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
+        reg_name_layout.markRequired()
+        reg_email_layout.markRequired()
+        reg_pass_layout.markRequired()
         edit_register_email.setOnFocusChangeListener { view, b ->
             if(!b){
                 if(!edit_register_email.text.matches(emailPattern)){

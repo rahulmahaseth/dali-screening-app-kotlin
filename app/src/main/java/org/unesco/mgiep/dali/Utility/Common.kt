@@ -1,6 +1,7 @@
 package org.unesco.mgiep.dali.Utility
 
 import android.content.Context
+import android.support.design.widget.TextInputLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
@@ -44,4 +45,8 @@ fun Any.showAsToast(context : Context, alertType: Boolean = false, duration: Int
     toastMessage.compoundDrawablePadding = 8
     toastView.background =ContextCompat.getDrawable(context, R.drawable.curved_rectangle)
     toast.show()
+}
+
+fun TextInputLayout.markRequired(){
+    hint = "$hint *"
 }

@@ -210,6 +210,11 @@
     <string name="cat_memory">MEMORY</string>
     <string name="cat_writing">WRITING AWARENESS</string>
     <string name="start_adding_participant">Start Adding Participant</string>
+    <string name="screening_lanuage">Screening lanuage</string>
+    <string name="years_and">years and</string>
+    <string name="months_">months.</string>
+    <string name="medium_of_instruction2">Medium of instruction</string>
+    <string name="name_req">Name*</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

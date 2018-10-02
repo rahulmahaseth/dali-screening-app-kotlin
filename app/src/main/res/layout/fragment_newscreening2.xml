@@ -122,6 +122,7 @@
             android:text="@string/medium_of_instruction" />
 
         <Spinner
+            android:fadeScrollbars="false"
             android:backgroundTint="@color/white"
             android:spinnerMode="dialog"
             android:theme="@style/ProgressBarTheme"

@@ -5,10 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
@@ -32,7 +29,7 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 
 
-class ScreeningDetails: Fragment() {
+class ScreeningDetails : Fragment() {
 
     private lateinit var participant: Participant
     private lateinit var screening: Screening
@@ -55,12 +52,14 @@ class ScreeningDetails: Fragment() {
         scheduled = !screening.completed
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_screening_detail, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //activity!!.actionBar.setDisplayHomeAsUpEnabled(true)
         tv_screeeningdetail_name.text = participant.name
         tv_screeningdetail_class.text = participant.sClass.toString()
         tv_screeeningdetail_section.text = participant.section
@@ -68,8 +67,11 @@ class ScreeningDetails: Fragment() {
         tv_screeningdetail_score.text = screening.totalScore.toString()
         tv_screeningdetail_type.text = screening.type
         tv_screeeningdetail_comment.text = screening.comments
+        tv_screeningdetail_lang.text = screening.assesmentLanguage
 
-        if(scheduled){
+        if (scheduled) {
+            tv_screeeningdetail_comments_title.hide()
+            screening_detail_langugage_layout.hide()
             btn_screening_detail_result.hide()
             screening_detail_score_layout.hide()
             screening_comment_layout.hide()
@@ -84,10 +86,10 @@ class ScreeningDetails: Fragment() {
                     .putExtra("participantName", screening.participantName))
         }
 
-        if(participant.gender == Gender.FEMALE.toString()){
+        if (participant.gender == Gender.FEMALE.toString()) {
             screendetail_female.visibility = View.VISIBLE
             screendetail_male.visibility = View.GONE
-        }else{
+        } else {
             screendetail_female.visibility = View.GONE
             screendetail_male.visibility = View.VISIBLE
         }
@@ -95,22 +97,52 @@ class ScreeningDetails: Fragment() {
         btn_screening_detail_result.setOnClickListener {
             startActivity(
                     Intent(activity, ResultActivity::class.java)
-                    .putExtra("name",screening.participantName)
-                    .putExtra("score",screening.totalScore)
-                    .putExtra("type",screening.type)
-                    .putExtra("language", screening.assesmentLanguage)
+                            .putExtra("name", screening.participantName)
+                            .putExtra("score", screening.totalScore)
+                            .putExtra("type", screening.type)
+                            .putExtra("language", screening.assesmentLanguage)
             )
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        activity!!.title = screening.participantName
+        /*
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId) {
+            android.R.id.home -> {
+                if (screening.completed) {
+                    showFragment(
+                            Fragment.instantiate(
+                                    activity!!,
+                                    Dashboard::class.java.name
+                            ),
+                            false
+                    )
+                    true
+                } else {
+                    showFragment(
+                            Fragment.instantiate(
+                                    activity!!,
+                                    PendingScreenings::class.java.name
+                            ),
+                            false
+                    )
+                    true
+                }
+            }
+            else -> {
+                 super.onOptionsItemSelected(item)
+            }
+        }
     }
+*/
 
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
-                fragmentManager = activity!!.supportFragmentManager,
-                addToBackStack = addToBackStack)
-    }
+override fun onResume() {
+    super.onResume()
+    activity!!.title = screening.participantName
+}
+
+private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+    fragment.showFragment(container = R.id.fragment_container,
+            fragmentManager = activity!!.supportFragmentManager,
+            addToBackStack = addToBackStack)
+}
 }

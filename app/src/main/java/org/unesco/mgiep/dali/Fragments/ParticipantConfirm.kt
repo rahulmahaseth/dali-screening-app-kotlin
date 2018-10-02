@@ -2,6 +2,7 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -84,7 +85,7 @@ class ParticipantConfirm : Fragment() {
     private fun getFormattedTSWC(timeSpentWithChild: Int): String {
         val years = timeSpentWithChild / 12
         val months = timeSpentWithChild % 12
-        return "$years years and $months months"
+        return "$years ${getString(R.string.years_and)} $months ${getString(R.string.months_)}"
     }
 
     private fun saveParticipant(start: Boolean) {

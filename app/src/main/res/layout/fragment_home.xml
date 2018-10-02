@@ -20,6 +20,8 @@
             android:textSize="@dimen/h2" />
 
         <Button
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/btn_start_adding_participant"
             android:textSize="@dimen/h3"
             android:layout_marginLeft="20dp"

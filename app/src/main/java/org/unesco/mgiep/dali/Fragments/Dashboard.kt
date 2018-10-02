@@ -186,7 +186,7 @@ class Dashboard : Fragment() {
                                     }
                                 }
                             }
-
+                                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                                 lastAdapter.notifyDataSetChanged()
                                 dashboard_refresh_layout?.isRefreshing = false
                                 dashboard_progressBar?.hide()
@@ -222,6 +222,7 @@ class Dashboard : Fragment() {
                         .forEach {
                             screeningParticipants.add(it)
                         }
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }
@@ -231,12 +232,14 @@ class Dashboard : Fragment() {
                         .map {
                             screeningParticipants.add(it)
                         }
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }
             R.id.sort_all -> {
                 screeningParticipants.clear()
                 screeningParticipants.addAll(screeningParticipantsContainer)
+                screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
                 true
             }

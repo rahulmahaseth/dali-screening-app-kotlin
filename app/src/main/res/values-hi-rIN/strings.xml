@@ -41,7 +41,7 @@
     <string name="next">अगला</string>
     <string name="change">"बदलें "</string>
     <string name="screening_saved">स्क्रीनिंग सहेजा गया</string>
-    <string name="save_screening_error">बचत करते समय त्रुटि!</string>
+    <string name="save_screening_error">सहेजते समय त्रुटि!पुनः प्रयास करें</string>
     <string name="completed">पूरित</string>
     <string name="pending">बाकी</string>
     <string name="sort">छँटाई</string>
@@ -155,7 +155,7 @@
     <string name="remember_me">"मुझे याद रखना "</string>
     <string name="institution">संस्था</string>
     <string name="relationship_with_child_none_select_error">प्रतिभागी के साथ संबंध का चयन करें</string>
-    <string name="months">महीने(न्यूनतम 3)</string>
+    <string name="months">महीने</string>
     <string name="estimated_time_spent_with_child">अनुमानित समय बच्चे के साथ बिताया</string>
     <string name="exit_screening_prompt">क्या आप वाकई इस गतिविधि को रोकना चाहते हैं?</string>
     <string name="done">"ठीक "</string>
@@ -206,7 +206,7 @@
     <string name="concept_and_research">संकल्पना और अनुसंधान</string>
     <string name="development_team">डेवलपमेंट</string>
     <string name="about">जानकारी</string>
-    <string name="pre_screening_info_1">"कृपया ध्यान दें इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षिणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
+    <string name="pre_screening_info_1">"इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षिणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
     <string name="clas_range_error">कक्षा 1 और 5 के बीच होनी चाहिए</string>
     <string name="cat_writing">लेखन जागरूकता</string>
     <string name="cat_memory">मेमोरी</string>

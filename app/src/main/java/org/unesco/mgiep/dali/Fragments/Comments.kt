@@ -46,6 +46,8 @@ class Comments: Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
         btn_submit_screening.setOnClickListener { v ->
             screening.comments = edit_comments.text.toString()
             comments_progressBar?.show()
@@ -53,40 +55,18 @@ class Comments: Fragment(){
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
                         comments_progressBar?.hide()
-                        getString(R.string.screening_saved).showAsToast(activity!!)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            setLocale(Resources.getSystem().configuration.locales[0].language)
-                        }else{
-                            setLocale(Resources.getSystem().configuration.locale.language)
-                        }
+                        startActivity(
+                                Intent(activity, ResultActivity::class.java)
+                                        .putExtra("name",screening.participantName)
+                                        .putExtra("score",screening.totalScore)
+                                        .putExtra("type",screening.type)
+                                        .putExtra("language", screening.assesmentLanguage)
+                        )
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()
                         getString(R.string.save_screening_error).showAsToast(activity!!)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            setLocale(Resources.getSystem().configuration.locales[0].language)
-                        }else{
-                            setLocale(Resources.getSystem().configuration.locale.language)
-                        }
                     }
         }
-    }
-
-    fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
-        config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
-        startActivity(
-                Intent(activity, ResultActivity::class.java)
-                        .putExtra("name",screening.participantName)
-                        .putExtra("score",screening.totalScore)
-                        .putExtra("type",screening.type)
-                        .putExtra("language", screening.assesmentLanguage)
-        )
-        activity!!.finish()
     }
 }

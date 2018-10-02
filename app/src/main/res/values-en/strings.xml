@@ -41,7 +41,7 @@
     <string name="next">Next</string>
     <string name="change">Change</string>
     <string name="screening_saved">Screening Saved</string>
-    <string name="save_screening_error">Error while saving!</string>
+    <string name="save_screening_error">Error while saving! Try Again</string>
     <string name="completed">COMPLETED</string>
     <string name="pending">PENDING</string>
 
@@ -132,7 +132,7 @@
     <string name="others">Others</string>
     <string name="other">Other</string>
     <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
-    <string name="months">Months(3 min)</string>
+    <string name="months">Months</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with participantDetail</string>
     <string name="pending_screenings">Pending Screenings</string>
     <string name="back">Back</string>

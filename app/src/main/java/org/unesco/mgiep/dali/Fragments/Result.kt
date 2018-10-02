@@ -1,6 +1,9 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,10 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_result.*
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Data.AssessmentLanguage
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.show
+import java.util.*
 
 class Result: Fragment() {
 
@@ -75,10 +80,29 @@ class Result: Fragment() {
             }
         }
 
+
+
         btn_done_result.setOnClickListener {
-            startActivity(Intent(activity!!, MainActivity::class.java))
-            activity!!.finish()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                setLocale(Resources.getSystem().configuration.locales[0].language)
+            }else{
+                setLocale(Resources.getSystem().configuration.locale.language)
+            }
         }
 
+    }
+
+    fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        //val conf = resources.configuration
+        //val dm = resources.displayMetrics
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
+        startActivity(
+                Intent(activity, MainActivity::class.java)
+        )
+        activity!!.finish()
     }
 }

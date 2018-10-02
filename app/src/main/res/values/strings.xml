@@ -40,7 +40,7 @@
     <string name="next">Next</string>
     <string name="change">Change</string>
     <string name="screening_saved">Screening Saved</string>
-    <string name="save_screening_error">Error while saving!</string>
+    <string name="save_screening_error">Error while saving! Try Again</string>
     <string name="completed">COMPLETED</string>
     <string name="pending">PENDING</string>
 
@@ -131,7 +131,7 @@
     <string name="others">Others</string>
     <string name="other">Other</string>
     <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
-    <string name="months">Months(3 min)</string>
+    <string name="months">Months</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with participantDetail</string>
     <string name="pending_screenings">Pending Screenings</string>
     <string name="back">Back</string>
@@ -174,7 +174,7 @@
     <string name="hindi">Hindi</string>
     <string name="select_screening_language">Select Screening Language</string>
     <string name="home_description">DALI screening is the first online screening tool for dyslexia in regional Indian languages.</string>
-    <string name="prescreen_text_1">This screening tool is designed to be used as a referral questionnaire. As per language research, children should be screened in all the languages in which they receive instruction.</string>
+    <string name="prescreen_text_1">This screening tool is designed to be used as a referral questionnaire. As per language research, children should be screened in all the languages that are taught in class.</string>
     <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
     <string name="information">Information</string>
     <string name="confirm_participant_details">Confirm Participant Details</string>
@@ -195,11 +195,11 @@
     <string name="medium_of_instruction">Choose medium of instruction</string>
     <string name="eye_sight_test">Eye-sight test by a qualified opthalmologist to rule out problems with vision.</string>
     <string name="audio_test">Hearing test by a qualified otologist to rule out problems with auditory processes.</string>
-    <string name="cognitive_test">Cognitive assesssment by a school counsellor, who then refers the child to psychologist.</string>
+    <string name="cognitive_test">Detailed assessment covering different language domains by a clinical/educational psychologist in all languages of instruction.</string>
     <string name="recommendation">Recommendations</string>
     <string name="at_risk">At Risk</string>
     <string name="not_at_risk">Not at Risk</string>
-    <string name="please_provide_special_comments_for_the_child">Please provide special comments for the child</string>
+    <string name="please_provide_special_comments_for_the_child">Please provide additional comments for the child</string>
     <string name="drafts">Drafts</string>
     <string name="cat_sound">SOUND AWARENESS</string>
     <string name="cat_communication">COMMUNICATION</string>

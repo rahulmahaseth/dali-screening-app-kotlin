@@ -38,7 +38,6 @@
             android:maxLength="50"
             android:padding="10dp"
             android:background="@drawable/custom_edit_text_primary"
-            android:hint="@string/additional_comments"
             android:id="@+id/edit_comments"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

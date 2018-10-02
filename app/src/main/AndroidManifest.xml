@@ -12,21 +12,33 @@
         android:theme="@style/AppTheme" >
 
         <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize"
             />
 
 
         <activity android:name=".Activity.ScreeningActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name=".Activity.NewScreeningActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".Activity.LanguageSelect"/>
+        <activity android:name=".Activity.LanguageSelect"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
 
-        <activity android:name=".Activity.ResultActivity"/>
+        <activity android:name=".Activity.ResultActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
 
         <activity android:name=".Activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

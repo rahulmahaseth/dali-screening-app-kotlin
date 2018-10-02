@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="h1">25sp</dimen>
+    <dimen name="h2">19sp</dimen>
+    <dimen name="h3">12sp</dimen>
+    <dimen name="question_dimen">17sp</dimen>
+    <dimen name="example_dimen">12sp</dimen>
+    <dimen name="h4">12sp</dimen>
+    <dimen name="aliens">80dp</dimen>
+    <dimen name="dots_height"></dimen>
+    <dimen name="dots_margin_bottom"></dimen>
+    <dimen name="reg_image_width">38dp</dimen>
+    <dimen name="reg_image_height">38dp</dimen>
+    <dimen name="name_size">15sp</dimen>
+    <dimen name="result_score">38sp</dimen>
+    <dimen name="desc_margin_home">60dp</dimen>
+</resources>

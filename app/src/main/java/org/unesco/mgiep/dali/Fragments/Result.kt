@@ -35,7 +35,6 @@ class Result: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tv_result_student_name.text = name
-        tv_result_score.text = score.toString()
         if(language == AssessmentLanguage.ENGLISH.toString()){
             if(type == Type.JST.toString()){
                 //tv_result_total.text = 30.toString()

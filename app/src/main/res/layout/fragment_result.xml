@@ -47,33 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.CardView
-            android:background="@drawable/custom_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:backgroundTint="@color/colorPrimary"
-                android:id="@+id/result_card"
-                android:gravity="center"
-                android:background="@drawable/black_bottom_border"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/result_score"
-                    android:text="21"
-                    android:id="@+id/tv_result_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_marginTop="10dp"
             android:background="@drawable/custom_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

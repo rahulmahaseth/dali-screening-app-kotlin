@@ -42,7 +42,7 @@
 
 
         <TextView
-            android:textSize="@dimen/question_dimen"
+            android:textSize="@dimen/example_dimen"
             android:textColor="#D3D0CB"
             android:paddingHorizontal="20dp"
             android:id="@+id/tv_example"

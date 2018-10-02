@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
@@ -86,6 +87,10 @@ class PendingScreenings: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+
         activity!!.nav_view.menu.getItem(2).isChecked = true
 
         pending_screening_recycler.adapter = lastAdapter
@@ -204,7 +209,6 @@ class PendingScreenings: Fragment() {
             }
         }
     }
-
     override fun onResume() {
         super.onResume()
         activity!!.title = getString(R.string.drafts)

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
@@ -133,7 +134,14 @@ class MainActivity: BaseActivity() {
                         .create()
                         .show()
             }
-            else -> supportFragmentManager.popBackStack()
+            count > 0 -> {
+                Log.d("pop","$count")
+                supportFragmentManager.popBackStack()
+
+            }
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 
@@ -141,7 +149,12 @@ class MainActivity: BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item!!.itemId){
             android.R.id.home -> {
-                drawer_layout.openDrawer(GravityCompat.START)
+                Log.d("BackStackCt","${fragmentManager.backStackEntryCount}")
+                if(supportFragmentManager.backStackEntryCount == 2){
+                    onBackPressed()
+                }else{
+                    drawer_layout.openDrawer(GravityCompat.START)
+                }
             }
         }
         return super.onOptionsItemSelected(item)

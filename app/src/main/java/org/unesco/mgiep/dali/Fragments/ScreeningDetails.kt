@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -42,6 +43,7 @@ class ScreeningDetails : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         (activity!!.application as MyApplication).component.inject(this)
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
@@ -59,7 +61,9 @@ class ScreeningDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //activity!!.actionBar.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
+
         tv_screeeningdetail_name.text = participant.name
         tv_screeningdetail_class.text = participant.sClass.toString()
         tv_screeeningdetail_section.text = participant.section
@@ -104,36 +108,8 @@ class ScreeningDetails : Fragment() {
             )
         }
     }
-        /*
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
-            android.R.id.home -> {
-                if (screening.completed) {
-                    showFragment(
-                            Fragment.instantiate(
-                                    activity!!,
-                                    Dashboard::class.java.name
-                            ),
-                            false
-                    )
-                    true
-                } else {
-                    showFragment(
-                            Fragment.instantiate(
-                                    activity!!,
-                                    PendingScreenings::class.java.name
-                            ),
-                            false
-                    )
-                    true
-                }
-            }
-            else -> {
-                 super.onOptionsItemSelected(item)
-            }
-        }
-    }
-*/
+
+
 
 override fun onResume() {
     super.onResume()

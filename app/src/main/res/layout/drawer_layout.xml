@@ -52,6 +52,7 @@
 
 
     <android.support.design.widget.NavigationView
+        app:itemBackground="@android:color/transparent"
         app:itemIconTint="@drawable/drawer_item_color"
         app:itemTextColor="@drawable/drawer_item_color"
         android:background="@color/white"

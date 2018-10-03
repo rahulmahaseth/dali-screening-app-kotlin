@@ -125,7 +125,7 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
 
                 !edit_time_spent_with_child_year.text.isEmpty() && edit_time_spent_with_child_month.text.isEmpty() ->{
                     if(edit_time_spent_with_child_year.text.toString().toInt() <= 0){
-                        edit_time_spent_with_child_year.error = getString(R.string.required)
+                        edit_time_spent_with_child_month.error = getString(R.string.required)
                     }else{
                         submmit()
                     }

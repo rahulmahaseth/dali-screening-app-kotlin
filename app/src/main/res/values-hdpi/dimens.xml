@@ -3,8 +3,8 @@
     <dimen name="h1">26sp</dimen>
     <dimen name="h2">20sp</dimen>
     <dimen name="h3">13sp</dimen>
-    <dimen name="question_dimen">18sp</dimen>
-    <dimen name="example_dimen">13sp</dimen>
+    <dimen name="question_dimen">22sp</dimen>
+    <dimen name="example_dimen">16sp</dimen>
     <dimen name="h4">12sp</dimen>
     <dimen name="aliens">100dp</dimen>
     <dimen name="dots_height"></dimen>

@@ -21,7 +21,7 @@ import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.*
 
 
-class SignUp :Fragment() {
+class SignUp : Fragment() {
 
     private var gender = Gender.MALE
     private lateinit var mAuth: FirebaseAuth
@@ -44,7 +44,7 @@ class SignUp :Fragment() {
         firebaseRepository = FirebaseRepository()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_registration, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,8 +55,8 @@ class SignUp :Fragment() {
         reg_email_layout.markRequired()
         reg_pass_layout.markRequired()
         edit_register_email.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(!edit_register_email.text.matches(emailPattern)){
+            if (!b) {
+                if (!edit_register_email.text.matches(emailPattern)) {
                     edit_register_email.error = getString(R.string.improper_email)
                 }
             }
@@ -83,7 +83,7 @@ class SignUp :Fragment() {
             gender = Gender.MALE
         }
 
-        btn_register_submit.setOnClickListener { v->
+        btn_register_submit.setOnClickListener { v ->
             when {
                 edit_register_name.text.isEmpty() -> edit_register_name.error = getString(R.string.required)
                 edit_register_email.text.isEmpty() -> edit_register_email.error = getString(R.string.required)
@@ -93,10 +93,10 @@ class SignUp :Fragment() {
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
                     getString(R.string.select_gender).showAsToast(activity!!)
                 }
-                else->{
+                else -> {
                     progressBar2?.show()
-                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(),edit_register_password.text.toString())
-                            .addOnSuccessListener{ authResult ->
+                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(), edit_register_password.text.toString())
+                            .addOnSuccessListener { authResult ->
                                 Log.d("userid-on-signup", authResult.user.uid)
                                 user2 = User(
                                         edit_register_email.text.toString(),
@@ -113,10 +113,16 @@ class SignUp :Fragment() {
                                             AppPref(activity!!.applicationContext).userName = user.name
                                             AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                                                progressBar2?.hide()
-                                                startActivity(Intent(activity, MainActivity::class.java))
-                                                getString(R.string.user_saved).showAsToast(activity!!)
-                                                activity!!.finish()
+                                            progressBar2?.hide()
+                                            getString(R.string.user_saved).showAsToast(activity!!)
+
+                                            showFragment(
+                                                    Fragment.instantiate(
+                                                            activity!!,
+                                                            PostSignUpInfo::class.java.name
+                                                    ),
+                                                    false
+                                            )
                                         }
                                         .addOnFailureListener {
                                             progressBar2?.hide()
@@ -124,10 +130,10 @@ class SignUp :Fragment() {
                                         }
 
                             }
-                            .addOnFailureListener{
+                            .addOnFailureListener {
                                 progressBar2.hide()
                                 getString(R.string.signup_fail).showAsToast(activity!!)
-                                Log.d("signup", getString(R.string.signup_fail),it)
+                                Log.d("signup", getString(R.string.signup_fail), it)
                             }
                 }
             }

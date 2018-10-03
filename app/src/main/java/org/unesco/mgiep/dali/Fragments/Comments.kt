@@ -57,11 +57,13 @@ class Comments: Fragment(){
                         comments_progressBar?.hide()
                         startActivity(
                                 Intent(activity, ResultActivity::class.java)
+                                        .putExtra("screening", true)
                                         .putExtra("name",screening.participantName)
                                         .putExtra("score",screening.totalScore)
                                         .putExtra("type",screening.type)
                                         .putExtra("language", screening.assesmentLanguage)
                         )
+                        activity!!.finish()
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()

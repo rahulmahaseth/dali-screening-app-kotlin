@@ -43,39 +43,57 @@ class Result: Fragment() {
         if(language == AssessmentLanguage.ENGLISH.toString()){
             if(type == Type.JST.toString()){
                 //tv_result_total.text = 30.toString()
-                if(score > 12){
-                    result_recommendation_layout.show()
-                    tv_result_summary.text = getString(R.string.at_risk)
-
-                }else{
-                    tv_result_summary.text = getString(R.string.not_at_risk)
+                when {
+                    score > 12 -> {
+                        result_recommendation_layout.show()
+                        tv_result_summary.text = getString(R.string.at_risk)
+                    }
+                    score in 11..12 -> {
+                        tv_result_summary.text = getString(R.string.not_at_risk)
+                        card_safe_Warning.show()
+                    }
+                    else -> tv_result_summary.text = getString(R.string.not_at_risk)
                 }
             }else{
                 //tv_result_total.text = 42.toString()
-                if(score > 23){
-                    result_recommendation_layout.show()
-                    tv_result_summary.text = getString(R.string.at_risk)
-                }else{
-                    tv_result_summary.text = getString(R.string.not_at_risk)
+                when {
+                    score > 23 -> {
+                        result_recommendation_layout.show()
+                        tv_result_summary.text = getString(R.string.at_risk)
+                    }
+                    score in 22..23 -> {
+                        tv_result_summary.text = getString(R.string.not_at_risk)
+                        card_safe_Warning.show()
+                    }
+                    else -> tv_result_summary.text = getString(R.string.not_at_risk)
                 }
             }
         }else{
             if(type == Type.JST.toString()){
                 //tv_result_total.text = 30.toString()
-                if(score > 16){
-                    result_recommendation_layout.show()
-                    tv_result_summary.text = getString(R.string.at_risk)
-
-                }else{
-                    tv_result_summary.text = getString(R.string.not_at_risk)
+                when {
+                    score > 16 -> {
+                        result_recommendation_layout.show()
+                        tv_result_summary.text = getString(R.string.at_risk)
+                    }
+                    score in 15..16 -> {
+                        tv_result_summary.text = getString(R.string.not_at_risk)
+                        card_safe_Warning.show()
+                    }
+                    else -> tv_result_summary.text = getString(R.string.not_at_risk)
                 }
             }else{
                 //tv_result_total.text = 42.toString()
-                if(score > 19){
-                    result_recommendation_layout.show()
-                    tv_result_summary.text = getString(R.string.at_risk)
-                }else{
-                    tv_result_summary.text = getString(R.string.not_at_risk)
+                when {
+                    score > 19 -> {
+                        result_recommendation_layout.show()
+                        tv_result_summary.text = getString(R.string.at_risk)
+                    }
+                    score in 18..19 -> {
+                        tv_result_summary.text = getString(R.string.not_at_risk)
+                        card_safe_Warning.show()
+                    }
+                    else -> tv_result_summary.text = getString(R.string.not_at_risk)
                 }
             }
         }

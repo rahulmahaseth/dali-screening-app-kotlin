@@ -14,4 +14,7 @@
     <dimen name="name_size">32sp</dimen>
     <dimen name="result_score">106sp</dimen>
     <dimen name="desc_margin_home">180dp</dimen>
+    <dimen name="btn_padding">16dp</dimen>
+    <dimen name="result_icon_size">84dp</dimen>
+    <dimen name="screening_list_icon">60dp</dimen>
 </resources>

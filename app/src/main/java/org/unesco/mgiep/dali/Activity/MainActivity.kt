@@ -73,15 +73,7 @@ class MainActivity: BaseActivity() {
                             true
                     )
                 }
-                R.id.nav_profile -> {
-                    showFragment(
-                            Fragment.instantiate(
-                                    this,
-                                    Settings::class.java.name
-                            ),
-                            true
-                    )
-                }
+
                 R.id.nav_about -> {
                     showFragment(
                             Fragment.instantiate(

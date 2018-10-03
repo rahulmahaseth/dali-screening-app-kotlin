@@ -86,17 +86,17 @@
     <string name="mst_q8">Difficulty in written expression.</string>
     <string name="mst_q9">Poor understanding of basic arithmetic concepts, symbols such as +, -, x, etc.</string>
     <string name="mst_q10">Difficulty in reporting time from wall clocks that are not digital.</string>
-    <string name="mst_q11">Slow in mental calculatons.</string>
+    <string name="mst_q11">Slow in mental calculations.</string>
     <string name="mst_q12">Difficulty in listening in class.</string>
     <string name="mst_q13">Immature speech compared to classmates.</string>
     <string name="mst_q14">Difficulty in forming complete sentences orally.</string>
-    <string name="mst_q15">Difficulty in copying or drawing simple shapes.</string>
-    <string name="mst_q16">Has an awkward pencil grasp.</string>
-    <string name="mst_q17">Shows lack of attention and concentration in task. Leaves work unfinished.</string>
-    <string name="mst_q18">Restless and/or over-active.</string>
-    <string name="mst_q19">Appears to work hard to improve but is unable to achieve.</string>
-    <string name="mst_q20">Tends to be anxious, withdrawn, disruptive.</string>
-    <string name="mst_q21">Difficulty in memorizing school content such as multiplication tables, poems, etc.</string>
+    <string name="mst_q15">Difficulty in memorizing school content such as multiplication tables, poems, etc.</string>
+    <string name="mst_q16">Difficulty in copying or drawing simple shapes.</string>
+    <string name="mst_q17">Has an awkward pencil grasp.</string>
+    <string name="mst_q18">Shows lack of attention and concentration in task. Leaves work unfinished.</string>
+    <string name="mst_q19">Restless and/or over-active.</string>
+    <string name="mst_q20">Appears to work hard to improve but is unable to achieve.</string>
+    <string name="mst_q21">Tends to be anxious, withdrawn, disruptive.</string>
 
     <string name="mst_e1"></string>
     <string name="mst_e2">For ex: The child may pronounce "hear" as "her", or omit word(s) while reading.</string>
@@ -109,14 +109,14 @@
     <string name="mst_e9">For ex: Difficulty in using basic signs or is unable to understand the relationship between arithmetic concepts.</string>
     <string name="mst_e10"></string>
     <string name="mst_e11">For ex: Still continues to count on finger, takes significantly long to do simple calculations.</string>
-    <string name="mst_e12">For ex: The child often asks the teacher to repeat instructuins saying, "did not understand. Can you please say it again?"</string>
+    <string name="mst_e12">For ex: The child often asks the teacher to repeat instructions saying, "did not understand. Can you please say it again?"</string>
     <string name="mst_e13">For ex: "tractor" produced as "taktor".</string>
     <string name="mst_e14">For ex: Difficulty in speaking complete sentences.</string>
-    <string name="mst_e15">For ex: circle, square and triangle</string>
-    <string name="mst_e16"></string>
-    <string name="mst_e17">For ex: The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
-    <string name="mst_e18">For ex: Has difficulty in sitting in one postion. May roam in the class. May disturb other children in the class.</string>
-    <string name="mst_e19"></string>
+    <string name="mst_e15"></string>
+    <string name="mst_e16">For ex: circle, square and triangle</string>
+    <string name="mst_e17"></string>
+    <string name="mst_e18">For ex: The child gets bored easily and leaves tasks incomplete. The teacher/parent has to constantly ask the child to pay attention and/or to finish the task.</string>
+    <string name="mst_e19">For ex: Has difficulty in sitting in one position. May roam in the class. May disturb other children in the class.</string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
     <string name="sort">Sort</string>
@@ -130,7 +130,7 @@
     <string name="language_teacher">Language Teacher</string>
     <string name="others">Others</string>
     <string name="other">Other</string>
-    <string name="estimated_time_spent_with_child">Estimated time spent with child</string>
+    <string name="estimated_time_spent_with_child">Estimated time spent with child (atleast 3 months)</string>
     <string name="months">Months</string>
     <string name="relationship_with_child_none_select_error">Select Relationship with participantDetail</string>
     <string name="pending_screenings">Pending Screenings</string>
@@ -157,7 +157,7 @@
     <string name="language">Language</string>
     <string name="exit_screening_prompt">Are you sure you want to stop current session?</string>
     <string name="done">Done</string>
-    <string name="result">Result</string>
+    <string name="result">Evaluation</string>
     <string name="submit_screening_prompt">Are you sure you want to Submit?</string>
     <string name="mail_sent">Mail Sent</string>
     <string name="mail_error">Error while sending mail!</string>
@@ -193,7 +193,7 @@
     <string name="month_range_error">Months should be in between 0 to 12</string>
     <string name="month_range_error2">Months should be in between 3 to 12</string>
     <string name="medium_of_instruction">Choose medium of instruction</string>
-    <string name="eye_sight_test">Eye-sight test by a qualified opthalmologist to rule out problems with vision.</string>
+    <string name="eye_sight_test">Eye-sight test by a qualified ophthalmologist to rule out problems with vision.</string>
     <string name="audio_test">Hearing test by a qualified otologist to rule out problems with auditory processes.</string>
     <string name="cognitive_test">Detailed assessment covering different language domains by a clinical/educational psychologist in all languages of instruction.</string>
     <string name="recommendation">Recommendations</string>
@@ -210,11 +210,15 @@
     <string name="cat_memory">MEMORY</string>
     <string name="cat_writing">WRITING AWARENESS</string>
     <string name="start_adding_participant">New Participant</string>
-    <string name="screening_lanuage">Screening lanuage</string>
+    <string name="screening_lanuage">Screening language</string>
     <string name="years_and">years and</string>
     <string name="months_">months.</string>
     <string name="medium_of_instruction2">Medium of instruction</string>
     <string name="name_req">Name*</string>
+    <string name="result_monitor">Child requires careful monitoring and supervision. Repeat screening after 3 months of remedial instruction</string>
+    <string name="post_reg_info">The purpose of this screening tool is to identify children who may have learning disability, which hinders their school performance. The screening tool is designed to be comprehensive, so that it can be used as a referral questionnaire. If there is evidence that suggests a possible learning disability, the child will need to be referred for a comprehensive diagnostic assessment.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy">Privacy Policy</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

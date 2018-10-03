@@ -88,6 +88,7 @@ class ScreeningDetails : Fragment() {
                     .putExtra("type", screening.type)
                     .putExtra("participantId", screening.participantId)
                     .putExtra("participantName", screening.participantName))
+            activity!!.finish()
         }
 
         if (participant.gender == Gender.FEMALE.toString()) {
@@ -101,6 +102,7 @@ class ScreeningDetails : Fragment() {
         btn_screening_detail_result.setOnClickListener {
             startActivity(
                     Intent(activity, ResultActivity::class.java)
+                            .putExtra("screening", false)
                             .putExtra("name", screening.participantName)
                             .putExtra("score", screening.totalScore)
                             .putExtra("type", screening.type)

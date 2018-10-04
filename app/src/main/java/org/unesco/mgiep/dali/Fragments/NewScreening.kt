@@ -1,14 +1,14 @@
 package org.unesco.mgiep.dali.Fragments
 
-import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.tsongkha.spinnerdatepicker.DatePickerDialog
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder
 import kotlinx.android.synthetic.main.fragment_new_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
@@ -20,7 +20,6 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.text.SimpleDateFormat
 import java.util.*
-import java.lang.Exception
 
 
 class NewScreening : Fragment() {
@@ -153,7 +152,7 @@ class NewScreening : Fragment() {
                 edit_regscreen_school.text.isEmpty() -> edit_regscreen_school.error = getString(R.string.required)
                 edit_regscreen_dob.text.isEmpty() -> edit_regscreen_dob.error = getString(R.string.required)
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{
-                    getString(R.string.select_gender).showAsToast(activity!!)
+                    getString(R.string.select_gender).showAsToast(activity!!, true)
                 }
                 else->{
                     screeningParticipantViewModel.select(
@@ -179,20 +178,16 @@ class NewScreening : Fragment() {
             }
         }
 
-        var dialogPicker = DatePickerDialog(
-                activity,
-                date,
-                selectedDate.year,
-                selectedDate.month,
-                selectedDate.day
-        )
-
-        dialogPicker.updateDate(selectedDate.year, selectedDate.month, selectedDate.day)
-        dialogPicker.datePicker.maxDate = Date().time
-        dialogPicker.datePicker.minDate = subtractYear(Date())
+        val dialogPicker = SpinnerDatePickerDialogBuilder()
+                .context(activity!!)
+                .callback(date)
+                .showTitle(true)
+                .defaultDate(selectedDate.year, selectedDate.month, selectedDate.day)
+                .maxDate(calendar.get(Calendar.YEAR).minus(2), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .minDate(calendar.get(Calendar.YEAR ).minus(15), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .build()
 
         edit_regscreen_dob.setOnClickListener {
-            Log.d("selected date","$selectedDate")
             dialogPicker.show()
         }
 
@@ -204,18 +199,6 @@ class NewScreening : Fragment() {
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         edit_regscreen_dob.setText(sdf.format(calendar.time))
         selectedDate = calendar.time
-    }
-
-    private fun subtractYear(date: Date): Long{
-        return try {
-            calendar.time = date
-            calendar.add(Calendar.YEAR, -15)
-            calendar.timeInMillis
-        }catch ( e: Exception )
-        {
-            e.printStackTrace()
-            0
-        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -126,7 +126,7 @@ class PendingScreenings: Fragment() {
                 .addOnCanceledListener {
                     pending_swipe_refresh?.isRefreshing = false
                     pending_screening_progressBar?.hide()
-                    getString(R.string.network_error).showAsToast(activity!!)
+                    getString(R.string.network_error).showAsToast(activity!!, true)
                 }
     }
 
@@ -161,7 +161,7 @@ class PendingScreenings: Fragment() {
                 .addOnCanceledListener {
                     pending_swipe_refresh?.isRefreshing = false
                     pending_screening_progressBar?.hide()
-                    getString(R.string.network_error).showAsToast(activity!!)
+                    getString(R.string.network_error).showAsToast(activity!!, true)
                 }
     }
 

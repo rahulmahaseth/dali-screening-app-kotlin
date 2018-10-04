@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_forgotpassword.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -49,7 +48,7 @@ class ForgotPassword : Fragment(){
                                 getString(R.string.mail_sent).showAsToast(activity!!)
                             }
                             .addOnFailureListener {
-                                getString(R.string.mail_error).showAsToast(activity!!)
+                                getString(R.string.mail_error).showAsToast(activity!!, true)
                             }
                 }
             }

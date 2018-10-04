@@ -28,5 +28,4 @@ interface AppComponent {
     fun inject(newScreening2: NewScreening2)
     fun inject(participantConfirm: ParticipantConfirm)
     fun inject(preScreeningIntro: PreScreeningIntro)
-    fun inject(screeningIntro: ScreeningIntro)
 }

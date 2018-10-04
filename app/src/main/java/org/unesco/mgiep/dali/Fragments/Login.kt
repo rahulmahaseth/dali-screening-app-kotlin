@@ -103,7 +103,7 @@ class Login : Fragment() {
                     Log.d("Login", "Failed")
                     progressBar1?.hide()
                     enableViews()
-                    getString(R.string.login_fail).showAsToast(activity!!)
+                    getString(R.string.login_fail).showAsToast(activity!!, true)
                 }
     }
 
@@ -118,7 +118,6 @@ class Login : Fragment() {
                         AppPref(activity!!.applicationContext).userName = user.name
                         AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                        AppPref(activity!!.applicationContext).loggedIn = true
                         progressBar1?.hide()
                         startActivity(Intent(activity, MainActivity::class.java))
                         activity!!.finish()
@@ -127,7 +126,7 @@ class Login : Fragment() {
                         enableViews()
                         progressBar1?.hide()
                         mAuth.signOut()
-                        getString(R.string.login_fail).showAsToast(activity!!)
+                        getString(R.string.login_fail).showAsToast(activity!!, true)
                     }
                 }
                 .addOnFailureListener {
@@ -135,7 +134,7 @@ class Login : Fragment() {
                     progressBar1?.hide()
                     enableViews()
                     mAuth.signOut()
-                    getString(R.string.login_fail).showAsToast(activity!!)
+                    getString(R.string.login_fail).showAsToast(activity!!, true)
                 }
     }
 

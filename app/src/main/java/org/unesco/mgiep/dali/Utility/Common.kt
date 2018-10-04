@@ -35,15 +35,19 @@ fun View.hide(){
     }
 }
 
-fun Any.showAsToast(context : Context, alertType: Boolean = false, duration: Int =  Toast.LENGTH_SHORT){
+fun Any.showAsToast(context : Context, warn: Boolean = false, greet: Boolean = false, duration: Int =  Toast.LENGTH_SHORT){
     val toast = Toast.makeText(context, this.toString(), duration)
     val toastView = toast.view
     val toastMessage = toastView.findViewById<TextView>(android.R.id.message)
-    toastMessage.textSize = 18f
-    toastMessage.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+    toastMessage.textSize = 16f
+    toastMessage.setTextColor(ContextCompat.getColor(context, R.color.white))
     toastMessage.gravity = Gravity.CENTER
-    toastMessage.compoundDrawablePadding = 8
-    toastView.background =ContextCompat.getDrawable(context, R.drawable.curved_rectangle)
+    toastMessage.compoundDrawablePadding = 4
+    if(warn){
+        toastView.background =ContextCompat.getDrawable(context, R.drawable.curved_rectangle)
+    }else{
+        toastView.background =ContextCompat.getDrawable(context, R.drawable.curved_rectangle_green)
+    }
     toast.show()
 }
 

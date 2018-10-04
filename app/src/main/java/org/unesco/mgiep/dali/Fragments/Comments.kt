@@ -2,17 +2,12 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.content.res.Configuration
-import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_comments.*
-import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.Screening
@@ -23,7 +18,6 @@ import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
-import java.util.*
 
 class Comments: Fragment(){
 
@@ -55,6 +49,7 @@ class Comments: Fragment(){
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
                         comments_progressBar?.hide()
+                        getString(R.string.screening_saved).showAsToast(activity!!)
                         startActivity(
                                 Intent(activity, ResultActivity::class.java)
                                         .putExtra("screening", true)
@@ -67,7 +62,7 @@ class Comments: Fragment(){
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()
-                        getString(R.string.save_screening_error).showAsToast(activity!!)
+                        getString(R.string.save_screening_error).showAsToast(activity!!, true)
                     }
         }
     }

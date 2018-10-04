@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_result.*
 import org.unesco.mgiep.dali.Activity.MainActivity
-import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Data.AssessmentLanguage
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.R

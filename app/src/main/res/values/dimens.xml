@@ -17,4 +17,5 @@
     <dimen name="btn_padding">10dp</dimen>
     <dimen name="result_icon_size">48dp</dimen>
     <dimen name="screening_list_icon">36dp</dimen>
+    <dimen name="about_institute_name">20dp</dimen>
 </resources>

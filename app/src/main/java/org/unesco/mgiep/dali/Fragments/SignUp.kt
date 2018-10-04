@@ -1,6 +1,5 @@
 package org.unesco.mgiep.dali.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_registration.*
-import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Gender
@@ -91,7 +89,7 @@ class SignUp : Fragment() {
                 edit_register_password.text.isEmpty() -> edit_register_password.error = getString(R.string.required)
                 edit_register_password.text.length < 6 -> Toast.makeText(activity, getString(R.string.password_length_error), Toast.LENGTH_SHORT).show()
                 !edit_radio_male.isChecked && !edit_radio_female.isChecked -> {
-                    getString(R.string.select_gender).showAsToast(activity!!)
+                    getString(R.string.select_gender).showAsToast(activity!!, true)
                 }
                 else -> {
                     progressBar2?.show()
@@ -126,13 +124,13 @@ class SignUp : Fragment() {
                                         }
                                         .addOnFailureListener {
                                             progressBar2?.hide()
-                                            getString(R.string.user_sync_error).showAsToast(activity!!)
+                                            getString(R.string.user_sync_error).showAsToast(activity!!, true)
                                         }
 
                             }
                             .addOnFailureListener {
                                 progressBar2.hide()
-                                getString(R.string.signup_fail).showAsToast(activity!!)
+                                getString(R.string.signup_fail).showAsToast(activity!!, true)
                                 Log.d("signup", getString(R.string.signup_fail), it)
                             }
                 }

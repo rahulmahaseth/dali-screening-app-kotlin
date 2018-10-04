@@ -168,7 +168,7 @@ class Dashboard : Fragment() {
                 .addOnCanceledListener {
                     dashboard_progressBar?.hide()
                     dashboard_refresh_layout?.isRefreshing = false
-                    getString(R.string.network_error).showAsToast(activity!!)
+                    getString(R.string.network_error).showAsToast(activity!!, true)
                 }
     }
 
@@ -203,7 +203,7 @@ class Dashboard : Fragment() {
                     .addOnCanceledListener {
                             dashboard_refresh_layout?.isRefreshing = false
                             dashboard_progressBar?.hide()
-                            getString(R.string.network_error).showAsToast(activity!!)
+                            getString(R.string.network_error).showAsToast(activity!!, true)
                     }
     }
 

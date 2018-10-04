@@ -13,10 +13,6 @@ import org.unesco.mgiep.dali.Utility.showFragment
 
 class About:Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_about, container, false)
 

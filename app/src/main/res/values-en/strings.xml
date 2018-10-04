@@ -133,7 +133,7 @@
     <string name="other">Other</string>
     <string name="estimated_time_spent_with_child">Estimated time spent with child (atleast 3 months)</string>
     <string name="months">Months</string>
-    <string name="relationship_with_child_none_select_error">Select Relationship with participantDetail</string>
+    <string name="relationship_with_child_none_select_error">Select Relationship with participant</string>
     <string name="pending_screenings">Pending Screenings</string>
     <string name="back">Back</string>
     <string name="select_option_error">Please Select An Option</string>

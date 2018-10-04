@@ -94,6 +94,8 @@ dependencies {
 
     // Add dependency
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+
+    implementation 'com.github.drawers:SpinnerDatePicker:1.0.6'
 }
 repositories {
     mavenCentral()

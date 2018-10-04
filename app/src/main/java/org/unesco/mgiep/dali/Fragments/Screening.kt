@@ -179,7 +179,7 @@ class Screening : Fragment() {
     private fun next() {
 
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
-            getString(R.string.select_option_error).showAsToast(activity!!)
+            getString(R.string.select_option_error).showAsToast(activity!!, true)
         } else {
             ++questionsCompleted
             Log.d("Q", "$questionsCompleted / $totalQuestions")
@@ -234,7 +234,7 @@ class Screening : Fragment() {
     private fun submit() {
 
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
-            getString(R.string.select_option_error).showAsToast(activity!!)
+            getString(R.string.select_option_error).showAsToast(activity!!, true)
         } else {
 
             AlertDialog.Builder(activity!!)

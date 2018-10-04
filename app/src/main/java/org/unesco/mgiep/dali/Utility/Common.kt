@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import org.unesco.mgiep.dali.R
@@ -54,3 +55,4 @@ fun Any.showAsToast(context : Context, warn: Boolean = false, greet: Boolean = f
 fun TextInputLayout.markRequired(){
     hint = "$hint *"
 }
+

@@ -62,33 +62,6 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
             relationShipWithChild = Relationship.OT
         }
 
-        edit_time_spent_with_child_year.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_time_spent_with_child_year.text.isEmpty()){
-                    edit_time_spent_with_child_year.hint = getString(R.string.years)
-                }else{
-                    participant.timeSpentWithChild = edit_time_spent_with_child_year.text.toString().toInt()
-                }
-            }else{
-                edit_time_spent_with_child_year.hint = ""
-            }
-        }
-
-        edit_time_spent_with_child_month.setOnFocusChangeListener { view, b ->
-            if(!b){
-                if(edit_time_spent_with_child_month.text.isEmpty()){
-                    edit_time_spent_with_child_month.hint = getString(R.string.months)
-                }else{
-                    participant.timeSpentWithChild = edit_time_spent_with_child_month.text.toString().toInt()
-                    if(edit_time_spent_with_child_month.text.toString().toInt() !in 0..12){
-                        edit_time_spent_with_child_month.error = getString(R.string.month_range_error)
-                    }
-                }
-            }else{
-                edit_time_spent_with_child_month.hint = ""
-            }
-        }
-
         spinner_medium_of_inst.onItemSelectedListener = this
         spinner_l2.onItemSelectedListener = this
         spinner_l3.onItemSelectedListener = this

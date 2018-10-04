@@ -183,9 +183,9 @@
     <string name="profile">Profile</string>
     <string name="pre_screening_info_1">On the screening tool, kindly depict the child\'s performance with respect to other children in the same class. Please take into consideration the respective child\'s home and social environment (native language, socio-economic background etc.) when evaluating the child.</string>
     <string name="about">About</string>
-    <string name="development_team">Development Team</string>
-    <string name="concept_and_research">Concept and Research</string>
-    <string name="design">Design</string>
+    <string name="development_team">Development Team @ MGIEP</string>
+    <string name="concept_and_research">Concept and Research @ NBRC</string>
+    <string name="design">Design @ MGIEP and DIC, Delhi university</string>
     <string name="dali_about">The screening tools were developed for school teachers to screen children between classes 1-5, at risk for dyslexia. They are based on research carried by Nandini Chatterjee Singh for the development of DALI (Dyslexia Assessment for Languages of India) at the National Brain Research Centre, Manesar, India under a grant funded by the Department of Science and Technology, Govt. Department of Science and Technology, Govt. of India. Should the child be at risk, a formal assessment by a clinical psychologist MUST be carried out for confirmation.</string>
     <string name="copyright_title">The copyright for the screening tool is owned by</string>
     <string name="clas_range_error">Class should be in between 1 and 5</string>
@@ -223,7 +223,7 @@
     <string name="writing_mst">WRITING</string>
     <string name="mathematics">MATHEMATICS</string>
     <string name="and">and</string>
-    <string name="validation_testing">Validation, Testing and Translation</string>
+    <string name="validation_testing">Validation, Testing and Cultural Adaptation</string>
     <string name="same_instruction_language_error">Select different languages of instruction</string>
 
     <string-array name="jst_categories">

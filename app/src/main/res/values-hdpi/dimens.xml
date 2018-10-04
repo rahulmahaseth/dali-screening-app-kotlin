@@ -6,12 +6,14 @@
     <dimen name="question_dimen">22sp</dimen>
     <dimen name="example_dimen">16sp</dimen>
     <dimen name="h4">12sp</dimen>
-    <dimen name="aliens">100dp</dimen>
+    <dimen name="aliens">100sp</dimen>
     <dimen name="dots_height"></dimen>
     <dimen name="dots_margin_bottom"></dimen>
-    <dimen name="reg_image_width">44dp</dimen>
-    <dimen name="reg_image_height">44dp</dimen>
+    <dimen name="reg_image_width">44sp</dimen>
+    <dimen name="reg_image_height">44sp</dimen>
     <dimen name="name_size">16sp</dimen>
     <dimen name="result_score">44sp</dimen>
-    <dimen name="desc_margin_home">70dp</dimen>
+    <dimen name="desc_margin_home">70sp</dimen>
+    <dimen name="about_institute_name">16sp</dimen>
+
 </resources>

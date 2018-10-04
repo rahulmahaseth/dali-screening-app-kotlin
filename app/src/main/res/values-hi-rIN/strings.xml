@@ -185,9 +185,9 @@
     <string name="confirm_participant_details">प्रतिभागी विवरण की पुष्टि करें</string>
     <string name="save">संचयन करे</string>
     <string name="profile">प्रोफ़ाइल</string>
-    <string name="design">डिज़ाइन</string>
-    <string name="concept_and_research">संकल्पना और अनुसंधान</string>
-    <string name="development_team">डेवलपमेंट</string>
+    <string name="design">डिज़ाइन @ MGIEP and DIC, Delhi university</string>
+    <string name="concept_and_research">संकल्पना और अनुसंधान @ NBRC</string>
+    <string name="development_team">डेवलपमेंट @ MGIEP</string>
     <string name="about">जानकारी</string>
     <string name="pre_screening_info_1">"इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
     <string name="clas_range_error">कक्षा 1 और 5 के बीच होनी चाहिए</string>
@@ -225,4 +225,6 @@
     <string name="writing_mst">लेखन</string>
     <string name="mathematics">गणित</string>
     <string name="and">और</string>
+    <string name="validation_testing">प्रमाणीकरण, जाँच और सांस्कृतिक अनुकूलन</string>
+    <string name="same_instruction_language_error">निर्देश की विभिन्न भाषाओं का चयन करें</string>
 </resources>

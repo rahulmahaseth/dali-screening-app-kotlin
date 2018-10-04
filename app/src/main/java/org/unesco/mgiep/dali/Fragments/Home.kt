@@ -15,7 +15,6 @@ class Home: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
         (activity!!.application as MyApplication).component.inject(this)
     }
 
@@ -33,18 +32,6 @@ class Home: Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         activity!!.menuInflater.inflate(R.menu.home_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
-            R.id.action_home_add -> {
-                startActivity(Intent(activity, NewScreeningActivity::class.java))
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
     }
 
     override fun onResume() {

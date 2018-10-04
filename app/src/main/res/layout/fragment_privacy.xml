@@ -43,6 +43,21 @@ We will only retain personal information for as long as necessary to provide you
             <TextView
                 android:textColor="@color/black"
                 android:paddingTop="10dp"
+                android:text="Cookies"
+                android:textSize="@dimen/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="We use “cookies” to collect information about you and your activity across our site. A cookie is a small piece of data that our website stores on your computer, and accesses each time you visit so we can understand how you use our site and serve you content based on preferences you have specified.
+If you do not wish to accept cookies from us, you should instruct your browser to refuse cookies from our website, with the understanding that we may be unable to provide you with some of your desired service without them. This policy covers only the use of cookies between your computer and our website; it does not cover the use of cookies by any advertisers."
+                android:textSize="@dimen/h3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="@color/black"
+                android:paddingTop="10dp"
                 android:text="Third-Party Services"
                 android:textSize="@dimen/h2"
                 android:layout_width="match_parent"
@@ -64,6 +79,20 @@ We will only retain personal information for as long as necessary to provide you
 
             <TextView
                 android:text="We take security seriously, and do what we can within commercially acceptable means to protect your personal information from loss or theft, as well as unauthorized access, disclosure, copying, use or modification. That said, we advise that no method of electronic transmission or storage is 100% secure, and cannot guarantee the absolute security of your data."
+                android:textSize="@dimen/h3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="@color/black"
+                android:paddingTop="10dp"
+                android:text="Links to Other Sites"
+                android:textSize="@dimen/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot assume responsibility for their treatment of your personal information. This privacy policy only covers our website and privacy practices."
                 android:textSize="@dimen/h3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

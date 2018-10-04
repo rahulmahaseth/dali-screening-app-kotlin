@@ -35,7 +35,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:maxLength="50"
+            android:maxLength="200"
             android:padding="10dp"
             android:background="@drawable/custom_edit_text_primary"
             android:id="@+id/edit_comments"

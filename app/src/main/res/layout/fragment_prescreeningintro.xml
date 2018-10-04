@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:elevation="8dp"
         android:padding="20dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
@@ -19,31 +20,37 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:textSize="@dimen/h2"
-            android:layout_margin="10dp"
-            android:id="@+id/tv_prescreen_1"
-            android:text="@string/prescreen_text_1"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:textSize="@dimen/h2"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/tv_prescreen_1"
-            android:id="@+id/tv_prescreen_2"
-            android:text="@string/prescreen_text_2"
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            <TextView
+                android:textSize="@dimen/h2"
+                android:layout_margin="10dp"
+                android:id="@+id/tv_prescreen_1"
+                android:text="@string/prescreen_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="@dimen/h2"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/tv_prescreen_1"
+                android:id="@+id/tv_prescreen_2"
+                android:text="@string/prescreen_text_2"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
+        android:elevation="8dp"
         android:textSize="@dimen/h2"
         android:textColor="@color/white"
         android:background="@color/colorPrimaryDark"

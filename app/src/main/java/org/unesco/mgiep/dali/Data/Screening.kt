@@ -4,7 +4,6 @@ data class Screening (
         var id: String = "",
         val type: String = Type.JST.toString(),
         var completed: Boolean = false,
-        val mediumOfInstruction: String = "English",
         val participantId: String = "",
         val participantName: String = "",
         val userId: String = "",

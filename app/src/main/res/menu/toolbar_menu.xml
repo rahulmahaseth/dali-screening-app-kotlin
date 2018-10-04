@@ -33,7 +33,7 @@
         <item
             app:showAsAction="ifRoom"
             android:id="@+id/action_add"
-            android:icon="@drawable/ic_add_white_24dp"
+            android:icon="@drawable/ic_person_add_white_24dp"
             android:title="@string/add"/>
     </group>
 </menu>

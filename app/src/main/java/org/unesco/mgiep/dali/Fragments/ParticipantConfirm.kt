@@ -71,7 +71,14 @@ class ParticipantConfirm : Fragment() {
         tv_confirm_participant_school.text = participant.institution
         tv_confirm_participant_section.text = participant.section
         tv_confirm_participant_dob.text = sdf.format(participant.dob)
-        tv_confirm_participant_med_inst.text = AppPref(activity!!.applicationContext).instructionMedium
+        when {
+            participant.l3 == "Other" -> {
+                tv_confirm_participant_med_inst.text = "${participant.l1} ${getString(R.string.and)} ${participant.l2}"
+            }else -> {
+                tv_confirm_participant_med_inst.text = "${participant.l1}, ${participant.l2} ${getString(R.string.and)} ${participant.l3}"
+        }
+
+        }
 
         btn_confirm_partiicpant.setOnClickListener {
             saveParticipant(true)
@@ -127,7 +134,6 @@ class ParticipantConfirm : Fragment() {
                         id = screeningId,
                         type = type,
                         completed = false,
-                        mediumOfInstruction = AppPref(activity!!).instructionMedium,
                         participantId = participant.id,
                         userId = mAuth.uid.toString(),
                         totalScore = 0,

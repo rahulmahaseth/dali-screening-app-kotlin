@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:elevation="8dp"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimaryDark"
         android:padding="10dp"
@@ -20,15 +21,21 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_margin="10dp"
-        android:textSize="@dimen/h2"
-        android:text="@string/pre_screening_info_1"
+    <ScrollView
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_margin="10dp"
+            android:textSize="@dimen/h2"
+            android:text="@string/pre_screening_info_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
     <Button
+        android:elevation="8dp"
         android:id="@+id/btn_screening_tut_1"
         android:text="@string/next"
         android:textSize="@dimen/h2"

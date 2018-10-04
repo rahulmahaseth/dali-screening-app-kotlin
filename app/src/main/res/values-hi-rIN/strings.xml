@@ -110,16 +110,16 @@
     <string name="mst_q14">मौखिक रूप से सम्पूर्ण वाक्य बनाने में कठिनाई</string>
     <string name="mst_q15">विद्यालय सम्बंधी विषय-वस्तु की स्मृति में कठिनाई (उदाहरण के लिए कवितायें, गणित पहाड़ें (टेबल) इत्यादि)</string>
     <string name="mst_q16">सरल आकृतियों (चक्र, वर्ग, त्रिभुज, समचतुर्भुज, पंचभुज, षट्कोण) को बनाने में व अनुकरण करने में कठिनाई</string>
-    <string name="mst_q17">बेडौल प्रकार की कलम की पकड़</string>
+    <string name="mst_q17">अनुचित प्रकार से कलम की पकड़</string>
     <string name="mst_q18">काम में ध्यान एवं एकाग्रता की कमी, काम को अधूरा छोड़ने की प्रवृत्ति। </string>
     <string name="mst_q19">अशांत या अतिक्रियाशील रहना</string>
-    <string name="mst_q20">परिश्रम करने पर भी अपर्याप्त प्रदर्शन</string>
+    <string name="mst_q20">परिश्रम करने पर भी अपर्याप्त परिणाम</string>
     <string name="mst_q21">व्याकुल या एकांतिक या विघटनकारी व्यवहार</string>
 
     <string name="mst_e1"></string>
     <string name="mst_e2">उदाहरण: ‘कदम्ब’ को “कदम” पढ़ना, अथवा वाक्य में पूर्ण शब्द/शब्दों को छोड़ देना।</string>
     <string name="mst_e3">उदाहरण: यह पहचानने व बताने में कठिनाई कि ‘कौन’ शब्द की पहली ध्वनि है ‘क्’।</string>
-    <string name="mst_e4">उदाहरण: कक्षा में जो पढ़ाया जा चुका है (कक्षा सामग्री, पुस्कों व श्यामपट्ट में), उनके लिखित अवयवों का अर्थ समझने में कष्ट होना। कहानियों की पुस्तक एवं पाठ्य पुस्तकों के सरल अनुच्छेद (6-8 पंक्तियां) को समझने में कठिनाई</string>
+    <string name="mst_e4">उदाहरण: कक्षा में जो पढ़ाया जा चुका है (कक्षा सामग्री, पुस्तकों व श्यामपट्ट में), उनके लिखित अवयवों का अर्थ समझने में कष्ट होना। कहानियों की पुस्तक एवं पाठ्य पुस्तकों के सरल अनुच्छेद (6-8 पंक्तियां) को समझने में कठिनाई</string>
     <string name="mst_e5">उदाहरण: अक्षरों एवं संख्याओं को विचित्र रूप से लिखना या उनके आकार में असामान्य अंतर होना</string>
     <string name="mst_e6">उदाहरण: श्यामपट्ट अथवा/एवं पाठ्यपुस्तक से अनुकरण करने में अक्षमता। पंक्तियों एवं किनारों (मार्जिन) का ठीक से उपयोग करने में असमर्थता</string>
     <string name="mst_e7"></string>
@@ -133,8 +133,8 @@
     <string name="mst_e15"></string>
     <string name="mst_e16"></string>
     <string name="mst_e17"></string>
-    <string name="mst_e18">उदाहरण: बच्चा आसानी से ऊब जाता है और कार्यों को अधूरा छोड़ देता है। शिक्षक / माता-पिता को लगातार बच्चे को ध्यान देने और / या कार्य को पूरा करने के लिए कहा जाता है।</string>
-    <string name="mst_e19">उदाहरण: बच्चा एक स्थान पर बैठे रहने में कठिनाई अनुभव करता है। बच्चे का कक्षा में घूमना एवं अन्य छोत्रों की शांती भंग करना संभव है।</string>
+    <string name="mst_e18">उदाहरण: बच्चा आसानी से ऊब जाता है और कार्यों को अधूरा छोड़ देता है। शिक्षक एवं माता-पिता को लगातार बच्चे को ध्यान देने और कार्य को पूरा करने के लिए कहना पड़ता है।</string>
+    <string name="mst_e19">उदाहरण: बच्चा एक स्थान पर बैठे रहने में कठिनाई अनुभव करता है। बच्चे का कक्षा में घूमना एवं अन्य बच्चों की शांति भंग करना संभव है।</string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
     <string name="password_reset_instructions">पासवर्ड रीसेट निर्देश भेजने के लिए हमें बस आपके पंजीकृत ईमेल आईडी की आवश्यकता है।</string>
@@ -162,22 +162,6 @@
     <string name="submit_screening_prompt">क्या आप वाकई सबमिट करना चाहते हैं?</string>
 
 
-    <string-array name="languages">
-        <item>हिंदी</item>
-        <item>अंग्रेज़ी</item>
-        <item>बंगाली</item>
-        <item>तेलुगू</item>
-        <item>मराठी</item>
-        <item>तमिल</item>
-        <item>उर्दू</item>
-        <item>कन्नड़</item>
-        <item>गुजराती</item>
-        <item>ओड़िया</item>
-        <item>मलयालम</item>
-        <item>संस्कृत</item>
-        <item>पंजाबी</item>
-        <item>असमिया</item>
-    </string-array>
 
     <string name="mail_sent">"संदेश भेज दिया गया "</string>
     <string name="mail_error">मेल भेजते समय त्रुटि!</string>
@@ -193,8 +177,8 @@
     <string name="english">अंग्रेज़ी</string>
     <string name="hindi">"हिंदी "</string>
     <string name="select_screening_language">स्क्रीनिंग भाषा का चयन करें</string>
-    <string name="prescreen_text_1">"इस संवीछा साधन का लक्ष्य है की बच्चे में संभवतः डिस्लेक्सिआ हो सकती है, तो बच्चे का अधिक विस्तार से जांच होना आवश्यक है | "</string>
-    <string name="prescreen_text_2">"भारत की भाषा नीति के अनुसार बच्चे में डिस्लेक्सिया की पहचान के लिए छात्रों का मूल्यांकन प्रत्येक भाषा में हो जिस में छात्रों को शिक्षा प्राप्त हो रही है | "</string>
+    <string name="prescreen_text_1">"इस संवीछा साधन को कक्षा १ से कक्षा ५ के बच्चों के लिए बनाया गया है| इस मूल्यांकन का लक्ष्य है की बच्चे में डिस्लेक्सिआ के लक्षण हो, तो उसकी विस्तार से जांच होनी चाहिए| "</string>
+    <string name="prescreen_text_2">"भारत की भाषा नीति के अनुसार बच्चे में डिस्लेक्सिया की पहचान के लिए छात्रों का मूल्यांकन प्रत्येक भाषा में हो जिस में छात्रों को शिक्षा प्राप्त हो रही है| "</string>
     <string name="information">"जानकारी "</string>
     <string name="gender">लिंग</string>
     <string name="home_description">"भारतीय भाषाओँ में डिस्लेक्सिया की पहचान करवाने वाला एंड्राइड ऐप| "</string>
@@ -205,23 +189,23 @@
     <string name="concept_and_research">संकल्पना और अनुसंधान</string>
     <string name="development_team">डेवलपमेंट</string>
     <string name="about">जानकारी</string>
-    <string name="pre_screening_info_1">"इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षिणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
+    <string name="pre_screening_info_1">"इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
     <string name="clas_range_error">कक्षा 1 और 5 के बीच होनी चाहिए</string>
     <string name="cat_writing">लेखन जागरूकता</string>
-    <string name="cat_memory">मेमोरी</string>
+    <string name="cat_memory">स्मरणशक्ति</string>
     <string name="cat_behavior">व्यवहार</string>
-    <string name="cat_motor">स्नायु समन्वयन</string>
+    <string name="cat_motor">स्नायु समन्वयन (Motor Coordination)</string>
     <string name="cat_number">संख्या अवधारणा</string>
     <string name="cat_print">कौशल अधिग्रहण</string>
     <string name="cat_communication">संवाद</string>
     <string name="cat_sound">ध्वनि जागरूकता</string>
     <string name="drafts">ड्राफ्ट</string>
-    <string name="please_provide_special_comments_for_the_child">कृपया बच्चे के लिए विशेष टिप्पणियां प्रदान करें</string>
+    <string name="please_provide_special_comments_for_the_child">कृपया बच्चे के लिए अतिरिक्त टिप्पणियां प्रदान करें</string>
     <string name="recommendation">अनुशंसाएँ</string>
-    <string name="eye_sight_test">"बच्चे के दृष्टि की परीक्षा एक नेत्र रोग विशेषज्ञ द्वारा आवश्यक है "</string>
-    <string name="audio_test">"बच्चे के श्रवण शक्ति की परीक्षा एक कर्ण वैज्ञानिक द्वारा आवश्यक है "</string>
+    <string name="eye_sight_test">"बच्चे की दृष्टि की परीक्षा एक नेत्र रोग विशेषज्ञ द्वारा आवश्यक है "</string>
+    <string name="audio_test">"बच्चे की श्रवण शक्ति की परीक्षा एक कर्ण वैज्ञानिक द्वारा आवश्यक है "</string>
     <string name="cognitive_test">"इस के पश्चात बच्चे को शैक्षणिक मनोवैज्ञानिक अथवा नैदानिक मनोवैज्ञानिक के पास मूल्यांकन के लिए लेकर जाना आवश्यक है "</string>
-    <string name="medium_of_instruction">कृपया निर्देश का माध्यम चुनें</string>
+    <string name="medium_of_instruction">कृपया सभी निर्देश का माध्यम चुनें</string>
     <string name="month_range_error2">महीने 3 से 12 के बीच होना चाहिए</string>
     <string name="month_range_error">महीने 0 से 12 के बीच होना चाहिए</string>
     <string name="start_adding_participant">नया प्रतिभागी</string>
@@ -231,10 +215,14 @@
     <string name="years_and">साल और</string>
     <string name="months_">महीने</string>
     <string name="screening_lanuage">स्क्रीनिंग भाषा</string>
-    <string name="medium_of_instruction2">"निर्देश का माध्यम "</string>
+    <string name="medium_of_instruction2">कृपया कक्षा में पढ़ाई जा रहीं सारी भाषाओं में इस साधन का प्रयोग करे</string>
     <string name="result_monitor">"बच्चे पर ध्यान रखिये और उपचारात्मक परिक्षण दीजिये | ३ महीने पश्चात पुनः संवीक्षा साधन का प्रयोग कीजिए "</string>
     <string name="name_req">नाम *</string>
     <string name="post_reg_info">" यह उद्देश्य है कि उन बच्चों को पहचाना जा सके जिन में डिस्लेक्सिआ हो सकती है , जिस के कारण उनकी स्कूली शिक्षा में बाधाएं आती हैं | हमारा लक्ष्य यह है कि हम डिस्लेक्सिया की जाँच करने के लिए एक ऐसा साधन विकसित करें , जो संक्षिप्त, वस्तुनिष्ठ एवं बहुमुखी हो, तथा जिस का उपयोग शिक्षक कर सकें | यदि इस साधन से यह सिद्ध होता है कि बच्चे में संभवतः डिस्लेक्सिया हो सकती है , तो बच्चे का अधिक विस्तार से जाँच होना आवश्यक है  "</string>
     <string name="privacy_policy">"गोपनीयता नीति "</string>
     <string name="privacy">गोपनीयता नीति</string>
+    <string name="reading_mst">पढाई</string>
+    <string name="writing_mst">लेखन</string>
+    <string name="mathematics">गणित</string>
+    <string name="and">और</string>
 </resources>

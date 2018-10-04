@@ -88,7 +88,6 @@ class ScreeningDetails : Fragment() {
                     .putExtra("type", screening.type)
                     .putExtra("participantId", screening.participantId)
                     .putExtra("participantName", screening.participantName))
-            activity!!.finish()
         }
 
         if (participant.gender == Gender.FEMALE.toString()) {

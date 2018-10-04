@@ -9,6 +9,7 @@ class AppPref(context: Context): KotprefModel(context) {
     var userEmail by stringPref("")
     var userName by stringPref("")
     var userInstitution by stringPref("")
-    var instructionMedium by stringPref("")
+    var l2 by stringPref("")
+    var l3 by stringPref("")
     var assessmentLanguage by stringPref("")
 }

@@ -1,136 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/grey">
 
-    <LinearLayout
-        android:gravity="center"
-        android:padding="10dp"
-        android:background="@color/colorPrimaryDark"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_result_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/h2"
-            android:text="@string/result"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/h2"
-            android:text=":"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:textAllCaps="true"
-            android:layout_toEndOf="@id/tv_result_title"
-            android:textSize="@dimen/h2"
-            android:textColor="@color/white"
-            android:text="Ankit"
-            android:id="@+id/tv_result_student_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-        <android.support.v7.widget.CardView
-            android:background="@drawable/custom_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:backgroundTint="@color/colorPrimary"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:id="@+id/result_status_layout"
-                android:gravity="center"
-                android:background="@drawable/black_bottom_border"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:id="@+id/tv_result_summary"
-                    android:gravity="center"
-                    android:text="At Risk"
-                    android:textSize="@dimen/h1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:visibility="gone"
-            android:layout_marginTop="20dp"
-            android:id="@+id/card_safe_Warning"
-            android:background="@drawable/custom_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:id="@+id/result_safe_warning_layout"
-                android:background="@drawable/black_bottom_border"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:tint="@color/colorPrimary"
-                    android:layout_marginStart="10dp"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/result_warn_image"
-                    android:src="@drawable/ic_assignment_black_24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/result_warn_image"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:id="@+id/tv_result_safe_warning"
-                    android:text="@string/result_monitor"
-                    android:textSize="@dimen/h3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
 
         <LinearLayout
-            android:visibility="gone"
-            android:layout_marginTop="20dp"
-            android:id="@+id/result_recommendation_layout"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_result_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h2"
+                android:text="@string/result"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h2"
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textAllCaps="true"
+                android:layout_toEndOf="@id/tv_result_title"
+                android:textSize="@dimen/h2"
+                android:textColor="@color/white"
+                android:text="Ankit"
+                android:id="@+id/tv_result_student_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:textSize="@dimen/h2"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:layout_marginBottom="10dp"
-                android:text="@string/recommendation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
 
 
             <android.support.v7.widget.CardView
@@ -138,110 +61,195 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:padding="10dp"
+                <LinearLayout
+                    android:backgroundTint="@color/colorPrimary"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/result_status_layout"
+                    android:gravity="center"
                     android:background="@drawable/black_bottom_border"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:tint="@color/colorPrimary"
-                        android:id="@+id/result_eye"
-                        android:src="@drawable/ic_remove_red_eye_black_24dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
                     <TextView
-                        android:textSize="@dimen/h3"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/result_eye"
-                        android:text="@string/eye_sight_test"
-                        android:layout_width="wrap_content"
+                        android:textColor="@color/white"
+                        android:id="@+id/tv_result_summary"
+                        android:gravity="center"
+                        android:text="At Risk"
+                        android:textSize="@dimen/h1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                </RelativeLayout>
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:id="@+id/card_safe_Warning"
                 android:background="@drawable/custom_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
-                    android:padding="10dp"
+                    android:id="@+id/result_safe_warning_layout"
                     android:background="@drawable/black_bottom_border"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_centerVertical="true"
                         android:tint="@color/colorPrimary"
-                        android:id="@+id/result_hear"
-                        android:src="@drawable/ic_hearing_black_24dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/result_warn_image"
+                        android:src="@drawable/ic_assignment_black_24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:textSize="@dimen/h3"
                         android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/result_warn_image"
+                        android:padding="10dp"
                         android:textColor="@color/black"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/result_hear"
-                        android:text="@string/audio_test"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_result_safe_warning"
+                        android:text="@string/result_monitor"
+                        android:textSize="@dimen/h3"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:background="@drawable/custom_edit_text"
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:id="@+id/result_recommendation_layout"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/h2"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/recommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <RelativeLayout
-                    android:padding="10dp"
-                    android:background="@drawable/black_bottom_border"
+
+                <android.support.v7.widget.CardView
+                    android:background="@drawable/custom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:tint="@color/colorPrimary"
-                        android:id="@+id/result_chat"
-                        android:src="@drawable/ic_chat_black_24dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:background="@drawable/black_bottom_border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:textSize="@dimen/h3"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/result_chat"
-                        android:text="@string/cognitive_test"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:tint="@color/colorPrimary"
+                            android:id="@+id/result_eye"
+                            android:src="@drawable/ic_remove_red_eye_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                </RelativeLayout>
+                        <TextView
+                            android:textSize="@dimen/h3"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/result_eye"
+                            android:text="@string/eye_sight_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-            </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:background="@drawable/custom_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:background="@drawable/black_bottom_border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:tint="@color/colorPrimary"
+                            android:id="@+id/result_hear"
+                            android:src="@drawable/ic_hearing_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/h3"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/result_hear"
+                            android:text="@string/audio_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:background="@drawable/custom_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:background="@drawable/black_bottom_border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:tint="@color/colorPrimary"
+                            android:id="@+id/result_chat"
+                            android:src="@drawable/ic_chat_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="@dimen/h3"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/result_chat"
+                            android:text="@string/cognitive_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <Button
-        android:background="@color/colorPrimaryDark"
-        android:textSize="@dimen/h2"
-        android:text="@string/done"
-        android:textColor="@color/white"
-        android:id="@+id/btn_done_result"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:elevation="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="@dimen/h2"
+            android:text="@string/done"
+            android:textColor="@color/white"
+            android:id="@+id/btn_done_result"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>

@@ -278,7 +278,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/recommendation"
+        android:text="@string/result"
         android:visibility="visible" />
 
 </LinearLayout>

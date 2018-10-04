@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DALIScreen</string>
+    <string name="app_name">DALIScreening</string>
     <string name="login">Login</string>
     <string name="sign_up">SIGN UP</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -81,7 +81,7 @@
     <string name="mst_q3">Difficulty in identifying sounds in words.</string>
     <string name="mst_q4">Difficulty in understanding sentences, passages.</string>
     <string name="mst_q5">Difficulty in forming proper letters and words.</string>
-    <string name="mst_q6">Inaccurate copying from the board and/or book.</string>
+    <string name="mst_q6">Inaccurate copying from blackboard and/or book.</string>
     <string name="mst_q7">Performs poorly on dictation. Makes frequent spelling mistakes in common words.</string>
     <string name="mst_q8">Difficulty in written expression.</string>
     <string name="mst_q9">Poor understanding of basic arithmetic concepts, symbols such as +, -, x, etc.</string>
@@ -174,7 +174,7 @@
     <string name="hindi">Hindi</string>
     <string name="select_screening_language">Select Screening Language</string>
     <string name="home_description">DALI screening is the first online screening tool for dyslexia in regional Indian languages.</string>
-    <string name="prescreen_text_1">This screening tool is designed to be used as a referral questionnaire. As per language research, children should be screened in all the languages that are taught in class.</string>
+    <string name="prescreen_text_1">This screening tool is designed for children from classes 1 to 5(5 to 10 years). As per language research, children should be screened in all the languages in which they receive instruction.</string>
     <string name="prescreen_text_2">Therefore, this tool should be administered by the Language teacher and the Class teacher.</string>
     <string name="information">Information</string>
     <string name="confirm_participant_details">Confirm Participant Details</string>
@@ -192,7 +192,7 @@
     <string name="years">Years</string>
     <string name="month_range_error">Months should be in between 0 to 12</string>
     <string name="month_range_error2">Months should be in between 3 to 12</string>
-    <string name="medium_of_instruction">Choose medium of instruction</string>
+    <string name="medium_of_instruction">Select all languages of instruction</string>
     <string name="eye_sight_test">Eye-sight test by a qualified ophthalmologist to rule out problems with vision.</string>
     <string name="audio_test">Hearing test by a qualified otologist to rule out problems with auditory processes.</string>
     <string name="cognitive_test">Detailed assessment covering different language domains by a clinical/educational psychologist in all languages of instruction.</string>
@@ -219,6 +219,11 @@
     <string name="post_reg_info">The purpose of this screening tool is to identify children who may have learning disability, which hinders their school performance. The screening tool is designed to be comprehensive, so that it can be used as a referral questionnaire. If there is evidence that suggests a possible learning disability, the child will need to be referred for a comprehensive diagnostic assessment.</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="privacy">Privacy Policy</string>
+    <string name="reading_mst">READING</string>
+    <string name="writing_mst">WRITING</string>
+    <string name="mathematics">MATHEMATICS</string>
+    <string name="and">and</string>
+    <string name="validation_testing">Validation, Testing and Translation</string>
 
     <string-array name="jst_categories">
         <item>sound</item>
@@ -275,17 +280,17 @@
     </string-array>
 
     <string-array name="mst_categories">
-        <item>reading</item>
-        <item>reading</item>
-        <item>reading</item>
-        <item>reading</item>
-        <item>writing</item>
-        <item>writing</item>
-        <item>writing</item>
-        <item>writing</item>
-        <item>number</item>
-        <item>number</item>
-        <item>number</item>
+        <item>readingmst</item>
+        <item>readingmst</item>
+        <item>readingmst</item>
+        <item>readingmst</item>
+        <item>writingmst</item>
+        <item>writingmst</item>
+        <item>writingmst</item>
+        <item>writingmst</item>
+        <item>numbermst</item>
+        <item>numbermst</item>
+        <item>numbermst</item>
         <item>communication</item>
         <item>communication</item>
         <item>communication</item>
@@ -366,6 +371,41 @@
     </string-array>
 
     <string-array name="languages">
+        <item>Hindi</item>
+        <item>English</item>
+        <item>Bengali</item>
+        <item>Telugu</item>
+        <item>Marathi</item>
+        <item>Tamil</item>
+        <item>Urdu</item>
+        <item>Kannada</item>
+        <item>Gujarati</item>
+        <item>Odia</item>
+        <item>Malayalam</item>
+        <item>Sanskrit</item>
+        <item>Punjabi</item>
+        <item>Assamese</item>
+    </string-array>
+
+    <string-array name="languages2">
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Bengali</item>
+        <item>Telugu</item>
+        <item>Marathi</item>
+        <item>Tamil</item>
+        <item>Urdu</item>
+        <item>Kannada</item>
+        <item>Gujarati</item>
+        <item>Odia</item>
+        <item>Malayalam</item>
+        <item>Sanskrit</item>
+        <item>Punjabi</item>
+        <item>Assamese</item>
+    </string-array>
+
+    <string-array name="languages3">
+        <item>Other</item>
         <item>Hindi</item>
         <item>English</item>
         <item>Bengali</item>

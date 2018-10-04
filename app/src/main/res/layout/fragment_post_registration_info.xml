@@ -6,6 +6,7 @@
     >
 
     <LinearLayout
+        android:elevation="8dp"
         android:id="@+id/post_reg_title_layout"
         android:layout_alignParentTop="true"
         android:padding="10dp"
@@ -24,18 +25,24 @@
 
     </LinearLayout>
 
-    <TextView
-        android:textColor="@color/dark_light_grey"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
+    <ScrollView
         android:layout_centerInParent="true"
-        android:textSize="@dimen/h2"
         android:layout_centerVertical="true"
-        android:text="@string/post_reg_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/dark_light_grey"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="@dimen/h2"
+            android:text="@string/post_reg_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
     <Button
+        android:elevation="8dp"
         android:id="@+id/btn_submit_post_reg"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"

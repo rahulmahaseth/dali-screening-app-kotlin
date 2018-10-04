@@ -12,5 +12,8 @@ data class Participant (
         var gender: String = "",
         var relationShipWithChild: String = "",
         var timeSpentWithChild: Int = 0,
-        val createdBy: String = ""
+        val createdBy: String = "",
+        var l1: String = "",
+        var l2: String = "",
+        var l3: String = ""
 )

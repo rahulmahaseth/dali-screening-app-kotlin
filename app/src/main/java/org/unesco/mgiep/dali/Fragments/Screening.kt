@@ -128,7 +128,7 @@ class Screening : Fragment() {
 
     private fun updateButtons() {
         when (questionAnswerMap[questionsCompleted]) {
-            -1 -> {
+            null -> {
                 btn_usually.background = ResourcesCompat.getDrawable(resources, R.drawable.custom_radio_button, null)
                 btn_sometimes.background = ResourcesCompat.getDrawable(resources, R.drawable.custom_radio_button, null)
                 btn_never.background = ResourcesCompat.getDrawable(resources, R.drawable.custom_radio_button, null)
@@ -178,16 +178,14 @@ class Screening : Fragment() {
 
     private fun next() {
 
-
         if (!btn_usually.isChecked && !btn_sometimes.isChecked && !btn_never.isChecked) {
             getString(R.string.select_option_error).showAsToast(activity!!)
         } else {
             ++questionsCompleted
             Log.d("Q", "$questionsCompleted / $totalQuestions")
-            if (questionAnswerMap[questionsCompleted] == null) {
-                questionAnswerMap[questionsCompleted] = -1
-                screening_radio_group.clearCheck()
-            }
+
+            screening_radio_group.clearCheck()
+
             updateButtons()
             updateNavButtons()
 
@@ -254,7 +252,6 @@ class Screening : Fragment() {
                                         id = screeningId,
                                         type = screeningType,
                                         completed = true,
-                                        mediumOfInstruction = AppPref(activity!!.applicationContext).instructionMedium,
                                         participantId = participantId,
                                         userId = mAuth.currentUser!!.uid,
                                         scheduledDate = Date().time,
@@ -312,6 +309,19 @@ class Screening : Fragment() {
             "writing" -> {
                 tv_category.text = getString(R.string.cat_writing)
                 image_category.setImageResource(R.drawable.ic_writing_01)
+            }
+            "readingmst" -> {
+                tv_category.text = getString(R.string.reading_mst)
+                image_category.setImageResource(R.drawable.ic_reading_01)
+            }
+            "writingmst" -> {
+                tv_category.text = getString(R.string.writing_mst)
+                image_category.setImageResource(R.drawable.ic_writing_01)
+            }
+            "numbermst" -> {
+                tv_category.text = getString(R.string.mathematics)
+
+                image_category.setImageResource(R.drawable.ic_numberconcept_01)
             }
         }
     }

@@ -3,7 +3,6 @@ package org.unesco.mgiep.dali.Fragments
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.firebase.auth.FirebaseAuth
-import io.grpc.internal.SharedResourceHolder
 import kotlinx.android.synthetic.main.fragment_newscreening2.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
@@ -48,6 +46,10 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var participant = Participant()
     private var mediumOfInst = ""
+
+    private var l1 = ""
+    private var l2 = ""
+    private var l3 = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,10 +103,22 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         spinner_medium_of_inst.onItemSelectedListener = this
+        spinner_l2.onItemSelectedListener = this
+        spinner_l3.onItemSelectedListener = this
         val adapter = ArrayAdapter<String>(activity, R.layout.spinner_item, resources.getStringArray(R.array.languages))
         adapter.setDropDownViewResource(R.layout.item_spinner)
 
+        val adapter2 = ArrayAdapter<String>(activity, R.layout.spinner_item, resources.getStringArray(R.array.languages2))
+        adapter.setDropDownViewResource(R.layout.item_spinner)
+
+        val adapter3 = ArrayAdapter<String>(activity, R.layout.spinner_item, resources.getStringArray(R.array.languages3))
+        adapter.setDropDownViewResource(R.layout.item_spinner)
+
         spinner_medium_of_inst.adapter = adapter
+        spinner_l2.adapter = adapter2
+        spinner_l3.adapter = adapter3
+
+
 
         btn_screenreg_submit.setOnClickListener {
             Log.d("screening-reg","onClick")
@@ -167,7 +181,10 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
                 gender = participant.gender,
                 relationShipWithChild = relationShipWithChild.toString(),
                 timeSpentWithChild = getTimeSpentWithchild(),
-                createdBy = mAuth.currentUser!!.uid
+                createdBy = mAuth.currentUser!!.uid,
+                l1 = l1,
+                l2 = l2,
+                l3 = l3
         ))
 
         showFragment(
@@ -205,9 +222,18 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        mediumOfInst = parent!!.getItemAtPosition(position).toString()
-        AppPref(activity!!.applicationContext).instructionMedium = mediumOfInst
-        Log.d("medium:",mediumOfInst)
+
+        when(parent!!.id){
+            R.id.spinner_medium_of_inst -> {
+                l1 = parent.getItemAtPosition(position).toString()
+            }
+            R.id.spinner_l2 -> {
+                l2 = parent.getItemAtPosition(position).toString()
+            }
+            R.id.spinner_l3 -> {
+                l3 = parent.getItemAtPosition(position).toString()
+            }
+        }
     }
 
 }

@@ -92,51 +92,99 @@ class SignUp : Fragment() {
                     getString(R.string.select_gender).showAsToast(activity!!, true)
                 }
                 else -> {
+
+                    disableViews()
                     progressBar2?.show()
-                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(), edit_register_password.text.toString())
-                            .addOnSuccessListener { authResult ->
-                                Log.d("userid-on-signup", authResult.user.uid)
-                                user2 = User(
-                                        edit_register_email.text.toString(),
-                                        edit_register_name.text.toString(),
-                                        edit_register_school.text.toString(),
-                                        gender.toString()
-                                )
-                                mainReposirtory.saveUser(
-                                        authResult.user.uid,
-                                        user2
-                                )
-                                        .addOnSuccessListener {
-                                            AppPref(activity!!.applicationContext).userEmail = user.email
-                                            AppPref(activity!!.applicationContext).userName = user.name
-                                            AppPref(activity!!.applicationContext).userInstitution = user.institution
+                    AppPref(activity!!).loading = true
+                    mAuth.fetchProvidersForEmail(edit_register_email.text.toString())
+                            .addOnSuccessListener {
+                                if(it.providers!!.size > 0){
+                                    progressBar2?.hide()
+                                    enableViews()
+                                    AppPref(activity!!).loading = false
+                                    "Email already exists".showAsToast(activity!!, true)
+                                }else{
+                                    mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(), edit_register_password.text.toString())
+                                            .addOnSuccessListener { authResult ->
+                                                Log.d("userid-on-signup", authResult.user.uid)
+                                                user2 = User(
+                                                        edit_register_email.text.toString(),
+                                                        edit_register_name.text.toString(),
+                                                        edit_register_school.text.toString(),
+                                                        gender.toString()
+                                                )
+                                                mainReposirtory.saveUser(
+                                                        authResult.user.uid,
+                                                        user2
+                                                )
+                                                        .addOnSuccessListener {
+                                                            AppPref(activity!!.applicationContext).userEmail = user.email
+                                                            AppPref(activity!!.applicationContext).userName = user.name
+                                                            AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                                            progressBar2?.hide()
-                                            getString(R.string.user_saved).showAsToast(activity!!)
+                                                            progressBar2?.hide()
+                                                            getString(R.string.user_saved).showAsToast(activity!!)
 
-                                            showFragment(
-                                                    Fragment.instantiate(
-                                                            activity!!,
-                                                            PostSignUpInfo::class.java.name
-                                                    ),
-                                                    false
-                                            )
-                                        }
-                                        .addOnFailureListener {
-                                            progressBar2?.hide()
-                                            getString(R.string.user_sync_error).showAsToast(activity!!, true)
-                                        }
+                                                            showFragment(
+                                                                    Fragment.instantiate(
+                                                                            activity!!,
+                                                                            PostSignUpInfo::class.java.name
+                                                                    ),
+                                                                    false
+                                                            )
+                                                        }
+                                                        .addOnFailureListener {
+                                                            progressBar2?.hide()
+                                                            AppPref(activity!!).loading = false
+                                                            enableViews()
+                                                            getString(R.string.user_sync_error).showAsToast(activity!!, true)
+                                                        }
 
+                                            }
+                                            .addOnFailureListener {
+                                                progressBar2?.hide()
+                                                AppPref(activity!!).loading = false
+                                                enableViews()
+                                                getString(R.string.signup_fail).showAsToast(activity!!, true)
+                                                Log.d("signup", getString(R.string.signup_fail), it)
+                                            }
+                                }
                             }
-                            .addOnFailureListener {
-                                progressBar2.hide()
+                            .addOnCanceledListener {
+                                progressBar2?.hide()
+                                AppPref(activity!!).loading = false
+                                enableViews()
                                 getString(R.string.signup_fail).showAsToast(activity!!, true)
-                                Log.d("signup", getString(R.string.signup_fail), it)
+                                Log.d("signup", getString(R.string.signup_fail))
                             }
+
                 }
             }
         }
     }
+
+    private fun disableViews(){
+        edit_register_email.isEnabled = false
+        edit_register_name.isEnabled = false
+        edit_register_password.isEnabled = false
+        edit_register_school.isEnabled = false
+        edit_radio_female.isEnabled = false
+        edit_radio_male.isEnabled = false
+        btn_register_submit.isEnabled = false
+        tv_already_registered.isEnabled = false
+    }
+
+    private fun enableViews(){
+        edit_register_email.isEnabled = true
+        edit_register_name.isEnabled = true
+        edit_register_password.isEnabled = true
+        edit_register_school.isEnabled = true
+        edit_radio_female.isEnabled = true
+        edit_radio_male.isEnabled = true
+        btn_register_submit.isEnabled = true
+        tv_already_registered.isEnabled = true
+    }
+
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.splash_fragment_container,

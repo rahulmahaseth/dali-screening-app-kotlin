@@ -74,6 +74,9 @@ class SplashActivity: BaseActivity() {
                 startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 finish()
             }
+            AppPref(this).loading -> {
+
+            }
             else -> supportFragmentManager.popBackStack()
         }
     }

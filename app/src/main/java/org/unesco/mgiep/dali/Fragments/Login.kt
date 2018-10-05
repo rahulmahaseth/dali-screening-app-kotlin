@@ -96,14 +96,18 @@ class Login : Fragment() {
         progressBar1?.show()
         mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
                 .addOnSuccessListener { authResult ->
-                    Log.d("Login", "Success")
-                    fetchUser(authResult)
+                    if(activity != null){
+                        Log.d("Login", "Success")
+                        fetchUser(authResult)
+                    }
                 }
                 .addOnFailureListener {
-                    Log.d("Login", "Failed")
-                    progressBar1?.hide()
-                    enableViews()
-                    getString(R.string.login_fail).showAsToast(activity!!, true)
+                    if(activity != null){
+                        Log.d("Login", "Failed")
+                        progressBar1?.hide()
+                        enableViews()
+                        getString(R.string.login_fail).showAsToast(activity!!, true)
+                    }
                 }
     }
 
@@ -112,29 +116,35 @@ class Login : Fragment() {
                 .addOnSuccessListener {
                     Log.d("Fetch-User", "Success")
                     if (it.exists()) {
-                        Log.d("Fetch-User", "Document Exists")
-                        val user = it.toObject(User::class.java)
-                        AppPref(activity!!.applicationContext).userEmail = user!!.email
-                        AppPref(activity!!.applicationContext).userName = user.name
-                        AppPref(activity!!.applicationContext).userInstitution = user.institution
+                        if(activity != null){
+                            Log.d("Fetch-User", "Document Exists")
+                            val user = it.toObject(User::class.java)
+                            AppPref(activity!!.applicationContext).userEmail = user!!.email
+                            AppPref(activity!!.applicationContext).userName = user.name
+                            AppPref(activity!!.applicationContext).userInstitution = user.institution
 
-                        progressBar1?.hide()
-                        startActivity(Intent(activity, MainActivity::class.java))
-                        activity!!.finish()
+                            progressBar1?.hide()
+                            startActivity(Intent(activity, MainActivity::class.java))
+                            activity!!.finish()
+                        }
                     } else {
-                        Log.d("Fetch-User", "Document doesn't Exists")
-                        enableViews()
-                        progressBar1?.hide()
-                        mAuth.signOut()
-                        getString(R.string.login_fail).showAsToast(activity!!, true)
+                        if(activity != null){
+                            Log.d("Fetch-User", "Document doesn't Exists")
+                            enableViews()
+                            progressBar1?.hide()
+                            mAuth.signOut()
+                            getString(R.string.login_fail).showAsToast(activity!!, true)
+                        }
                     }
                 }
                 .addOnFailureListener {
-                    Log.d("Fetch-User", "Failed")
-                    progressBar1?.hide()
-                    enableViews()
-                    mAuth.signOut()
-                    getString(R.string.login_fail).showAsToast(activity!!, true)
+                    if(activity != null){
+                        Log.d("Fetch-User", "Failed")
+                        progressBar1?.hide()
+                        enableViews()
+                        mAuth.signOut()
+                        getString(R.string.login_fail).showAsToast(activity!!, true)
+                    }
                 }
     }
 

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.NewScreening
 import org.unesco.mgiep.dali.Fragments.PreScreeningIntro
 import org.unesco.mgiep.dali.R
@@ -32,11 +33,15 @@ class NewScreeningActivity : BaseActivity(){
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        if(count == 0){
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }else {
-            supportFragmentManager.popBackStack()
+        when {
+            count == 0 -> {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+            AppPref(this).loading -> {
+
+            }
+            else -> supportFragmentManager.popBackStack()
         }
     }
 

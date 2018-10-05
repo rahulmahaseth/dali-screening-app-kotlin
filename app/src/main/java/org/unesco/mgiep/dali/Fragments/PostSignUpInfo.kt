@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_post_registration_info.*
 import org.unesco.mgiep.dali.Activity.MainActivity
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 
 class PostSignUpInfo : Fragment(){
@@ -21,6 +22,7 @@ class PostSignUpInfo : Fragment(){
 
         activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         btn_submit_post_reg.setOnClickListener {
+            AppPref(activity!!).loading = false
             startActivity(Intent(activity, MainActivity::class.java))
             activity!!.finish()
         }

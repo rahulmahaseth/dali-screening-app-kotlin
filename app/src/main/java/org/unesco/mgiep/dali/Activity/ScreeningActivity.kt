@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.ScreeningTutorial1
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -32,8 +33,8 @@ class ScreeningActivity: BaseActivity() {
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        when (count) {
-            0 -> {
+        when {
+            !AppPref(this).loading -> {
                 AlertDialog.Builder(this)
                         .setMessage(getString(R.string.exit_screening_prompt))
                         .setPositiveButton(getString(R.string.yes)){ _, _->
@@ -46,6 +47,9 @@ class ScreeningActivity: BaseActivity() {
                         .setNegativeButton(getString(R.string.no)){ _, _->}
                         .create()
                         .show()
+            }
+            AppPref(this).loading -> {
+
             }
             else -> supportFragmentManager.popBackStack()
         }

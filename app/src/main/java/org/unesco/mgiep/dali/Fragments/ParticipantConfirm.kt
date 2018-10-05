@@ -97,6 +97,7 @@ class ParticipantConfirm : Fragment() {
 
     private fun saveParticipant(start: Boolean) {
         confirmparticiapnt_progressBar?.show()
+        AppPref(activity!!).loading = true
         mainRepository.saveParticipant(participant.id, participant)
                 .addOnSuccessListener {
 
@@ -108,24 +109,13 @@ class ParticipantConfirm : Fragment() {
                 }
                 .addOnCanceledListener {
                     confirmparticiapnt_progressBar?.hide()
+                    AppPref(activity!!).loading = false
                     getString(R.string.participate_saving_error).showAsToast(activity!!)
                 }
     }
 
 
-    private fun startScreening() {
-        intent.putExtra("screeningId", screeningId)
-        intent.putExtra("participantId", participant.id)
-        intent.putExtra("participantName", participant.name)
-        if (participant.sClass <= 2) {
-            intent.putExtra("type", Type.JST.toString())
-        } else {
-            intent.putExtra("type", Type.MST.toString())
-        }
-        confirmparticiapnt_progressBar?.hide()
-        startActivity(intent)
-        activity!!.finish()
-    }
+
 
     private fun saveScreening(type: String, start: Boolean) {
         mainRepository.saveScreening(
@@ -145,18 +135,35 @@ class ParticipantConfirm : Fragment() {
         )
                 .addOnSuccessListener {
                     confirmparticiapnt_progressBar?.hide()
+                    AppPref(activity!!).loading = false
                     if(start){
                         startScreening()
                     }else{
-                        getString(R.string.screening_saved).showAsToast(activity!!)
-                        startActivity(Intent(activity, MainActivity::class.java))
+                        getString(R.string.screening_saved).showAsToast(MyApplication.instance, false)
+                        startActivity(Intent(MyApplication.instance, MainActivity::class.java))
                         activity!!.finish()
                     }
                 }
                 .addOnCanceledListener {
                     confirmparticiapnt_progressBar?.hide()
-                    getString(R.string.participate_saving_error).showAsToast(activity!!)
+                    AppPref(activity!!).loading = false
+                    getString(R.string.participate_saving_error).showAsToast(activity!!, true)
                 }
+    }
+
+    private fun startScreening() {
+        intent.putExtra("screeningId", screeningId)
+        intent.putExtra("participantId", participant.id)
+        intent.putExtra("participantName", participant.name)
+        if (participant.sClass <= 2) {
+            intent.putExtra("type", Type.JST.toString())
+        } else {
+            intent.putExtra("type", Type.MST.toString())
+        }
+        confirmparticiapnt_progressBar?.hide()
+        AppPref(activity!!).loading = false
+        startActivity(intent)
+        activity!!.finish()
     }
 
 }

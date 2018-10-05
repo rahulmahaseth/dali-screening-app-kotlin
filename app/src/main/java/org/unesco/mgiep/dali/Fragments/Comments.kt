@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
@@ -45,10 +46,12 @@ class Comments: Fragment(){
         btn_submit_screening.setOnClickListener { v ->
             screening.comments = edit_comments.text.toString()
             comments_progressBar?.show()
-            btn_submit_screening.isEnabled = false
+            disableViews()
+            AppPref(activity!!).loading = true
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
                         comments_progressBar?.hide()
+                        AppPref(activity!!).loading = false
                         getString(R.string.screening_saved).showAsToast(activity!!)
                         startActivity(
                                 Intent(activity, ResultActivity::class.java)
@@ -62,8 +65,21 @@ class Comments: Fragment(){
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()
+                        AppPref(activity!!).loading = false
+                        enableViews()
                         getString(R.string.save_screening_error).showAsToast(activity!!, true)
                     }
         }
     }
+
+    private fun disableViews(){
+        edit_comments.isEnabled = false
+        btn_submit_screening.isEnabled = false
+    }
+
+    private fun enableViews(){
+        edit_comments.isEnabled = true
+        btn_submit_screening.isEnabled = true
+    }
+
 }

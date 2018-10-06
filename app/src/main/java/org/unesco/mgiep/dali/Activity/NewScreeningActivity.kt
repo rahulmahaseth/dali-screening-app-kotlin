@@ -3,14 +3,10 @@ package org.unesco.mgiep.dali.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
-import org.unesco.mgiep.dali.Fragments.NewScreening
 import org.unesco.mgiep.dali.Fragments.PreScreeningIntro
 import org.unesco.mgiep.dali.R
-import org.unesco.mgiep.dali.Utility.LocaleManager
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class NewScreeningActivity : BaseActivity(){

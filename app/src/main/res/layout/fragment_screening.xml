@@ -4,125 +4,129 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:paddingTop="10dp"
-        android:paddingBottom="30dp"
-        android:gravity="center"
-        android:id="@+id/quesiton_layout"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:paddingVertical="10dp"
-            android:id="@+id/tv_category"
-            android:textSize="@dimen/h2"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:text="Hello"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/image_category"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
-
-
-        <TextView
-            android:paddingVertical="10dp"
-            android:textColor="@color/white"
-            android:paddingHorizontal="20dp"
-            android:id="@+id/tv_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/question_dimen" />
-
-
-
-        <TextView
-            android:textSize="@dimen/example_dimen"
-            android:textColor="#D3D0CB"
-            android:paddingHorizontal="20dp"
-            android:id="@+id/tv_example"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-
     <ScrollView
-        android:paddingTop="10dp"
         android:fadeScrollbars="false"
-        android:layout_above="@+id/screening_bottom_nav"
-        android:layout_below="@+id/quesiton_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RadioGroup
-                android:layout_centerInParent="true"
-                android:id="@+id/screening_radio_group"
+            <LinearLayout
+                android:elevation="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp"
+                android:gravity="center"
+                android:id="@+id/quesiton_layout"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RadioButton
+                <TextView
+                    android:paddingVertical="10dp"
+                    android:id="@+id/tv_category"
                     android:textSize="@dimen/h2"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="10dp"
                     android:gravity="center"
-                    android:button="@android:color/transparent"
                     android:textColor="@color/white"
-                    android:background="@drawable/custom_radio_button"
-                    android:layout_margin="10dp"
-                    android:id="@+id/btn_usually"
+                    android:text="Hello"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/usually" />
+                    android:layout_height="wrap_content" />
 
-                <RadioButton
-                    android:textSize="@dimen/h2"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:button="@android:color/transparent"
-                    android:textColor="@color/white"
-                    android:background="@drawable/custom_radio_button"
-                    android:layout_margin="10dp"
-                    android:id="@+id/btn_sometimes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sometimes" />
+                <ImageView
+                    android:id="@+id/image_category"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
 
-                <RadioButton
-                    android:textSize="@dimen/h2"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:button="@android:color/transparent"
+
+                <TextView
+                    android:paddingVertical="10dp"
                     android:textColor="@color/white"
-                    android:background="@drawable/custom_radio_button"
-                    android:layout_margin="10dp"
-                    android:id="@+id/btn_never"
+                    android:paddingHorizontal="20dp"
+                    android:id="@+id/tv_question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/never" />
-            </RadioGroup>
+                    android:textSize="@dimen/question_dimen" />
+
+
+
+                <TextView
+                    android:textSize="@dimen/example_dimen"
+                    android:textColor="#D3D0CB"
+                    android:paddingHorizontal="20dp"
+                    android:id="@+id/tv_example"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_below="@id/quesiton_layout"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:layout_centerInParent="true"
+                    android:id="@+id/screening_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:textSize="@dimen/h2"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:button="@android:color/transparent"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_radio_button"
+                        android:layout_margin="10dp"
+                        android:id="@+id/btn_usually"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/usually" />
+
+                    <RadioButton
+                        android:textSize="@dimen/h2"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:button="@android:color/transparent"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_radio_button"
+                        android:layout_margin="10dp"
+                        android:id="@+id/btn_sometimes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sometimes" />
+
+                    <RadioButton
+                        android:textSize="@dimen/h2"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:button="@android:color/transparent"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_radio_button"
+                        android:layout_margin="10dp"
+                        android:id="@+id/btn_never"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/never" />
+                </RadioGroup>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 
     <LinearLayout
+        android:elevation="8dp"
         android:id="@+id/screening_bottom_nav"
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
@@ -131,6 +135,7 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:textSize="@dimen/h3"
             android:layout_margin="1dp"
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"
@@ -141,6 +146,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:textSize="@dimen/h3"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="1"
@@ -151,6 +157,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:textSize="@dimen/h3"
             android:gravity="center"
             android:text="/"
             android:textColor="@color/white"
@@ -158,6 +165,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:textSize="@dimen/h3"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="21"
@@ -168,6 +176,7 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:textSize="@dimen/h3"
             android:layout_margin="1dp"
             android:textColor="@color/white"
             android:background="@color/colorPrimaryDark"
@@ -178,6 +187,7 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:textSize="@dimen/h3"
             android:visibility="gone"
             android:layout_margin="1dp"
             android:textColor="#00ff19"

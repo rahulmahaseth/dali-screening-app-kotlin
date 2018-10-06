@@ -113,8 +113,6 @@ class Result: Fragment() {
         val locale = Locale(lang)
         Locale.setDefault(locale)
         val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
         config.locale = locale
         resources.updateConfiguration(config, resources.displayMetrics)
         startActivity(

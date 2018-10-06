@@ -1,9 +1,7 @@
 package org.unesco.mgiep.dali.Activity
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import org.unesco.mgiep.dali.Utility.LocaleManager
 
 
 abstract class BaseActivity: AppCompatActivity() {

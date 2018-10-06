@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.ScreeningTutorial1
 import org.unesco.mgiep.dali.R
@@ -17,10 +18,14 @@ class ScreeningActivity: BaseActivity() {
     override fun getLayoutId(): Int {
         return R.layout.activity_screening
     }
-
+    var language = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+        language = intent.getStringExtra("screeningLang")
+        Log.d("language", language)
+        setLocale(language)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screening)
+
         showFragment(
                 Fragment.instantiate(
                         this,
@@ -29,20 +34,20 @@ class ScreeningActivity: BaseActivity() {
                 false
         )
 
+
     }
 
     override fun onBackPressed() {
-        val count = supportFragmentManager.backStackEntryCount
         when {
             !AppPref(this).loading -> {
                 AlertDialog.Builder(this)
                         .setMessage(getString(R.string.exit_screening_prompt))
                         .setPositiveButton(getString(R.string.yes)){ _, _->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                setLocale(Resources.getSystem().configuration.locales[0].language)
-                            }else{
-                                setLocale(Resources.getSystem().configuration.locale.language)
-                            }
+                                setLocale(getDeviceLocale().language)
+                                startActivity(
+                                        Intent(this, MainActivity::class.java)
+                                )
+                                finish()
                         }
                         .setNegativeButton(getString(R.string.no)){ _, _->}
                         .create()
@@ -59,14 +64,16 @@ class ScreeningActivity: BaseActivity() {
         val locale = Locale(lang)
         Locale.setDefault(locale)
         val config = Configuration()
-        //val conf = resources.configuration
-        //val dm = resources.displayMetrics
         config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
-        startActivity(
-                Intent(this, MainActivity::class.java)
-        )
-        finish()
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+    }
+
+    fun getDeviceLocale(): Locale {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Resources.getSystem().configuration.locales[0]
+        }else{
+            Resources.getSystem().configuration.locale
+        }
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
@@ -36,6 +35,7 @@ class Screening : Fragment() {
     private var screeningType = ""
     private var participantId = ""
     private var participantName = ""
+    private var assessmentLanguage = ""
     private var screeningId = ""
     private lateinit var mAuth: FirebaseAuth
     private val questionAnswerMap: HashMap<Int, Int> = hashMapOf()
@@ -51,6 +51,7 @@ class Screening : Fragment() {
         screeningType = activity!!.intent.getStringExtra("type")
         participantId = activity!!.intent.getStringExtra("participantId")
         participantName = activity!!.intent.getStringExtra("participantName")
+        assessmentLanguage = activity!!.intent.getStringExtra("screeningLang")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -258,7 +259,7 @@ class Screening : Fragment() {
                                         totalScore = totalScore,
                                         comments = "",
                                         participantName = participantName,
-                                        assesmentLanguage = AppPref(activity!!.applicationContext).assessmentLanguage
+                                        assesmentLanguage = assessmentLanguage
                                 )
                         )
                         showFragment(

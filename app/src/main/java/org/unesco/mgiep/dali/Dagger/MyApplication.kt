@@ -1,10 +1,7 @@
 package org.unesco.mgiep.dali.Dagger
 
 import android.app.Application
-import android.content.Context
-import android.content.res.Configuration
 import com.chibatching.kotpref.Kotpref
-import org.unesco.mgiep.dali.Utility.LocaleManager
 
 class MyApplication: Application() {
 

@@ -69,9 +69,9 @@ class NewScreening : Fragment() {
             when{
                 edit_regscreen_name.text.isEmpty()->edit_regscreen_name.error = getString(R.string.required)
                 edit_regscreen_class.text.isEmpty() -> edit_regscreen_class.error = getString(R.string.required)
-                edit_regscreen_class.text.toString().toInt() !in 1..12 -> edit_regscreen_class.error = getString(R.string.clas_range_error)
+                edit_regscreen_class.text.toString().toInt() !in 1..5 -> edit_regscreen_class.error = getString(R.string.clas_range_error)
                 edit_regscreen_section.text.isEmpty() -> edit_regscreen_section.error = getString(R.string.required)
-                edit_regscreen_mothertongue.text.isEmpty()-> edit_regscreen_name.error = getString(R.string.required)
+                edit_regscreen_mothertongue.text.isEmpty()-> edit_regscreen_mothertongue.error = getString(R.string.required)
                 edit_regscreen_school.text.isEmpty() -> edit_regscreen_school.error = getString(R.string.required)
                 edit_regscreen_dob.text.isEmpty() -> edit_regscreen_dob.error = getString(R.string.required)
                 !edit_regscreen_radio_female.isChecked && !edit_regscreen_radio_male.isChecked ->{

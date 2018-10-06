@@ -185,6 +185,7 @@ class PendingScreenings: Fragment() {
                         }
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             R.id.sort_only_mst -> {
@@ -195,6 +196,7 @@ class PendingScreenings: Fragment() {
                         }
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             R.id.sort_all -> {
@@ -202,6 +204,7 @@ class PendingScreenings: Fragment() {
                 screeningParticipants.addAll(screeningParticipantContainer)
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             else -> {

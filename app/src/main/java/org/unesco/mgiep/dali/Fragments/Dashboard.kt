@@ -229,6 +229,7 @@ class Dashboard : Fragment() {
                         }
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             R.id.sort_only_mst -> {
@@ -239,6 +240,7 @@ class Dashboard : Fragment() {
                         }
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             R.id.sort_all -> {
@@ -246,6 +248,7 @@ class Dashboard : Fragment() {
                 screeningParticipants.addAll(screeningParticipantsContainer)
                 screeningParticipants.sortByDescending { it.screening.scheduledDate }
                 lastAdapter.notifyDataSetChanged()
+                item.isChecked = true
                 true
             }
             else -> {

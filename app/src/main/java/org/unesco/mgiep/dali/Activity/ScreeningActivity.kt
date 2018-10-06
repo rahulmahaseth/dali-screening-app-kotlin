@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import org.unesco.mgiep.dali.Data.AppPref
+import org.unesco.mgiep.dali.Data.AssessmentLanguage
 import org.unesco.mgiep.dali.Fragments.ScreeningTutorial1
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
@@ -22,7 +23,14 @@ class ScreeningActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         language = intent.getStringExtra("screeningLang")
         Log.d("language", language)
-        setLocale(language)
+        when(language){
+            AssessmentLanguage.HINDI.toString() -> {
+                setLocale("hi")
+            }
+            AssessmentLanguage.ENGLISH.toString() -> {
+                setLocale("en")
+            }
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screening)
 
@@ -33,8 +41,6 @@ class ScreeningActivity: BaseActivity() {
                 ),
                 false
         )
-
-
     }
 
     override fun onBackPressed() {

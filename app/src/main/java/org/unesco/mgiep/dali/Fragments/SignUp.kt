@@ -1,5 +1,6 @@
 package org.unesco.mgiep.dali.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_registration.*
+import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Data.Gender
@@ -102,7 +104,7 @@ class SignUp : Fragment() {
                                     progressBar2?.hide()
                                     enableViews()
                                     AppPref(activity!!).loading = false
-                                    "Email already exists".showAsToast(activity!!, true)
+                                    getString(R.string.email_registered).showAsToast(activity!!, true)
                                 }else{
                                     mAuth.createUserWithEmailAndPassword(edit_register_email.text.toString(), edit_register_password.text.toString())
                                             .addOnSuccessListener { authResult ->
@@ -123,15 +125,12 @@ class SignUp : Fragment() {
                                                             AppPref(activity!!.applicationContext).userInstitution = user.institution
 
                                                             progressBar2?.hide()
+                                                            AppPref(activity!!).loading = false
                                                             getString(R.string.user_saved).showAsToast(activity!!)
 
-                                                            showFragment(
-                                                                    Fragment.instantiate(
-                                                                            activity!!,
-                                                                            PostSignUpInfo::class.java.name
-                                                                    ),
-                                                                    false
-                                                            )
+                                                            startActivity(Intent(activity!!, MainActivity::class.java)
+                                                                    .putExtra("registered", true))
+                                                            activity!!.finish()
                                                         }
                                                         .addOnFailureListener {
                                                             progressBar2?.hide()

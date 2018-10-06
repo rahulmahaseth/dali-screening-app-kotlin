@@ -94,14 +94,34 @@ class Login : Fragment() {
     private fun signIn() {
         disableViews()
         progressBar1?.show()
-        mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
-                .addOnSuccessListener { authResult ->
-                    if(activity != null){
-                        Log.d("Login", "Success")
-                        fetchUser(authResult)
+        mAuth.fetchProvidersForEmail(edit_email.text.toString())
+                .addOnSuccessListener {
+                    if(it.providers!!.size > 0){
+                        mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
+                                .addOnSuccessListener { authResult ->
+                                    if(activity != null){
+                                        Log.d("Login", "Success")
+                                        fetchUser(authResult)
+                                    }
+                                }
+                                .addOnFailureListener {
+                                    if(activity != null){
+                                        Log.d("Login", "Failed")
+                                        progressBar1?.hide()
+                                        enableViews()
+                                        getString(R.string.login_fail).showAsToast(activity!!, true)
+                                    }
+                                }
+                    }else{
+                        if(activity != null){
+                            Log.d("Login", "Failed")
+                            progressBar1?.hide()
+                            enableViews()
+                            getString(R.string.email_not_registered).showAsToast(activity!!, true)
+                        }
                     }
                 }
-                .addOnFailureListener {
+                .addOnCanceledListener {
                     if(activity != null){
                         Log.d("Login", "Failed")
                         progressBar1?.hide()

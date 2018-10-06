@@ -1,16 +1,15 @@
 package org.unesco.mgiep.dali.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_post_registration_info.*
-import org.unesco.mgiep.dali.Activity.MainActivity
-import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
+import org.unesco.mgiep.dali.Utility.showFragment
 
 class PostSignUpInfo : Fragment(){
 
@@ -21,10 +20,27 @@ class PostSignUpInfo : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         btn_submit_post_reg.setOnClickListener {
-            AppPref(activity!!).loading = false
-            startActivity(Intent(activity, MainActivity::class.java))
-            activity!!.finish()
+            showFragment(
+                    Fragment.instantiate(
+                            activity!!,
+                            Home::class.java.name
+                    ),
+                    false
+            )
         }
+    }
+
+    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        fragment.showFragment(container = R.id.fragment_container,
+                fragmentManager = activity!!.supportFragmentManager,
+                addToBackStack = addToBackStack,
+                animate = true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity!!.title = getString(R.string.information)
     }
 }

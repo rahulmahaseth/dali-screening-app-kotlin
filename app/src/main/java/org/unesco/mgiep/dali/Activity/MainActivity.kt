@@ -22,6 +22,7 @@ class MainActivity: BaseActivity() {
     }
 
     private lateinit var mAuth: FirebaseAuth
+    private var registered = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +34,25 @@ class MainActivity: BaseActivity() {
         (application as MyApplication).component.inject(this)
         handleNavigationClick()
         mAuth = FirebaseAuth.getInstance()
-        showFragment(
-                Fragment.instantiate(
-                this,
-                        Home::class.java.name
-                ),
-                addToBackStack = false
-        )
+        registered = intent.getBooleanExtra("registered", false)
+        if(registered){
+            showFragment(
+                    Fragment.instantiate(
+                            this,
+                            PostSignUpInfo::class.java.name
+                    ),
+                    false
+            )
+        }else{
+            showFragment(
+                    Fragment.instantiate(
+                            this,
+                            Home::class.java.name
+                    ),
+                    addToBackStack = false
+            )
+        }
+
     }
 
     private fun handleNavigationClick(){

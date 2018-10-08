@@ -1,0 +1,10 @@
+---
+project_identifier: 'dali'
+api_key_env: 'dali_api_key'
+base_url: ''
+
+files:
+  -
+   source: '/values/strings.xml'
+   translation: '/values-%android_code%/%original_file_name%'
+

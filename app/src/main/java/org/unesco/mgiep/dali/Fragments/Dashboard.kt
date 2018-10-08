@@ -61,9 +61,6 @@ class Dashboard : Fragment() {
         return LastAdapter(screeningParticipants, BR.item)
                 .map<ScreeningParticipant, ItemScreeningparticipantBinding>(R.layout.item_screeningparticipant) {
                     onBind {
-
-
-
                         if(it.binding.item!!.screening.assesmentLanguage == AssessmentLanguage.ENGLISH.toString()){
                             if (it.binding.item!!.screening.type == Type.JST.toString()) {
                                 if (it.binding.item!!.screening.totalScore <= 12) {
@@ -93,7 +90,6 @@ class Dashboard : Fragment() {
                                 }
                             }
                         }
-
 
                         if(it.binding.item!!.participant.gender == Gender.MALE.toString()){
                             it.itemView.item_screening_male.visibility = View.VISIBLE
@@ -195,6 +191,7 @@ class Dashboard : Fragment() {
                                 lastAdapter.notifyDataSetChanged()
                                 dashboard_refresh_layout?.isRefreshing = false
                                 dashboard_progressBar?.hide()
+                                
                         }else{
                                 dashboard_refresh_layout?.isRefreshing = false
                                 dashboard_progressBar?.hide()

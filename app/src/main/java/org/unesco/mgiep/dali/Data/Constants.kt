@@ -17,5 +17,5 @@ enum class Relationship{
 }
 
 enum class AssessmentLanguage{
-    HINDI, ENGLISH
+    HINDI, ENGLISH, MARATHI
 }

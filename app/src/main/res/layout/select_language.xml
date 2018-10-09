@@ -47,6 +47,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hindi" />
+
+        <Button
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@color/colorPrimary"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:id="@+id/btn_language_marathi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/marathi" />
     </LinearLayout>
 
 </RelativeLayout>

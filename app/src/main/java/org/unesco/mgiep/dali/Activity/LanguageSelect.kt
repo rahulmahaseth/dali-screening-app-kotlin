@@ -26,28 +26,27 @@ class LanguageSelect: AppCompatActivity() {
         participantName = intent.getStringExtra("participantName")
 
         btn_language_english.setOnClickListener {
-            startActivity(
-                    Intent(this, ScreeningActivity::class.java)
-                            .putExtra("type", screeningType)
-                            .putExtra("screeningId", screeningId)
-                            .putExtra("participantId",participantId)
-                            .putExtra("participantName", participantName)
-                            .putExtra("screeningLang", AssessmentLanguage.ENGLISH.toString())
-            )
-            finish()
+            start(AssessmentLanguage.ENGLISH.toString())
         }
 
         btn_language_hindi.setOnClickListener {
-
-            startActivity(
-                    Intent(this, ScreeningActivity::class.java)
-                            .putExtra("type", screeningType)
-                            .putExtra("screeningId", screeningId)
-                            .putExtra("participantId",participantId)
-                            .putExtra("participantName", participantName)
-                            .putExtra("screeningLang", AssessmentLanguage.HINDI.toString())
-            )
-            finish()
+            start(AssessmentLanguage.HINDI.toString())
         }
+
+        btn_language_marathi.setOnClickListener {
+            start(AssessmentLanguage.MARATHI.toString())
+        }
+    }
+
+    private fun start(lang: String){
+        startActivity(
+                Intent(this, ScreeningActivity::class.java)
+                        .putExtra("type", screeningType)
+                        .putExtra("screeningId", screeningId)
+                        .putExtra("participantId",participantId)
+                        .putExtra("participantName", participantName)
+                        .putExtra("screeningLang", lang)
+        )
+        finish()
     }
 }

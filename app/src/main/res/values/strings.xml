@@ -227,6 +227,7 @@
     <string name="same_instruction_language_error">Select different languages of instruction</string>
     <string name="email_not_registered">Email not registered</string>
     <string name="email_registered">Email already registered</string>
+    <string name="marathi">Marathi</string>
 
     <string-array name="jst_categories">
         <item>sound</item>

@@ -15,7 +15,6 @@ class FirebaseRepository {
     private val participantsRef = mDatabase.collection("participants")
 
 
-
     //Functions to Write Data to FireStore
     fun writeDocument(documentReference: DocumentReference, oobject:Any, type: String): Task<*> {
         Log.d("firebase-save",type)
@@ -134,6 +133,10 @@ class FirebaseRepository {
                         Log.d("ParticipantDetails","failed",task.exception)
                     }
                 }
+    }
+
+    fun saveQuestionWiseScore(){
+
     }
 
 }

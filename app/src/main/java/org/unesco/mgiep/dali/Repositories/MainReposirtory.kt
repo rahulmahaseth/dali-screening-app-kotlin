@@ -4,7 +4,6 @@ import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import io.reactivex.Maybe
 import org.unesco.mgiep.dali.Data.*
 
 class MainReposirtory {
@@ -15,7 +14,7 @@ class MainReposirtory {
     private val usersRef = mDatabase.collection("users")
     private val screeningsRef = mDatabase.collection("screenings")
     private val participantsRef = mDatabase.collection("participants")
-    private val resultsRef = mDatabase.collection("results")
+    private val scoresRef = mDatabase.collection("scores")
 
     //save data
     fun saveUser(id: String, user: User): Task<*> {
@@ -31,6 +30,10 @@ class MainReposirtory {
     fun saveParticipant(id: String, participant: Participant): Task<*> {
         Log.d("save","participant")
         return firebaseRepository.writeDocument(participantsRef.document(id),participant,"participant")
+    }
+
+    fun saveScore(id: String, result: QuestionWiseScore): Task<*> {
+        return firebaseRepository.writeDocument(scoresRef.document(id), result, "result")
     }
 
     //get data

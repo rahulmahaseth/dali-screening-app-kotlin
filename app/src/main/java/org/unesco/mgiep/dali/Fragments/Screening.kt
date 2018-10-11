@@ -14,8 +14,10 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
+import org.unesco.mgiep.dali.Data.QuestionWiseScore
 import org.unesco.mgiep.dali.Data.Screening
 import org.unesco.mgiep.dali.Data.Type
+import org.unesco.mgiep.dali.Data.ViewModels.QuestionWiseScoreViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
@@ -27,6 +29,7 @@ import kotlin.collections.HashMap
 class Screening : Fragment() {
 
     private lateinit var screeningViewModel: ScreeningViewModel
+    private lateinit var questionWiseScoreViewModel: QuestionWiseScoreViewModel
 
     lateinit var mainReposirtory: MainReposirtory
     private var totalQuestions = 0
@@ -37,6 +40,7 @@ class Screening : Fragment() {
     private var participantName = ""
     private var assessmentLanguage = ""
     private var screeningId = ""
+    private var questionWiseScoreId = UUID.randomUUID().toString()
     private lateinit var mAuth: FirebaseAuth
     private val questionAnswerMap: HashMap<Int, Int> = hashMapOf()
 
@@ -45,8 +49,12 @@ class Screening : Fragment() {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         mainReposirtory = MainReposirtory()
+
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
+        questionWiseScoreViewModel = ViewModelProviders.of(activity!!).get(QuestionWiseScoreViewModel::class.java)
+
         mAuth = FirebaseAuth.getInstance()
+
         screeningId = activity!!.intent.getStringExtra("screeningId")
         screeningType = activity!!.intent.getStringExtra("type")
         participantId = activity!!.intent.getStringExtra("participantId")
@@ -262,6 +270,15 @@ class Screening : Fragment() {
                                         assesmentLanguage = assessmentLanguage
                                 )
                         )
+
+                        questionWiseScoreViewModel.select(
+                                QuestionWiseScore(
+                                        questionWiseScoreId,
+                                        screeningId,
+                                        getStringKeyScores()
+                                )
+                        )
+
                         showFragment(
                                 Fragment.instantiate(
                                         activity,
@@ -275,6 +292,14 @@ class Screening : Fragment() {
                     .show()
 
         }
+    }
+
+    private fun getStringKeyScores(): HashMap<String,Int>{
+        var temp = hashMapOf<String, Int>()
+        questionAnswerMap.forEach {
+            temp[it.key.toString()] = it.value
+        }
+        return  temp
     }
 
     fun addCategoryImage(category: String) {

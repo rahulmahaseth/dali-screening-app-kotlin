@@ -11,7 +11,9 @@ import kotlinx.android.synthetic.main.fragment_comments.*
 import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.AppPref
+import org.unesco.mgiep.dali.Data.QuestionWiseScore
 import org.unesco.mgiep.dali.Data.Screening
+import org.unesco.mgiep.dali.Data.ViewModels.QuestionWiseScoreViewModel
 import org.unesco.mgiep.dali.Data.ViewModels.ScreeningViewModel
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Repositories.FirebaseRepository
@@ -23,6 +25,8 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 class Comments: Fragment(){
 
     private lateinit var screeningViewModel: ScreeningViewModel
+    private lateinit var questionWiseScoreViewModel: QuestionWiseScoreViewModel
+    private lateinit var questionWiseScore: QuestionWiseScore
     lateinit var mainReposirtory: MainReposirtory
     lateinit var firebaseRepository: FirebaseRepository
     lateinit var screening: Screening
@@ -33,7 +37,9 @@ class Comments: Fragment(){
         mainReposirtory = MainReposirtory()
         firebaseRepository = FirebaseRepository()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
+        questionWiseScoreViewModel = ViewModelProviders.of(activity!!).get(QuestionWiseScoreViewModel::class.java)
         screening = screeningViewModel.getScreening().value!!.copy()
+        questionWiseScore = questionWiseScoreViewModel.getScore().value!!.copy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
@@ -50,18 +56,27 @@ class Comments: Fragment(){
             AppPref(activity!!).loading = true
             mainReposirtory.saveScreening(screening.id, screening)
                     .addOnSuccessListener {
-                        comments_progressBar?.hide()
-                        AppPref(activity!!).loading = false
-                        getString(R.string.screening_saved).showAsToast(activity!!)
-                        startActivity(
-                                Intent(activity, ResultActivity::class.java)
-                                        .putExtra("screening", true)
-                                        .putExtra("name",screening.participantName)
-                                        .putExtra("score",screening.totalScore)
-                                        .putExtra("type",screening.type)
-                                        .putExtra("language", screening.assesmentLanguage)
-                        )
-                        activity!!.finish()
+                        mainReposirtory.saveScore(questionWiseScore.id, questionWiseScore)
+                                .addOnSuccessListener {
+                                    comments_progressBar?.hide()
+                                    AppPref(activity!!).loading = false
+                                    getString(R.string.screening_saved).showAsToast(activity!!)
+                                    startActivity(
+                                            Intent(activity, ResultActivity::class.java)
+                                                    .putExtra("screening", true)
+                                                    .putExtra("name",screening.participantName)
+                                                    .putExtra("score",screening.totalScore)
+                                                    .putExtra("type",screening.type)
+                                                    .putExtra("language", screening.assesmentLanguage)
+                                    )
+                                    activity!!.finish()
+                                }
+                                .addOnCanceledListener {
+                                    comments_progressBar?.hide()
+                                    AppPref(activity!!).loading = false
+                                    enableViews()
+                                    getString(R.string.save_screening_error).showAsToast(activity!!, true)
+                                }
                     }
                     .addOnFailureListener {
                         comments_progressBar?.hide()

@@ -96,8 +96,6 @@
     <string name="skip">वगळा</string>
     <string name="participate_saving_error">सहभागी तपशील जतन करताना त्रुटी!</string>
     <string name="fetch_participant_error">सहभागी तपशील प्राप्त करताना त्रुटी!</string>
-    <string name="english">इंग्रजी</string>
-    <string name="hindi">हिंदी</string>
     <string name="select_screening_language">स्क्रीनिंग भाषा निवडा</string>
     <string name="information">माहिती</string>
     <string name="gender">लिंग</string>
@@ -132,29 +130,34 @@
     <string name="same_instruction_language_error">निर्देशांची विविध भाषा निवडा</string>
     <string name="email_not_registered">ईमेल नोंदणीकृत नाही</string>
     <string name="email_registered">ईमेल आधीच नोंदणीकृत आहे</string>
+
+    <string name="english">इंग्रजी</string>
+    <string name="hindi">हिंदी</string>
     <string name="marathi">मराठी</string>
+    <string name="kannada">कन्नड</string>
 
-    <string name="pre_screening_info_1">"इस साधन को पूरा करते समय प्रत्येक बच्चे के व्यवहार का मूल्यांकन बच्चे के सहपाठियों के व्यवहार के संदर्भ में निर्धारित किया जाना चाहिए | कृपया बच्चे के शैक्षणिक एवं सामाजिक वातावरण ( देशी / मातृभाषा, सामाजिक - आर्थिक वातावरण इत्यादि ) को ध्यान में रखते हुए मूल्यांकन करें | "</string>
-    <string name="prescreen_text_1">"इस संवीछा साधन को कक्षा १ से कक्षा ५ के बच्चों के लिए बनाया गया है| इस मूल्यांकन का लक्ष्य है की बच्चे में डिस्लेक्सिआ के लक्षण हो, तो उसकी विस्तार से जांच होनी चाहिए| "</string>
-    <string name="prescreen_text_2">"भारत की भाषा नीति के अनुसार बच्चे में डिस्लेक्सिया की पहचान के लिए छात्रों का मूल्यांकन प्रत्येक भाषा में हो जिस में छात्रों को शिक्षा प्राप्त हो रही है| "</string>
-    <string name="home_description">"भारतीय भाषाओँ में डिस्लेक्सिया की पहचान करवाने वाला एंड्राइड ऐप| "</string>
-    <string name="medium_of_instruction2">कृपया कक्षा में पढ़ाई जा रहीं सारी भाषाओं में इस साधन का प्रयोग करे</string>
-    <string name="post_reg_info">" यह उद्देश्य है कि उन बच्चों को पहचाना जा सके जिन में डिस्लेक्सिआ हो सकती है , जिस के कारण उनकी स्कूली शिक्षा में बाधाएं आती हैं | हमारा लक्ष्य यह है कि हम डिस्लेक्सिया की जाँच करने के लिए एक ऐसा साधन विकसित करें , जो संक्षिप्त, वस्तुनिष्ठ एवं बहुमुखी हो, तथा जिस का उपयोग शिक्षक कर सकें | यदि इस साधन से यह सिद्ध होता है कि बच्चे में संभवतः डिस्लेक्सिया हो सकती है , तो बच्चे का अधिक विस्तार से जाँच होना आवश्यक है  "</string>
 
-    <string name="eye_sight_test">"बच्चे की दृष्टि की परीक्षा एक नेत्र रोग विशेषज्ञ द्वारा आवश्यक है "</string>
-    <string name="audio_test">"बच्चे की श्रवण शक्ति की परीक्षा एक कर्ण वैज्ञानिक द्वारा आवश्यक है "</string>
-    <string name="cognitive_test">"इस के पश्चात बच्चे को शैक्षणिक मनोवैज्ञानिक अथवा नैदानिक मनोवैज्ञानिक के पास मूल्यांकन के लिए लेकर जाना आवश्यक है "</string>
-    <string name="result_monitor">"बच्चे पर ध्यान रखिये और उपचारात्मक परिक्षण दीजिये | ३ महीने पश्चात पुनः संवीक्षा साधन का प्रयोग कीजिए "</string>
+    <string name="pre_screening_info_1">ही चाचणी पूर्ण करताना ज्या मुलाची चाचणी करायची आहे त्या मुलाचा विचार त्याच वर्गातील इतर मुलांच्या कामगिरीच्या तुलनेत केला जायला हवा. चाचणी करताना मुलाच्या घरच्या व भोवतालच्या परिस्थितीचा विचार केला गेला पाहिजे.( उदा. मुलाची मातृभाषा, सामाजिक, आर्थिक परिस्थिती इ.)  </string>
+    <string name="prescreen_text_1">ही प्राथमिक चाचणी इयत्ता पहिली ते पाचवीच्या (वय ५ ते १० वर्षे) मुलांसाठी बनवली आहे. भाषासंशोधनाप्रमाणे मुलांना शाळेत ज्या भाषा शिकवल्या जातात त्या सर्व भाषांमध्ये डिसलेक्सियाची ही चाचणी घेतली गेली पाहिजे.</string>
+    <string name="prescreen_text_2">म्हणूनच वर्गशिक्षक व भाषाशिक्षक अशा दोघांनीही मुलाची ही प्राथमिक चाचणी घेतली पाहिजे. </string>
+    <string name="home_description">सर्व प्रादेशिक भाषांमध्ये उपलब्ध असलेली डिसलेक्सियाची पहिली भारतीय ऑनलाईन प्राथमिक चाचणी</string>
+    <string name="medium_of_instruction2">कृपया क्लासमध्ये शिकवल्या जाणार्या सर्व भाषांमध्ये या साधनाचा वापर करा.</string>
+    <string name="post_reg_info">अध्ययन अक्षमता असल्यामुळे शाळेत प्रगती करायला अडचण येत असणारी मुले शोधणे हा या प्राथमिक चाचणीचा उद्देश आहे. संदर्भ प्रश्नावली म्हणून वापरता येईल अशा समग्र पध्दतीने ही चाचणी बनवली आहे. जर या प्राथमिक चाचणीतून एखाद्या मुलाला अध्ययन अक्षमता असण्याची शक्यता लक्षात आली तर त्या मुलाला संपूर्ण निदान चाचणी करुन घेण्यासाठी पाठवले पाहिजे. </string>
+
+    <string name="eye_sight_test">मुलामध्ये काही दृष्टी दोष नसल्याची खात्री करण्यासाठी नेत्र तज्ज्ञांकडून डोळे तपासणी होणे आवश्यक आहे. </string>
+    <string name="audio_test">मुलामध्ये श्रवण दोष नसल्याची खात्री करण्यासाठी तज्ज्ञ व्यक्तीकडून तपासणी होणे आवश्यक आहे. </string>
+    <string name="cognitive_test">मानसतज्ज्ञांनी मुलाला शाळेत शिकवल्या जाणाऱ्या सर्व भाषांमध्ये मुलाची संपूर्ण निदान चाचणी केली पाहिजे.</string>
+    <string name="result_monitor">रेमेडीअल टीचिंग सुरु करुन मुलाच्या प्रगतीचे निरीक्षण केले पाहिजे. तीन महिने रेमेडीअल टीचिंग केल्यावर पुन्हा एकदा त्याच मुलासाठी ही प्राथमिक निदान चाचणी वापरली पाहिजे. </string>
 
     <string name="cat_writing">लेखन जागरूकता</string>
-    <string name="cat_memory">स्मरणशक्ति</string>
-    <string name="cat_behavior">व्यवहार</string>
-    <string name="cat_motor">स्नायु समन्वयन (Motor Coordination)</string>
-    <string name="cat_number">संख्या अवधारणा</string>
-    <string name="cat_print">कौशल अधिग्रहण</string>
+    <string name="cat_memory">स्मरणशक्ती</string>
+    <string name="cat_behavior">वर्तन</string>
+    <string name="cat_motor">कारक कौशल्ये (Motor Coordination)</string>
+    <string name="cat_number">संख्या संकल्पना</string>
+    <string name="cat_print">प्रिंट जागरूकता</string>
     <string name="cat_communication">संवाद</string>
-    <string name="cat_sound">ध्वनि जागरूकता</string>
-    <string name="reading_mst">पढाई</string>
+    <string name="cat_sound">ध्वनी जागरूकता</string>
+    <string name="reading_mst">वाचन</string>
     <string name="writing_mst">लेखन</string>
     <string name="mathematics">गणित</string>
 

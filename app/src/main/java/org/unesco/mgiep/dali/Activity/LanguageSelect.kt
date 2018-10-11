@@ -36,6 +36,10 @@ class LanguageSelect: AppCompatActivity() {
         btn_language_marathi.setOnClickListener {
             start(AssessmentLanguage.MARATHI.toString())
         }
+
+        btn_language_Kannada.setOnClickListener {
+            start(AssessmentLanguage.KANNADA.toString())
+        }
     }
 
     private fun start(lang: String){

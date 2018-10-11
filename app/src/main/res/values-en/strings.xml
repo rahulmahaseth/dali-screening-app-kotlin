@@ -160,5 +160,6 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="clas_range_error">Class should be in between 1 and 5</string>
+    <string name="kannada">Kannada</string>
 
 </resources>

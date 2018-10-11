@@ -33,6 +33,9 @@ class ScreeningActivity: BaseActivity() {
             AssessmentLanguage.MARATHI.toString() -> {
                 setLocale("mr")
             }
+            AssessmentLanguage.KANNADA.toString() -> {
+                setLocale("kn")
+            }
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screening)

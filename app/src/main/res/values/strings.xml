@@ -159,9 +159,9 @@
 
     <string name="jst_q1">Difficulty in sound replacement games.</string>
     <string name="jst_q2">Difficulty in rhyming.</string>
+    <string name="jst_q3">Difficulty with spelling common words.</string>
     <string name="jst_q4">Difficulty in identifying letters of the alphabet.</string>
     <string name="jst_q5">Difficulty in recognizing/reading common printed words.</string>
-    <string name="jst_q3">Difficulty with spelling common words.</string>
     <string name="jst_q6">Difficulty in recognizing number symbols when shown.</string>
     <string name="jst_q7">Difficulty in understanding "greater than" or "less than", "what comes before or after" concepts.</string>
     <string name="jst_q8">Difficulty in following instructions.</string>
@@ -175,9 +175,9 @@
 
     <string name="jst_e1">For ex: Replace sound /r/ in RED with /b/ to get BED.</string>
     <string name="jst_e2">For ex: Which of the following two words rhyme? BAR, CAR, BUS</string>
+    <string name="jst_e3">For ex: WAS, HAT, DAY, OUT, etc.</string>
     <string name="jst_e4">For ex: If asked to point out the letter "J", the child is unable to do so.</string>
     <string name="jst_e5">For ex: THE, FOR, CAT, SUN, etc.</string>
-    <string name="jst_e3">For ex: WAS, HAT, DAY, OUT, etc.</string>
     <string name="jst_e6">For ex: If asked to point out the number "5", the child is unable to do so.</string>
     <string name="jst_e7">For ex: Is 4 greater than 7? What comes after 8? The child should be able to do such sequencing up to 8.</string>
     <string name="jst_e8">For ex: Difficulty in understanding commands involving two or three steps. For example, "Open chapter number 4 and get to page number 34".</string>

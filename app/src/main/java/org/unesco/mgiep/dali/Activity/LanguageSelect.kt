@@ -37,8 +37,11 @@ class LanguageSelect: AppCompatActivity() {
             start(AssessmentLanguage.MARATHI.toString())
         }
 
-        btn_language_Kannada.setOnClickListener {
+        btn_language_kannada.setOnClickListener {
             start(AssessmentLanguage.KANNADA.toString())
+        }
+        btn_language_telugu.setOnClickListener {
+            start(AssessmentLanguage.TELUGU.toString())
         }
     }
 

@@ -132,6 +132,8 @@
     <string name="marathi">Marathi</string>
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
+    <string name="kannada">Kannada</string>
+    <string name="telugu">Telugu</string>
 
     <string name="home_description">DALI screening is the first online screening tool for dyslexia in regional Indian languages.</string>
     <string name="prescreen_text_1">This screening tool is designed for children from classes 1 to 5(5 to 10 years). As per language research, children should be screened in all the languages in which they receive instruction.</string>
@@ -232,7 +234,7 @@
     <string name="mst_e19">For ex: Has difficulty in sitting in one position. May roam in the class. May disturb other children in the class.</string>
     <string name="mst_e20"></string>
     <string name="mst_e21"></string>
-    <string name="kannada">Kannada</string>
+
 
 
     <string-array name="jst_categories">

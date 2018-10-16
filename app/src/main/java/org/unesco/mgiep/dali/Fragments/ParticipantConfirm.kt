@@ -139,7 +139,7 @@ class ParticipantConfirm : Fragment() {
                     if(start){
                         startScreening()
                     }else{
-                        getString(R.string.screening_saved).showAsToast(MyApplication.instance, false)
+                        getString(R.string.screening_saved).showAsToast(activity!!, false)
                         startActivity(Intent(MyApplication.instance, MainActivity::class.java))
                         activity!!.finish()
                     }

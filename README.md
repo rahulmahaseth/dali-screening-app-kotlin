@@ -1,6 +1,6 @@
 [![Play Store](https://www.hammerpricelive.com/wp-content/uploads/2016/08/play-store-icon.png)](https://play.google.com/store/apps/details?id=org.unesco.mgiep.dali)
 
-# DALIScreen
+# DALIScreening
 Dali Screening Android Application built using Kotlin
 
 ## About

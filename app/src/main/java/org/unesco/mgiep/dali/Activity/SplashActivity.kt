@@ -1,6 +1,7 @@
 package org.unesco.mgiep.dali.Activity
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.crashlytics.android.Crashlytics
@@ -11,6 +12,7 @@ import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.Fragments.Login
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
+import java.util.*
 
 
 class SplashActivity: BaseActivity() {
@@ -21,6 +23,7 @@ class SplashActivity: BaseActivity() {
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setLocale("kn")
         setContentView(R.layout.activity_splash)
         (application as MyApplication).component.inject(this)
 
@@ -61,6 +64,13 @@ class SplashActivity: BaseActivity() {
                 animate = false)
     }
 
+    fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+    }
 
     override fun onResume() {
         super.onResume()

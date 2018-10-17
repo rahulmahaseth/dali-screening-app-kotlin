@@ -49,7 +49,7 @@ class FirebaseRepository {
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                         if(!task.result.isEmpty){
+                         if(!task.result!!.isEmpty){
                                 Log.d("fetch-screenings","success")
                          }else{
                                 Log.d("fetch-screenings","failed!!No Such Document")
@@ -67,8 +67,8 @@ class FirebaseRepository {
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        if(!task.result.isEmpty){
-                            Log.d("fetch-Pendingscreenings","${task.result.documents.size}")
+                        if(!task.result!!.isEmpty){
+                            Log.d("fetch-Pendingscreenings","${task.result!!.documents.size}")
                         }else{
                             Log.d("fetch-Pendingscreenings","failed!!No Such Document")
                         }
@@ -88,7 +88,7 @@ class FirebaseRepository {
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        if(!task.result.isEmpty){
+                        if(!task.result!!.isEmpty){
                             Log.d("fetch-PScreenings","success")
                         }else{
                             Log.d("fetch-PScreenings","failed!!No Such Document")
@@ -105,7 +105,7 @@ class FirebaseRepository {
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        if(!task.result.isEmpty){
+                        if(!task.result!!.isEmpty){
                             Log.d("fetch-Participants","success")
                         }else{
                             Log.d("fetch-Participants","failed!!No Such Document")
@@ -124,7 +124,7 @@ class FirebaseRepository {
                 .get()
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        if(!task.result.isEmpty){
+                        if(!task.result!!.isEmpty){
                             Log.d("fParticipantDetails","success")
                         }else{
                             Log.d("ParticipantDetails","failed!!No Such Document")
@@ -134,9 +134,4 @@ class FirebaseRepository {
                     }
                 }
     }
-
-    fun saveQuestionWiseScore(){
-
-    }
-
 }

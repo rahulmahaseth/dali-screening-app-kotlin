@@ -10,9 +10,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
 import com.github.nitrico.lastadapter.LastAdapter
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
-import kotlinx.android.synthetic.main.fragment_pendingscreenings.*
+import kotlinx.android.synthetic.main.fragment_draft.*
 import kotlinx.android.synthetic.main.item_screeningparticipant.view.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.BR
@@ -30,13 +31,14 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import org.unesco.mgiep.dali.databinding.ItemScreeningparticipantBinding
 
-class PendingScreenings: Fragment() {
+class Drafts: Fragment() {
 
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screenings = ObservableArrayList<Screening>()
     private val particpants = ObservableArrayList<Participant>()
     private val screeningParticipants = ObservableArrayList<ScreeningParticipant>()
     private val screeningParticipantContainer = ObservableArrayList<ScreeningParticipant>()
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
@@ -76,6 +78,7 @@ class PendingScreenings: Fragment() {
         (activity!!.application as MyApplication).component.inject(this)
         setHasOptionsMenu(true)
         mAuth = FirebaseAuth.getInstance()
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
@@ -83,7 +86,7 @@ class PendingScreenings: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
-            inflater.inflate(R.layout.fragment_pendingscreenings, container, false)
+            inflater.inflate(R.layout.fragment_draft, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -214,6 +217,7 @@ class PendingScreenings: Fragment() {
     }
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "drafts", Drafts::class.java.simpleName)
         activity!!.title = getString(R.string.drafts)
     }
 

@@ -11,7 +11,7 @@ import android.util.Log
 import android.view.*
 import com.github.nitrico.lastadapter.LastAdapter
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_screenings_list.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
 import org.unesco.mgiep.dali.BR
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -22,6 +22,7 @@ import org.unesco.mgiep.dali.Utility.hide
 import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showFragment
 import android.view.MenuInflater
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.item_screeningparticipant.view.*
 import org.unesco.mgiep.dali.Data.*
@@ -32,8 +33,8 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.databinding.ItemScreeningparticipantBinding
 
 
-class Dashboard : Fragment() {
-
+class ScreeningList : Fragment() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private val lastAdapter: LastAdapter by lazy { initLastAdapter() }
     private val screenings = ObservableArrayList<Screening>()
     private val particpants = ObservableArrayList<Participant>()
@@ -50,6 +51,7 @@ class Dashboard : Fragment() {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
         setHasOptionsMenu(true)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
         mAuth = FirebaseAuth.getInstance()
@@ -122,7 +124,7 @@ class Dashboard : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_dashboard, container, false)
+            inflater.inflate(R.layout.fragment_screenings_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -263,6 +265,7 @@ class Dashboard : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "screening_list", ScreeningList::class.java.simpleName)
         activity!!.title = getString(R.string.screenings)
         Log.d("ParticipantList", "Resumed")
     }

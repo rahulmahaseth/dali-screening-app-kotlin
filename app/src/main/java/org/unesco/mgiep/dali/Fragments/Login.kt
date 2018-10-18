@@ -1,32 +1,25 @@
 package org.unesco.mgiep.dali.Fragments
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Paint
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
-import android.widget.Toast
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.unesco.mgiep.dali.Data.AppPref
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Activity.MainActivity
-import org.unesco.mgiep.dali.Activity.SplashActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
-import org.unesco.mgiep.dali.Data.Login
 import org.unesco.mgiep.dali.Data.User
 import org.unesco.mgiep.dali.Repositories.MainReposirtory
 import org.unesco.mgiep.dali.Utility.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -34,6 +27,7 @@ class Login : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mainReposirtory: MainReposirtory
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private val stringArray = ArrayList<String>()
     private lateinit var arrayAdapter: ArrayAdapter<String>
@@ -41,6 +35,7 @@ class Login : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mAuth = FirebaseAuth.getInstance()
         mainReposirtory = MainReposirtory()
         arrayAdapter = ArrayAdapter(activity, R.layout.item_spinner, stringArray)
@@ -100,13 +95,13 @@ class Login : Fragment() {
                         mAuth.signInWithEmailAndPassword(edit_email.text.toString(), edit_password.text.toString())
                                 .addOnSuccessListener { authResult ->
                                     if(activity != null){
-                                        Log.d("Login", "Success")
+                                        Log.d("LoginModel", "Success")
                                         fetchUser(authResult)
                                     }
                                 }
                                 .addOnFailureListener {
                                     if(activity != null){
-                                        Log.d("Login", "Failed")
+                                        Log.d("LoginModel", "Failed")
                                         progressBar1?.hide()
                                         enableViews()
                                         getString(R.string.login_fail).showAsToast(activity!!, true)
@@ -114,7 +109,7 @@ class Login : Fragment() {
                                 }
                     }else{
                         if(activity != null){
-                            Log.d("Login", "Failed")
+                            Log.d("LoginModel", "Failed")
                             progressBar1?.hide()
                             enableViews()
                             getString(R.string.email_not_registered).showAsToast(activity!!, true)
@@ -123,7 +118,7 @@ class Login : Fragment() {
                 }
                 .addOnCanceledListener {
                     if(activity != null){
-                        Log.d("Login", "Failed")
+                        Log.d("LoginModel", "Failed")
                         progressBar1?.hide()
                         enableViews()
                         getString(R.string.login_fail).showAsToast(activity!!, true)
@@ -182,6 +177,11 @@ class Login : Fragment() {
         btn_login.isEnabled = true
         btn_signup.isEnabled = true
         tv_forgot_password.isEnabled = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "login", Login::class.java.simpleName)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

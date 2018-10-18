@@ -9,8 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_newscreening2.*
+import kotlinx.android.synthetic.main.fragment_participant_form_2.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
@@ -20,13 +21,12 @@ import org.unesco.mgiep.dali.Utility.showAsToast
 import org.unesco.mgiep.dali.Utility.showFragment
 import java.util.*
 
-class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
+class ParticipantForm2 : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var relationShipWithChild = Relationship.CT
 
-
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var mAuth: FirebaseAuth
 
 
@@ -41,13 +41,14 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
         participant = screeningParticipantViewModel.getParticipant().value!!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
-            inflater.inflate(R.layout.fragment_newscreening2, container, false)
+            inflater.inflate(R.layout.fragment_participant_form_2, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -197,6 +198,11 @@ class NewScreening2 : Fragment(), AdapterView.OnItemSelectedListener {
                 l3 = parent.getItemAtPosition(position).toString()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "participant_form_2", ParticipantForm2::class.java.simpleName)
     }
 
 }

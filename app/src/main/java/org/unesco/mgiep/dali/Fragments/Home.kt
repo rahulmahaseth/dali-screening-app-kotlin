@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.*
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.unesco.mgiep.dali.Activity.NewScreeningActivity
@@ -12,10 +13,11 @@ import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.R
 
 class Home: Fragment() {
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -37,6 +39,7 @@ class Home: Fragment() {
 
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "home", Home::class.java.simpleName)
         activity!!.title = getString(R.string.app_name)
     }
 }

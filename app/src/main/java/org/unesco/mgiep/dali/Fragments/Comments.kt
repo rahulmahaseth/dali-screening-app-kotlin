@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.unesco.mgiep.dali.Activity.ResultActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -23,7 +24,7 @@ import org.unesco.mgiep.dali.Utility.show
 import org.unesco.mgiep.dali.Utility.showAsToast
 
 class Comments: Fragment(){
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var questionWiseScoreViewModel: QuestionWiseScoreViewModel
     private lateinit var questionWiseScore: QuestionWiseScore
@@ -34,6 +35,7 @@ class Comments: Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mainReposirtory = MainReposirtory()
         firebaseRepository = FirebaseRepository()
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
@@ -95,6 +97,11 @@ class Comments: Fragment(){
     private fun enableViews(){
         edit_comments.isEnabled = true
         btn_submit_screening.isEnabled = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "comments", Comments::class.java.simpleName)
     }
 
 }

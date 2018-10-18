@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.tsongkha.spinnerdatepicker.DatePickerDialog
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder
-import kotlinx.android.synthetic.main.fragment_new_screening.*
+import kotlinx.android.synthetic.main.fragment_participant_form_1.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
 import org.unesco.mgiep.dali.Data.*
 import org.unesco.mgiep.dali.Data.Participant
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewScreening : Fragment() {
+class ParticipantForm1 : Fragment() {
 
     val calendar = Calendar.getInstance()
 
@@ -34,6 +35,7 @@ class NewScreening : Fragment() {
 
     var selectedDate : Date = Date()
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
 
@@ -42,12 +44,13 @@ class NewScreening : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?=
-            inflater.inflate(R.layout.fragment_new_screening, container, false)
+            inflater.inflate(R.layout.fragment_participant_form_1, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -93,7 +96,7 @@ class NewScreening : Fragment() {
                     showFragment(
                             Fragment.instantiate(
                                     activity,
-                                    NewScreening2::class.java.name
+                                    ParticipantForm2::class.java.name
                             ),
                             true
                     )
@@ -122,6 +125,11 @@ class NewScreening : Fragment() {
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         edit_regscreen_dob.setText(sdf.format(calendar.time))
         selectedDate = calendar.time
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "participant_form_1", ParticipantForm1::class.java.simpleName)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

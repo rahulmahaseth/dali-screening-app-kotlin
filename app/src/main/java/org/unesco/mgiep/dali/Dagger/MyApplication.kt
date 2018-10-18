@@ -2,8 +2,10 @@ package org.unesco.mgiep.dali.Dagger
 
 import android.app.Application
 import com.chibatching.kotpref.Kotpref
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MyApplication: Application() {
+
 
     val component: AppComponent by lazy {
         DaggerAppComponent

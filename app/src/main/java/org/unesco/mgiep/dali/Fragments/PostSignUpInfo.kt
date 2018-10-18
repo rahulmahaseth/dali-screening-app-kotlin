@@ -7,11 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_post_registration_info.*
 import org.unesco.mgiep.dali.R
 import org.unesco.mgiep.dali.Utility.showFragment
 
 class PostSignUpInfo : Fragment(){
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_post_registration_info, container, false)
@@ -41,6 +48,7 @@ class PostSignUpInfo : Fragment(){
 
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "post_signup_info", PostSignUpInfo::class.java.simpleName)
         activity!!.title = getString(R.string.information)
     }
 }

@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_screening.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -30,6 +31,7 @@ class Screening : Fragment() {
 
     private lateinit var screeningViewModel: ScreeningViewModel
     private lateinit var questionWiseScoreViewModel: QuestionWiseScoreViewModel
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     lateinit var mainReposirtory: MainReposirtory
     private var totalQuestions = 0
@@ -53,6 +55,7 @@ class Screening : Fragment() {
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         questionWiseScoreViewModel = ViewModelProviders.of(activity!!).get(QuestionWiseScoreViewModel::class.java)
 
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mAuth = FirebaseAuth.getInstance()
 
         screeningId = activity!!.intent.getStringExtra("screeningId")
@@ -356,5 +359,10 @@ class Screening : Fragment() {
         fragment.showFragment(container = R.id.screening_fragment_container,
                 fragmentManager = activity!!.supportFragmentManager,
                 addToBackStack = addToBackStack)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "screening", org.unesco.mgiep.dali.Fragments.Screening::class.java.simpleName)
     }
 }

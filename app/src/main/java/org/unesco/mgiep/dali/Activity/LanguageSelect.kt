@@ -3,6 +3,7 @@ package org.unesco.mgiep.dali.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.select_language.*
 import org.unesco.mgiep.dali.Data.AssessmentLanguage
 import org.unesco.mgiep.dali.R
@@ -14,12 +15,13 @@ class LanguageSelect: AppCompatActivity() {
     private var participantId = ""
     private var participantName = ""
     private var screeningId = ""
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_language)
-
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         screeningId = intent.getStringExtra("screeningId")
         screeningType = intent.getStringExtra("type")
         participantId = intent.getStringExtra("participantId")
@@ -55,5 +57,10 @@ class LanguageSelect: AppCompatActivity() {
                         .putExtra("screeningLang", lang)
         )
         finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(this, "language_select", LanguageSelect::class.java.simpleName)
     }
 }

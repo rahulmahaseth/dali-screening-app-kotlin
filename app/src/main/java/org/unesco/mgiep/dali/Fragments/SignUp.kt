@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_registration.*
 import org.unesco.mgiep.dali.Activity.MainActivity
@@ -27,11 +28,10 @@ class SignUp : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mainReposirtory: MainReposirtory
     private lateinit var firebaseRepository: FirebaseRepository
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private val user = User()
     private var user2 = User()
-
-    private var password = ""
 
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z.]+".toRegex()
 
@@ -39,6 +39,7 @@ class SignUp : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mAuth = FirebaseAuth.getInstance()
         mainReposirtory = MainReposirtory()
         firebaseRepository = FirebaseRepository()
@@ -184,6 +185,10 @@ class SignUp : Fragment() {
         tv_already_registered.isEnabled = true
     }
 
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "sign_up", SignUp::class.java.simpleName)
+    }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         fragment.showFragment(container = R.id.splash_fragment_container,

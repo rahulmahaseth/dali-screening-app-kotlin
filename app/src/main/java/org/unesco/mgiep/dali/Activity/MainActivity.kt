@@ -72,7 +72,7 @@ class MainActivity: BaseActivity() {
                     showFragment(
                             Fragment.instantiate(
                                     this,
-                                    Dashboard::class.java.name
+                                    ScreeningList::class.java.name
                             ),
                             true
                     )
@@ -81,7 +81,7 @@ class MainActivity: BaseActivity() {
                     showFragment(
                             Fragment.instantiate(
                                     this,
-                                    PendingScreenings::class.java.name
+                                    Drafts::class.java.name
                             ),
                             true
                     )

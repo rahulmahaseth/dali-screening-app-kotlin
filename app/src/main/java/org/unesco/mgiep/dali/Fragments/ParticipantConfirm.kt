@@ -2,15 +2,14 @@ package org.unesco.mgiep.dali.Fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_participantconfirm.*
+import kotlinx.android.synthetic.main.fragment_participant_confirm.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -31,6 +30,7 @@ class ParticipantConfirm : Fragment() {
     val onlyDate = "dd/MM/yyyy"
 
     val sdf = SimpleDateFormat(onlyDate, Locale.ENGLISH)
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var screeningParticipantViewModel: ScreeningParticipantViewModel
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
@@ -42,6 +42,7 @@ class ParticipantConfirm : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         screeningParticipantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         firebaseRepository = FirebaseRepository()
         mainRepository = MainReposirtory()
@@ -51,7 +52,7 @@ class ParticipantConfirm : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_participantconfirm, container, false)
+            inflater.inflate(R.layout.fragment_participant_confirm, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -164,6 +165,11 @@ class ParticipantConfirm : Fragment() {
         AppPref(activity!!).loading = false
         startActivity(intent)
         activity!!.finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "participant_confirm", ParticipantConfirm::class.java.simpleName)
     }
 
 }

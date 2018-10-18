@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_forgotpassword.*
 import org.unesco.mgiep.dali.Dagger.MyApplication
@@ -14,10 +15,12 @@ import org.unesco.mgiep.dali.Utility.showFragment
 
 class ForgotPassword : Fragment(){
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var mAuth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mAuth = FirebaseAuth.getInstance()
     }
 
@@ -63,6 +66,11 @@ class ForgotPassword : Fragment(){
                     false
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "forgot_password", ForgotPassword::class.java.simpleName)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_result.*
 import org.unesco.mgiep.dali.Activity.MainActivity
 import org.unesco.mgiep.dali.Data.AssessmentLanguage
@@ -24,8 +25,11 @@ class Result: Fragment() {
     private var type = ""
     private var language = ""
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         name = activity!!.intent.getStringExtra("name")
         score = activity!!.intent.getIntExtra("score", 0)
         type = activity!!.intent.getStringExtra("type")
@@ -119,5 +123,10 @@ class Result: Fragment() {
                 Intent(activity, MainActivity::class.java)
         )
         activity!!.finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "result", Result::class.java.simpleName)
     }
 }

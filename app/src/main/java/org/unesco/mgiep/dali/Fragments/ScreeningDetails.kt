@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.*
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_screening_detail.*
 import org.unesco.mgiep.dali.Activity.LanguageSelect
 import org.unesco.mgiep.dali.Activity.ResultActivity
@@ -31,6 +32,7 @@ class ScreeningDetails : Fragment() {
     private lateinit var participantViewModel: ScreeningParticipantViewModel
     private lateinit var firebaseRepository: FirebaseRepository
     private lateinit var mainRepository: MainReposirtory
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private var scheduled = false
 
@@ -38,6 +40,7 @@ class ScreeningDetails : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         screeningViewModel = ViewModelProviders.of(activity!!).get(ScreeningViewModel::class.java)
         participantViewModel = ViewModelProviders.of(activity!!).get(ScreeningParticipantViewModel::class.java)
         firebaseRepository = FirebaseRepository()
@@ -107,6 +110,7 @@ class ScreeningDetails : Fragment() {
 
 override fun onResume() {
     super.onResume()
+    firebaseAnalytics.setCurrentScreen(activity!!, "screening_details", ScreeningDetails::class.java.simpleName)
     activity!!.title = screening.participantName
 }
 

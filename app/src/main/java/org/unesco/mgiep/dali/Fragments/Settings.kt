@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -19,10 +20,12 @@ class Settings : Fragment() {
 
     private lateinit var mainReposirtory: MainReposirtory
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity!!.application as MyApplication).component.inject(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
         mainReposirtory = MainReposirtory()
         mAuth = FirebaseAuth.getInstance()
     }
@@ -48,51 +51,9 @@ class Settings : Fragment() {
 
     }
 
-   /* private fun fetchUser(){
-        setting_progressBar?.show()
-        mainReposirtory.getUser(mAuth.currentUser!!.uid)
-                .addOnSuccessListener {
-                    if(it.exists()){
-                        val user = it.toObject(User::class.java)
-                        AppPref(activity!!.applicationContext).userEmail = user!!.email
-                        AppPref(activity!!.applicationContext).userName = user.name
-                        AppPref(activity!!.applicationContext).userDesignation = user.designation
-                        AppPref(activity!!.applicationContext).userInstitution = user.institution
-                        AppPref(activity!!.applicationContext).userAge = user.age.toString()
-                        setting_progressBar?.hide()
-                        refreshView()
-
-                    }else{
-                        setting_progressBar?.hide()
-                        getString(R.string.user_sync_error).showAsToast(activity!!)
-                    }
-                }
-                .addOnCanceledListener {
-                    setting_progressBar?.hide()
-                    getString(R.string.network_error).showAsToast(activity!!)
-                }
-    }
-    */
-/*
-
-    private fun refreshView(){
-        val curr = fragmentManager!!.findFragmentByTag(Settings::class.java.name)
-        val fragTransaction = fragmentManager!!.beginTransaction()
-        fragTransaction.detach(curr)
-        fragTransaction.attach(curr)
-        fragTransaction.commit()
-    }
-
-    private fun showFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        fragment.showFragment(container = R.id.fragment_container,
-                fragmentManager = activity!!.supportFragmentManager,
-                addToBackStack = addToBackStack,
-                animate = false)
-    }
-    */
-
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.setCurrentScreen(activity!!, "settings", Settings::class.java.simpleName)
         activity!!.title = getString(R.string.profile)
     }
 }
